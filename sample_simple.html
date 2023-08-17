@@ -1,82 +1,82 @@
 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
 <html lang="ja">
 <head>
-<meta http-equiv='Content-Type' content='text/html; charset=Shift_JIS'>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 <meta http-equiv='Pragma' content='no-cache'>
 <meta http-equiv='Cache-Control' content='no-cache'>
 <meta http-equiv='Expires' content='Thu, 01 Dec 1994 16:00:00 GMT'>
 <meta http-equiv='content-language' content='ja'>
-<title>y}Œ`•`‰æz</title>
+<title>ã€å›³å½¢æç”»ã€‘</title>
 
 <script language="javascript" src="./drawdiagram/include.js"></script>
 <script language="javascript">
 <!--
 var mDrawDiagram = null;
 
-// ‹N“®Žžˆ—
+// èµ·å‹•æ™‚å‡¦ç†
 function fncLoad() {
 	try {
-		// }Œ`•`‰æŠJŽn
+		// å›³å½¢æç”»é–‹å§‹
 		fncDrawStartDiagram();
 
 	} catch(e) { alert(e.message) }
 }
 
-// I—¹Žžˆ—
+// çµ‚äº†æ™‚å‡¦ç†
 function fncUnLoad() {
-	// }Œ`•`‰æI—¹
+	// å›³å½¢æç”»çµ‚äº†
 	fncDrawEndDiagram();
 }
 
 
 
-// }Œ`•`‰æŠJŽn
+// å›³å½¢æç”»é–‹å§‹
 function fncDrawStartDiagram() {
 	try {
 		var wMain = document.getElementById('divCanvas');
 
-		// ƒpƒ‰ƒ[ƒ^
-		// parent	: ƒLƒƒƒ“ƒoƒX‚Ìe—v‘f
-		// locked	: ƒLƒƒƒ“ƒoƒX‘€ìƒƒbƒNó‘Ô
-		// sidepanel: ƒTƒCƒhƒpƒlƒ‹Žg—p—L–³
-		// control	: ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹Žg—p—L–³
-		// addfunc	: €–Ú’Ç‰ÁŽž‚Ì•W€callback
-		// delfunc	: €–ÚíœŽž‚Ì•W€callback
-		// statfunc	: €–ÚƒXƒe[ƒ^ƒX•ÏXŽž‚Ì•W€callback
-		// posfunc	: €–Ú”z’u•ÏXŽž‚Ì•W€callback
-		// keyperson: Žå€–Ú—p‚Ìƒpƒ‰ƒ[ƒ^
-		// @addfunc	: Žå€–Ú’Ç‰ÁŽž‚Ì•W€callback
-		// @delfunc	: Žå€–ÚíœŽž‚Ì•W€callback
-		// control	: €–Ú‘€ìŠÖ˜AÝ’è
-		// @drag		: €–Úƒhƒ‰ƒbƒO‰Â”ÛÝ’è
-		// @@person		: l•¨
-		// @@group		: ƒOƒ‹[ƒv
-		// @@comment		: ƒRƒƒ“ƒg
-		// @@relation		: ’†Œp“_
-		// @@freeline		: ƒtƒŠ[ƒ‰ƒCƒ“
-		// @moveInit	: ’Êí•ÒWŽž€–ÚˆÚ“®‰Â”Û
-		// @@person		: l•¨
-		// @@group		: ƒOƒ‹[ƒv
-		// @@comment		: ƒRƒƒ“ƒg
-		// @@relation		: ’†Œp“_
-		// @@freeline		: ƒtƒŠ[ƒ‰ƒCƒ“
-		// canvas	: ‰æ‘œ•`‰æƒGƒŠƒAÝ’è
-		// @width		: ƒLƒƒƒ“ƒoƒX‰¡•iÈ—ªŽž‚ÍDefaultF1620j
-		// @height		: ƒLƒƒƒ“ƒoƒXc•iÈ—ªŽž‚ÍDefaultF1120j
-		// @widthSub	: ƒLƒƒƒ“ƒoƒX‰¡•Œ¸ŽZ’l
-		// @heightSub	: ƒLƒƒƒ“ƒoƒXc•Œ¸ŽZ’l
-		// menu		: ƒƒjƒ…[Ý’è
-		// @sidepanel	: ƒTƒCƒhƒpƒlƒ‹•ÒWƒƒjƒ…[—L–³
-		// @contents	: ƒRƒ“ƒeƒ“ƒcƒƒjƒ…[Ý’è
-		// @@data			: Save/Loadƒƒjƒ…[—L–³
-		// @@edit			: •ÒWƒƒjƒ…[—L–³
-		// @@print		: ˆóüƒƒjƒ…[—L–³
-		// @relation	: ŠÖŒWƒƒjƒ…[Ý’è
-		// @@autoClose	: ƒƒjƒ…[Ž©“®Close
-		// @@stat			: ó‘Ô—L–³
-		// @@kind			: ŠÖŒW«—L–³
-		// @@comment		: ƒRƒƒ“ƒg—L–³
-		// @@way			: “­‚«‚©‚¯—L–³
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		// parent	: ã‚­ãƒ£ãƒ³ãƒã‚¹ã®è¦ªè¦ç´ 
+		// locked	: ã‚­ãƒ£ãƒ³ãƒã‚¹æ“ä½œãƒ­ãƒƒã‚¯çŠ¶æ…‹
+		// sidepanel: ã‚µã‚¤ãƒ‰ãƒ‘ãƒãƒ«ä½¿ç”¨æœ‰ç„¡
+		// control	: ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ä½¿ç”¨æœ‰ç„¡
+		// addfunc	: é …ç›®è¿½åŠ æ™‚ã®æ¨™æº–callback
+		// delfunc	: é …ç›®å‰Šé™¤æ™‚ã®æ¨™æº–callback
+		// statfunc	: é …ç›®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å¤‰æ›´æ™‚ã®æ¨™æº–callback
+		// posfunc	: é …ç›®é…ç½®å¤‰æ›´æ™‚ã®æ¨™æº–callback
+		// keyperson: ä¸»é …ç›®ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		// ã€€addfunc	: ä¸»é …ç›®è¿½åŠ æ™‚ã®æ¨™æº–callback
+		// ã€€delfunc	: ä¸»é …ç›®å‰Šé™¤æ™‚ã®æ¨™æº–callback
+		// control	: é …ç›®æ“ä½œé–¢é€£è¨­å®š
+		// ã€€drag		: é …ç›®ãƒ‰ãƒ©ãƒƒã‚°å¯å¦è¨­å®š
+		// ã€€ã€€person		: äººç‰©
+		// ã€€ã€€group		: ã‚°ãƒ«ãƒ¼ãƒ—
+		// ã€€ã€€comment		: ã‚³ãƒ¡ãƒ³ãƒˆ
+		// ã€€ã€€relation		: ä¸­ç¶™ç‚¹
+		// ã€€ã€€freeline		: ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³
+		// ã€€moveInit	: é€šå¸¸ç·¨é›†æ™‚é …ç›®ç§»å‹•å¯å¦
+		// ã€€ã€€person		: äººç‰©
+		// ã€€ã€€group		: ã‚°ãƒ«ãƒ¼ãƒ—
+		// ã€€ã€€comment		: ã‚³ãƒ¡ãƒ³ãƒˆ
+		// ã€€ã€€relation		: ä¸­ç¶™ç‚¹
+		// ã€€ã€€freeline		: ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³
+		// canvas	: ç”»åƒæç”»ã‚¨ãƒªã‚¢è¨­å®š
+		// ã€€width		: ã‚­ãƒ£ãƒ³ãƒã‚¹æ¨ªå¹…ï¼ˆçœç•¥æ™‚ã¯Defaultï¼š1620ï¼‰
+		// ã€€height		: ã‚­ãƒ£ãƒ³ãƒã‚¹ç¸¦å¹…ï¼ˆçœç•¥æ™‚ã¯Defaultï¼š1120ï¼‰
+		// ã€€widthSub	: ã‚­ãƒ£ãƒ³ãƒã‚¹æ¨ªå¹…æ¸›ç®—å€¤
+		// ã€€heightSub	: ã‚­ãƒ£ãƒ³ãƒã‚¹ç¸¦å¹…æ¸›ç®—å€¤
+		// menu		: ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
+		// ã€€sidepanel	: ã‚µã‚¤ãƒ‰ãƒ‘ãƒãƒ«ç·¨é›†ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰ç„¡
+		// ã€€contents	: ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
+		// ã€€ã€€data			: Save/Loadãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰ç„¡
+		// ã€€ã€€edit			: ç·¨é›†ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰ç„¡
+		// ã€€ã€€print		: å°åˆ·ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰ç„¡
+		// ã€€relation	: é–¢ä¿‚ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
+		// ã€€ã€€autoClose	: ãƒ¡ãƒ‹ãƒ¥ãƒ¼è‡ªå‹•Close
+		// ã€€ã€€stat			: çŠ¶æ…‹æœ‰ç„¡
+		// ã€€ã€€kind			: é–¢ä¿‚æ€§æœ‰ç„¡
+		// ã€€ã€€comment		: ã‚³ãƒ¡ãƒ³ãƒˆæœ‰ç„¡
+		// ã€€ã€€way			: åƒãã‹ã‘æœ‰ç„¡
 		var wMainParam = {
 			  parent	: wMain
 			, sidepanel	: false
@@ -95,19 +95,19 @@ function fncDrawStartDiagram() {
 			}
 		};
 
-		// ŽåƒRƒ“ƒeƒ“ƒc¶¬
+		// ä¸»ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ç”Ÿæˆ
 		mDrawDiagram = new clsDrawMain( wMainParam );
 
-		// “o˜^ŠJŽn
+		// ç™»éŒ²é–‹å§‹
 		mDrawDiagram.drawStart();
 		
 	} catch(e) { 
-		// ƒGƒ‰[ƒƒbƒZ[ƒW•\Ž¦Œã‚É‰æ–Ê•Â‚¶‚é
+		// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã«ç”»é¢é–‰ã˜ã‚‹
 		alert( e.message + '\n' + e.name );
 	}
 }
 
-// }Œ`•`‰æI—¹
+// å›³å½¢æç”»çµ‚äº†
 function fncDrawEndDiagram() {
 	try {
 		if ( mDrawDiagram != null ) {
