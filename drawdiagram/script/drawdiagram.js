@@ -1,7 +1,7 @@
 
 // --------------------------------------------------------------------
 //
-// DIV•\¦ƒNƒ‰ƒX
+// DIVè¡¨ç¤ºã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
 var clsBaseBox = function( pArgument ) {
@@ -19,18 +19,18 @@ var clsBaseBox = function( pArgument ) {
 			];
 
 		this._DEF_BOX_REGEXP			= [
-				 [ '(&)'				, '&#x26;']		// ƒAƒ“ƒpƒTƒ“ƒh
-				,[ '(<)'				, '&#x3C;']		// ¬‚È‚è
-				,[ '(>)'				, '&#x3E;']		// ‘å‚È‚è
+				 [ '(&)'				, '&#x26;']		// ã‚¢ãƒ³ãƒ‘ã‚µãƒ³ãƒ‰
+				,[ '(<)'				, '&#x3C;']		// å°ãªã‚Š
+				,[ '(>)'				, '&#x3E;']		// å¤§ãªã‚Š
 				,[ "(')"				, '&#x27;']
 				,[ '(`)'				, '&#x60;']
 				,[ '(")'				, '&quot;']
 		];
 
-		// ‰æ‘œƒtƒ@ƒCƒ‹ƒpƒX
+		// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 		this._DEF_PATH_IMG				= _C_DRAWDIAGRAM_IMG_PATH;
 
-		// ƒƒjƒ…[ID
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ID
 		this._DEF_MENU_ID_NORMAL		= 'normal';
 		this._DEF_MENU_ID_MOVE			= 'move';
 
@@ -50,13 +50,13 @@ var clsBaseBox = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒg
+		// ã‚¤ãƒ™ãƒ³ãƒˆ
 		// **************************************************************
 
-		// ƒCƒxƒ“ƒg–³Œø‰»—p
+		// ã‚¤ãƒ™ãƒ³ãƒˆç„¡åŠ¹åŒ–ç”¨
 		this.eventInvalid = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				return self.cancelEvent( pEvent, true );
 
 			} catch(e) { alert(e.message); }
@@ -66,15 +66,15 @@ var clsBaseBox = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
 
-		// ‰Šúˆ—
+		// åˆæœŸå‡¦ç†
 		this.initClass( pArgument );
 
 
 	} catch(e) {
-		// —áŠO”jŠü
+		// ä¾‹å¤–æ™‚ç ´æ£„
 		throw { name: 'clsBaseBox.' + e.name, message: e.message };
 	}
 };
@@ -83,10 +83,10 @@ var clsBaseBox = function( pArgument ) {
 (function(){
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒB‚ÉˆË‘¶‚µ‚È‚¢‹¤’ÊŠÖ”
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«ä¾å­˜ã—ãªã„å…±é€šé–¢æ•°
 	// **************************************************************
 
-	// ƒRƒ“ƒ\[ƒ‹ƒƒOo—Í
+	// ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ãƒ­ã‚°å‡ºåŠ›
 	clsBaseBox.prototype.consoleLog = function( pLog ) {
 		try {
 			if ( typeof console == 'undefined' ) return;
@@ -97,7 +97,7 @@ var clsBaseBox = function( pArgument ) {
 		} catch(e) {}
 	}
 
-	// Šm”FƒƒbƒZ[ƒW•\¦
+	// ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	clsBaseBox.prototype.dspConfirm = function( pMessage ) {
 		try {
 			return window.confirm( pMessage );
@@ -105,7 +105,7 @@ var clsBaseBox = function( pArgument ) {
 		} catch(e) {}
 	};
 
-	// ƒGƒ‰[ƒƒbƒZ[ƒW‚ğalert•\¦
+	// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’alertè¡¨ç¤º
 	clsBaseBox.prototype.catchErrorDsp = function( pError ) {
 		try {
 			if ( this._DEF_BOX_ERRMSG_DSP ) {
@@ -114,7 +114,7 @@ var clsBaseBox = function( pArgument ) {
 		} catch(e) {}
 	};
 
-	// ‰æ‘œƒtƒ@ƒCƒ‹ƒpƒXæ“¾
+	// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹å–å¾—
 	clsBaseBox.prototype.getImagePath = function() {
 		try {
 			var wImgPath = this._DEF_PATH_IMG;
@@ -127,7 +127,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	}
 
-	// ƒGƒ‰[‚ğ–³‹‚µ‚Äˆ—Às
+	// ã‚¨ãƒ©ãƒ¼ã‚’ç„¡è¦–ã—ã¦å‡¦ç†å®Ÿè¡Œ
 	clsBaseBox.prototype.execFunction = function( pFunction ) {
 		try {
 			if ( typeof pFunction !== 'function' ) return;
@@ -144,10 +144,10 @@ var clsBaseBox = function( pArgument ) {
 		} catch(e) {}
 	}
 
-	// ”z—ñ‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	// é…åˆ—ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	clsBaseBox.prototype.isArray = function( pArgument ) {
 		try {
-			// ”z—ñ‚©ƒ`ƒFƒbƒN
+			// é…åˆ—ã‹ãƒã‚§ãƒƒã‚¯
 			if( pArgument instanceof Array ) {
 				return true;
 			
@@ -161,20 +161,20 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒIƒuƒWƒFƒNƒgi˜A‘z”z—ñj‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆé€£æƒ³é…åˆ—ï¼‰ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	clsBaseBox.prototype.isObject = function( pArgument ) {
 		try {
-			// nullƒ`ƒFƒbƒN
+			// nullãƒã‚§ãƒƒã‚¯
 			if ( pArgument === null ) return false;
 
-			// ”z—ñ‚©ƒ`ƒFƒbƒN
+			// é…åˆ—ã‹ãƒã‚§ãƒƒã‚¯
 			if ( this.isArray(pArgument) ) return false;
 
-			// ”z—ñˆÈŠO‚ÌObject‚©ƒ`ƒFƒbƒN
+			// é…åˆ—ä»¥å¤–ã®Objectã‹ãƒã‚§ãƒƒã‚¯
 			if ( pArgument instanceof Object ) {
 				return true;
 
-			// Object‚ğQÆ“n‚µ‚µ‚½ê‡
+			// Objectã‚’å‚ç…§æ¸¡ã—ã—ãŸå ´åˆ
 			} else if ( typeof pArgument == 'object' ) {
 				return true;
 			
@@ -188,7 +188,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒpƒ‰ƒ[ƒ^æ“¾
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	clsBaseBox.prototype.getArgument = function( pArgument, pKey ) {
 		try {
 			if ( !this.isObject(pArgument) ) return null;
@@ -204,18 +204,18 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒpƒ‰ƒ[ƒ^İ’è
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	clsBaseBox.prototype.setArgumentInProperty = function( pArgument, pProperty ) {
 		try {
 			var wRetArgument = {};
 			wRetArgument.property = pProperty;
 
-			// ˆø”‚Éİ’è‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚ğİ’è
+			// å¼•æ•°ã«è¨­å®šã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®š
 			if ( this.isObject(pArgument) ) {
 				for( var wKey in pArgument ) {
 					if ( !pArgument.hasOwnProperty(wKey) ) continue;
 
-					// property‚ÍŒÂ•Ê‚Éã‘‚«
+					// propertyã¯å€‹åˆ¥ã«ä¸Šæ›¸ã
 					if ( wKey == 'property' ) {
 						var wArgProperty = pArgument[wKey];
 						for( var wProperty in wArgProperty ) {
@@ -236,7 +236,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒvƒƒpƒeƒB‚ğ•¡Ê
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¤‡å†™
 	clsBaseBox.prototype.copyProperty = function( pSrcEle, pDstEle ) {
 		try {
 			if ( !this.isObject(pSrcEle) ) return false;
@@ -245,25 +245,25 @@ var clsBaseBox = function( pArgument ) {
 			for( var key in pSrcEle ) {
 				if ( !pSrcEle.hasOwnProperty(key) ) continue;
 
-				// ”z—ñ
+				// é…åˆ—
 				if ( this.isArray(pSrcEle[key]) ) {
 					pDstEle[key] = [];
 					this.copyArray( pSrcEle[key], pDstEle[key] );
 
 				// class
 				} else if ( pSrcEle[key] instanceof clsBaseBox ) {
-					// QÆ‚ğİ’è
+					// å‚ç…§ã‚’è¨­å®š
 					pDstEle[key] = pSrcEle[key];
 
-				// objecti˜A‘z”z—ñj
+				// objectï¼ˆé€£æƒ³é…åˆ—ï¼‰
 				} else if ( this.isObject(pSrcEle[key]) ) {
-					// object‚ÍÄ‹A
+					// objectã¯å†å¸°
 					pDstEle[key] = {};
 					this.copyProperty( pSrcEle[key], pDstEle[key] );
 
-				// ˆÈŠO
+				// ä»¥å¤–
 				} else {
-					// ’l‚ğ•¡Ê
+					// å€¤ã‚’è¤‡å†™
 					pDstEle[key] = pSrcEle[key];
 
 				}
@@ -275,7 +275,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ”z—ñ‚ğ•¡Ê
+	// é…åˆ—ã‚’è¤‡å†™
 	clsBaseBox.prototype.copyArray = function( pSrcEle, pDstEle ) {
 		try {
 			if ( !this.isArray(pSrcEle) ) return false;
@@ -284,18 +284,18 @@ var clsBaseBox = function( pArgument ) {
 			for( var wIdx = 0; wIdx < pSrcEle.length; wIdx++ ) {
 				var wValue;
 
-				// ”z—ñ
+				// é…åˆ—
 				if ( this.isArray(pSrcEle[wIdx]) ) {
 					wValue = [];
 					this.copyArray( pSrcEle[wIdx], wValue );
 
-				// objecti˜A‘z”z—ñj
+				// objectï¼ˆé€£æƒ³é…åˆ—ï¼‰
 				} else if ( this.isObject(pSrcEle[wIdx]) ) {
-					// object‚ÍÄ‹A
+					// objectã¯å†å¸°
 					wValue = {};
 					this.copyProperty( pSrcEle[wIdx], wValue );
 
-				// ˆÈŠO
+				// ä»¥å¤–
 				} else {
 					wValue = pSrcEle[wIdx];
 
@@ -316,7 +316,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ˜A‘z”z—ñ‚ğKey‡‚Éƒ\[ƒg
+	// é€£æƒ³é…åˆ—ã‚’Keyé †ã«ã‚½ãƒ¼ãƒˆ
 	clsBaseBox.prototype.sortNumObject = function( pObject ) {
 		try {
 			if ( !this.isObject(pObject) ) return pObject;
@@ -329,7 +329,7 @@ var clsBaseBox = function( pArgument ) {
 			}
 			if ( wKeyList.length == 0 ) return pObject;
 			
-			// keyƒŠƒXƒg‚ğƒ\[ƒg
+			// keyãƒªã‚¹ãƒˆã‚’ã‚½ãƒ¼ãƒˆ
 			wKeyList.sort( function(a, b) { return a - b; } );
 			
 			var wSortObj = {};
@@ -344,7 +344,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// Œ»“ú‚ğ•¶š—ñ‚Åæ“¾
+	// ç¾æ—¥æ™‚ã‚’æ–‡å­—åˆ—ã§å–å¾—
 	clsBaseBox.prototype.getNowDateTime = function( pFull ) {
 		try {
 			var wNow = new Date();
@@ -366,7 +366,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// HTML•¶š—ñ‚É•ÏŠ·
+	// HTMLæ–‡å­—åˆ—ã«å¤‰æ›
 	clsBaseBox.prototype.toHtml = function( pText, pCrLf ) {
 		try {
 			if ( !pText ) return '';
@@ -379,7 +379,7 @@ var clsBaseBox = function( pArgument ) {
 				wRetStr = wRetStr.replace(wRegExp, this._DEF_BOX_REGEXP[wIdx][1]);
 			}
 
-			// ‰üs•ÏŠ·
+			// æ”¹è¡Œå¤‰æ›
 			if ( !pCrLf ) {
 				wRetStr = wRetStr.replace(/\r?\n/g, '<br>');
 			
@@ -392,10 +392,10 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒuƒ‰ƒEƒU‚ªIE‚©”»’è
+	// ãƒ–ãƒ©ã‚¦ã‚¶ãŒIEã‹åˆ¤å®š
 	clsBaseBox.prototype.isIE = function() {
 		try {
-			// ƒuƒ‰ƒEƒU”»’è
+			// ãƒ–ãƒ©ã‚¦ã‚¶åˆ¤å®š
 			if ( !window.navigator ) return false;
 			if ( !window.navigator.userAgent ) return false;
 			
@@ -405,7 +405,7 @@ var clsBaseBox = function( pArgument ) {
 			if ( (wAgent.indexOf('msie') != -1) || (wAgent.indexOf('trident') != -1) ) {
 				return true;
 			
-			// ˆÈŠO
+			// ä»¥å¤–
 			} else {
 				return false;
 
@@ -418,10 +418,10 @@ var clsBaseBox = function( pArgument ) {
 
 
 	// -------------------
-	// —v‘f‘€ì
+	// è¦ç´ æ“ä½œ
 	// -------------------
 
-	// Document—v‘f‚ğæ“¾
+	// Documentè¦ç´ ã‚’å–å¾—
 	clsBaseBox.prototype.getDocument = function( pTgWindow ) {
 		try {
 			if ( !pTgWindow ) return null;
@@ -445,7 +445,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// Document‚Ìbody—v‘f‚ğæ“¾
+	// Documentã®bodyè¦ç´ ã‚’å–å¾—
 	clsBaseBox.prototype.getDocumentBody = function( pDocument ) {
 		try {
 			if ( !pDocument ) return null;
@@ -464,7 +464,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ğ‘¼—v‘f‚Ìq‚Öİ’è
+	// è¦ç´ ã‚’ä»–è¦ç´ ã®å­ã¸è¨­å®š
 	clsBaseBox.prototype.appendElementToParent = function( pParent, pElement, pRefEle ) {
 		try {
 			if ( !pParent  ) return false;
@@ -480,7 +480,7 @@ var clsBaseBox = function( pArgument ) {
 				pParent.appendChild(pElement);
 
 			} else {
-				throw { name: 'appendElementToParent', message: 'e—v‘f‚É—v‘f‚ğ’Ç‰Á‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'appendElementToParent', message: 'è¦ªè¦ç´ ã«è¦ç´ ã‚’è¿½åŠ ã§ãã¾ã›ã‚“' };
 			}
 			return true;
 
@@ -489,7 +489,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ğíœ
+	// è¦ç´ ã‚’å‰Šé™¤
 	clsBaseBox.prototype.delElement = function( pElement ) {
 		try {
 			if ( !pElement )  return false;
@@ -505,7 +505,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ÌƒTƒCƒYiwidth, heightj‚ğæ“¾
+	// è¦ç´ ã®ã‚µã‚¤ã‚ºï¼ˆwidth, heightï¼‰ã‚’å–å¾—
 	clsBaseBox.prototype.getSize = function( pElement, pParam ) {
 		try {
 			var wSize = { width: 0, height: 0 };
@@ -519,23 +519,23 @@ var clsBaseBox = function( pArgument ) {
 				if ( 'overflow' in pParam ) wOverflow = pParam.overflow;
 			}
 
-			// ˆê’U•\¦
+			// ä¸€æ—¦è¡¨ç¤º
 			var wSavePos = { left: null, top: null };
 			var wDisplay = this.getStyle( pElement, 'display' );
 			if ( wDisplay == 'none' ) {
 				wSavePos.left = this.getStyle( pElement, 'left' );
 				wSavePos.top  = this.getStyle( pElement, 'top' );
 
-				// •\¦”ÍˆÍŠO‚Åˆê’U•\¦
+				// è¡¨ç¤ºç¯„å›²å¤–ã§ä¸€æ—¦è¡¨ç¤º
 				this.setStyle( pElement, { left: '-200px', top: '-200px', display: 'block' } );
 			}
 
-			// ‰B‚ê‚Ä‚¢‚é—Ìˆæ‚ğŠÜ‚Ş
+			// éš ã‚Œã¦ã„ã‚‹é ˜åŸŸã‚’å«ã‚€
 			if ( wOverflow ) {
 				wSize.width  = pElement.scrollWidth;
 				wSize.height = pElement.scrollHeight;
 
-				// ˜gü‚ğŠÜ‚Ş
+				// æ ç·šã‚’å«ã‚€
 				if ( wBorder ) {
 					var wLine = this.getLine( pElement );
 					if ( wLine ) {
@@ -546,12 +546,12 @@ var clsBaseBox = function( pArgument ) {
 				}
 
 			} else {
-				// ˜gü‚ğŠÜ‚Ş
+				// æ ç·šã‚’å«ã‚€
 				if ( wBorder ) {
 					wSize.width  = pElement.offsetWidth;
 					wSize.height = pElement.offsetHeight;
 				
-				// ˜gü‚ğŠÜ‚Ü‚È‚¢
+				// æ ç·šã‚’å«ã¾ãªã„
 				} else {
 					wSize.width  = pElement.clientWidth;
 					wSize.height = pElement.clientHeight;
@@ -560,7 +560,7 @@ var clsBaseBox = function( pArgument ) {
 
 			}
 
-			// ”ñ•\¦‚É–ß‚·
+			// éè¡¨ç¤ºã«æˆ»ã™
 			if ( wDisplay == 'none' ) {
 				this.setStyle( pElement, { left: wSavePos.left, top: wSavePos.top, display: 'none' } );
 			}
@@ -572,7 +572,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ì”ÍˆÍileft, right, top, bottomj‚ğæ“¾
+	// è¦ç´ ã®ç¯„å›²ï¼ˆleft, right, top, bottomï¼‰ã‚’å–å¾—
 	clsBaseBox.prototype.getRect = function( pElement ) {
 		try {
 			if ( !pElement ) return null;
@@ -593,7 +593,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ÌˆÊ’uileft, topj‚ğæ“¾
+	// è¦ç´ ã®ä½ç½®ï¼ˆleft, topï¼‰ã‚’å–å¾—
 	clsBaseBox.prototype.getPos = function( pElement ) {
 		try {
 			var wPoint = { left: 0, top: 0 };
@@ -611,7 +611,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ÌˆÊ’uileft, topj‚ğStyle‚©‚çæ“¾
+	// è¦ç´ ã®ä½ç½®ï¼ˆleft, topï¼‰ã‚’Styleã‹ã‚‰å–å¾—
 	clsBaseBox.prototype.getPosByStyle = function( pElement ) {
 		try {
 			var wPoint = { left: 0, top: 0 };
@@ -637,12 +637,12 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// e—v‘f‚ÌƒXƒNƒ[ƒ‹—Ê‚ğæ“¾
+	// è¦ªè¦ç´ ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é‡ã‚’å–å¾—
 	clsBaseBox.prototype.getScroll = function( pElement ) {
 		try {
 			var wScroll = { x: 0, y: 0 };
 			
-			// e—v‘f—LŒø‚Ì‚İ
+			// è¦ªè¦ç´ æœ‰åŠ¹æ™‚ã®ã¿
 			if ( pElement ) {
 				wScroll.x = pElement.scrollLeft;
 				wScroll.y = pElement.scrollTop;
@@ -655,7 +655,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ÌˆÊ’u‚¸‚ç‚µ—Êæ“¾
+	// è¦ç´ ã®ä½ç½®ãšã‚‰ã—é‡å–å¾—
 	clsBaseBox.prototype.getShiftPos = function( pCenter, pEleSize ) {
 		try {
 			var wPosShift = { x: 10, y: 10 };
@@ -680,7 +680,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// w’èˆÊ’u‚É—v‘f‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
+	// æŒ‡å®šä½ç½®ã«è¦ç´ ãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsBaseBox.prototype.chkInPoint = function( pElement, pPoint ) {
 		try {
 			if ( !pElement ) return false;
@@ -700,7 +700,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f“¯m‚Ì”ÍˆÍ‚ªd•¡‚·‚é‚©ƒ`ƒFƒbƒN
+	// è¦ç´ åŒå£«ã®ç¯„å›²ãŒé‡è¤‡ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsBaseBox.prototype.chkInRect = function( pRect1, pRect2, pParam ) {
 		try {
 			if ( !pRect1 ) return false;
@@ -708,11 +708,11 @@ var clsBaseBox = function( pArgument ) {
 
 			var wOverflow = true;
 			if ( this.isObject(pParam) ) {
-				// ‚Í‚İo‚µ‰Â”Û
+				// ã¯ã¿å‡ºã—å¯å¦
 				if ( 'overflow' in pParam ) wOverflow = pParam.overflow;
 			}
 
-			// ‚Í‚İo‚µ•s‰Â
+			// ã¯ã¿å‡ºã—ä¸å¯
 			if ( !wOverflow ) {
 				if ( pRect1.left   > pRect2.left   ) return false;
 				if ( pRect1.right  < pRect2.right  ) return false;
@@ -720,7 +720,7 @@ var clsBaseBox = function( pArgument ) {
 				if ( pRect1.bottom < pRect2.bottom ) return false;
 			}
 
-			// ”ÍˆÍ“à‚É—v‘f‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+			// ç¯„å›²å†…ã«è¦ç´ ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if ( pRect1.left <= pRect2.right && pRect1.right >= pRect2.left ) {
 				if ( pRect1.top <= pRect2.bottom && pRect1.bottom >= pRect2.top ) {
 					return true;
@@ -734,7 +734,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ÌƒXƒ^ƒCƒ‹‚ğİ’è
+	// è¦ç´ ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’è¨­å®š
 	clsBaseBox.prototype.setStyle = function( pElement, pProperty ) {
 		try {
 			if ( !this.isObject(pElement) ) return false;
@@ -754,7 +754,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ÌƒXƒ^ƒCƒ‹‚ğæ“¾
+	// è¦ç´ ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å–å¾—
 	clsBaseBox.prototype.getStyle = function( pElement, pStyleKey ) {
 		try {
 			if ( !this.isObject(pElement) ) return '';
@@ -771,7 +771,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ìƒ‰ƒCƒ“ƒXƒ^ƒCƒ‹‚ğæ“¾
+	// è¦ç´ ã®ãƒ©ã‚¤ãƒ³ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å–å¾—
 	clsBaseBox.prototype.getLine = function( pElement ) {
 		try {
 			var wStyle = window.getComputedStyle( pElement );
@@ -811,7 +811,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ìƒ‰ƒCƒ“ƒXƒ^ƒCƒ‹‚ğæ“¾
+	// è¦ç´ ã®ãƒ©ã‚¤ãƒ³ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å–å¾—
 	clsBaseBox.prototype.getStyleLine = function( pElement ) {
 		try {
 			var wStyle = null;
@@ -865,7 +865,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Öclass‚ğ’Ç‰Á
+	// è¦ç´ ã¸classã‚’è¿½åŠ 
 	clsBaseBox.prototype.addClass = function( pElement, pClass ) {
 		try {
 			if ( typeof pElement.classList !== 'undefined' ) {
@@ -879,7 +879,7 @@ var clsBaseBox = function( pArgument ) {
 				}
 			
 			} else {
-				throw { name: 'addClass', message: '—v‘f‚Öclass‚ğİ’è‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'addClass', message: 'è¦ç´ ã¸classã‚’è¨­å®šã§ãã¾ã›ã‚“' };
 
 			}
 
@@ -888,7 +888,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚©‚çclass‚ğíœ
+	// è¦ç´ ã‹ã‚‰classã‚’å‰Šé™¤
 	clsBaseBox.prototype.delClass = function( pElement, pClass ) {
 		try {
 			if ( typeof pElement.classList !== 'undefined' ) {
@@ -900,7 +900,7 @@ var clsBaseBox = function( pArgument ) {
 				}
 			
 			} else {
-				throw { name: 'delClass', message: '—v‘f‚©‚çclass‚ğíœ‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'delClass', message: 'è¦ç´ ã‹ã‚‰classã‚’å‰Šé™¤ã§ãã¾ã›ã‚“' };
 
 			}
 
@@ -909,7 +909,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ìclass‚ğæ“¾
+	// è¦ç´ ã®classã‚’å–å¾—
 	clsBaseBox.prototype.getClass = function( pElement ) {
 		try {
 			var wRetClass = null;
@@ -927,7 +927,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ìclass‚ğƒ`ƒFƒbƒN
+	// è¦ç´ ã®classã‚’ãƒã‚§ãƒƒã‚¯
 	clsBaseBox.prototype.chkClass = function( pElement, pClass ) {
 		try {
 			var wExists = false;
@@ -940,7 +940,7 @@ var clsBaseBox = function( pArgument ) {
 				var wChkStr = String(pElement.className);
 				var wChkLen = wChkList.length;
 
-				// ƒNƒ‰ƒX—L–³
+				// ã‚¯ãƒ©ã‚¹æœ‰ç„¡
 				for( var wIndex = 0; wIndex < wChkLen; wIndex++ ) {
 					wChkPos = wChkStr.indexOf(pClass);
 					if ( wChkPos == 0 ) break;
@@ -962,10 +962,10 @@ var clsBaseBox = function( pArgument ) {
 
 
 	// -------------------
-	// ƒCƒxƒ“ƒgŠÖ˜A
+	// ã‚¤ãƒ™ãƒ³ãƒˆé–¢é€£
 	// -------------------
 
-	// —v‘f‚ÉƒCƒxƒ“ƒg‚ğ’Ç‰Á
+	// è¦ç´ ã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¿½åŠ 
 	clsBaseBox.prototype.addEvent = function( pElement, pEvents, pFunction ) {
 		try {
 			var wEvtStr = String(pEvents);
@@ -989,7 +989,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚©‚çƒCƒxƒ“ƒg‚ğíœ
+	// è¦ç´ ã‹ã‚‰ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‰Šé™¤
 	clsBaseBox.prototype.delEvent = function( pElement, pEvents, pFunction ) {
 		try {
 			var wEvtStr = String(pEvents);
@@ -1013,7 +1013,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒCƒxƒ“ƒg‚ğ’â~
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚’åœæ­¢
 	clsBaseBox.prototype.cancelEvent = function( pEvent, pBubble ) {
 		try {
 			if ( !pEvent ) return false;
@@ -1038,7 +1038,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒCƒxƒ“ƒg”­¶ˆÊ’uæ“¾
+	// ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿä½ç½®å–å¾—
 	clsBaseBox.prototype.getEventPos = function( pEvent ) {
 		try {
 			var wPoint = { x: 0, y: 0 };
@@ -1064,12 +1064,12 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚½ƒ}ƒEƒX‘€ìæ“¾
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ãŸãƒã‚¦ã‚¹æ“ä½œå–å¾—
 	clsBaseBox.prototype.getEventClick = function( pEvent ) {
 		try {
 			var wClick = { left: false, wheel : false, right: false };
 
-			// IE8ˆÈ‰º
+			// IE8ä»¥ä¸‹
 			if ( !pEvent.which ) {
 				if ( pEvent.button == 1 ) {
 					wClick.left = true;
@@ -1079,7 +1079,7 @@ var clsBaseBox = function( pArgument ) {
 					wClick.right = true;
 				}
 
-			// IE9ˆÈ~
+			// IE9ä»¥é™
 			} else {
 				if ( pEvent.which == 1 ) {
 					wClick.left = true;
@@ -1096,20 +1096,20 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒCƒxƒ“ƒg‚Ìƒ}ƒEƒX‘€ìó‘Ôæ“¾
+	// ã‚¤ãƒ™ãƒ³ãƒˆæ™‚ã®ãƒã‚¦ã‚¹æ“ä½œçŠ¶æ…‹å–å¾—
 	clsBaseBox.prototype.getEventMouse = function( pEvent ) {
 		try {
 			var wClick = { left: false, wheel : false, right: false };
 
 			var wPushBtn = pEvent.buttons;
 			
-			// åƒ{ƒ^ƒ“
+			// ä¸»ãƒœã‚¿ãƒ³
 			if ( wPushBtn && 1 ) wClick.left = true;
 			
-			// •›ƒ{ƒ^ƒ“
+			// å‰¯ãƒœã‚¿ãƒ³
 			if ( wPushBtn && 2 ) wClick.right = true;
 
-			// •â•ƒ{ƒ^ƒ“
+			// è£œåŠ©ãƒœã‚¿ãƒ³
 			if ( wPushBtn && 4 ) wClick.wheel = true;
 
 			return wClick;
@@ -1119,7 +1119,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒCƒxƒ“ƒg”­¶—v‘fæ“¾
+	// ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿè¦ç´ å–å¾—
 	clsBaseBox.prototype.getEventTarget = function( pEvent ) {
 		try {
 			if ( !pEvent ) return null;
@@ -1139,10 +1139,10 @@ var clsBaseBox = function( pArgument ) {
 
 
 	// -------------------
-	// —v‘f¶¬
+	// è¦ç´ ç”Ÿæˆ
 	// -------------------
 
-	// ƒƒjƒ…[ƒ{ƒ^ƒ“¶¬
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒœã‚¿ãƒ³ç”Ÿæˆ
 	clsBaseBox.prototype.createMenu = function( pParentEle, pClickFunc, pMenuParam ) {
 		try {
 			var wMenuTitle	= '';
@@ -1157,11 +1157,11 @@ var clsBaseBox = function( pArgument ) {
 				if ( 'class'  in pMenuParam ) wMenuClass = pMenuParam.class;
 			}
 
-			// ƒƒjƒ…[’Ç‰Á
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ 
 			var wListId = this.getBoxId() + '_menu_' + wMenuName;
 			var wListEle = this.addElement( 'div', wListId );
 			if ( !wListEle ) {
-				throw { name: 'addElement', message: 'ƒƒjƒ…[—v‘f[' + wMenuTitle + ']‚ª¶¬‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'addElement', message: 'ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ç´ [' + wMenuTitle + ']ãŒç”Ÿæˆã§ãã¾ã›ã‚“' };
 
 			}
 			this.addClass( wListEle, 'cssCommon-menu-list' );
@@ -1170,11 +1170,11 @@ var clsBaseBox = function( pArgument ) {
 			}
 			this.appendElementToParent( pParentEle, wListEle );
 
-			// “à—e’Ç‰Á
+			// å†…å®¹è¿½åŠ 
 			var wLinkTag = this.addElement( 'a', wListId + '_link' );
 			if ( !wLinkTag ) {
 				this.delElement( wListEle );
-				throw { name: 'addElement', message: 'ƒƒjƒ…[ƒŠƒ“ƒN—v‘f[' + wMenuTitle + ']‚ª¶¬‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'addElement', message: 'ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªãƒ³ã‚¯è¦ç´ [' + wMenuTitle + ']ãŒç”Ÿæˆã§ãã¾ã›ã‚“' };
 			}
 			wLinkTag.href = "#";
 			wLinkTag.innerHTML = "<span id='" + wListId + '_span' + "'>" + wMenuTitle + "</span>";
@@ -1184,10 +1184,10 @@ var clsBaseBox = function( pArgument ) {
 
 			this.appendElementToParent( wListEle, wLinkTag )
 
-			// clickƒCƒxƒ“ƒg
+			// clickã‚¤ãƒ™ãƒ³ãƒˆ
 			this.addEvent( wLinkTag, 'onclick', pClickFunc );
 
-			// ¶¬‚µ‚½ƒƒjƒ…[‚ğ•Ô‚·
+			// ç”Ÿæˆã—ãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿”ã™
 			return wListEle;
 
 		} catch(e) {
@@ -1195,12 +1195,12 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[ƒ{ƒ^ƒ“¶¬@’Êí•ÒW
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒœã‚¿ãƒ³ç”Ÿæˆã€€é€šå¸¸ç·¨é›†
 	clsBaseBox.prototype.createMenuEditNormal = function( pParentEle, pClickFunc ) {
 		try {
-			// ’Êí•ÒWƒƒjƒ…[
+			// é€šå¸¸ç·¨é›†ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			var wParamNormal = {
-				  title		: '’Êí•ÒW'
+				  title		: 'é€šå¸¸ç·¨é›†'
 				, name		: this._DEF_MENU_ID_NORMAL
 				, style		: null
 				, class		: 'cssCommon-menu-list-select'
@@ -1213,12 +1213,12 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[ƒ{ƒ^ƒ“¶¬@”z’u•ÒW
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒœã‚¿ãƒ³ç”Ÿæˆã€€é…ç½®ç·¨é›†
 	clsBaseBox.prototype.createMenuEditMove = function( pParentEle, pClickFunc ) {
 		try {
-			// ”z’u•ÒWƒƒjƒ…[
+			// é…ç½®ç·¨é›†ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			var wParamMove = {
-				  title		: '”z’u•ÒW'
+				  title		: 'é…ç½®ç·¨é›†'
 				, name		: this._DEF_MENU_ID_MOVE
 				, style		: null
 				, class		: 'cssCommon-menu-list-def'
@@ -1231,7 +1231,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// •ÒWƒ‚[ƒhƒƒjƒ…[•ÏX
+	// ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¤‰æ›´
 	clsBaseBox.prototype.chgMenuEditStyle = function( pMenuId ) {
 		try {
 			if ( typeof pMenuId != 'string' ) return;
@@ -1249,7 +1249,7 @@ var clsBaseBox = function( pArgument ) {
 			wAftId = wId + '_menu_' + wAftId;
 			wBefId = wId + '_menu_' + wBefId;
 
-			// ƒŠƒ“ƒN—v‘f‚Éclassİ’è
+			// ãƒªãƒ³ã‚¯è¦ç´ ã«classè¨­å®š
 			var wBefEle = this.getElement( wBefId + '_link' );
 			if ( wBefEle ) {
 				this.delClass( wBefEle, 'cssCommon-menu-list-select' );
@@ -1271,10 +1271,10 @@ var clsBaseBox = function( pArgument ) {
 	
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒB‚ğQÆ‚·‚é‹¤’ÊŠÖ”
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å‚ç…§ã™ã‚‹å…±é€šé–¢æ•°
 	// **************************************************************
 
-	// idæ“¾
+	// idå–å¾—
 	clsBaseBox.prototype.getElementId = function() {
 		try {
 			var wId = this.getNowDateTime(true);
@@ -1291,7 +1291,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ğæ“¾
+	// è¦ç´ ã‚’å–å¾—
 	clsBaseBox.prototype.getElement = function( pTagId ) {
 		try {
 			var wGetEle = this._BoxDocument.getElementById(pTagId);
@@ -1305,7 +1305,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ğæ“¾
+	// è¦ç´ ã‚’å–å¾—
 	clsBaseBox.prototype.getElementByClass = function( pClass, pElement ) {
 		try {
 			var wBase = pElement;
@@ -1328,7 +1328,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ìstyleİ’è
+	// è¦ç´ ã®styleè¨­å®š
 	clsBaseBox.prototype.setElementStyle = function( pTagId, pKey, pValue ) {
 		try {
 			var wTargetEle = null;
@@ -1356,7 +1356,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ì‘®«æ“¾
+	// è¦ç´ ã®å±æ€§å–å¾—
 	clsBaseBox.prototype.getElementAttribute = function( pTagId, pAttrKey ) {
 		try {
 			var wTargetEle = null;
@@ -1378,7 +1378,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ì‘®«İ’è
+	// è¦ç´ ã®å±æ€§è¨­å®š
 	clsBaseBox.prototype.setElementAttribute = function( pTagId, pAttrKey, pAttrVal ) {
 		try {
 			var wTargetEle = null;
@@ -1404,7 +1404,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘fiinputj‚Ì’læ“¾
+	// è¦ç´ ï¼ˆinputï¼‰ã®å€¤å–å¾—
 	clsBaseBox.prototype.getElementValue = function( pTagId ) {
 		try {
 			var wElement = this.getElement( pTagId );
@@ -1419,7 +1419,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ìvalueİ’è
+	// è¦ç´ ã®valueè¨­å®š
 	clsBaseBox.prototype.setElementValue = function( pTagId, pValue ) {
 		try {
 			var wElement = this.getElement( pTagId );
@@ -1434,7 +1434,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘ficheckboxj‚Ì’læ“¾
+	// è¦ç´ ï¼ˆcheckboxï¼‰ã®å€¤å–å¾—
 	clsBaseBox.prototype.getElementChkVal = function( pTagId ) {
 		try {
 			var wElement = this._BoxDocument.getElementsByName(pTagId);
@@ -1458,7 +1458,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘ficheckboxj‚Ì’lİ’è
+	// è¦ç´ ï¼ˆcheckboxï¼‰ã®å€¤è¨­å®š
 	clsBaseBox.prototype.setElementChkVal = function( pTagId, pValue ) {
 		try {
 			var wElement = this._BoxDocument.getElementsByName(pTagId);
@@ -1481,22 +1481,22 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ğ’Ç‰Ái‘¶İ‚·‚éê‡‚Íæ“¾j
+	// è¦ç´ ã‚’è¿½åŠ ï¼ˆå­˜åœ¨ã™ã‚‹å ´åˆã¯å–å¾—ï¼‰
 	clsBaseBox.prototype.addElement = function( pTagName, pTagId ) {
 		try {
 			var wAddEle = this.getElement(pTagId);
 			if ( !wAddEle ) {
 				wAddEle = this._BoxDocument.createElement(pTagName);
 
-				// IDİ’è
+				// IDè¨­å®š
 				if ( wAddEle.setAttribute ) {
 					wAddEle.setAttribute( 'id', pTagId );
 				} else {
-					throw { name: 'addElement', message: '—v‘f‚ÉID‚ğİ’è‚Å‚«‚Ü‚¹‚ñB' };
+					throw { name: 'addElement', message: 'è¦ç´ ã«IDã‚’è¨­å®šã§ãã¾ã›ã‚“ã€‚' };
 				}
 			}
 			if ( !wAddEle ) {
-				throw { name: 'addElement', message: '—v‘f‚ª¶¬‚Å‚«‚Ü‚¹‚ñB' };
+				throw { name: 'addElement', message: 'è¦ç´ ãŒç”Ÿæˆã§ãã¾ã›ã‚“ã€‚' };
 			}
 			return wAddEle;
 
@@ -1505,7 +1505,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚Ìq—v‘f‚Æ‚µ‚Äİ’è
+	// BOXã®å­è¦ç´ ã¨ã—ã¦è¨­å®š
 	clsBaseBox.prototype.appendBoxToParent = function( pElement, pRefEle ) {
 		try {
 			var wResult = this.appendElementToParent( this._BoxElement, pElement, pRefEle );
@@ -1517,7 +1517,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒCƒxƒ“ƒg‹­§”­‰Î
+	// ã‚¤ãƒ™ãƒ³ãƒˆå¼·åˆ¶ç™ºç«
 	clsBaseBox.prototype.fireEvent = function( pElement, pEvents ) {
 		try {
 			if ( !pElement ) return false;
@@ -1526,32 +1526,32 @@ var clsBaseBox = function( pArgument ) {
 			var wEvtKind = wEvtStr;
 			if ( wEvtKind.substring(0,2) == 'on' ) wEvtKind = wEvtKind.substring(2);
 
-			// IE8ˆÈ‘O
+			// IE8ä»¥å‰
 			if ( typeof pElement.fireEvent !== 'undefined' ) {
 				if ( wEvtStr.substring(0,2) != 'on' ) wEvtStr = 'on' + wEvtStr;
 
-				// ƒCƒxƒ“ƒg”­¶
+				// ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿ
 				pElement.fireEvent(wEvtStr);
 				return true;
 			
-			// IE9ˆÈ~
+			// IE9ä»¥é™
 			} else {
 				var wEvtObj = null;
 				try {
-					// ƒRƒ“ƒXƒgƒ‰ƒNƒ^‘Î‰ƒuƒ‰ƒEƒU
+					// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å¯¾å¿œãƒ–ãƒ©ã‚¦ã‚¶
 					wEvtObj = new Event(wEvtKind);
 
 				} catch(e) {
-					// ƒRƒ“ƒXƒgƒ‰ƒNƒ^”ñ‘Î‰ƒuƒ‰ƒEƒU
+					// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿éå¯¾å¿œãƒ–ãƒ©ã‚¦ã‚¶
 					if ( typeof this._BoxDocument.createEvent !== 'undefined' ) {
 						wEvtObj = this._BoxDocument.createEvent('Events');
 						wEvtObj.initEvent(wEvtKind, true, true);
 					}
 				}
 
-				// ƒCƒxƒ“ƒg¶¬¬Œ÷
+				// ã‚¤ãƒ™ãƒ³ãƒˆç”ŸæˆæˆåŠŸæ™‚
 				if ( wEvtObj ) {
-					// ƒCƒxƒ“ƒg”­¶
+					// ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿ
 					pElement.dispatchEvent( wEvtObj );
 					return true;
 				}
@@ -1564,13 +1564,13 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚Ìƒ‰ƒCƒ“ƒXƒ^ƒCƒ‹iCSSİ’èŠÜ‚Şj‚ğæ“¾
+	// è¦ç´ ã®ãƒ©ã‚¤ãƒ³ã‚¹ã‚¿ã‚¤ãƒ«ï¼ˆCSSè¨­å®šå«ã‚€ï¼‰ã‚’å–å¾—
 	clsBaseBox.prototype.getCssStyleLine = function( pElement ) {
 		try {
 			if ( !pElement ) return null;
 			if ( !this._BoxWindow ) return null;
 
-			// ŠÖ”g—p•s‰Â‚È‚çˆ—‚È‚µ
+			// é–¢æ•°ä½¿ç”¨ä¸å¯ãªã‚‰å‡¦ç†ãªã—
 			if ( typeof this._BoxWindow.getComputedStyle !== 'function' ) return null;
 			var wStyle = this._BoxWindow.getComputedStyle(pElement);
 			if ( !wStyle ) return null;
@@ -1623,10 +1623,10 @@ var clsBaseBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBæ“¾^İ’è
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å–å¾—ï¼è¨­å®š
 	// **************************************************************
 
-	// BOX‚ÌID‚ğ•Ô‚·
+	// BOXã®IDã‚’è¿”ã™
 	clsBaseBox.prototype.getBoxId = function() {
 		try {
 			return this._BoxId;
@@ -1636,13 +1636,13 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÌID‚ğİ’è
+	// BOXã®IDã‚’è¨­å®š
 	clsBaseBox.prototype.setBoxId = function( pNewId ) {
 		try {
-			// —v‘f‚ÌIDÄİ’è
+			// è¦ç´ ã®IDå†è¨­å®š
 			this.setBoxAttribute( { id: pNewId } );
 
-			// IDXV
+			// IDæ›´æ–°
 			this._BoxId = pNewId;
 
 		} catch(e) {
@@ -1650,7 +1650,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOXí•Ê‚ğ•Ô‚·
+	// BOXç¨®åˆ¥ã‚’è¿”ã™
 	clsBaseBox.prototype.getBoxKind = function() {
 		try {
 			return this._BoxKind;
@@ -1660,7 +1660,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOXƒGƒŒƒƒ“ƒg‚ğ•Ô‚·
+	// BOXã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’è¿”ã™
 	clsBaseBox.prototype.getBoxElement = function() {
 		try {
 			return this._BoxElement;
@@ -1670,7 +1670,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOXã‚ÌƒGƒŒƒƒ“ƒgiClassw’èj‚ğ•Ô‚·
+	// BOXä¸Šã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆï¼ˆClassæŒ‡å®šï¼‰ã‚’è¿”ã™
 	clsBaseBox.prototype.getBoxElementByClass = function( pClass ) {
 		try {
 			return this.getElementByClass( pClass, this._BoxElement );
@@ -1680,7 +1680,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÌŠ‘®‚·‚éwindow‚ÌBody—v‘f‚ğ•Ô‚·
+	// BOXã®æ‰€å±ã™ã‚‹windowã®Bodyè¦ç´ ã‚’è¿”ã™
 	clsBaseBox.prototype.getBoxBody = function() {
 		try {
 			return this._BoxBody;
@@ -1690,7 +1690,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÌŠ‘®‚·‚éwindow‚ğ•Ô‚·
+	// BOXã®æ‰€å±ã™ã‚‹windowã‚’è¿”ã™
 	clsBaseBox.prototype.getBoxWindow = function() {
 		try {
 			return this._BoxWindow;
@@ -1700,7 +1700,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÌƒvƒƒpƒeƒB‚ğ•Ô‚·
+	// BOXã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¿”ã™
 	clsBaseBox.prototype.getBoxProperty = function( pKey ) {
 		try {
 			var wProperty = '';
@@ -1715,7 +1715,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚Ìe—v‘f‚ğ•Ô‚·
+	// BOXã®è¦ªè¦ç´ ã‚’è¿”ã™
 	clsBaseBox.prototype.getParent = function() {
 		try {
 			return this._BoxParent;
@@ -1725,7 +1725,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚Ìe—v‘f‚ÌID‚ğæ“¾
+	// BOXã®è¦ªè¦ç´ ã®IDã‚’å–å¾—
 	clsBaseBox.prototype.getParentId = function() {
 		try {
 			var wId = '';
@@ -1741,10 +1741,10 @@ var clsBaseBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBİ’è
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 	// **************************************************************
 
-	// Š‘®windowİ’è
+	// æ‰€å±windowè¨­å®š
 	clsBaseBox.prototype.setWindow = function( pWindow ) {
 		try {
 			if ( pWindow ) {
@@ -1753,7 +1753,7 @@ var clsBaseBox = function( pArgument ) {
 				this._BoxWindow = window;
 			}
 
-			// documentİ’è
+			// documentè¨­å®š
 			this.setDocument();
 
 		} catch(e) {
@@ -1761,18 +1761,18 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// Š‘®documentİ’è
+	// æ‰€å±documentè¨­å®š
 	clsBaseBox.prototype.setDocument = function( ) {
 		try {
 			var wDocument = this._BoxWindow;
 			if ( !wDocument ) {
-				throw { name: 'setDocument', message: 'window‚ª–¢’è‹`‚Å‚·' };
+				throw { name: 'setDocument', message: 'windowãŒæœªå®šç¾©ã§ã™' };
 			}
 
 			if ( typeof wDocument.getElementById !== 'function' ) {
 				wDocument = this.getDocument( this._BoxWindow );
 				if ( !wDocument ) {
-					throw { name: 'setDocument', message: 'document‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ' };
+					throw { name: 'setDocument', message: 'documentãŒå–å¾—ã§ãã¾ã›ã‚“' };
 				}
 			}
 			
@@ -1784,7 +1784,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒvƒƒpƒeƒBã‘‚«
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ä¸Šæ›¸ã
 	clsBaseBox.prototype.overwriteProperty = function( pSrcParam ) {
 		try {
 			if ( !pSrcParam ) return;
@@ -1803,14 +1803,14 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒpƒ‰ƒ[ƒ^•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿å­˜
 	clsBaseBox.prototype.saveArgument = function( pArgument ) {
 		try {
 			if ( !this.isObject(pArgument) ) return;
 
 			for( var wKey in pArgument ) {
 				if ( pArgument.hasOwnProperty(wKey) ) {
-					// ‘S‚Ä•Û‘¶
+					// å…¨ã¦ä¿å­˜
 					this._BoxArgument[wKey] = pArgument[wKey];
 
 				}
@@ -1840,7 +1840,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒpƒ‰ƒ[ƒ^æ“¾
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	clsBaseBox.prototype.loadArgument = function( pKey ) {
 		try {
 			if ( !this.isObject(this._BoxArgument) ) return null;
@@ -1855,28 +1855,28 @@ var clsBaseBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// e—v‘f‚Ö‚Ì‘€ì
+	// è¦ªè¦ç´ ã¸ã®æ“ä½œ
 	// **************************************************************
 
-	// BOX‚Ìe—v‘f‚ğ‰Šú‰»
+	// BOXã®è¦ªè¦ç´ ã‚’åˆæœŸåŒ–
 	clsBaseBox.prototype.initParent = function( pParent ) {
 		try {
-			// e–¢w’è‚È‚çdocument‚ğe‚Éİ’è
+			// è¦ªæœªæŒ‡å®šãªã‚‰documentã‚’è¦ªã«è¨­å®š
 			if ( !pParent ) {
 				this._BoxParent = this._BoxDocument.body;
 
 			} else {
-				// e—v‘f‚ğ•Û‘¶
+				// è¦ªè¦ç´ ã‚’ä¿å­˜
 				this._BoxParent = pParent;
 
 			}
 			if ( !this._BoxParent ) {
-				throw { name: 'not parent', message: 'e—v‘f‚ª‰Šú‰»‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'not parent', message: 'è¦ªè¦ç´ ãŒåˆæœŸåŒ–ã§ãã¾ã›ã‚“' };
 			}
 
-			// BOX—v‘f¶¬Ï
+			// BOXè¦ç´ ç”Ÿæˆæ¸ˆ
 			if ( this._BoxElement ) {
-				// e—v‘f‚Ö’Ç‰Á
+				// è¦ªè¦ç´ ã¸è¿½åŠ 
 				this.appendElementToParent( this._BoxParent, this._BoxElement );
 
 			}
@@ -1887,18 +1887,18 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚Ìe—v‘f‚ğİ’è
+	// BOXã®è¦ªè¦ç´ ã‚’è¨­å®š
 	clsBaseBox.prototype.setParent = function( pParent, pNotFix ) {
 		try {
-			// e—v‘f–¢w’è‚È‚çˆ—‚È‚µ
+			// è¦ªè¦ç´ æœªæŒ‡å®šãªã‚‰å‡¦ç†ãªã—
 			if ( !pParent ) return false;
 
-			// e—v‘f‚ğ•Û‘¶
+			// è¦ªè¦ç´ ã‚’ä¿å­˜
 			this._BoxParent = pParent;
 
 			if ( !this._BoxElement ) return true;
 
-			// e—v‘f•ÏX‚É‚æ‚éˆÊ’u•â³
+			// è¦ªè¦ç´ å¤‰æ›´ã«ã‚ˆã‚‹ä½ç½®è£œæ­£
 			var wIsFix = !pNotFix;
 			if ( wIsFix ) {
 				var wParentPos  = this.getPos( pParent );
@@ -1924,7 +1924,7 @@ var clsBaseBox = function( pArgument ) {
 
 			}
 
-			// e—v‘f‚Ö’Ç‰Á
+			// è¦ªè¦ç´ ã¸è¿½åŠ 
 			this.appendElementToParent( this._BoxParent, this._BoxElement );
 
 			return true;
@@ -1934,7 +1934,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// e—v‘f‚Ì”ÍˆÍ‚ğæ“¾
+	// è¦ªè¦ç´ ã®ç¯„å›²ã‚’å–å¾—
 	clsBaseBox.prototype.getParentRect = function( ) {
 		try {
 			var wParent = this._BoxParent;
@@ -1953,7 +1953,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// e—v‘f‚ÌˆÊ’u‚ğæ“¾
+	// è¦ªè¦ç´ ã®ä½ç½®ã‚’å–å¾—
 	clsBaseBox.prototype.getParentPos = function( ) {
 		try {
 			var wParent = this._BoxParent;
@@ -1972,7 +1972,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// e—v‘f‚ÌƒTƒCƒY‚ğæ“¾
+	// è¦ªè¦ç´ ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	clsBaseBox.prototype.getParentSize = function( pParam ) {
 		try {
 			var wParent = this._BoxParent;
@@ -1985,10 +1985,10 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// e—v‘f‚ÌƒXƒNƒ[ƒ‹—Ê‚ğæ“¾
+	// è¦ªè¦ç´ ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é‡ã‚’å–å¾—
 	clsBaseBox.prototype.getParentScroll = function( ) {
 		try {
-			// e—v‘f‚ÌƒXƒNƒ[ƒ‹—Êæ“¾
+			// è¦ªè¦ç´ ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é‡å–å¾—
 			return this.getScroll( this._BoxParent );
 
 		} catch(e) {
@@ -1998,17 +1998,17 @@ var clsBaseBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ©BOX—v‘f‚Ö‚Ì‘€ì
+	// è‡ªBOXè¦ç´ ã¸ã®æ“ä½œ
 	// **************************************************************
 
-	// BOX‚ğ¶¬
+	// BOXã‚’ç”Ÿæˆ
 	clsBaseBox.prototype.createBoxElement = function( pDefId ) {
 		try {
 			if ( !this._BoxDocument ) {
-				throw { name: 'not document', message: 'document‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'not document', message: 'documentãŒå–å¾—ã§ãã¾ã›ã‚“' };
 			}
 
-			// ƒ†ƒj[ƒNIDİ’è
+			// ãƒ¦ãƒ‹ãƒ¼ã‚¯IDè¨­å®š
 			var wDivId = pDefId;
 			if ( !wDivId ) wDivId = this.getElementId();
 
@@ -2017,10 +2017,10 @@ var clsBaseBox = function( pArgument ) {
 			var wDivEle = this.addElement( 'div', this._BoxId );
 			wDivEle.style.display = 'none';
 
-			// —v‘f•Û‘¶
+			// è¦ç´ ä¿å­˜
 			this._BoxElement = wDivEle;
 
-			// style‰Šúİ’è
+			// styleåˆæœŸè¨­å®š
 			this.setBoxStyle();
 
 		} catch(e) {
@@ -2028,14 +2028,14 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ğíœ
+	// BOXã‚’å‰Šé™¤
 	clsBaseBox.prototype.delBoxElement = function() {
 		try {
 			if ( !this._BoxElement )  return false;
 
 			var wDivEle = this._BoxElement
 			if ( wDivEle ) {
-				// q—v‘fíœ
+				// å­è¦ç´ å‰Šé™¤
 				var wChildNodes = wDivEle.childNodes;
 				if ( wChildNodes ) {
 					for( var i=0; i < wChildNodes.length; i++ ) {
@@ -2044,7 +2044,7 @@ var clsBaseBox = function( pArgument ) {
 					}
 				}
 
-				// —v‘fíœ
+				// è¦ç´ å‰Šé™¤
 				this.delElement( wDivEle );
 			}
 			this._BoxElement = null;
@@ -2055,7 +2055,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX—v‘f‚Ì”ÍˆÍileft, right, top, bottomj‚ğæ“¾
+	// BOXè¦ç´ ã®ç¯„å›²ï¼ˆleft, right, top, bottomï¼‰ã‚’å–å¾—
 	clsBaseBox.prototype.getBoxRect = function( ) {
 		try {
 			return this.getRect( this._BoxElement );
@@ -2065,7 +2065,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX—v‘f‚Ìborder‚ğæ“¾
+	// BOXè¦ç´ ã®borderã‚’å–å¾—
 	clsBaseBox.prototype.getBoxLine = function( ) {
 		try {
 			return this.getLine( this._BoxElement );
@@ -2075,7 +2075,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX—v‘f‚ÌˆÊ’uileft, topj‚ğæ“¾
+	// BOXè¦ç´ ã®ä½ç½®ï¼ˆleft, topï¼‰ã‚’å–å¾—
 	clsBaseBox.prototype.getBoxPos = function( ) {
 		try {
 			return this.getPos( this._BoxElement );
@@ -2085,7 +2085,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX—v‘f‚ÌˆÊ’uileft, topj‚ğStyle‚©‚çæ“¾
+	// BOXè¦ç´ ã®ä½ç½®ï¼ˆleft, topï¼‰ã‚’Styleã‹ã‚‰å–å¾—
 	clsBaseBox.prototype.getBoxPosByStyle = function( ) {
 		try {
 			return this.getPosByStyle( this._BoxElement );
@@ -2095,10 +2095,10 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 	
-	// BOX—v‘f‚ÌƒXƒNƒ[ƒ‹—Ê‚ğæ“¾
+	// BOXè¦ç´ ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é‡ã‚’å–å¾—
 	clsBaseBox.prototype.getBoxScroll = function( ) {
 		try {
-			// BOX—v‘f‚ÌƒXƒNƒ[ƒ‹—Êæ“¾
+			// BOXè¦ç´ ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é‡å–å¾—
 			return this.getScroll( this._BoxElement );
 
 		} catch(e) {
@@ -2106,13 +2106,13 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX—v‘f‚ÌˆÊ’uİ’è
+	// BOXè¦ç´ ã®ä½ç½®è¨­å®š
 	clsBaseBox.prototype.setBoxPos = function( pPoint, pParam ) {
 		try {
 			if ( !this._BoxElement ) return;
 			if ( !pPoint ) return;
 
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			var wShift		= false;
 			var wCenter		= false;
 			var wCorrect	= false;
@@ -2130,8 +2130,8 @@ var clsBaseBox = function( pArgument ) {
 			if ( typeof pPoint.x != 'undefined' ) wPosition.left = pPoint.x;
 			if ( typeof pPoint.y != 'undefined' ) wPosition.top  = pPoint.y;
 
-			// ˆÊ’u‚¸‚ç‚µ—LŒø
-			// ¦ ƒ}ƒEƒX’Ç]‚È‚Ç
+			// ä½ç½®ãšã‚‰ã—æœ‰åŠ¹æ™‚
+			// â€» ãƒã‚¦ã‚¹è¿½å¾“æ™‚ãªã©
 			if ( wShift ) {
 				var wPosShift = this.getShiftPos( wCenter, wEleSize );
 
@@ -2139,7 +2139,7 @@ var clsBaseBox = function( pArgument ) {
 				if ( typeof wPosition.top  != 'undefined' ) wPosition.top  -= wPosShift.y;
 			}
 
-			// window’[‚Å‚ÌˆÊ’u•â³
+			// windowç«¯ã§ã®ä½ç½®è£œæ­£
 			if ( wCorrect ) {
 				if ( this._BoxBody && wEleSize ) {
 					var wWinSize = this.getSize( this._BoxBody );
@@ -2159,7 +2159,7 @@ var clsBaseBox = function( pArgument ) {
 			}
 
 			if ( typeof wPosition.left != 'undefined' ) {
-				// ˜gŠO—LŒøˆÈŠO
+				// æ å¤–æœ‰åŠ¹æ™‚ä»¥å¤–
 				if ( !wOverflow ) {
 					if ( wPosition.left < 0 ) wPosition.left = 0;
 				}
@@ -2167,7 +2167,7 @@ var clsBaseBox = function( pArgument ) {
 			}
 
 			if ( typeof wPosition.top != 'undefined' ) {
-				// ˜gŠO—LŒøˆÈŠO
+				// æ å¤–æœ‰åŠ¹æ™‚ä»¥å¤–
 				if ( !wOverflow ) {
 					if ( wPosition.top < 0 ) wPosition.top = 0;
 				}
@@ -2181,7 +2181,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÌƒTƒCƒY‚ğæ“¾
+	// BOXã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	clsBaseBox.prototype.getBoxSize = function( pParam ) {
 		try {
 			return this.getSize( this._BoxElement, pParam );
@@ -2191,26 +2191,26 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÖStyle‚ğİ’è
+	// BOXã¸Styleã‚’è¨­å®š
 	clsBaseBox.prototype.setBoxStyle = function( pProperty ) {
 		try {
 			if ( !this._BoxElement ) return false;
 
 			var wSetStyle = pProperty;
 
-			// İ’èstyle–¢w’è
+			// è¨­å®šstyleæœªæŒ‡å®šæ™‚
 			if ( !wSetStyle ) {
-				// Šù‘¶‚Ìstyle‚ğİ’è
+				// æ—¢å­˜ã®styleã‚’è¨­å®š
 				wSetStyle = this._BoxProperty;
 
 			} else {
-				// BOX‚ÌƒvƒƒpƒeƒB‚ğã‘‚«
+				// BOXã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ä¸Šæ›¸ã
 				this.overwriteProperty( wSetStyle );
 
 			}
 			if ( !wSetStyle ) return false;
 			
-			// BOX‚Ìstyle‚ğã‘‚«
+			// BOXã®styleã‚’ä¸Šæ›¸ã
 			this.setStyle( this._BoxElement, wSetStyle );
 			return true;
 
@@ -2219,7 +2219,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÌStyle‚ğæ“¾
+	// BOXã®Styleã‚’å–å¾—
 	clsBaseBox.prototype.getBoxStyle = function( pStyleKey ) {
 		try {
 			if ( !this._BoxElement ) return '';
@@ -2233,7 +2233,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÖClass‚ğİ’è
+	// BOXã¸Classã‚’è¨­å®š
 	clsBaseBox.prototype.setBoxClass = function( pClass ) {
 		try {
 			if ( !this._BoxElement ) return;
@@ -2245,7 +2245,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚©‚çClass‚ğíœ
+	// BOXã‹ã‚‰Classã‚’å‰Šé™¤
 	clsBaseBox.prototype.delBoxClass = function ( pClass ) {
 		try {
 			if ( !this._BoxElement ) return;
@@ -2257,7 +2257,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÌClass‚ğæ“¾
+	// BOXã®Classã‚’å–å¾—
 	clsBaseBox.prototype.getBoxClass = function ( pStyle ) {
 		try {
 			if ( !this._BoxElement ) return '';
@@ -2269,7 +2269,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ÌClass‚ğƒ`ƒFƒbƒN
+	// BOXã®Classã‚’ãƒã‚§ãƒƒã‚¯
 	clsBaseBox.prototype.chkBoxClass = function ( pClass ) {
 		try {
 			if ( !this._BoxElement ) return '';
@@ -2281,12 +2281,12 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// w’èˆÊ’u‚ÉBOX‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
+	// æŒ‡å®šä½ç½®ã«BOXãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsBaseBox.prototype.chkBoxInPoint = function( pPoint ) {
 		try {
 			if ( !this._BoxElement ) return false;
 
-			// —v‘f“à‚ğƒNƒŠƒbƒN‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// è¦ç´ å†…ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			return this.chkInPoint( this._BoxElement, pPoint );
 
 		} catch(e) {
@@ -2294,13 +2294,13 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// w’è”ÍˆÍ‚ÉBOX‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
+	// æŒ‡å®šç¯„å›²ã«BOXãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsBaseBox.prototype.chkBoxInRect = function( pRect ) {
 		try {
 			var wBoxRect = this.getBoxRect();
 			if ( !wBoxRect ) return false;
 
-			// ”ÍˆÍ“à‚É—v‘f‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+			// ç¯„å›²å†…ã«è¦ç´ ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			return this.chkInRect( wBoxRect, pRect );
 
 		} catch(e) {
@@ -2308,39 +2308,39 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX—v‘f‚©‚çƒCƒxƒ“ƒgíœ
+	// BOXè¦ç´ ã‹ã‚‰ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 	clsBaseBox.prototype.delBoxEvents = function( pEvents, pFunction ) {
 		try {
-			// “o˜^‚³‚ê‚Ä‚¢‚ê‚Îíœ
+			// ç™»éŒ²ã•ã‚Œã¦ã„ã‚Œã°å‰Šé™¤
 			var wDelEvents = [];
 			var wBreak = false;
 
 			for( var wIdx = 0; wIdx < this._BoxEvents.length; wIdx++ ) {
-				// ‘ÎÛƒCƒxƒ“ƒgw’è‚ ‚è
+				// å¯¾è±¡ã‚¤ãƒ™ãƒ³ãƒˆæŒ‡å®šã‚ã‚Š
 				if ( pEvents ) {
 					if ( this._BoxEvents[wIdx].eventName !== pEvents ) continue;
 
-					// ‘ÎÛfunctionw’è‚ ‚è
+					// å¯¾è±¡functionæŒ‡å®šã‚ã‚Š
 					if ( pFunction ) {
 						if ( this._BoxEvents[wIdx].eventFunc !== pFunction ) continue;
 						wBreak = true;
 					}
 				}
 
-				// ƒCƒxƒ“ƒgíœƒŠƒXƒg‚Ö’Ç‰Á
+				// ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤ãƒªã‚¹ãƒˆã¸è¿½åŠ 
 				wDelEvents.push( wIdx );
 				if ( wBreak ) break;
 			}
 
-			// íœ‘ÎÛ–³‚¯‚ê‚ÎI—¹
+			// å‰Šé™¤å¯¾è±¡ç„¡ã‘ã‚Œã°çµ‚äº†
 			if ( wDelEvents.length == 0 ) return;
 
-			// íœiŒã‚ë‚©‚çj
+			// å‰Šé™¤ï¼ˆå¾Œã‚ã‹ã‚‰ï¼‰
 			var wIndex;
 			for( var wDelIdx = (wDelEvents.length - 1); wDelIdx >= 0; wDelIdx-- ) {
 				wIndex = wDelEvents[wDelIdx];
 
-				// ƒCƒxƒ“ƒg‚ğíœ
+				// ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‰Šé™¤
 				this.delEvent( this._BoxElement, this._BoxEvents[wIndex].eventName , this._BoxEvents[wIndex].eventFunc );
 				this._BoxEvents.splice(wIndex, 1);
 
@@ -2351,10 +2351,10 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX—v‘f‚ÉƒCƒxƒ“ƒg‚ğ’Ç‰Á
+	// BOXè¦ç´ ã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¿½åŠ 
 	clsBaseBox.prototype.addBoxEvents = function( pEvents, pFunction ) {
 		try {
-			// “o˜^Ï‚È‚çíœ‚µ‚ÄÄ“o˜^
+			// ç™»éŒ²æ¸ˆãªã‚‰å‰Šé™¤ã—ã¦å†ç™»éŒ²
 			var wUpdate = false;
 			for( var wIdx = 0; wIdx < this._BoxEvents.length; wIdx++ ) {
 				if ( this._BoxEvents[wIdx].eventName !== pEvents )   continue;
@@ -2369,7 +2369,7 @@ var clsBaseBox = function( pArgument ) {
 			}
 			this.addEvent( this._BoxElement, pEvents, pFunction );
 
-			// ’Ç‰Á‚µ‚½ƒCƒxƒ“ƒg‚ğ•Û‘¶
+			// è¿½åŠ ã—ãŸã‚¤ãƒ™ãƒ³ãƒˆã‚’ä¿å­˜
 			this._BoxEvents.push( { eventName: pEvents, eventFunc: pFunction } );
 
 		} catch(e) {
@@ -2377,7 +2377,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚©‚ç‘®«‚ğæ“¾
+	// BOXã‹ã‚‰å±æ€§ã‚’å–å¾—
 	clsBaseBox.prototype.getBoxAttribute = function( pAttribute ) {
 		try {
 			if ( !this._BoxElement ) return '';
@@ -2399,7 +2399,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚Ö‘®«‚ğİ’è
+	// BOXã¸å±æ€§ã‚’è¨­å®š
 	clsBaseBox.prototype.setBoxAttribute = function( pAttribute ) {
 		try {
 			if ( !this._BoxElement ) return false;
@@ -2421,10 +2421,10 @@ var clsBaseBox = function( pArgument ) {
 	};
 
 	// **************************************************************
-	// BOX•\¦
+	// BOXè¡¨ç¤º
 	// **************************************************************
 
-	// BOX‚ğ‘O–Ê•\¦
+	// BOXã‚’å‰é¢è¡¨ç¤º
 	clsBaseBox.prototype.setBoxToFront = function( pFront ) {
 		try {
 			if ( !this._BoxElement ) return;
@@ -2444,7 +2444,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// BOX‚ğ•\¦‚·‚é
+	// BOXã‚’è¡¨ç¤ºã™ã‚‹
 	clsBaseBox.prototype.dspBox = function( pDisplay, pFront, pPos ) {
 		try {
 			if ( !this._BoxElement ) return;
@@ -2470,10 +2470,10 @@ var clsBaseBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒf[ƒ^•Û‘¶—p@€–Úİ’è’læ“¾
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ã€€é …ç›®è¨­å®šå€¤å–å¾—
 	clsBaseBox.prototype.saveData = function( pSaveParam ) {
 		try {
 			var wSaveData = {};
@@ -2481,7 +2481,7 @@ var clsBaseBox = function( pArgument ) {
 			wSaveData.id		= this.getBoxId();
 			wSaveData.parentId	= this.getParentId();
 
-			// style•Û‘¶
+			// styleä¿å­˜
 			var wItemEle = this.getBoxElement();
 			if ( wItemEle ) {
 				var wStyle = {};
@@ -2491,7 +2491,7 @@ var clsBaseBox = function( pArgument ) {
 					wKey = this._DEF_BOX_SAVE_STYLE[wIdx];
 					if ( typeof wItemEle.style[wKey] == 'undefined' ) continue;
 					
-					// •¡Ê‘ÎÛŠOStyleƒ`ƒFƒbƒN
+					// è¤‡å†™å¯¾è±¡å¤–Styleãƒã‚§ãƒƒã‚¯
 					if ( wKey in pSaveParam ) {
 						if ( !pSaveParam[wKey] ) continue;
 					}
@@ -2508,7 +2508,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^“Ç
+	// ãƒ‡ãƒ¼ã‚¿èª­è¾¼
 	clsBaseBox.prototype.loadData = function( pLoadData ) {
 		try {
 			var wLoadBuff = {};
@@ -2530,7 +2530,7 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// Loadƒf[ƒ^æ“¾
+	// Loadãƒ‡ãƒ¼ã‚¿å–å¾—
 	clsBaseBox.prototype.loadDataVal = function( pKey ) {
 		try {
 			if ( !this._BoxLoadData ) return null;
@@ -2543,35 +2543,35 @@ var clsBaseBox = function( pArgument ) {
 	};
 
 	// **************************************************************
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsBaseBox.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒpƒ‰ƒ[ƒ^æ“¾
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 			this.saveArgument( pArgument );
 
-			// ewindow‰Šúİ’è
+			// è¦ªwindowåˆæœŸè¨­å®š
 			this.setWindow( this._BoxWindow );
 
-			// loadƒf[ƒ^•œŒ³
+			// loadãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 			if ( pArgument ) {
 				this._BoxLoadData = this.loadData( pArgument.loadData );
 
 			}
 
-			// load‰Šú’lİ’è
+			// loadæ™‚åˆæœŸå€¤è¨­å®š
 			var wLoadId		= this.loadDataVal( 'id' );
 			var wLoadStyle	= this.loadDataVal( 'style' );
 
-			// BOX¶¬
+			// BOXç”Ÿæˆ
 			this.createBoxElement( wLoadId );
 
-			// e—v‘fİ’è
+			// è¦ªè¦ç´ è¨­å®š
 			this.initParent( this._BoxParent );
 
-			// styleXV
+			// styleæ›´æ–°
 			if ( wLoadStyle ) {
 				this.setBoxStyle( wLoadStyle );
 			}
@@ -2581,16 +2581,16 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsBaseBox.prototype.freeClass = function() {
 		try {
-			// ƒCƒxƒ“ƒg‘S‚Äíœ
+			// ã‚¤ãƒ™ãƒ³ãƒˆå…¨ã¦å‰Šé™¤
 			this.execFunction( this.delBoxEvents );
 
-			// —v‘fíœ
+			// è¦ç´ å‰Šé™¤
 			this.execFunction( this.delBoxElement );
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._BoxArgument				= null;
 			this._BoxProperty				= null;
 			this._BoxEvents					= null;

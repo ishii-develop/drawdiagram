@@ -1,11 +1,11 @@
 
 // --------------------------------------------------------------------
 //
-// ŠÖŒWí•Ê‘I‘ğƒƒjƒ…[
+// é–¢ä¿‚ç¨®åˆ¥é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //
 // --------------------------------------------------------------------
-// clsMenuRelation © clsMenuBase © clsBaseBox
-//        |\ clsItemRelation © clsItemBox © clsBaseBox
+// clsMenuRelation â† clsMenuBase â† clsBaseBox
+//        |â€• clsItemRelation â† clsItemBox â† clsBaseBox
 // --------------------------------------------------------------------
 var clsMenuRelation = function( pArgument ) {
 	try {
@@ -27,7 +27,7 @@ var clsMenuRelation = function( pArgument ) {
 			, way		: 0
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._MenuPrototype					= null;
 
 		this._RelationContents				= null;
@@ -38,19 +38,19 @@ var clsMenuRelation = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒg
+		// ã‚¤ãƒ™ãƒ³ãƒˆ
 		// **************************************************************
 
-		// F‘I‘ğƒƒjƒ…[•\¦ƒCƒxƒ“ƒg
+		// è‰²é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventMenuColorOpen = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+				// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 				self.cancelRelationEvent();
 
-				// ƒJƒ‰[ƒƒjƒ…[•\¦
+				// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 				if ( self._RelationMenuColor ) {
 					var wPoint = self.getEventPos( pEvent );
 					self._RelationMenuColor.dspMenu( { x: wPoint.x, y: wPoint.y, callback: self.eventMenuColorSelect } );
@@ -63,7 +63,7 @@ var clsMenuRelation = function( pArgument ) {
 			return true;
 		};
 
-		// ŠÖŒW‘I‘ğƒCƒxƒ“ƒg
+		// é–¢ä¿‚é¸æŠã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventMenuRelChange = function( pEvent ) {
 			try {
 				var wRelId = self.getBoxId() + '_rel';
@@ -77,7 +77,7 @@ var clsMenuRelation = function( pArgument ) {
 				var wColorEle = self.getElement( wColorId );
 				if ( !wColorEle ) return false;
 
-				// ”wŒiF•ÏX
+				// èƒŒæ™¯è‰²å¤‰æ›´
 				self.setStyle( wColorEle, { 'background-color' : wSelRel.color } );
 
 			} catch(e) {
@@ -86,16 +86,16 @@ var clsMenuRelation = function( pArgument ) {
 			return false;
 		};
 
-		// F‘I‘ğƒCƒxƒ“ƒg
+		// è‰²é¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventMenuColorSelect = function( pEvent, pParam ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pParam ) return false;
 
 				var wKind = pParam.kind;
 				
-				// F‘I‘ğ
+				// è‰²é¸æŠæ™‚
 				if ( wKind == 'select' ) {
 					var wColor = pParam.color;
 
@@ -103,7 +103,7 @@ var clsMenuRelation = function( pArgument ) {
 					var wColorEle = self.getElement( wColorId );
 					if ( !wColorEle ) return false;
 
-					// ”wŒiF•ÏX
+					// èƒŒæ™¯è‰²å¤‰æ›´
 					self.setStyle( wColorEle, { 'background-color' : wColor } );
 
 				}
@@ -116,13 +116,13 @@ var clsMenuRelation = function( pArgument ) {
 			return false;
 		};
 
-		// ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“‰Ÿ‰ºƒCƒxƒ“ƒg
+		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³æŠ¼ä¸‹ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventMenuCancel = function( pEvent ) {
 			try {
-				// •Â‚¶‚é
+				// é–‰ã˜ã‚‹
 				self.hideMenu();
 
-				// eƒCƒxƒ“ƒg”­¶
+				// è¦ªã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿ
 				self.execCallBack( pEvent, { kind: 'close' } );
 
 				return true;
@@ -133,10 +133,10 @@ var clsMenuRelation = function( pArgument ) {
 			return false;
 		};
 
-		// OKƒ{ƒ^ƒ“‰Ÿ‰ºƒCƒxƒ“ƒg
+		// OKãƒœã‚¿ãƒ³æŠ¼ä¸‹ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventMenuOk = function( pEvent ) {
 			try {
-				// “ü—Í’læ“¾
+				// å…¥åŠ›å€¤å–å¾—
 				var wInputValue = {};
 				self.copyProperty( self._DEF_MENU_RELATION_VALUE, wInputValue );
 
@@ -152,20 +152,20 @@ var clsMenuRelation = function( pArgument ) {
 
 				self._RelationContents.setColor(	self.getSelectColor('_color')	);
 
-				// •Â‚¶‚é
+				// é–‰ã˜ã‚‹
 				self.hideMenu();
 
-				// İ’è“à—eæ“¾
+				// è¨­å®šå†…å®¹å–å¾—
 				var wRelParam = self._RelationContents.getContents();
 
-				// ‰æ–Êİ’èî•ñ‚ğ–ß‚è’l‚Éİ’è
+				// ç”»é¢è¨­å®šæƒ…å ±ã‚’æˆ»ã‚Šå€¤ã«è¨­å®š
 				var wParam = {
 								kind		: 'relationUpd'
 							,	displayMode	: self._RelationMode
 							,	relationInf	: wRelParam
 				};
 
-				// eƒCƒxƒ“ƒg”­¶
+				// è¦ªã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿ
 				self.execCallBack( pEvent, wParam );
 
 				return true;
@@ -177,13 +177,13 @@ var clsMenuRelation = function( pArgument ) {
 		};
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._MenuPrototype = clsMenuBase.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsMenuBase.call( this, pArgument );
 
 
@@ -193,17 +193,17 @@ var clsMenuRelation = function( pArgument ) {
 };
 
 
-// ŠÖŒWî•ñ prototype
+// é–¢ä¿‚æƒ…å ± prototype
 (function(){
 
-	// clsMenuBase‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsMenuBaseã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsMenuRelation, clsMenuBase );
 
 	// **************************************************************
-	// “à—eİ’è^æ“¾
+	// å†…å®¹è¨­å®šï¼å–å¾—
 	// **************************************************************
 
-	// ‘I‘ğ’læ“¾
+	// é¸æŠå€¤å–å¾—
 	clsMenuRelation.prototype.getSelectValue = function( pSubId ) {
 		try {
 			var wSelectId = this.getBoxId() + pSubId;
@@ -219,7 +219,7 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
-	// ‘I‘ğƒCƒ“ƒfƒbƒNƒXæ“¾
+	// é¸æŠã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	clsMenuRelation.prototype.getSelectIndex = function( pSubId, pValue ) {
 		try {
 			var wSelectId = this.getBoxId() + pSubId;
@@ -240,7 +240,7 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
-	// “ü—Í’læ“¾
+	// å…¥åŠ›å€¤å–å¾—
 	clsMenuRelation.prototype.getSelectText = function( pSubId ) {
 		try {
 			var wTextId = this.getBoxId() + pSubId;
@@ -256,7 +256,7 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
-	// ”wŒiFæ“¾
+	// èƒŒæ™¯è‰²å–å¾—
 	clsMenuRelation.prototype.getSelectColor = function( pSubId ) {
 		try {
 			var wColorId = this.getBoxId() + pSubId;
@@ -272,16 +272,16 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
-	// İ’è“à—e‰Šú‰»
+	// è¨­å®šå†…å®¹åˆæœŸåŒ–
 	clsMenuRelation.prototype.initCondition = function( pRelationInf ) {
 		try {
 			var wId = this.getBoxId();
 
-			// í•Ê
+			// ç¨®åˆ¥
 			var wStatEle = this.getElement( wId + '_stat' );
 			if ( wStatEle ) {
 				var wStatIdx = this._DEF_MENU_RELATION_VALUE.stat;
-				// í•Ê—LŒø‚Ì‚İ’lİ’è
+				// ç¨®åˆ¥æœ‰åŠ¹æ™‚ã®ã¿å€¤è¨­å®š
 				if ( this._RelationConfig.stat ) {
 					if ( pRelationInf ) {
 						wStatIdx = this.getSelectIndex( '_stat', pRelationInf.getStatus() );
@@ -290,11 +290,11 @@ var clsMenuRelation = function( pArgument ) {
 				wStatEle.selectedIndex = wStatIdx;
 			}
 
-			// ŠÖŒW
+			// é–¢ä¿‚
 			var wRelEle = this.getElement( wId + '_rel' );
 			if ( wRelEle ) {
 				var wRelIdx = this._DEF_MENU_RELATION_VALUE.kind;
-				// ŠÖŒW—LŒø‚Ì‚İ’lİ’è
+				// é–¢ä¿‚æœ‰åŠ¹æ™‚ã®ã¿å€¤è¨­å®š
 				if ( this._RelationConfig.kind ) {
 					if ( pRelationInf ) {
 						wRelIdx = this.getSelectIndex( '_rel', pRelationInf.getRelation() );
@@ -303,11 +303,11 @@ var clsMenuRelation = function( pArgument ) {
 				wRelEle.selectedIndex = wRelIdx;
 			}
 
-			// ƒRƒƒ“ƒg
+			// ã‚³ãƒ¡ãƒ³ãƒˆ
 			var wCmtEle = this.getElement( wId + '_cmt' );
 			if ( wCmtEle ) {
 				var wComment = this._DEF_MENU_RELATION_VALUE.comment;
-				// ƒRƒƒ“ƒg—LŒø‚Ì‚İ’lİ’è
+				// ã‚³ãƒ¡ãƒ³ãƒˆæœ‰åŠ¹æ™‚ã®ã¿å€¤è¨­å®š
 				if ( this._RelationConfig.comment ) {
 					if ( pRelationInf ) {
 						wComment = pRelationInf.getComment();
@@ -316,11 +316,11 @@ var clsMenuRelation = function( pArgument ) {
 				wCmtEle.value = wComment;
 			}
 
-			// •ûŒü
+			// æ–¹å‘
 			var wWayEle = this.getElement( wId + '_way' );
 			if ( wWayEle ) {
 				var wWayIdx = this._DEF_MENU_RELATION_VALUE.way;
-				// •ûŒü—LŒø‚Ì‚İ’lİ’è
+				// æ–¹å‘æœ‰åŠ¹æ™‚ã®ã¿å€¤è¨­å®š
 				if ( this._RelationConfig.way ) {
 					if ( pRelationInf ) {
 						wWayIdx = this.getSelectIndex( '_way', pRelationInf.getWorkWay() );
@@ -329,7 +329,7 @@ var clsMenuRelation = function( pArgument ) {
 				wWayEle.selectedIndex = wWayIdx;
 			}
 
-			// F
+			// è‰²
 			if ( pRelationInf ) {
 				this.eventMenuColorSelect( {}, { kind: 'select', color: pRelationInf.getColor() } );
 
@@ -345,13 +345,13 @@ var clsMenuRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒCƒxƒ“ƒg
+	// ã‚¤ãƒ™ãƒ³ãƒˆ
 	// **************************************************************
 
-	// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsMenuRelation.prototype.cancelRelationEvent = function() {
 		try {
-			// ƒJƒ‰[ƒƒjƒ…[•Â‚¶‚é
+			// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‰ã˜ã‚‹
 			if ( this._RelationMenuColor ) {
 				this._RelationMenuColor.hideMenu();
 
@@ -362,12 +362,12 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[—v‘f‚ÉƒCƒxƒ“ƒgİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ç´ ã«ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsMenuRelation.prototype.setRelationEvent = function( pDelete ) {
 		try {
 			var wId = this.getBoxId();
 
-			// ŠÖŒW‘I‘ğƒCƒxƒ“ƒg’Ç‰Á
+			// é–¢ä¿‚é¸æŠã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			if ( this._RelationConfig.kind ) {
 				var wRelId = wId + '_rel';
 				var wRelEle = this.getElement( wRelId );
@@ -382,7 +382,7 @@ var clsMenuRelation = function( pArgument ) {
 			
 			}
 
-			// F•ÏXƒCƒxƒ“ƒg’Ç‰Á
+			// è‰²å¤‰æ›´ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			var wColorId = wId + '_color';
 			var wColorEle = this.getElement( wColorId );
 			if ( wColorEle ) {
@@ -394,7 +394,7 @@ var clsMenuRelation = function( pArgument ) {
 
 			}
 
-			// ƒ{ƒ^ƒ“‰Ÿ‰º
+			// ãƒœã‚¿ãƒ³æŠ¼ä¸‹
 			var wCancelId = wId + '_cancel';
 			var wCancelEle = this.getElement( wCancelId );
 			if ( wCancelEle ) {
@@ -424,10 +424,10 @@ var clsMenuRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒƒjƒ…[İ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 	// **************************************************************
 
-	// htmlİ’è
+	// htmlè¨­å®š
 	clsMenuRelation.prototype.createContents = function( ) {
 		try {
 			var wBeseEle = this.getBoxElement();
@@ -448,7 +448,7 @@ var clsMenuRelation = function( pArgument ) {
 
 				var wHtml = '';
 				wHtml += "<tr" + wDisplay + ">"
-				wHtml += "<td style='text-align: right; width: 60px;'>" + pTitle + "F</td>";
+				wHtml += "<td style='text-align: right; width: 60px;'>" + pTitle + "ï¼š</td>";
 				wHtml += "<td>"
 				wHtml += "<select id='" + pId + "' " + wDisabled + ">";
 				for( var i = 0; i < pList.length; i++ ) {
@@ -469,19 +469,19 @@ var clsMenuRelation = function( pArgument ) {
 
 			wMenuTag += "<table class='cssMenuRelation-tbl'>";
 
-			// ƒJƒ‰ƒ€ƒTƒCƒYİ’è
+			// ã‚«ãƒ©ãƒ ã‚µã‚¤ã‚ºè¨­å®š
 			wMenuTag += "<colgroup>";
 			wMenuTag += "<col style='width: 60px;'>";
 			wMenuTag += "<col>";
 			wMenuTag += "</colgroup>";
 
-			// ó‘Ô
-			wMenuTag += setSelectLine( wId + '_stat',	'ó‘Ô',		this._RelationContents.getDefStat(), false, this._RelationConfig.stat );
+			// çŠ¶æ…‹
+			wMenuTag += setSelectLine( wId + '_stat',	'çŠ¶æ…‹',		this._RelationContents.getDefStat(), false, this._RelationConfig.stat );
 
-			// ŠÖŒW«
-			wMenuTag += setSelectLine( wId + '_rel',	'ŠÖŒW',		this._RelationContents.getDefKind(), false, this._RelationConfig.kind );
+			// é–¢ä¿‚æ€§
+			wMenuTag += setSelectLine( wId + '_rel',	'é–¢ä¿‚',		this._RelationContents.getDefKind(), false, this._RelationConfig.kind );
 
-			// ƒRƒƒ“ƒg
+			// ã‚³ãƒ¡ãƒ³ãƒˆ
 			var wCmtDsp = '';
 			if ( !this._RelationConfig.comment ) {
 				wCmtDsp = " style='display: none;' ";
@@ -489,18 +489,18 @@ var clsMenuRelation = function( pArgument ) {
 
 			var wMenuCmt = wId + '_cmt';
 			wMenuTag += "<tr" + wCmtDsp + ">"
-			wMenuTag += "<td style='text-align: right;'>ƒRƒƒ“ƒgF</td>";
+			wMenuTag += "<td style='text-align: right;'>ã‚³ãƒ¡ãƒ³ãƒˆï¼š</td>";
 			wMenuTag += "<td>"
 			wMenuTag += "<input type='text' id='" + wMenuCmt + "' style='width: 100px; border: solid 1px black;' />";
 			wMenuTag += "</td>"
 			wMenuTag += "</tr>"
 
-			// “­‚«‚©‚¯
-			wMenuTag += setSelectLine( wId + '_way',	'“­‚«‚©‚¯',	this._RelationContents.getDefWay(), false, this._RelationConfig.way );
+			// åƒãã‹ã‘
+			wMenuTag += setSelectLine( wId + '_way',	'åƒãã‹ã‘',	this._RelationContents.getDefWay(), false, this._RelationConfig.way );
 
 			var wMenuColor = wId + '_color';
 			wMenuTag += "<tr>"
-			wMenuTag += "<td style='text-align: right;'>FF</td>";
+			wMenuTag += "<td style='text-align: right;'>è‰²ï¼š</td>";
 			wMenuTag += "<td>"
 			wMenuTag += "<div id='" + wMenuColor + "' style='width: 32px; height: 32px; cursor : pointer; border: solid 1px black; background-color: black;'></div>";
 			wMenuTag += "</td>"
@@ -516,7 +516,7 @@ var clsMenuRelation = function( pArgument ) {
 			wMenuTag += "<td colspan='2' style='text-align: center;'>"
 
 			var wMenuCancel = wId + '_cancel';
-			wMenuTag += "<input type='button' id='" + wMenuCancel + "' value='·¬İ¾Ù' style='padding: 3px 0px 3px 0px; text-align: center; width: 50px;' />";
+			wMenuTag += "<input type='button' id='" + wMenuCancel + "' value='ï½·ï½¬ï¾ï½¾ï¾™' style='padding: 3px 0px 3px 0px; text-align: center; width: 50px;' />";
 
 			var wMenuOk = wId + '_ok';
 			wMenuTag += "<input type='button' id='" + wMenuOk + "' value='OK'    style='padding: 3px 0px 3px 0px; text-align: center; width: 50px; margin-left: 10px;' />";
@@ -536,29 +536,29 @@ var clsMenuRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒƒjƒ…[‚ğ•\¦‚·‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
 	clsMenuRelation.prototype.dspMenu = function( pParam ) {
 		try {
-			// •\¦ƒ‚[ƒh‰Šú’lFV‹K
+			// è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰åˆæœŸå€¤ï¼šæ–°è¦
 			this._RelationMode = 'insert';
 
 			var wRelationInf = null;
 			if ( pParam ) {
-				// ‰Šú•\¦î•ñİ’è
+				// åˆæœŸè¡¨ç¤ºæƒ…å ±è¨­å®š
 				wRelationInf = pParam.relationInf
 				if ( wRelationInf ) {
-					// •\¦ƒ‚[ƒhFXV
+					// è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ï¼šæ›´æ–°
 					this._RelationMode = 'update';
 				}
 
 			}
-			// İ’è’l‰Šú‰»
+			// è¨­å®šå€¤åˆæœŸåŒ–
 			this.initCondition( wRelationInf );
 
-			// Œp³Œ³ƒƒjƒ…[•\¦
+			// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.dspMenu.call( this, pParam );
 
@@ -569,13 +569,13 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[‚ğ”ñ•\¦
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’éè¡¨ç¤º
 	clsMenuRelation.prototype.hideMenu = function() {
 		try {
-			// ŠÖŒWİ’è‰æ–Ê‚Ìˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// é–¢ä¿‚è¨­å®šç”»é¢ã®å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.cancelRelationEvent();
 
-			// Œp³Œ³”ñ•\¦ˆ—
+			// ç¶™æ‰¿å…ƒéè¡¨ç¤ºå‡¦ç†
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.hideMenu.call( this );
 
@@ -586,16 +586,16 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[—v‘f‚ğ‰Šúİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ç´ ã‚’åˆæœŸè¨­å®š
 	clsMenuRelation.prototype.createMenu = function() {
 		try {
-			// htmlİ’è
+			// htmlè¨­å®š
 			this.createContents();
 
-			// ƒCƒxƒ“ƒgİ’è
+			// ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 			this.setRelationEvent( false );
 
-			// ƒTƒCƒYİ’è
+			// ã‚µã‚¤ã‚ºè¨­å®š
 			var wHeight = this._DEF_MENU_RELATION_SIZE.height;
 			for( var wKey in this._RelationConfig ) {
 				if ( !this._RelationConfig[wKey] ) wHeight -= this._DEF_MENU_RELATION_LINE_HEIGHT;
@@ -603,7 +603,7 @@ var clsMenuRelation = function( pArgument ) {
 
 			this.setBoxStyle( { height: (wHeight + 'px'), width: (this._DEF_MENU_RELATION_SIZE.width + 'px') } );
 
-			// Œp³Œ³‰Šúİ’è
+			// ç¶™æ‰¿å…ƒåˆæœŸè¨­å®š
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.createMenu.call( this );
 
@@ -616,22 +616,22 @@ var clsMenuRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsMenuRelation.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_MENU_RELATION_PROPERTY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êumenu-relationv
+				// ç¨®åˆ¥ã€Œmenu-relationã€
 				wInitArgument.kind = this._DEF_MENU_RELATION_KIND;
 			}
 
-			// ƒƒjƒ…[İ’èæ“¾
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®šå–å¾—
 			var wAutoClose = false;
 
 			var wMenuConfig = null;
@@ -644,7 +644,7 @@ var clsMenuRelation = function( pArgument ) {
 			if ( wMenuConfig ) {
 				if ( 'autoClose' in wMenuConfig ) wAutoClose = wMenuConfig.autoClose;
 
-				// •\¦î•ñİ’è
+				// è¡¨ç¤ºæƒ…å ±è¨­å®š
 				for( var wKindKey in this._RelationConfig ) {
 					if ( wKindKey in wMenuConfig ) {
 						this._RelationConfig[wKindKey] = wMenuConfig[wKindKey];
@@ -653,27 +653,27 @@ var clsMenuRelation = function( pArgument ) {
 			
 			}
 
-			// ©“®closeİ’è
+			// è‡ªå‹•closeè¨­å®š
 			wInitArgument.autoClose = wAutoClose;
 
-			// ŠÖŒWî•ñƒNƒ‰ƒX¶¬
-			// ¦ BOX¶¬‚È‚µ
+			// é–¢ä¿‚æƒ…å ±ã‚¯ãƒ©ã‚¹ç”Ÿæˆ
+			// â€» BOXç”Ÿæˆãªã—
 			this._RelationContents = new clsItemRelation( wInitArgument, false );
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// ƒNƒ‰ƒX’Ç‰Á
+			// ã‚¯ãƒ©ã‚¹è¿½åŠ 
 			this.setBoxClass( 'cssMenuRelation-base' );
 
 			// ------------------------
-			// ‹¤’Êƒƒjƒ…[İ’è
+			// å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			// ------------------------
 
-			// ƒJƒ‰[ƒƒjƒ…[¶¬
+			// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”Ÿæˆ
 			var wColorMenu = this.loadPublicMenu( 'color' );
 			if ( !wColorMenu ) {
 				this._RelationMenuColor = new clsColorBox( { callback: this.eventMenuColorSelect } );
@@ -688,13 +688,13 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsMenuRelation.prototype.freeClass = function() {
 		try {
-			// ƒCƒxƒ“ƒgíœ
+			// ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 			this.execFunction( this.setRelationEvent, true );
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			if ( this._RelationContents ) {
 				if ( this._RelationContents.freeClass ) this._RelationContents.freeClass();
 			}
@@ -703,8 +703,8 @@ var clsMenuRelation = function( pArgument ) {
 			this._RelationConfig				= null;
 
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.freeClass.call( this );
 

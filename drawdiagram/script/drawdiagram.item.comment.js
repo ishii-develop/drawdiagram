@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 //
-// ƒRƒƒ“ƒg€–ÚƒNƒ‰ƒX
+// ã‚³ãƒ¡ãƒ³ãƒˆé …ç›®ã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsItemComment © clsItemBox © clsBaseBox
+// clsItemComment â† clsItemBox â† clsBaseBox
 // --------------------------------------------------------------------
 var clsItemComment = function( pArgument ) {
 	try {
@@ -16,54 +16,54 @@ var clsItemComment = function( pArgument ) {
 		};
 
 		// ----------------------------------
-		// ƒƒjƒ…[İ’è
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 		// ----------------------------------
 		this._DEF_ITEM_COMMENT_MENU			= {
 			  1: [
-				  { kind: 'status'		, title: 'ƒRƒƒ“ƒgİ’è'	}
-				, { kind: 'color'		, title: '”wŒiF'		}
+				  { kind: 'status'		, title: 'ã‚³ãƒ¡ãƒ³ãƒˆè¨­å®š'	}
+				, { kind: 'color'		, title: 'èƒŒæ™¯è‰²'		}
 			  ]
 			, 2: [
-				  { kind: 'font-size'	, title: '•¶š]‘å‚«‚³'	}
-				, { kind: 'font-weight'	, title: '•¶š]‘¾‚³'	}
-				, { kind: 'font-color'	, title: '•¶š]F'		}
+				  { kind: 'font-size'	, title: 'æ–‡å­—â€å¤§ãã•'	}
+				, { kind: 'font-weight'	, title: 'æ–‡å­—â€å¤ªã•'	}
+				, { kind: 'font-color'	, title: 'æ–‡å­—â€è‰²'		}
 			  ]
 			, 3: [
-				  { kind: 'resize'		, title: 'ƒTƒCƒY•ÏX'	}
+				  { kind: 'resize'		, title: 'ã‚µã‚¤ã‚ºå¤‰æ›´'	}
 			  ]
 			, 4: [
-				 { kind: 'delete'		, title: 'íœ'			}
+				 { kind: 'delete'		, title: 'å‰Šé™¤'			}
 			  ]
 		};
 
 		this._DEF_ITEM_COMMENT_MENU_SIZE	= {
 			  1: [
-				  { kind: '10px'		, title: '¬‚³‚¢'		}
-				 ,{ kind: '12px'		, title: '•W€'			}
-				 ,{ kind: '14px'		, title: '‘å‚«‚¢'		}
-				 ,{ kind: '16px'		, title: 'Å‘å'			}
+				  { kind: '10px'		, title: 'å°ã•ã„'		}
+				 ,{ kind: '12px'		, title: 'æ¨™æº–'			}
+				 ,{ kind: '14px'		, title: 'å¤§ãã„'		}
+				 ,{ kind: '16px'		, title: 'æœ€å¤§'			}
 			  ]
 		};
 
 		this._DEF_ITEM_COMMENT_MENU_WEIGHT	= {
 			  1: [
-				  { kind: '400'		, title: '•W€'			}
-				 ,{ kind: '700'		, title: '‘¾‚¢'			}
+				  { kind: '400'		, title: 'æ¨™æº–'			}
+				 ,{ kind: '700'		, title: 'å¤ªã„'			}
 			  ]
 		};
 
 		this._DEF_ITEM_COMMENT_MENU_POSITION = {
 			 1: [
-				{ kind: 'resize'	, title: 'ƒTƒCƒY•ÏX'	}
+				{ kind: 'resize'	, title: 'ã‚µã‚¤ã‚ºå¤‰æ›´'	}
 			 ]
 		};
 
 		// ----------------------------------
-		// ƒXƒe[ƒ^ƒXî•ñ
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æƒ…å ±
 		// ----------------------------------
 		this._DEF_ITEM_COMMENT_STATUS_ITEM_COMMENT = {
 				  name		: 'comment'
-				, title		: 'ƒRƒƒ“ƒg'
+				, title		: 'ã‚³ãƒ¡ãƒ³ãƒˆ'
 				, type		: 'textarea'
 				, cols		: 40
 				, rows		: 10
@@ -79,7 +79,7 @@ var clsItemComment = function( pArgument ) {
 			  1: [ this._DEF_ITEM_COMMENT_STATUS_ITEM_COMMENT ]
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._ItemPrototype					= null;
 		
 		this._CommentMenuFontSize			= null;
@@ -89,22 +89,22 @@ var clsItemComment = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒgˆ—
+		// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 
-		// •¶š@ƒJƒ‰[ƒpƒŒƒbƒg‘I‘ğƒCƒxƒ“ƒg
+		// æ–‡å­—ã€€ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆé¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventFontColorSelect = function( pEvent, pParam ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pParam ) return false;
 
 				if ( pParam.kind !== 'select' ) return false;
 
-				// F‘I‘ğ
+				// è‰²é¸æŠæ™‚
 				var wColor = pParam.color;
 
-				// •¶šF•ÏX
+				// æ–‡å­—è‰²å¤‰æ›´
 				self.setCommentFontColor( wColor, true );
 
 			} catch(e) {
@@ -113,19 +113,19 @@ var clsItemComment = function( pArgument ) {
 			return false;
 		};
 
-		// •¶š@ƒTƒCƒY‘I‘ğƒCƒxƒ“ƒg
+		// æ–‡å­—ã€€ã‚µã‚¤ã‚ºé¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventSizeSelect = function( pEvent, pSelectMenu ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pSelectMenu ) return false;
 
-				// ‘I‘ğƒƒjƒ…[í•Ê•s–¾@close‚Íˆ—‚È‚µ
+				// é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¨®åˆ¥ä¸æ˜ã€€closeæ™‚ã¯å‡¦ç†ãªã—
 				var wKind = pSelectMenu.kind;
 				if ( typeof wKind == 'undefined' ) return false;
 				if ( wKind == 'close' ) return false;
 
-				// •¶šƒTƒCƒY•ÏX
+				// æ–‡å­—ã‚µã‚¤ã‚ºå¤‰æ›´
 				self.setCommentFontSize( wKind, true );
 
 			} catch(e) {
@@ -134,19 +134,19 @@ var clsItemComment = function( pArgument ) {
 			return false;
 		};
 
-		// •¶š@‘¾‚³‘I‘ğƒCƒxƒ“ƒg
+		// æ–‡å­—ã€€å¤ªã•é¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventWeightSelect = function( pEvent, pSelectMenu ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pSelectMenu ) return false;
 
-				// ‘I‘ğƒƒjƒ…[í•Ê•s–¾@close‚Íˆ—‚È‚µ
+				// é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¨®åˆ¥ä¸æ˜ã€€closeæ™‚ã¯å‡¦ç†ãªã—
 				var wKind = pSelectMenu.kind;
 				if ( typeof wKind == 'undefined' ) return false;
 				if ( wKind == 'close' ) return false;
 
-				// •¶š‘¾‚³•ÏX
+				// æ–‡å­—å¤ªã•å¤‰æ›´
 				self.setCommentFontWeight( wKind, true );
 
 			} catch(e) {
@@ -157,13 +157,13 @@ var clsItemComment = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._ItemPrototype = clsItemBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsItemBox.call( this, pArgument );
 
 
@@ -172,26 +172,26 @@ var clsItemComment = function( pArgument ) {
 	}
 };
 
-// ƒOƒ‹[ƒv prototype
+// ã‚°ãƒ«ãƒ¼ãƒ— prototype
 (function(){
-	// clsItemBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsItemBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsItemComment, clsItemBox );
 
 
 	// **************************************************************
-	// ‹¤—Lƒƒjƒ…[ˆ—
+	// å…±æœ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	// **************************************************************
 
-	// ƒJƒ‰[ƒƒjƒ…[•\¦
+	// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsItemComment.prototype.dspFontColorMenu = function( pEvent ) {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.cancelEvent( pEvent, true );
 
-			// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.eventClear();
 
-			// ƒJƒ‰[ƒƒjƒ…[•\¦
+			// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			var wColorMenu = this.loadPublicMenu('color');
 			if ( wColorMenu ) {
 				var wPoint = this.getEventPos( pEvent );
@@ -203,16 +203,16 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ƒTƒCƒYƒƒjƒ…[•\¦
+	// ã‚µã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsItemComment.prototype.dspFontSizeMenu = function( pEvent ) {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.cancelEvent( pEvent, true );
 
-			// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.eventClear();
 
-			// •¶šƒTƒCƒYƒƒjƒ…[•\¦
+			// æ–‡å­—ã‚µã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._CommentMenuFontSize ) {
 				var wPoint = this.getEventPos( pEvent );
 				this._CommentMenuFontSize.dspMenu( { x: wPoint.x, y: wPoint.y, callback: this.eventSizeSelect } );
@@ -223,16 +223,16 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ‘¾‚³ƒƒjƒ…[•\¦
+	// å¤ªã•ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsItemComment.prototype.dspFontWeightMenu = function( pEvent ) {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.cancelEvent( pEvent, true );
 
-			// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.eventClear();
 
-			// •¶š‘¾‚³ƒƒjƒ…[•\¦
+			// æ–‡å­—å¤ªã•ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._CommentMenuFontWeight ) {
 				var wPoint = this.getEventPos( pEvent );
 				this._CommentMenuFontWeight.dspMenu( { x: wPoint.x, y: wPoint.y, callback: this.eventWeightSelect } );
@@ -245,10 +245,10 @@ var clsItemComment = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒRƒƒ“ƒg
+	// ã‚³ãƒ¡ãƒ³ãƒˆ
 	// **************************************************************
 
-	// ƒRƒƒ“ƒg•\¦—v‘f¶¬
+	// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤ºè¦ç´ ç”Ÿæˆ
 	clsItemComment.prototype.createComment = function() {
 		try {
 			var wId  = this.getBoxId() + '_comment';
@@ -265,23 +265,23 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg•¶šFİ’è
+	// ã‚³ãƒ¡ãƒ³ãƒˆæ–‡å­—è‰²è¨­å®š
 	clsItemComment.prototype.setCommentFontColor = function( pColor, pUpdate ) {
 		try {
 			if ( !pColor ) return;
 
-			// XV‚Í•ÏX‚ª‚ ‚éê‡‚Ì‚İˆ—
+			// æ›´æ–°æ™‚ã¯å¤‰æ›´ãŒã‚ã‚‹å ´åˆã®ã¿å‡¦ç†
 			if ( pUpdate ) {
 				if ( this._CommentStatus.color == pColor ) return;
 			}
 
-			// ƒtƒHƒ“ƒgF•ÏX
+			// ãƒ•ã‚©ãƒ³ãƒˆè‰²å¤‰æ›´
 			this.setBoxStyle( { 'color' : pColor } );
 				
-			// ƒtƒHƒ“ƒgF•Û‘¶
+			// ãƒ•ã‚©ãƒ³ãƒˆè‰²ä¿å­˜
 			this._CommentStatus.color = pColor;
 
-			// İ’è•ÏX‚ğ’Ê’m
+			// è¨­å®šå¤‰æ›´ã‚’é€šçŸ¥
 			if ( pUpdate ) {
 				this.execItemCallback( null, { kind: 'status' } );
 			}
@@ -291,12 +291,12 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg•¶šƒTƒCƒYİ’è
+	// ã‚³ãƒ¡ãƒ³ãƒˆæ–‡å­—ã‚µã‚¤ã‚ºè¨­å®š
 	clsItemComment.prototype.setCommentFontSize = function( pSize, pUpdate ) {
 		try {
 			if ( !pSize ) return;
 
-			// XV‚Í•ÏX‚ª‚ ‚éê‡‚Ì‚İˆ—
+			// æ›´æ–°æ™‚ã¯å¤‰æ›´ãŒã‚ã‚‹å ´åˆã®ã¿å‡¦ç†
 			if ( pUpdate ) {
 				if ( this._CommentStatus.size == pSize ) return;
 			}
@@ -306,10 +306,10 @@ var clsItemComment = function( pArgument ) {
 			if ( wCmtEle ) {
 				this.setStyle( wCmtEle, { 'font-size': pSize } );
 
-				// ƒtƒHƒ“ƒgƒTƒCƒY•Û‘¶
+				// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºä¿å­˜
 				this._CommentStatus.size = pSize;
 
-				// İ’è•ÏX‚ğ’Ê’m
+				// è¨­å®šå¤‰æ›´ã‚’é€šçŸ¥
 				if ( pUpdate ) {
 					this.execItemCallback( null, { kind: 'status' } );
 				}
@@ -320,12 +320,12 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg•¶š‘¾‚³İ’è
+	// ã‚³ãƒ¡ãƒ³ãƒˆæ–‡å­—å¤ªã•è¨­å®š
 	clsItemComment.prototype.setCommentFontWeight = function( pWeight, pUpdate ) {
 		try {
 			if ( !pWeight ) return;
 
-			// XV‚Í•ÏX‚ª‚ ‚éê‡‚Ì‚İˆ—
+			// æ›´æ–°æ™‚ã¯å¤‰æ›´ãŒã‚ã‚‹å ´åˆã®ã¿å‡¦ç†
 			if ( pUpdate ) {
 				if ( this._CommentStatus.weight == pWeight ) return;
 			}
@@ -335,10 +335,10 @@ var clsItemComment = function( pArgument ) {
 			if ( wCmtEle ) {
 				this.setStyle( wCmtEle, { 'font-weight': pWeight } );
 
-				// ƒtƒHƒ“ƒgƒTƒCƒY•Û‘¶
+				// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºä¿å­˜
 				this._CommentStatus.weight = pWeight;
 
-				// İ’è•ÏX‚ğ’Ê’m
+				// è¨­å®šå¤‰æ›´ã‚’é€šçŸ¥
 				if ( pUpdate ) {
 					this.execItemCallback( null, { kind: 'status' } );
 				}
@@ -351,30 +351,30 @@ var clsItemComment = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsItemComment.prototype.eventClear = function() {
 		try {
-			// ƒJƒ‰[ƒƒjƒ…[•Â‚¶‚é
+			// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‰ã˜ã‚‹
 			var wColorMenu = this.loadPublicMenu('color');
 			if ( wColorMenu ) {
 				wColorMenu.hideMenu();
 			}
 
-			// •¶šƒTƒCƒYƒƒjƒ…[•Â‚¶‚é
+			// æ–‡å­—ã‚µã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‰ã˜ã‚‹
 			if ( this._CommentMenuFontSize ) {
 				this._CommentMenuFontSize.hideMenu();
 			}
 
-			// •¶š‘¾‚³ƒƒjƒ…[•\¦
+			// æ–‡å­—å¤ªã•ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._CommentMenuFontWeight ) {
 				this._CommentMenuFontWeight.hideMenu();
 			}
 
 
-			// Œp³Œ³ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹ˆ—
+			// ç¶™æ‰¿å…ƒã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.eventClear.call( this );
 
@@ -387,22 +387,22 @@ var clsItemComment = function( pArgument ) {
 
 
 	// -------------------
-	// ƒƒjƒ…[ŠÖ˜A
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 	// -------------------
 
-	// ƒƒjƒ…[‰Šúİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸè¨­å®š
 	clsItemComment.prototype.initItemMenu = function( pArgument ) {
 		try {
-			// Œp³Œ³ƒƒjƒ…[‰Šú‰»ˆ—
+			// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸåŒ–å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initItemMenu.call( this, pArgument );
 
 			}
 
-			// €–ÚƒƒbƒNˆ—•s—v
+			// é …ç›®ãƒ­ãƒƒã‚¯æ™‚å‡¦ç†ä¸è¦
 			if ( this.getItemLockIs() ) return;
 
-			// •¶šƒTƒCƒYƒŠƒXƒgƒƒjƒ…[
+			// æ–‡å­—ã‚µã‚¤ã‚ºãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			var wMenuList = {};
 			this.copyProperty( this._DEF_ITEM_COMMENT_MENU_SIZE, wMenuList );
 
@@ -412,11 +412,11 @@ var clsItemComment = function( pArgument ) {
 			}
 			wSizeMenu.setMenuList( { menuList: wMenuList } );
 
-			// •¶šƒTƒCƒYƒŠƒXƒgƒƒjƒ…[‚Æ‚µ‚Ä•Û‘¶
+			// æ–‡å­—ã‚µã‚¤ã‚ºãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ã—ã¦ä¿å­˜
 			this._CommentMenuFontSize = wSizeMenu;
 
 
-			// •¶š‘¾‚³ƒŠƒXƒgƒƒjƒ…[
+			// æ–‡å­—å¤ªã•ãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			var wWeightList = {};
 			this.copyProperty( this._DEF_ITEM_COMMENT_MENU_WEIGHT, wWeightList );
 
@@ -426,7 +426,7 @@ var clsItemComment = function( pArgument ) {
 			}
 			wWeightMenu.setMenuList( { menuList: wWeightList } );
 
-			// •¶šƒTƒCƒYƒŠƒXƒgƒƒjƒ…[‚Æ‚µ‚Ä•Û‘¶
+			// æ–‡å­—ã‚µã‚¤ã‚ºãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ã—ã¦ä¿å­˜
 			this._CommentMenuFontWeight = wWeightMenu;
 
 		} catch(e) {
@@ -434,7 +434,7 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg—pƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‘I‘ğˆ—
+	// ã‚³ãƒ¡ãƒ³ãƒˆç”¨ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠæ™‚å‡¦ç†
 	clsItemComment.prototype.execContextSelect = function( pEvent, pSelectMenu ) {
 		try {
 			if ( !pSelectMenu ) return false;
@@ -442,34 +442,34 @@ var clsItemComment = function( pArgument ) {
 			var wRetVal = true;
 
 			switch(pSelectMenu.kind) {
-			// •¶š@F
+			// æ–‡å­—ã€€è‰²
 			case 'font-color':
-				// •¶šFƒƒjƒ…[‚ğ•\¦
+				// æ–‡å­—è‰²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
 				wRetVal = this.dspFontColorMenu( pEvent );
 				break;
 
-			// •¶š@ƒTƒCƒY
+			// æ–‡å­—ã€€ã‚µã‚¤ã‚º
 			case 'font-size':
-				// •¶šƒTƒCƒYƒƒjƒ…[‚ğ•\¦
+				// æ–‡å­—ã‚µã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
 				wRetVal = this.dspFontSizeMenu( pEvent );
 				break;
 
-			// •¶š@‘¾‚³
+			// æ–‡å­—ã€€å¤ªã•
 			case 'font-weight':
-				// •¶š‘¾‚³ƒƒjƒ…[‚ğ•\¦
+				// æ–‡å­—å¤ªã•ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
 				wRetVal = this.dspFontWeightMenu( pEvent );
 				break;
 
-			// ƒŠƒTƒCƒY
+			// ãƒªã‚µã‚¤ã‚º
 			case 'resize':
-				// e‚Öó‘Ô•ÏX‚ğ’Ê’m
-				// ¦ƒŠƒTƒCƒYˆ—‚Íe—v‘f‚ÅÀ{
+				// è¦ªã¸çŠ¶æ…‹å¤‰æ›´ã‚’é€šçŸ¥
+				// â€»ãƒªã‚µã‚¤ã‚ºå‡¦ç†ã¯è¦ªè¦ç´ ã§å®Ÿæ–½
 				wRetVal = this.execItemCallback( pEvent, { kind: 'resize' } );
 				break;
 
-			// ˆÈŠO
+			// ä»¥å¤–
 			default:
-				// Œp³Œ³ƒƒjƒ…[‘€ìˆ—
+				// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œå‡¦ç†
 				if ( this._ItemPrototype ) {
 					wRetVal = this._ItemPrototype.execContextSelect.call( this, pEvent, pSelectMenu );
 
@@ -485,19 +485,19 @@ var clsItemComment = function( pArgument ) {
 	};
 
 	// -------------------
-	// Šî–{î•ñŠÖ˜A
+	// åŸºæœ¬æƒ…å ±é–¢é€£
 	// -------------------
 
-	// ƒXƒe[ƒ^ƒX‰Šúİ’è
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åˆæœŸè¨­å®š
 	clsItemComment.prototype.initItemStatus = function( pArgument ) {
 		try {
-			// Œp³Œ³ƒXƒe[ƒ^ƒXXVˆ—
+			// ç¶™æ‰¿å…ƒã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°æ™‚å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initItemStatus.call( this, pArgument );
 
 			}
 
-			// Load
+			// Loadæ™‚
 			var wLoadStat = this.loadDataVal( 'comment' );
 			if ( wLoadStat ) {
 				if ( 'color'  in wLoadStat ) this._CommentStatus.color  = wLoadStat.color;
@@ -511,13 +511,13 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ƒXƒe[ƒ^ƒXİ’èˆ—
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®šæ™‚å‡¦ç†
 	clsItemComment.prototype.execStatusMenu = function( pEvent, pStatVal ) {
 		try {
-			// İ’è“à—eæ“¾
+			// è¨­å®šå†…å®¹å–å¾—
 			var wComment = this.getStatusValues('comment');
 
-			// ƒRƒƒ“ƒg“à—e‚ğİ’è
+			// ã‚³ãƒ¡ãƒ³ãƒˆå†…å®¹ã‚’è¨­å®š
 			var wId  = this.getBoxId() + '_comment';
 			var wCmtEle = this.getElement( wId );
 			if ( !wCmtEle ) wCmtEle = this.createComment();
@@ -526,7 +526,7 @@ var clsItemComment = function( pArgument ) {
 				wCmtEle.innerHTML = this.toHtml( wComment );
 			}
 
-			// Œp³Œ³ƒXƒe[ƒ^ƒXXVˆ—
+			// ç¶™æ‰¿å…ƒã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°æ™‚å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.execStatusMenu.call( this, pEvent, pStatVal );
 
@@ -539,15 +539,15 @@ var clsItemComment = function( pArgument ) {
 
 
 	// -------------------
-	// SAVE/LOADŠÖ˜A
+	// SAVE/LOADé–¢é€£
 	// -------------------
 
-	// ƒf[ƒ^•Û‘¶—p@€–Úİ’è’læ“¾
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ã€€é …ç›®è¨­å®šå€¤å–å¾—
 	clsItemComment.prototype.saveData = function( pSaveParam ) {
 		try {
 			var wSaveData;
 			
-			// Œp³Œ³€–Úİ’è’læ“¾ˆ—
+			// ç¶™æ‰¿å…ƒé …ç›®è¨­å®šå€¤å–å¾—å‡¦ç†
 			if ( this._ItemPrototype ) {
 				wSaveData = this._ItemPrototype.saveData.call( this, pSaveParam );
 
@@ -556,7 +556,7 @@ var clsItemComment = function( pArgument ) {
 
 			}
 
-			// ƒRƒƒ“ƒg—pî•ñ‚ğ’Ç‰Á
+			// ã‚³ãƒ¡ãƒ³ãƒˆç”¨æƒ…å ±ã‚’è¿½åŠ 
 			wSaveData.comment = JSON.stringify( this._CommentStatus );
 
 			return wSaveData;
@@ -566,11 +566,11 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^“Ç
+	// ãƒ‡ãƒ¼ã‚¿èª­è¾¼
 	clsItemComment.prototype.loadData = function( pLoadData ) {
 		try {
 			var wLoadBuff;
-			// Œp³Œ³ƒf[ƒ^“Çˆ—
+			// ç¶™æ‰¿å…ƒãƒ‡ãƒ¼ã‚¿èª­è¾¼å‡¦ç†
 			if ( this._BasePrototype ) {
 				wLoadBuff = this._ItemPrototype.loadData.call( this, pLoadData );
 
@@ -580,7 +580,7 @@ var clsItemComment = function( pArgument ) {
 			}
 			if ( !pLoadData ) return wLoadBuff;
 
-			// ƒRƒƒ“ƒgŒÅ—Lİ’è
+			// ã‚³ãƒ¡ãƒ³ãƒˆå›ºæœ‰è¨­å®š
 			if ( pLoadData.comment ) {
 				wLoadBuff.comment = JSON.parse( pLoadData.comment );
 			}
@@ -594,49 +594,49 @@ var clsItemComment = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsItemComment.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_ITEM_COMMENT_PROPERTY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êuitem-commentv
+				// ç¨®åˆ¥ã€Œitem-commentã€
 				wInitArgument.kind = this._DEF_ITEM_COMMENT_KIND;
 
 			}
 
-			// ’Ç‰Áƒƒjƒ…[İ’è
+			// è¿½åŠ ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			wInitArgument.menuList		= this._DEF_ITEM_COMMENT_MENU;
 			wInitArgument.menuReplace	= true;
 
-			// ’Ç‰ÁˆÊ’u’²®ƒƒjƒ…[İ’è
+			// è¿½åŠ ä½ç½®èª¿æ•´ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			wInitArgument.positionList	= this._DEF_ITEM_COMMENT_MENU_POSITION;
 
-			// ’Ç‰ÁƒXƒe[ƒ^ƒXİ’è
+			// è¿½åŠ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š
 			wInitArgument.statusList	= this._DEF_ITEM_COMMENT_STATUS;
 			wInitArgument.statusReplace	= true;
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// ƒRƒƒ“ƒg•\¦—v‘f¶¬
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤ºè¦ç´ ç”Ÿæˆ
 			this.createComment();
 
-			// ƒtƒHƒ“ƒgƒJƒ‰[XV
+			// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æ›´æ–°
 			this.setCommentFontColor( this._CommentStatus.color );
 
-			// ƒtƒHƒ“ƒgƒTƒCƒYXV
+			// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºæ›´æ–°
 			this.setCommentFontSize( this._CommentStatus.size );
 
-			// ƒtƒHƒ“ƒg‘¾‚³XV
+			// ãƒ•ã‚©ãƒ³ãƒˆå¤ªã•æ›´æ–°
 			this.setCommentFontWeight( this._CommentStatus.weight );
 
 		} catch(e) {
@@ -644,15 +644,15 @@ var clsItemComment = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsItemComment.prototype.freeClass = function() {
 		try {
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._CommentMenuFontSize		= null;
 			this._CommentMenuFontWeight		= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.freeClass.call( this );
 

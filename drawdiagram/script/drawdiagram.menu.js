@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 //
-// Šî–{ƒƒjƒ…[ƒNƒ‰ƒX
+// åŸºæœ¬ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsMenuBase © clsBaseBox
+// clsMenuBase â† clsBaseBox
 // --------------------------------------------------------------------
 var clsMenuBase = function( pArgument ) {
 	try {
@@ -15,7 +15,7 @@ var clsMenuBase = function( pArgument ) {
 			 'z-index'				: '3000'
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._BasePrototype			= null;
 
 		this._MenuSize				= null;
@@ -24,15 +24,15 @@ var clsMenuBase = function( pArgument ) {
 		this._MenuAutoClose			= true;
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒgˆ—
+		// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 
-		// ƒ}ƒEƒX”ÍˆÍŠO‚Åƒƒjƒ…[•Â‚¶‚é
+		// ãƒã‚¦ã‚¹ç¯„å›²å¤–ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‰ã˜ã‚‹
 		this.eventMenuMouseleave = function( pEvent ) {
 			try {
 				self.dspMenuElement( false );
 
-				// ƒƒjƒ…[ŒÄoŒ³‚ÌŠÖ”‚ğcall
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼å‡ºå…ƒã®é–¢æ•°ã‚’call
 				self.execCallBack( pEvent, { kind: 'close' } );
 
 			} catch(e) {
@@ -42,13 +42,13 @@ var clsMenuBase = function( pArgument ) {
 		};
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._BasePrototype = clsBaseBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsBaseBox.call( this, pArgument );
 
 
@@ -57,16 +57,16 @@ var clsMenuBase = function( pArgument ) {
 	}
 };
 
-// Šî–{ƒƒjƒ…[ prototype
+// åŸºæœ¬ãƒ¡ãƒ‹ãƒ¥ãƒ¼ prototype
 (function(){
-	// clsBaseBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsBaseBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsMenuBase, clsBaseBox );
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBİ’è
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 	// **************************************************************
 
-	// CallbackŠÖ”
+	// Callbacké–¢æ•°
 	clsMenuBase.prototype.setCallBack = function( pFunction ) {
 		try {
 			if ( typeof pFunction !== 'function' ) return;
@@ -78,7 +78,7 @@ var clsMenuBase = function( pArgument ) {
 		}
 	};
 
-	// CallbackŠÖ”@İ’è—L–³
+	// Callbacké–¢æ•°ã€€è¨­å®šæœ‰ç„¡
 	clsMenuBase.prototype.isCallback = function() {
 		try {
 			return (typeof this._MenuCallback == 'function');
@@ -88,7 +88,7 @@ var clsMenuBase = function( pArgument ) {
 		}
 	};
 
-	// ©“®”ñ•\¦—L–³
+	// è‡ªå‹•éè¡¨ç¤ºæœ‰ç„¡
 	clsMenuBase.prototype.autoCloseIs = function() {
 		try {
 			return this._MenuAutoClose;
@@ -99,15 +99,15 @@ var clsMenuBase = function( pArgument ) {
 	};
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBæ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å–å¾—
 	// **************************************************************
 
-	// CallbackŠÖ”
+	// Callbacké–¢æ•°
 	clsMenuBase.prototype.execCallBack = function( ) {
 		try {
 			if ( typeof this._MenuCallback !== 'function' ) return false;
 
-			// ˆø”İ’è
+			// å¼•æ•°è¨­å®š
 			var wArguments;
 			if ( arguments.length > 0 ) {
 				wArguments = Array.prototype.slice.call(arguments, 0);
@@ -124,13 +124,13 @@ var clsMenuBase = function( pArgument ) {
 	};
 
 
-	// ‹¤’Êƒƒjƒ…[æ“¾
+	// å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼å–å¾—
 	clsMenuBase.prototype.loadPublicMenu = function( pMenuId ) {
 		try {
 			var wPublicMenu = this.loadArgument( 'publicMenu' );
 			if ( !wPublicMenu ) return null;
 
-			// Keyw’è‚È‚¯‚ê‚Î‘S‚Ä
+			// KeyæŒ‡å®šãªã‘ã‚Œã°å…¨ã¦
 			if ( typeof pMenuId == 'string' ) {
 				if ( !(pMenuId in wPublicMenu) ) return null;
 				return wPublicMenu[pMenuId];
@@ -147,17 +147,17 @@ var clsMenuBase = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒƒjƒ…[•\¦
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	// **************************************************************
 
-	// ƒƒjƒ…[•\¦
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsMenuBase.prototype.dspMenuElement = function( pDisplay ) {
 		try {
 			this.dspBox( pDisplay );
 
-			// ©“®closey—LŒø
+			// è‡ªå‹•closeyæœ‰åŠ¹æ™‚
 			if ( this._MenuAutoClose ) {
-				// ƒ}ƒEƒX§ŒäƒCƒxƒ“ƒg
+				// ãƒã‚¦ã‚¹åˆ¶å¾¡ã‚¤ãƒ™ãƒ³ãƒˆ
 				if ( pDisplay ) {
 					this.addBoxEvents( 'onmouseleave', this.eventMenuMouseleave );
 				} else {
@@ -166,7 +166,7 @@ var clsMenuBase = function( pArgument ) {
 			
 			}
 
-			// •\¦‚ÍƒtƒH[ƒJƒX
+			// è¡¨ç¤ºæ™‚ã¯ãƒ•ã‚©ãƒ¼ã‚«ã‚¹
 			var wMenuEle = this.getBoxElement();
 			if ( pDisplay ) wMenuEle.focus();
 
@@ -177,28 +177,28 @@ var clsMenuBase = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[‚ÌƒTƒCƒYæ“¾
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚ºå–å¾—
 	clsMenuBase.prototype.saveMenuSize = function() {
 		try {
-			// •\¦‚³‚ê‚Ä‚¢‚È‚¢
+			// è¡¨ç¤ºã•ã‚Œã¦ã„ãªã„
 			var wSavePos = { left: null, top: null };
 			if ( !this._MenuDisplay ) {
-				// ˆÊ’u•Û‘¶
+				// ä½ç½®ä¿å­˜
 				wSavePos.left = this.getBoxStyle( 'left' );
 				wSavePos.top  = this.getBoxStyle( 'top' );
 
-				// •\¦”ÍˆÍŠO‚Åˆê’U•\¦
+				// è¡¨ç¤ºç¯„å›²å¤–ã§ä¸€æ—¦è¡¨ç¤º
 				this.setBoxStyle( { left: '-200px', top: '-200px' } );
 				this.dspBox( true );
 			}
 
 			this._MenuSize = this.getBoxSize();
 
-			// ”ñ•\¦‚É–ß‚·
+			// éè¡¨ç¤ºã«æˆ»ã™
 			if ( !this._MenuDisplay ) {
 				this.dspBox( false );
 
-				// ˆÊ’u–ß‚·
+				// ä½ç½®æˆ»ã™
 				if ( wSavePos.left ) this.setBoxStyle( { left: wSavePos.left } );
 				if ( wSavePos.top  ) this.setBoxStyle( { top: wSavePos.top } );
 
@@ -209,23 +209,23 @@ var clsMenuBase = function( pArgument ) {
 		}
 	};
 
-	// ˆÊ’u‚ğÄ’²®
+	// ä½ç½®ã‚’å†èª¿æ•´
 	clsMenuBase.prototype.resetPosition = function() {
 		try {
 			var wBoxPos		= this.getBoxPos();
 			var wParentPos	= this.getParentPos();
 
-			// Œ»•\¦ˆÊ’u
+			// ç¾è¡¨ç¤ºä½ç½®
 			var wPoint = {};
 			wPoint.y = (wBoxPos.top  + wParentPos.top);
 			wPoint.x = (wBoxPos.left + wParentPos.left);
 
-			// e‚ÌƒXƒNƒ[ƒ‹’lŒ¸Z
+			// è¦ªã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤æ¸›ç®—
 			var wParentScroll = this.getParentScroll();
 			wPoint.y -= wParentScroll.y;
 			wPoint.x -= wParentScroll.x;
 
-			// ˆÊ’u•â³
+			// ä½ç½®è£œæ­£
 			this.setBoxPos( wPoint, { shift: false, correct: true, size: this._MenuSize } );
 
 		} catch(e) {
@@ -235,14 +235,14 @@ var clsMenuBase = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒƒjƒ…[‚ğ•\¦‚·‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
 	clsMenuBase.prototype.dspMenu = function( pParam ) {
 		try {
 			if ( pParam ) {
-				// •\¦ˆÊ’u
+				// è¡¨ç¤ºä½ç½®
 				if ( (typeof pParam.x !== 'undefined') || (typeof pParam.y !== 'undefined') ) {
 					var wPoint = { x: pParam.x, y: pParam.y };
 					if ( typeof wPoint.x == 'undefined' ) wPoint.x = 0;
@@ -251,11 +251,11 @@ var clsMenuBase = function( pArgument ) {
 					this.setBoxPos( wPoint, { shift: true, correct: true, size: this._MenuSize } );
 				}
 
-				// ƒƒjƒ…[‘€ìƒCƒxƒ“ƒgİ’è
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œæ™‚ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 				this.setCallBack( pParam.callback );
 			}
 
-			// •\¦
+			// è¡¨ç¤º
 			this.dspMenuElement( true );
 
 		} catch(e) {
@@ -263,7 +263,7 @@ var clsMenuBase = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[‚ğ”ñ•\¦
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’éè¡¨ç¤º
 	clsMenuBase.prototype.hideMenu = function() {
 		try {
 			this.dspMenuElement( false );
@@ -273,10 +273,10 @@ var clsMenuBase = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[–³Œø‰»
+	// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 	clsMenuBase.prototype.setMenuContext = function() {
 		try {
-			// •s—v‚ÈƒCƒxƒ“ƒg‚ğ–³Œø‰»
+			// ä¸è¦ãªã‚¤ãƒ™ãƒ³ãƒˆã‚’ç„¡åŠ¹åŒ–
 			this.addBoxEvents( 'oncontextmenu'	, this.eventInvalid );
 
 		} catch(e) {
@@ -284,12 +284,12 @@ var clsMenuBase = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[—v‘f‚ğ‰Šúİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ç´ ã‚’åˆæœŸè¨­å®š
 	clsMenuBase.prototype.createMenu = function() {
 		try {
-			// ¦ html¶¬‚ÍŒp³æ‚ÅÀ‘•‚·‚é
+			// â€» htmlç”Ÿæˆã¯ç¶™æ‰¿å…ˆã§å®Ÿè£…ã™ã‚‹
 
-			// ƒƒjƒ…[ƒTƒCƒY•Û‘¶
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚µã‚¤ã‚ºä¿å­˜
 			this.saveMenuSize();
 
 		} catch(e) {
@@ -299,39 +299,39 @@ var clsMenuBase = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsMenuBase.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_MENU_PROPERTY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êumenuv
+				// ç¨®åˆ¥ã€Œmenuã€
 				wInitArgument.kind = this._DEF_MENU_KIND;
 
 			}
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._BasePrototype ) {
 				this._BasePrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// ƒNƒ‰ƒX’Ç‰Á
+			// ã‚¯ãƒ©ã‚¹è¿½åŠ 
 			this.setBoxClass( 'cssMenu-base' );
 
 			if ( pArgument ) {
-				// Callbackw’è
+				// CallbackæŒ‡å®šæ™‚
 				if ( typeof pArgument.callback !== 'undefined' ) {
 					this.setCallBack( pArgument.callback );
 
 				}
 				
-				// ©“®closew’è
+				// è‡ªå‹•closeæŒ‡å®šæ™‚
 				if ( typeof pArgument.autoClose !== 'undefined' ) {
 					this._MenuAutoClose = pArgument.autoClose;
 
@@ -339,10 +339,10 @@ var clsMenuBase = function( pArgument ) {
 				
 			}
 
-			// ƒCƒxƒ“ƒgİ’è
+			// ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 			this.setMenuContext();
 
-			// ƒƒjƒ…[‰Šúİ’è
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸè¨­å®š
 			this.createMenu();
 
 		} catch(e) {
@@ -350,15 +350,15 @@ var clsMenuBase = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsMenuBase.prototype.freeClass = function() {
 		try {
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._MenuSize				= null;
 			this._MenuCallback			= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._BasePrototype ) {
 				this._BasePrototype.freeClass.call( this );
 

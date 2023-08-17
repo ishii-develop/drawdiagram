@@ -1,10 +1,10 @@
 
 // --------------------------------------------------------------------
 //
-// ŠÖŒWî•ñƒNƒ‰ƒX
+// é–¢ä¿‚æƒ…å ±ã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsItemRelation © clsItemBox © clsBaseBox
+// clsItemRelation â† clsItemBox â† clsBaseBox
 // --------------------------------------------------------------------
 var clsItemRelation = function( pArgument ) {
 	try {
@@ -16,57 +16,57 @@ var clsItemRelation = function( pArgument ) {
 				  'z-index'				: '310'
 			};
 
-		// ’†Œp“_ƒ‰ƒCƒ“•i’Êíj
+		// ä¸­ç¶™ç‚¹ãƒ©ã‚¤ãƒ³å¹…ï¼ˆé€šå¸¸æ™‚ï¼‰
 		this._DEF_RELATIONINF_LINE_WIDTH		= 1;
 
 		// ----------------------------------
-		// ƒƒjƒ…[İ’è
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 		// ----------------------------------
 		this._DEF_RELATIONINF_MENU_CONTEXT		= {
 			  2: [
-				  { kind: 'relation'	, title: 'ŠÖ˜A•t‚¯'		}
-				, { kind: 'relationChg'	, title: 'ŠÖ˜A•ÏX'		}
-				, { kind: 'unrelation'	, title: 'ŠÖ˜A‰ğœ'		}
+				  { kind: 'relation'	, title: 'é–¢é€£ä»˜ã‘'		}
+				, { kind: 'relationChg'	, title: 'é–¢é€£å¤‰æ›´'		}
+				, { kind: 'unrelation'	, title: 'é–¢é€£è§£é™¤'		}
 			 ]
 			, 3: [
-				  { kind: 'color'		, title: 'F•ÏX'		}
+				  { kind: 'color'		, title: 'è‰²å¤‰æ›´'		}
 			  ]
 		};
 
 
 		// ----------------------------------
-		// ŠÖŒWî•ñ
+		// é–¢ä¿‚æƒ…å ±
 		// ----------------------------------
 
 		this._DEF_RELATIONINF_LIST_STAT			= [
-				  { value: 1, name: '’Êí'			, width: 1	, style: 'normal'	}
-				, { value: 2, name: '‹­‚¢Œ‹‚Ñ‚Â‚«'	, width: 3	, style: 'normal'	}
-				, { value: 3, name: 'Šó”–‚ÈŠÖŒW'	, width: 2	, style: 'dash'		}
-				, { value: 4, name: '‘Î—§'			, width: 1	, style: 'stripe'	}
+				  { value: 1, name: 'é€šå¸¸'			, width: 1	, style: 'normal'	}
+				, { value: 2, name: 'å¼·ã„çµã³ã¤ã'	, width: 3	, style: 'normal'	}
+				, { value: 3, name: 'å¸Œè–„ãªé–¢ä¿‚'	, width: 2	, style: 'dash'		}
+				, { value: 4, name: 'å¯¾ç«‹'			, width: 1	, style: 'stripe'	}
 		];
 
 		this._DEF_RELATIONINF_LIST_KIND			= [
-				  { value: 99, name: '‚»‚Ì‘¼'		, color: '#000000'	}
-				, { value:  1, name: 'eq'			, color: '#339900'	}
-				, { value: 20, name: 'e‘°'			, color: '#00CC00'	}
-				, { value: 10, name: '•v•w'			, color: '#333399'	}
-				, { value: 11, name: '—£¥'			, color: '#FF9900'	}
-				, { value: 12, name: 'Ä¥'			, color: '#FF99CC'	}
-				, { value: 30, name: '“G‘Î'			, color: '#FF0000'	}
+				  { value: 99, name: 'ãã®ä»–'		, color: '#000000'	}
+				, { value:  1, name: 'è¦ªå­'			, color: '#339900'	}
+				, { value: 20, name: 'è¦ªæ—'			, color: '#00CC00'	}
+				, { value: 10, name: 'å¤«å©¦'			, color: '#333399'	}
+				, { value: 11, name: 'é›¢å©š'			, color: '#FF9900'	}
+				, { value: 12, name: 'å†å©š'			, color: '#FF99CC'	}
+				, { value: 30, name: 'æ•µå¯¾'			, color: '#FF0000'	}
 		];
 
 		this._DEF_RELATIONINF_LIST_KIND_GROUP	= [
-				  { value: 99, name: '‚»‚Ì‘¼'		, color: '#000000'	}
-				, { value:  1, name: 'eq'			, color: '#339900'	}
-				, { value: 20, name: 'e‘°'			, color: '#00CC00'	}
-				, { value: 30, name: '“G‘Î'			, color: '#FF0000'	}
+				  { value: 99, name: 'ãã®ä»–'		, color: '#000000'	}
+				, { value:  1, name: 'è¦ªå­'			, color: '#339900'	}
+				, { value: 20, name: 'è¦ªæ—'			, color: '#00CC00'	}
+				, { value: 30, name: 'æ•µå¯¾'			, color: '#FF0000'	}
 		];
 
 		this._DEF_RELATIONINF_LIST_WAY			= [
-				  { value: 0, name: '‚È‚µ'				}
-				, { value: 1, name: '³•ûŒü'			}
-				, { value: 2, name: '‹t•ûŒü'			}
-				, { value: 3, name: '‘o•ûŒü'			}
+				  { value: 0, name: 'ãªã—'				}
+				, { value: 1, name: 'æ­£æ–¹å‘'			}
+				, { value: 2, name: 'é€†æ–¹å‘'			}
+				, { value: 3, name: 'åŒæ–¹å‘'			}
 		];
 
 		this._DEF_RELATIONINF_CONTENTS			= {
@@ -85,40 +85,40 @@ var clsItemRelation = function( pArgument ) {
 				, way		: 0
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._ItemPrototype						= null;
 
-		// ŠÖŒWî•ñ
+		// é–¢ä¿‚æƒ…å ±
 		this._RelationInfMaster					= { parent: '', target: '', key: '' };
 		this._RelationInfContents				= {};
 		this._RelationInfKind					= null;
 
-		// ƒRƒƒ“ƒgî•ñ
+		// ã‚³ãƒ¡ãƒ³ãƒˆæƒ…å ±
 		this._RelationInfCmtMove				= null;
 		this._RelationInfHtml					= '';
 		this._RelationInfCmtDrag				= true;
 
-		// ’†Œp“_
+		// ä¸­ç¶™ç‚¹
 		this._RelationInfPoints					= {};
 
 
 		// **************************************************************
-		// ƒRƒƒ“ƒgƒCƒxƒ“ƒg
+		// ã‚³ãƒ¡ãƒ³ãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
 		// **************************************************************
 
-		// ƒRƒƒ“ƒgˆÚ“®@ŠJn
+		// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•ã€€é–‹å§‹
 		this.eventCmtMoveStart = function( pEvent ) {
 			try {
-				// ƒRƒƒ“ƒgƒhƒ‰ƒbƒO‹–‰Â‚Ì‚İˆ—
+				// ã‚³ãƒ¡ãƒ³ãƒˆãƒ‰ãƒ©ãƒƒã‚°è¨±å¯æ™‚ã®ã¿å‡¦ç†
 				if ( !self._RelationInfCmtDrag ) return true;
 
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
-				// ¶ƒNƒŠƒbƒN‚Ì‚İ—LŒø
+				// å·¦ã‚¯ãƒªãƒƒã‚¯ã®ã¿æœ‰åŠ¹
 				var wClick = self.getEventClick( pEvent );
 				if ( wClick.left ) {
-					// ˆÚ“®ŠJn
+					// ç§»å‹•é–‹å§‹
 					self.startCmtMove( pEvent );
 				}
 
@@ -128,15 +128,15 @@ var clsItemRelation = function( pArgument ) {
 			return false;
 		};
 
-		// ƒRƒƒ“ƒgˆÚ“®@ˆÚ“®’†
+		// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•ã€€ç§»å‹•ä¸­
 		this.eventCmtMove = function( pEvent ) {
 			try {
 				if ( !self._RelationInfCmtMove ) return false;
 
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
-				// ƒRƒƒ“ƒgˆÚ“®
+				// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•
 				var wPoint = self.getEventPos( pEvent );
 				self.moveCmt( wPoint );
 
@@ -147,17 +147,17 @@ var clsItemRelation = function( pArgument ) {
 			return false;
 		};
 
-		// ƒRƒƒ“ƒgˆÚ“®@I—¹
+		// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•ã€€çµ‚äº†
 		this.eventCmtMoveStop = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
 				if ( self._RelationInfCmtMove ) {
-					// ˆÚ“®æƒ`ƒFƒbƒN
+					// ç§»å‹•å…ˆãƒã‚§ãƒƒã‚¯
 					var wStayFlg = false;
 					
-					// ŠJnˆÊ’u‚Æ“¯‚¶‚È‚çˆ—‚È‚µ
+					// é–‹å§‹ä½ç½®ã¨åŒã˜ãªã‚‰å‡¦ç†ãªã—
 					var wStPos = self._RelationInfCmtMove.startpos;
 					if ( self.isObject(wStPos) ) {
 						var wEvtPos = self.getEventPos( pEvent );
@@ -165,14 +165,14 @@ var clsItemRelation = function( pArgument ) {
 					}
 
 					if ( !wStayFlg ) {
-						// ˆÚ“®æ•Û‘¶
+						// ç§»å‹•å…ˆä¿å­˜
 						self.setLinePoint( pEvent, self.getBoxElement() );
 					
 					}
 				
 				}
 
-				// ˆÚ“®I—¹
+				// ç§»å‹•çµ‚äº†
 				self.cancelCmtMove();
 
 			} catch(e) {
@@ -183,13 +183,13 @@ var clsItemRelation = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._ItemPrototype = clsItemBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsItemBox.call( this, pArgument );
 
 	} catch(e) {
@@ -197,17 +197,17 @@ var clsItemRelation = function( pArgument ) {
 	}
 };
 
-// ŠÖŒWî•ñ prototype
+// é–¢ä¿‚æƒ…å ± prototype
 (function(){
-	// clsItemBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsItemBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsItemRelation, clsItemBox );
 
 
 	// **************************************************************
-	// ‹K’è’læ“¾
+	// è¦å®šå€¤å–å¾—
 	// **************************************************************
 
-	// ‹K’è’læ“¾@í•Ê
+	// è¦å®šå€¤å–å¾—ã€€ç¨®åˆ¥
 	clsItemRelation.prototype.getDefStat = function() {
 		try {
 			return this._DEF_RELATIONINF_LIST_STAT;
@@ -217,10 +217,10 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ‹K’è’læ“¾@ŠÖŒW
+	// è¦å®šå€¤å–å¾—ã€€é–¢ä¿‚
 	clsItemRelation.prototype.getDefKind = function( pValue ) {
 		try {
-			// ’lw’è
+			// å€¤æŒ‡å®šæ™‚
 			if ( typeof pValue !== 'undefined' ) {
 				var wRelKind = this._RelationInfKind[0];
 
@@ -232,7 +232,7 @@ var clsItemRelation = function( pArgument ) {
 				}
 				return wRelKind;
 			
-			// ’l–¢w’è‚Í‘S‚Ä
+			// å€¤æœªæŒ‡å®šæ™‚ã¯å…¨ã¦
 			} else {
 				return this._RelationInfKind;
 
@@ -243,7 +243,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ‹K’è’læ“¾@“­‚«‚©‚¯i•ûŒüj
+	// è¦å®šå€¤å–å¾—ã€€åƒãã‹ã‘ï¼ˆæ–¹å‘ï¼‰
 	clsItemRelation.prototype.getDefWay = function() {
 		try {
 			return this._DEF_RELATIONINF_LIST_WAY;
@@ -253,7 +253,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ‹K’è’læ“¾@ŠO˜g‚Ì•
+	// è¦å®šå€¤å–å¾—ã€€å¤–æ ã®å¹…
 	clsItemRelation.prototype.getDefLineWidth = function() {
 		try {
 			return this._DEF_RELATIONINF_LINE_WIDTH;
@@ -265,10 +265,10 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBİ’è/æ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š/å–å¾—
 	// **************************************************************
 
-	// İ’è’læ“¾i•¡Êj
+	// è¨­å®šå€¤å–å¾—ï¼ˆè¤‡å†™ï¼‰
 	clsItemRelation.prototype.getContents = function() {
 		try {
 			var wRetValue = {};
@@ -284,7 +284,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// İ’è’lXV
+	// è¨­å®šå€¤æ›´æ–°
 	clsItemRelation.prototype.setContents = function( pContents ) {
 		try {
 			for( var wKey in pContents ) {
@@ -296,7 +296,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ŠÖŒW@İ’è^æ“¾
+	// é–¢ä¿‚ã€€è¨­å®šï¼å–å¾—
 	clsItemRelation.prototype.setRelation = function( pRelation ) {
 		try {
 			this._RelationInfContents.rel = pRelation;
@@ -315,7 +315,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ŠÖŒWí•Ê@İ’è^æ“¾
+	// é–¢ä¿‚ç¨®åˆ¥ã€€è¨­å®šï¼å–å¾—
 	clsItemRelation.prototype.setStatus = function( pStatus ) {
 		try {
 			this._RelationInfContents.stat = pStatus;
@@ -334,7 +334,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// “­‚«‚©‚¯•ûŒü@İ’è^æ“¾
+	// åƒãã‹ã‘æ–¹å‘ã€€è¨­å®šï¼å–å¾—
 	clsItemRelation.prototype.setWorkWay = function( pWay ) {
 		try {
 			this._RelationInfContents.way = pWay;
@@ -353,7 +353,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg@İ’è^æ“¾
+	// ã‚³ãƒ¡ãƒ³ãƒˆã€€è¨­å®šï¼å–å¾—
 	clsItemRelation.prototype.setComment = function( pComment ) {
 		try {
 			this._RelationInfContents.cmt = pComment;
@@ -372,7 +372,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// F@İ’è^æ“¾
+	// è‰²ã€€è¨­å®šï¼å–å¾—
 	clsItemRelation.prototype.setColor = function( pColor ) {
 		try {
 			this._RelationInfContents.color = pColor;
@@ -393,13 +393,13 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// ŠÖŒWî•ñæ“¾
+	// é–¢ä¿‚æƒ…å ±å–å¾—
 	// **************************************************************
 
-	// í•Êæ“¾
+	// ç¨®åˆ¥å–å¾—
 	clsItemRelation.prototype.getRelationKind = function() {
 		try {
-			// ‘I‘ğ‚³‚ê‚½ŠÖŒWæ“¾
+			// é¸æŠã•ã‚ŒãŸé–¢ä¿‚å–å¾—
 			var wRelation = this._RelationInfContents.rel;
 			
 			var wRelKind = this.getDefKind( wRelation );
@@ -411,7 +411,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// Fæ“¾
+	// è‰²å–å¾—
 	clsItemRelation.prototype.getRelationColor = function() {
 		try {
 			var wColor = this._RelationInfContents.color;
@@ -424,12 +424,12 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜Aî•ñ‚©‚ç•`‰æî•ñæ“¾
+	// é–¢é€£æƒ…å ±ã‹ã‚‰æç”»æƒ…å ±å–å¾—
 	clsItemRelation.prototype.toLineKind = function( ) {
 		try {
 			var wRetLineKind = Object.create( this._DEF_RELATIONINF_LINE );
 
-			// í•Êæ“¾
+			// ç¨®åˆ¥å–å¾—
 			var wStatus = this._RelationInfContents.stat;
 			for( var wIdx=0; wIdx < this._DEF_RELATIONINF_LIST_STAT.length; wIdx++ ) {
 				if ( String(wStatus) == String(this._DEF_RELATIONINF_LIST_STAT[wIdx].value) ) {
@@ -440,14 +440,14 @@ var clsItemRelation = function( pArgument ) {
 
 			}
 
-			// “­‚«‚©‚¯•ûŒü
+			// åƒãã‹ã‘æ–¹å‘
 			wRetLineKind.way = this._RelationInfContents.way;
 
-			// Fİ’è
+			// è‰²è¨­å®š
 			var wColor = this.getRelationColor();
 			wRetLineKind.color = wColor;
 
-			// ’†Œp“_
+			// ä¸­ç¶™ç‚¹
 			wRetLineKind.point = {};
 			this.copyProperty( this._RelationInfPoints, wRetLineKind.point );
 			
@@ -460,10 +460,10 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// Š‘®—v‘fî•ñ
+	// æ‰€å±è¦ç´ æƒ…å ±
 	// **************************************************************
 
-	// Š‘®—v‘f@ŠÖ˜A•t‚¯KEYİ’è
+	// æ‰€å±è¦ç´ ã€€é–¢é€£ä»˜ã‘KEYè¨­å®š
 	clsItemRelation.prototype.setMasterKey = function( pParentId, pTargetId ) {
 		try {
 			this._RelationInfMaster.parent = pParentId;
@@ -477,13 +477,13 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// Š‘®—v‘f@Š‘®ƒ`ƒFƒbƒN
+	// æ‰€å±è¦ç´ ã€€æ‰€å±ãƒã‚§ãƒƒã‚¯
 	clsItemRelation.prototype.chkMasterKey = function( pId ) {
 		try {
-			// ŠÖ˜AŒ³IDƒ`ƒFƒbƒN
+			// é–¢é€£å…ƒIDãƒã‚§ãƒƒã‚¯
 			if ( pId == this._RelationInfMaster.parent ) return true;
 
-			// ŠÖ˜AæIDƒ`ƒFƒbƒN
+			// é–¢é€£å…ˆIDãƒã‚§ãƒƒã‚¯
 			if ( pId == this._RelationInfMaster.target ) return true;
 
 			return false;
@@ -493,7 +493,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// Š‘®—v‘f@ŠÖ˜A•t‚¯KEYæ“¾
+	// æ‰€å±è¦ç´ ã€€é–¢é€£ä»˜ã‘KEYå–å¾—
 	clsItemRelation.prototype.getMasterKey = function() {
 		try {
 			return this._RelationInfMaster.key;
@@ -503,7 +503,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// Š‘®—v‘f@ŠÖ˜A•t‚¯Œ³IDæ“¾
+	// æ‰€å±è¦ç´ ã€€é–¢é€£ä»˜ã‘å…ƒIDå–å¾—
 	clsItemRelation.prototype.getMasterParent = function() {
 		try {
 			return this._RelationInfMaster.parent;
@@ -513,7 +513,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// Š‘®—v‘f@ŠÖ˜A•t‚¯æIDæ“¾
+	// æ‰€å±è¦ç´ ã€€é–¢é€£ä»˜ã‘å…ˆIDå–å¾—
 	clsItemRelation.prototype.getMasterTarget = function() {
 		try {
 			return this._RelationInfMaster.target;
@@ -525,13 +525,13 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// ’†Œp“_
+	// ä¸­ç¶™ç‚¹
 	// **************************************************************
 
-	// ’†Œp“_ƒRƒƒ“ƒgˆÊ’uİ’è
+	// ä¸­ç¶™ç‚¹ã‚³ãƒ¡ãƒ³ãƒˆä½ç½®è¨­å®š
 	clsItemRelation.prototype.setCommentPoint = function( pEvent ) {
 		try {
-			// ’†Œp“_İ’è
+			// ä¸­ç¶™ç‚¹è¨­å®š
 			this.setLinePoint( pEvent, this.getBoxElement() );
 
 		} catch(e) {
@@ -540,13 +540,13 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ’†Œp“_İ’è
+	// ä¸­ç¶™ç‚¹è¨­å®š
 	clsItemRelation.prototype.setLinePoint = function( pEvent, pElement ) {
 		try {
-			// I—¹ˆÊ’u
+			// çµ‚äº†ä½ç½®
 			var wPoint = this.getEventPos( pEvent );
 
-			// À•W•â³
+			// åº§æ¨™è£œæ­£
 			var wBoxSize = this.getBoxSize();
 			if ( wBoxSize.width  > 2 ) wBoxSize.width  = Math.floor(wBoxSize.width  / 2);
 			if ( wBoxSize.height > 2 ) wBoxSize.height = Math.floor(wBoxSize.height / 2);
@@ -569,19 +569,19 @@ var clsItemRelation = function( pArgument ) {
 				}
 			}
 
-			// e—v‘f‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+			// è¦ªè¦ç´ ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 			var wMainScroll = this.getParentScroll();
 			wPoint.x += wMainScroll.x;
 			wPoint.y += wMainScroll.y;
 
-			// ƒ|ƒCƒ“ƒg•Û‘¶
+			// ãƒã‚¤ãƒ³ãƒˆä¿å­˜
 			var wId = pElement.getAttribute('id');
 			if ( wId ) {
 				this._RelationInfPoints[wId] = wPoint;
 
 			}
 
-			// e‚Ö•ÏX‚ğ’Ê’m
+			// è¦ªã¸å¤‰æ›´ã‚’é€šçŸ¥
 			this.execItemCallback( pEvent, { kind: 'relationLine' } );
 
 		} catch(e) {
@@ -590,16 +590,16 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ’†Œp“_ˆÊ’u•â³’læ“¾
+	// ä¸­ç¶™ç‚¹ä½ç½®è£œæ­£å€¤å–å¾—
 	clsItemRelation.prototype.getLinePointCorrection = function( pPos ) {
 		try {
 			var wCorrection = { x: 0, y: 0 };
 
-			// ’†Œp“_•\¦•â³’læ“¾
+			// ä¸­ç¶™ç‚¹è¡¨ç¤ºè£œæ­£å€¤å–å¾—
 			var wBoxSize	= this.getSize( this.getBoxElement(), { border: false } );
 			var wBoxShift	= this.getShiftPos( true, wBoxSize );
 
-			// ’Êíƒ‰ƒCƒ“• + 1
+			// é€šå¸¸æ™‚ãƒ©ã‚¤ãƒ³å¹… + 1
 			wCorrection.x = wBoxShift.x + this._DEF_RELATIONINF_LINE_WIDTH;
 			wCorrection.y = wBoxShift.y + this._DEF_RELATIONINF_LINE_WIDTH;
 			
@@ -611,10 +611,10 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ’†Œp“_ˆÊ’uİ’è
+	// ä¸­ç¶™ç‚¹ä½ç½®è¨­å®š
 	clsItemRelation.prototype.setLinePointPos = function( pPos ) {
 		try {
-			// ’†Œp“_ˆÊ’u‚ğİ’è
+			// ä¸­ç¶™ç‚¹ä½ç½®ã‚’è¨­å®š
 			var wPointEle = this.getBoxElement();
 			if ( !wPointEle ) return;
 
@@ -647,7 +647,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ’†Œp“_ƒNƒŠƒA
+	// ä¸­ç¶™ç‚¹ã‚¯ãƒªã‚¢
 	clsItemRelation.prototype.clearLinePoint = function( pEvent, pElement ) {
 		try {
 			for( var wKey in this._RelationInfPoints ) {
@@ -664,50 +664,50 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒRƒƒ“ƒg—v‘f
+	// ã‚³ãƒ¡ãƒ³ãƒˆè¦ç´ 
 	// **************************************************************
 
-	// ƒRƒƒ“ƒg•\¦—p—v‘f¶¬
+	// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤ºç”¨è¦ç´ ç”Ÿæˆ
 	clsItemRelation.prototype.setCmtElement = function( pRelId ) {
 		try {
-			// ƒRƒƒ“ƒgİ’è
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¨­å®š
 			var wCmtHtml  = '';
 			var wDivTitle = '';
 			var wComment  = this._RelationInfContents.cmt;
 
 			var wLineKind = this.getRelationKind();
-			// ŠÖŒW@‚»‚Ì‘¼
+			// é–¢ä¿‚ã€€ãã®ä»–
 			if ( wLineKind.value == 99 ) {
 				wCmtHtml = wComment;
 
-			// ˆÈŠO
+			// ä»¥å¤–
 			} else {
 				wCmtHtml  = wLineKind.name;
 				wDivTitle = wComment;
 
 			}
 
-			// •\¦“à—eİ’è
+			// è¡¨ç¤ºå†…å®¹è¨­å®š
 			var wCmtEle = this.getBoxElement();
 			wCmtEle.innerHTML = wCmtHtml;
 
-			// •\¦ƒRƒƒ“ƒg•Û‘¶
+			// è¡¨ç¤ºã‚³ãƒ¡ãƒ³ãƒˆä¿å­˜
 			this._RelationInfHtml = wCmtHtml;
 
-			// ƒ^ƒCƒgƒ‹İ’è
+			// ã‚¿ã‚¤ãƒˆãƒ«è¨­å®š
 			this.setBoxAttribute( { title: wDivTitle } );
 
-			// ˜gİ’è
+			// æ è¨­å®š
 			this.setBoxStyle( { 'border-color': this.getRelationColor() } );
 
-			// ƒRƒƒ“ƒg‚È‚¢ê‡
+			// ã‚³ãƒ¡ãƒ³ãƒˆãªã„å ´åˆ
 			if ( String(wCmtHtml).length == 0 ) {
-				// ‹óƒRƒƒ“ƒgclass’Ç‰Á
+				// ç©ºã‚³ãƒ¡ãƒ³ãƒˆclassè¿½åŠ 
 				this.setBoxClass('cssItem-relation-nocmt');
 				this.setBoxClass('no-print');
 
 			} else {
-				// ‹óƒRƒƒ“ƒgclassíœ
+				// ç©ºã‚³ãƒ¡ãƒ³ãƒˆclasså‰Šé™¤
 				this.delBoxClass('cssItem-relation-nocmt');
 				this.delBoxClass('no-print');
 
@@ -719,7 +719,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg—L–³
+	// ã‚³ãƒ¡ãƒ³ãƒˆæœ‰ç„¡
 	clsItemRelation.prototype.isComment = function( pRelId ) {
 		try {
 			if ( this._RelationInfHtml.length > 0 ) {
@@ -736,10 +736,10 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ŠÖŒWƒRƒƒ“ƒg•\¦
+	// é–¢ä¿‚ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
 	clsItemRelation.prototype.dspRelationCmt = function( pX, pY ) {
 		try {
-			// ƒRƒƒ“ƒgˆÊ’u•â³
+			// ã‚³ãƒ¡ãƒ³ãƒˆä½ç½®è£œæ­£
 			var wSize = this.getBoxSize();
 
 			var wPos  = { x: pX, y: pY };
@@ -747,7 +747,7 @@ var clsItemRelation = function( pArgument ) {
 			var wShift  = true;
 			var wCenter = true;
 
-			// ’†Œp“_‚ ‚éê‡
+			// ä¸­ç¶™ç‚¹ã‚ã‚‹å ´åˆ
 			if ( this._RelationInfPoints ) {
 				for( var wKey in this._RelationInfPoints ) {
 					if ( this._RelationInfPoints[wKey] ) {
@@ -759,10 +759,10 @@ var clsItemRelation = function( pArgument ) {
 				}
 			}
 
-			// ˆÊ’uİ’è
+			// ä½ç½®è¨­å®š
 			this.setBoxPos( wPos, { shift: wShift, center: wCenter, size: wSize } );
 
-			// •\¦
+			// è¡¨ç¤º
 			this.dspBox(true);
 
 		} catch(e) {
@@ -770,13 +770,13 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ŠÖŒWƒRƒƒ“ƒg”ñ•\¦
+	// é–¢ä¿‚ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 	clsItemRelation.prototype.hideRelationCmt = function() {
 		try {
-			// ’†Œp“_íœ
+			// ä¸­ç¶™ç‚¹å‰Šé™¤
 			this.clearLinePoint();
 
-			// ”ñ•\¦
+			// éè¡¨ç¤º
 			this.dspBox(false);
 
 		} catch(e) {
@@ -785,16 +785,16 @@ var clsItemRelation = function( pArgument ) {
 	};
 
 	// **************************************************************
-	// ƒRƒƒ“ƒgˆÚ“®
+	// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•
 	// **************************************************************
 
-	// ƒRƒƒ“ƒgˆÚ“®ƒCƒxƒ“ƒg@’Ç‰Á
+	// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã€€è¿½åŠ 
 	clsItemRelation.prototype.addCmtMoveEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.addEvent( this.getBoxWindow(), 'onmousemove'	, this.eventCmtMove );
 
-			// ˆÊ’uŠm’è
+			// ä½ç½®ç¢ºå®š
 			this.addEvent( this.getBoxWindow(), 'onmouseup'		, this.eventCmtMoveStop );
 
 		} catch(e) {
@@ -802,13 +802,13 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒgˆÚ“®ƒCƒxƒ“ƒg@íœ
+	// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã€€å‰Šé™¤
 	clsItemRelation.prototype.delCmtMoveEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.delEvent( this.getBoxWindow(), 'onmousemove'	, this.eventCmtMove );
 
-			// ˆÊ’uŠm’è
+			// ä½ç½®ç¢ºå®š
 			this.delEvent( this.getBoxWindow(), 'onmouseup'		, this.eventCmtMoveStop );
 
 		} catch(e) {
@@ -816,15 +816,15 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒgˆÚ“®@I—¹ˆ—
+	// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•ã€€çµ‚äº†æ™‚å‡¦ç†
 	clsItemRelation.prototype.cancelCmtMove = function() {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.delCmtMoveEvent();
 
 			this._RelationInfCmtMove = null;
 
-			// Å‘O–Ê‰ğœ
+			// æœ€å‰é¢è§£é™¤
 			this.setBoxToFront( false );
 
 		} catch(e) {
@@ -832,18 +832,18 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒgˆÚ“®@ŠJnˆ—
+	// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•ã€€é–‹å§‹æ™‚å‡¦ç†
 	clsItemRelation.prototype.startCmtMove = function( pEvent ) {
 		try {
-			// ˆê’UƒLƒƒƒ“ƒZƒ‹
+			// ä¸€æ—¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this.cancelCmtMove();
 
 			this._RelationInfCmtMove = {};
 
-			// e‚ÌˆÊ’u‚ğ•Û‘¶
+			// è¦ªã®ä½ç½®ã‚’ä¿å­˜
 			this._RelationInfCmtMove.parent = this.getParentPos();
 
-			// ƒNƒŠƒbƒNˆÊ’u‚ğ•Û‘¶
+			// ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã‚’ä¿å­˜
 			var wEvtPos = this.getEventPos( pEvent );
 			var wItmPos = this.getBoxPos();
 
@@ -855,10 +855,10 @@ var clsItemRelation = function( pArgument ) {
 				, top : wEvtPos.y - wItmPos.top
 			};
 
-			// ƒCƒxƒ“ƒg’Ç‰Á
+			// ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			this.addCmtMoveEvent();
 
-			// Å‘O–Ê•\¦
+			// æœ€å‰é¢è¡¨ç¤º
 			this.setBoxToFront( true );
 
 			return true;
@@ -868,7 +868,7 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒgˆÚ“®
+	// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•
 	clsItemRelation.prototype.moveCmt = function( pPoint ) {
 		try {
 			var wMovePos = { x: pPoint.x, y: pPoint.y };
@@ -886,12 +886,12 @@ var clsItemRelation = function( pArgument ) {
 				}
 			}
 
-			// e—v‘f‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+			// è¦ªè¦ç´ ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 			var wMainScroll = this.getParentScroll();
 			wMovePos.x += wMainScroll.x;
 			wMovePos.y += wMainScroll.y;
 
-			// ã’[A¶’[‚Íˆ—‚È‚µ
+			// ä¸Šç«¯ã€å·¦ç«¯ã¯å‡¦ç†ãªã—
 			if ( wMovePos.x <= 0 ) return false;
 			if ( wMovePos.y <= 0 ) return false;
 
@@ -906,16 +906,16 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒCƒxƒ“ƒg
+	// ã‚¤ãƒ™ãƒ³ãƒˆ
 	// **************************************************************
 
-	// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsItemRelation.prototype.eventClear = function() {
 		try {
-			// ˆÚ“®ƒLƒƒƒ“ƒZƒ‹
+			// ç§»å‹•ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this.execFunction( this.cancelCmtMove );
 
-			// Œp³Œ³ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹ˆ—
+			// ç¶™æ‰¿å…ƒã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.eventClear.call( this );
 
@@ -926,14 +926,14 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// €–ÚXV’Ê’m
-	// ¦ clsItemBox‚©‚çŒp³
+	// é …ç›®æ›´æ–°æ™‚é€šçŸ¥
+	// â€» clsItemBoxã‹ã‚‰ç¶™æ‰¿
 	clsItemRelation.prototype.execItemCallback = function( pEvent, pParam ) {
 		try {
-			// KEYİ’è
+			// KEYè¨­å®š
 			pParam.key = this._RelationInfMaster.key;
 
-			// Œp³Œ³@€–ÚXV’Ê’m
+			// ç¶™æ‰¿å…ƒã€€é …ç›®æ›´æ–°æ™‚é€šçŸ¥
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.execItemCallback.call( this, pEvent, pParam );
 
@@ -944,37 +944,37 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[g—p—L–³İ’è
-	// ¦ clsItemBox‚©‚çŒp³
+	// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½¿ç”¨æœ‰ç„¡è¨­å®š
+	// â€» clsItemBoxã‹ã‚‰ç¶™æ‰¿
 	clsItemRelation.prototype.setContextAvailable = function( pAvailable, pParam ) {
 		try {
-			// Œp³Œ³@ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[g—p—L–³İ’è
+			// ç¶™æ‰¿å…ƒã€€ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½¿ç”¨æœ‰ç„¡è¨­å®š
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.setContextAvailable.call( this, pAvailable, pParam );
 
 			}
 
-			// ƒhƒ‰ƒbƒO‹–‰Â‚Ì‚İˆ—
+			// ãƒ‰ãƒ©ãƒƒã‚°è¨±å¯æ™‚ã®ã¿å‡¦ç†
 			if ( !this.getItemDragIs() ) return;
 
-			// ƒRƒƒ“ƒgƒhƒ‰ƒbƒO‰Â”Û
+			// ã‚³ãƒ¡ãƒ³ãƒˆãƒ‰ãƒ©ãƒƒã‚°å¯å¦
 			this._RelationInfCmtDrag = pAvailable;
 
-			// drag‰Â”Ûƒpƒ‰ƒ[ƒ^‚ ‚è
+			// dragå¯å¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚ã‚Š
 			var wDragParam = false;
 			if ( this.isObject(pParam) ) {
 				if ( 'drag' in pParam ) wDragParam = true;
 			}
 
 			if ( wDragParam ) {
-				// ƒpƒ‰ƒ[ƒ^’l‚ğg—p
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤ã‚’ä½¿ç”¨
 				this._RelationInfCmtDrag = pParam.drag;
 
-			// ƒpƒ‰ƒ[ƒ^‚È‚µ
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã—
 			} else {
-				// ƒƒjƒ…[—LŒø
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹æ™‚
 				if ( pAvailable ) {
-					// ’Êíƒhƒ‰ƒbƒO‰Â”Û‚ğİ’è
+					// é€šå¸¸æ™‚ãƒ‰ãƒ©ãƒƒã‚°å¯å¦ã‚’è¨­å®š
 					this._RelationInfCmtDrag = this.getItemMoveInitIs();
 
 				}
@@ -988,26 +988,26 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
 	// -------------------
-	// ƒƒjƒ…[ŠÖ˜A
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 	// -------------------
 
-	// ƒƒjƒ…[‰Šúİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸè¨­å®š
 	clsItemRelation.prototype.initItemMenu = function( pArgument ) {
 		try {
-			// Œp³Œ³ƒƒjƒ…[‰Šú‰»ˆ—
+			// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸåŒ–å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initItemMenu.call( this, pArgument );
 
 			}
 
-			// €–ÚƒƒbƒNˆ—•s—v
+			// é …ç›®ãƒ­ãƒƒã‚¯æ™‚å‡¦ç†ä¸è¦
 			if ( this.getItemLockIs() ) return;
 
-			// ƒRƒƒ“ƒgƒhƒ‰ƒbƒO‹–‰Â
+			// ã‚³ãƒ¡ãƒ³ãƒˆãƒ‰ãƒ©ãƒƒã‚°è¨±å¯
 			if ( this.getItemDragIs() ) {
 				this.addBoxEvents( 'onmousedown'	, this.eventCmtMoveStart );
 			}
@@ -1019,38 +1019,38 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// -------------------
-	// Šî–{î•ñŠÖ˜A
+	// åŸºæœ¬æƒ…å ±é–¢é€£
 	// -------------------
 
-	// ƒXƒe[ƒ^ƒX‰Šúİ’è
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åˆæœŸè¨­å®š
 	clsItemRelation.prototype.initItemStatus = function( pArgument ) {
 		try {
-			// Œp³Œ³ƒXƒe[ƒ^ƒXXVˆ—
+			// ç¶™æ‰¿å…ƒã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°æ™‚å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initItemStatus.call( this, pArgument );
 
 			}
 
-			// Load@İ’è“à—e
+			// Loadæ™‚ã€€è¨­å®šå†…å®¹
 			var wLoadContents = this.loadDataVal( 'contents' );
 			if ( wLoadContents ) {
 				this._RelationInfContents = wLoadContents;
 
 			} else {
-				// ‰Šú’lİ’è
+				// åˆæœŸå€¤è¨­å®š
 				this.copyProperty( this._DEF_RELATIONINF_CONTENTS, this._RelationInfContents );
 
 			}
 
-			// Load@’†Œp“_
+			// Loadæ™‚ã€€ä¸­ç¶™ç‚¹
 			var wLoadRelay = this.loadDataVal( 'relay' );
 			if ( wLoadRelay ) {
 				this._RelationInfPoints = wLoadRelay;
 			}
 
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			if ( this.isObject(pArgument) ) {
-				// Š‘®—v‘fî•ñ
+				// æ‰€å±è¦ç´ æƒ…å ±
 				if ( pArgument.master ) {
 					for( var wMstKey in pArgument.master ) {
 						this._RelationInfMaster[wMstKey] = pArgument.master[wMstKey];
@@ -1058,18 +1058,18 @@ var clsItemRelation = function( pArgument ) {
 
 				}
 
-				// •ÏX‰Šú’l
+				// å¤‰æ›´æ™‚åˆæœŸå€¤
 				for( var wKey in pArgument ) {
-					// ŠÖŒWî•ñ
+					// é–¢ä¿‚æƒ…å ±
 					if ( wKey in this._RelationInfContents ) {
-						// ’lã‘‚«
+						// å€¤ä¸Šæ›¸ã
 						this._RelationInfContents[wKey] = pArgument[wKey];
 					}
 				}
 
 			}
 
-			// ŠÖŒWí•Ê‰Šúİ’è
+			// é–¢ä¿‚ç¨®åˆ¥åˆæœŸè¨­å®š
 			var wDefKind;
 			var wRelKind = this._RelationInfContents['relKind'];
 			if ( wRelKind == 'item-group' ) {
@@ -1081,7 +1081,7 @@ var clsItemRelation = function( pArgument ) {
 			}
 			this._RelationInfKind = wDefKind;
 
-			// ‰Šúƒhƒ‰ƒbƒO‰Â”Ûi‰ŠúˆÚ“®‰Â@‚©‚Â@ƒhƒ‰ƒbƒO‰Âj
+			// åˆæœŸãƒ‰ãƒ©ãƒƒã‚°å¯å¦ï¼ˆåˆæœŸç§»å‹•å¯ã€€ã‹ã¤ã€€ãƒ‰ãƒ©ãƒƒã‚°å¯ï¼‰
 			this._RelationInfCmtDrag = ( this.getItemMoveInitIs() && this.getItemDragIs() );
 
 		} catch(e) {
@@ -1091,15 +1091,15 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// -------------------
-	// SAVE/LOADŠÖ˜A
+	// SAVE/LOADé–¢é€£
 	// -------------------
 
-	// ƒf[ƒ^•Û‘¶—p@€–Úİ’è’læ“¾
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ã€€é …ç›®è¨­å®šå€¤å–å¾—
 	clsItemRelation.prototype.saveData = function( pSaveParam ) {
 		try {
 			var wSaveData;
 			
-			// Œp³Œ³€–Úİ’è’læ“¾ˆ—
+			// ç¶™æ‰¿å…ƒé …ç›®è¨­å®šå€¤å–å¾—å‡¦ç†
 			if ( this._ItemPrototype ) {
 				wSaveData = this._ItemPrototype.saveData.call( this, pSaveParam );
 
@@ -1108,16 +1108,16 @@ var clsItemRelation = function( pArgument ) {
 
 			}
 
-			// Š‘®—v‘f
+			// æ‰€å±è¦ç´ 
 			wSaveData.master	= JSON.stringify( this._RelationInfMaster );
 
-			// İ’è“à—e
+			// è¨­å®šå†…å®¹
 			wSaveData.contents	= JSON.stringify( this._RelationInfContents );
 
-			// ’†Œp“_
+			// ä¸­ç¶™ç‚¹
 			wSaveData.relay		= JSON.stringify( this._RelationInfPoints );
 			
-			// İ’è’l‚ğæ“¾
+			// è¨­å®šå€¤ã‚’å–å¾—
 			return wSaveData;
 
 		} catch(e) {
@@ -1125,12 +1125,12 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^“Ç
+	// ãƒ‡ãƒ¼ã‚¿èª­è¾¼
 	clsItemRelation.prototype.loadData = function( pLoadData ) {
 		try {
 			var wLoadBuff;
 
-			// Œp³Œ³ƒf[ƒ^“Çˆ—
+			// ç¶™æ‰¿å…ƒãƒ‡ãƒ¼ã‚¿èª­è¾¼å‡¦ç†
 			if ( this._ItemPrototype ) {
 				wLoadBuff = this._ItemPrototype.loadData.call( this, pLoadData );
 
@@ -1140,12 +1140,12 @@ var clsItemRelation = function( pArgument ) {
 			}
 			if ( !pLoadData ) return wLoadBuff;
 
-			// Š‘®—v‘f
+			// æ‰€å±è¦ç´ 
 			if ( pLoadData.master ) {
 				wLoadBuff.master = JSON.parse( pLoadData.master );
 			}
 
-			// İ’è“à—e
+			// è¨­å®šå†…å®¹
 			if ( pLoadData.contents ) {
 				wLoadBuff.contents = JSON.parse( pLoadData.contents );
 
@@ -1158,7 +1158,7 @@ var clsItemRelation = function( pArgument ) {
 
 			}
 			
-			// ’†Œp“_
+			// ä¸­ç¶™ç‚¹
 			if ( pLoadData.relay ) {
 				wLoadBuff.relay = JSON.parse( pLoadData.relay );
 			}
@@ -1172,27 +1172,27 @@ var clsItemRelation = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsItemRelation.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_RELATIONINF_STYLE );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êurelationv
+				// ç¨®åˆ¥ã€Œrelationã€
 				wInitArgument.kind = this._DEF_RELATIONINF_KIND;
 
 			}
 
-			// ƒƒjƒ…[İ’è
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			wInitArgument.menuList		= this._DEF_RELATIONINF_MENU_CONTEXT;
 			wInitArgument.menuReplace	= true;
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initClass.call( this, wInitArgument );
 
@@ -1203,21 +1203,21 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsItemRelation.prototype.freeClass = function() {
 		try {
-			// ƒCƒxƒ“ƒgíœ
+			// ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 			this.execFunction( this.delCmtMoveEvent );
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._RelationInfContents		= null;
 			this._RelationInfPoints			= null;
 			this._RelationInfKind			= null;
 			this._RelationInfCmtMove		= null;
 			this._RelationInfMaster			= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.freeClass.call( this );
 

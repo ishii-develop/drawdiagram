@@ -1,10 +1,10 @@
 
 // --------------------------------------------------------------------
 //
-// ƒtƒŠ[ƒ‰ƒCƒ“î•ñƒNƒ‰ƒX
+// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³æƒ…å ±ã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsItemFreeLine © clsItemBox © clsBaseBox
+// clsItemFreeLine â† clsItemBox â† clsBaseBox
 // --------------------------------------------------------------------
 var clsItemFreeLine = function( pArgument ) {
 	try {
@@ -17,38 +17,38 @@ var clsItemFreeLine = function( pArgument ) {
 			};
 
 		// ----------------------------------
-		// ƒƒjƒ…[İ’è
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 		// ----------------------------------
 		this._DEF_FREELINE_MENU_CONTEXT		= {
 			  3: [
-				  { kind: 'line-color'	, title: 'ƒ‰ƒCƒ“]F'		}
-				, { kind: 'line-style'	, title: 'ƒ‰ƒCƒ“]í—Ş'		}
-				, { kind: 'line-width'	, title: 'ƒ‰ƒCƒ“]‘¾‚³'		}
+				  { kind: 'line-color'	, title: 'ãƒ©ã‚¤ãƒ³â€è‰²'		}
+				, { kind: 'line-style'	, title: 'ãƒ©ã‚¤ãƒ³â€ç¨®é¡'		}
+				, { kind: 'line-width'	, title: 'ãƒ©ã‚¤ãƒ³â€å¤ªã•'		}
 			  ]
 			, 4: [
-				  { kind: 'delete'		, title: 'íœiˆê•”j'		}
-				, { kind: 'delete-all'	, title: 'íœi‘S‚Äj'		}
+				  { kind: 'delete'		, title: 'å‰Šé™¤ï¼ˆä¸€éƒ¨ï¼‰'		}
+				, { kind: 'delete-all'	, title: 'å‰Šé™¤ï¼ˆå…¨ã¦ï¼‰'		}
 			  ]
 		};
 
 		this._DEF_FREELINE_MENU_STYLE	= {
 			  1: [
-				  { kind: 'normal'		, title: '’Êí'		}
-				 ,{ kind: 'dash'		, title: '“_ü'		}
+				  { kind: 'normal'		, title: 'é€šå¸¸'		}
+				 ,{ kind: 'dash'		, title: 'ç‚¹ç·š'		}
 			  ]
 		};
 
 		this._DEF_FREELINE_MENU_WIDTH	= {
 			  1: [
-				  { kind: '0.5'			, title: '×‚¢'			}
-				 ,{ kind: '1'			, title: '’Êí'			}
-				 ,{ kind: '2.5'			, title: '‘¾‚¢'			}
-				 ,{ kind: '5'			, title: 'Å‘å'			}
+				  { kind: '0.5'			, title: 'ç´°ã„'			}
+				 ,{ kind: '1'			, title: 'é€šå¸¸'			}
+				 ,{ kind: '2.5'			, title: 'å¤ªã„'			}
+				 ,{ kind: '5'			, title: 'æœ€å¤§'			}
 			  ]
 		};
 
 		// ----------------------------------
-		// ƒXƒe[ƒ^ƒXî•ñ
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æƒ…å ±
 		// ----------------------------------
 
 		this._DEF_FREELINE_LINE				= { 
@@ -58,10 +58,10 @@ var clsItemFreeLine = function( pArgument ) {
 				, way		: 0
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._ItemPrototype						= null;
 
-		// ƒtƒŠ[ƒ‰ƒCƒ“î•ñ
+		// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³æƒ…å ±
 		this._FreeLineDrag						= false;
 		this._FreeLineStatus					= null;
 		this._FreeLinePoint						= {};
@@ -73,22 +73,22 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒƒjƒ…[ƒCƒxƒ“ƒgˆ—
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 
-		// ƒ‰ƒCƒ“@ƒJƒ‰[ƒpƒŒƒbƒg‘I‘ğƒCƒxƒ“ƒg
+		// ãƒ©ã‚¤ãƒ³ã€€ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆé¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventLineColorSelect = function( pEvent, pParam ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pParam ) return false;
 
 				if ( pParam.kind !== 'select' ) return false;
 
-				// F‘I‘ğ
+				// è‰²é¸æŠæ™‚
 				var wColor = pParam.color;
 
-				// F•ÏX
+				// è‰²å¤‰æ›´
 				self.setFreeLineStatus( { color: wColor }, true );
 
 			} catch(e) {
@@ -97,19 +97,19 @@ var clsItemFreeLine = function( pArgument ) {
 			return false;
 		};
 
-		// ƒ‰ƒCƒ“@üí‘I‘ğƒCƒxƒ“ƒg
+		// ãƒ©ã‚¤ãƒ³ã€€ç·šç¨®é¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventLineStyleSelect = function( pEvent, pSelectMenu ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pSelectMenu ) return false;
 
-				// ‘I‘ğƒƒjƒ…[í•Ê•s–¾@close‚Íˆ—‚È‚µ
+				// é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¨®åˆ¥ä¸æ˜ã€€closeæ™‚ã¯å‡¦ç†ãªã—
 				var wKind = pSelectMenu.kind;
 				if ( typeof wKind == 'undefined' ) return false;
 				if ( wKind == 'close' ) return false;
 
-				// üí•ÏX
+				// ç·šç¨®å¤‰æ›´
 				self.setFreeLineStatus( { style: wKind }, true );
 
 			} catch(e) {
@@ -118,19 +118,19 @@ var clsItemFreeLine = function( pArgument ) {
 			return false;
 		};
 
-		// ƒ‰ƒCƒ“@ü•‘I‘ğƒCƒxƒ“ƒg
+		// ãƒ©ã‚¤ãƒ³ã€€ç·šå¹…é¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventLineWidthSelect = function( pEvent, pSelectMenu ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pSelectMenu ) return false;
 
-				// ‘I‘ğƒƒjƒ…[í•Ê•s–¾@close‚Íˆ—‚È‚µ
+				// é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¨®åˆ¥ä¸æ˜ã€€closeæ™‚ã¯å‡¦ç†ãªã—
 				var wKind = pSelectMenu.kind;
 				if ( typeof wKind == 'undefined' ) return false;
 				if ( wKind == 'close' ) return false;
 
-				// ü••ÏX
+				// ç·šå¹…å¤‰æ›´
 				self.setFreeLineStatus( { width: wKind }, true );
 
 			} catch(e) {
@@ -141,22 +141,22 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒ|ƒCƒ“ƒgƒCƒxƒ“ƒg
+		// ãƒã‚¤ãƒ³ãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
 		// **************************************************************
 
-		// ƒ|ƒCƒ“ƒgˆÚ“®@ŠJn
+		// ãƒã‚¤ãƒ³ãƒˆç§»å‹•ã€€é–‹å§‹
 		this.eventPointMoveStart = function( pEvent ) {
 			try {
-				// ƒRƒƒ“ƒgƒhƒ‰ƒbƒO‹–‰Â‚Ì‚İˆ—
+				// ã‚³ãƒ¡ãƒ³ãƒˆãƒ‰ãƒ©ãƒƒã‚°è¨±å¯æ™‚ã®ã¿å‡¦ç†
 				if ( !self._FreeLineDrag ) return true;
 
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
-				// ¶ƒNƒŠƒbƒN‚Ì‚İ—LŒø
+				// å·¦ã‚¯ãƒªãƒƒã‚¯ã®ã¿æœ‰åŠ¹
 				var wClick = self.getEventClick( pEvent );
 				if ( wClick.left ) {
-					// ˆÚ“®ŠJn
+					// ç§»å‹•é–‹å§‹
 					self.startPointMove( pEvent );
 				}
 
@@ -166,15 +166,15 @@ var clsItemFreeLine = function( pArgument ) {
 			return false;
 		};
 
-		// ƒ|ƒCƒ“ƒgˆÚ“®@ˆÚ“®’†
+		// ãƒã‚¤ãƒ³ãƒˆç§»å‹•ã€€ç§»å‹•ä¸­
 		this.eventPointMove = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
 				if ( !self._FreeLinePointMove ) return false;
 
-				// ƒRƒƒ“ƒgˆÚ“®
+				// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•
 				var wPoint = self.getEventPos( pEvent );
 				self.movePoint( wPoint );
 
@@ -185,17 +185,17 @@ var clsItemFreeLine = function( pArgument ) {
 			return false;
 		};
 
-		// ƒ|ƒCƒ“ƒgˆÚ“®@I—¹
+		// ãƒã‚¤ãƒ³ãƒˆç§»å‹•ã€€çµ‚äº†
 		this.eventCmtPointStop = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
 				if ( self._FreeLinePointMove ) {
-					// ˆÚ“®æƒ`ƒFƒbƒN
+					// ç§»å‹•å…ˆãƒã‚§ãƒƒã‚¯
 					var wStayFlg = false;
 					
-					// ŠJnˆÊ’u‚Æ“¯‚¶‚È‚çˆ—‚È‚µ
+					// é–‹å§‹ä½ç½®ã¨åŒã˜ãªã‚‰å‡¦ç†ãªã—
 					var wStPos = self._FreeLinePointMove.startpos;
 					if ( self.isObject(wStPos) ) {
 						var wEvtPos = self.getEventPos( pEvent );
@@ -203,14 +203,14 @@ var clsItemFreeLine = function( pArgument ) {
 					}
 
 					if ( !wStayFlg ) {
-						// e‚Ö•ÏX‚ğ’Ê’m
+						// è¦ªã¸å¤‰æ›´ã‚’é€šçŸ¥
 						self.execItemCallback( pEvent, { kind: 'freeLine' } );
 					
 					}
 				
 				}
 
-				// ˆÚ“®I—¹
+				// ç§»å‹•çµ‚äº†
 				self.cancelPointMove();
 
 			} catch(e) {
@@ -221,13 +221,13 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._ItemPrototype = clsItemBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsItemBox.call( this, pArgument );
 
 	} catch(e) {
@@ -235,16 +235,16 @@ var clsItemFreeLine = function( pArgument ) {
 	}
 };
 
-// ŠÖŒWî•ñ prototype
+// é–¢ä¿‚æƒ…å ± prototype
 (function(){
-	// clsItemBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsItemBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsItemFreeLine, clsItemBox );
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBİ’è/æ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š/å–å¾—
 	// **************************************************************
 
-	// ƒ‰ƒCƒ“î•ñæ“¾
+	// ãƒ©ã‚¤ãƒ³æƒ…å ±å–å¾—
 	clsItemFreeLine.prototype.getLineStatus = function( ) {
 		try {
 			if ( !this._FreeLineStatus ) {
@@ -262,7 +262,7 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒ‰ƒCƒ“î•ñİ’è
+	// ãƒ©ã‚¤ãƒ³æƒ…å ±è¨­å®š
 	clsItemFreeLine.prototype.setLineStatus = function( pLineStatus ) {
 		try {
 			if ( !this.isObject(pLineStatus) ) return;
@@ -275,7 +275,7 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// Ú‘±“_İ’è
+	// æ¥ç¶šç‚¹è¨­å®š
 	clsItemFreeLine.prototype.setLinePoint = function( pPointId ) {
 		try {
 			if ( !this._FreeLinePoint ) this._FreeLinePoint = {};
@@ -287,14 +287,14 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// Ú‘±“_íœ
+	// æ¥ç¶šç‚¹å‰Šé™¤
 	clsItemFreeLine.prototype.delLinePoint = function( pPointId ) {
 		try {
 			if ( !this._FreeLinePoint ) return;
 
-			// —LŒø‚ÈÚ‘±“_
+			// æœ‰åŠ¹ãªæ¥ç¶šç‚¹
 			if ( pPointId in this._FreeLinePoint ) {
-				// íœ
+				// å‰Šé™¤
 				delete this._FreeLinePoint[pPointId];
 			}
 
@@ -303,12 +303,12 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// Ú‘±“_æ“¾
+	// æ¥ç¶šç‚¹å–å¾—
 	clsItemFreeLine.prototype.getLinePoint = function( ) {
 		try {
 			if ( !this._FreeLinePoint ) return null;
 
-			// —LŒø‚Èƒ|ƒCƒ“ƒg‚È‚¯‚ê‚Înull
+			// æœ‰åŠ¹ãªãƒã‚¤ãƒ³ãƒˆãªã‘ã‚Œã°null
 			for( var wKey in this._FreeLinePoint ) {
 				if ( wKey ) return this._FreeLinePoint;
 			}
@@ -320,7 +320,7 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// Ú‘±“_ƒ`ƒFƒbƒN
+	// æ¥ç¶šç‚¹ãƒã‚§ãƒƒã‚¯
 	clsItemFreeLine.prototype.chkLinePoint = function( pPointId ) {
 		try {
 			if ( !this.isObject(this._FreeLinePoint) ) return false;
@@ -334,17 +334,17 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒtƒŠ[ƒ‰ƒCƒ“ó‘Ôİ’è
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³çŠ¶æ…‹è¨­å®š
 	// **************************************************************
 
-	// ƒ‰ƒCƒ“ƒXƒe[ƒ^ƒXXV
+	// ãƒ©ã‚¤ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
 	clsItemFreeLine.prototype.setFreeLineStatus = function( pStatus, pUpdate ) {
 		try {
 			if ( !this.isObject(pStatus) ) return;
 
 			var wLineStatus = this.getLineStatus();
 
-			// ƒ‰ƒCƒ“ƒXƒe[ƒ^ƒXXV
+			// ãƒ©ã‚¤ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
 			var wUpdFlg = false;
 			for( var wKey in pStatus ) {
 				if ( wKey in wLineStatus ) {
@@ -354,15 +354,15 @@ var clsItemFreeLine = function( pArgument ) {
 				wLineStatus[wKey] = pStatus[wKey];
 			}
 
-			// XV‚Í•ÏX‚ª‚ ‚éê‡‚Ì‚İˆ—
+			// æ›´æ–°æ™‚ã¯å¤‰æ›´ãŒã‚ã‚‹å ´åˆã®ã¿å‡¦ç†
 			if ( pUpdate ) {
 				if ( !wUpdFlg ) return;
 			}
 
-			// VƒXƒe[ƒ^ƒXİ’è
+			// æ–°ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š
 			this.setLineStatus( wLineStatus );
 
-			// İ’è•ÏX‚ğ’Ê’m
+			// è¨­å®šå¤‰æ›´ã‚’é€šçŸ¥
 			if ( pUpdate ) {
 				this.execItemCallback( null, { kind: 'freeLineUpd' } );
 			}
@@ -374,19 +374,19 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 	// **************************************************************
-	// ‹¤—Lƒƒjƒ…[ˆ—
+	// å…±æœ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	// **************************************************************
 
-	// ƒJƒ‰[ƒƒjƒ…[•\¦
+	// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsItemFreeLine.prototype.dspLineColorMenu = function( pEvent ) {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.cancelEvent( pEvent, true );
 
-			// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.eventClear();
 
-			// ƒJƒ‰[ƒƒjƒ…[•\¦
+			// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			var wColorMenu = this.loadPublicMenu('color');
 			if ( wColorMenu ) {
 				var wPoint = this.getEventPos( pEvent );
@@ -398,16 +398,16 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// üíƒƒjƒ…[•\¦
+	// ç·šç¨®ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsItemFreeLine.prototype.dspLineStyleMenu = function( pEvent ) {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.cancelEvent( pEvent, true );
 
-			// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.eventClear();
 
-			// üíƒƒjƒ…[•\¦
+			// ç·šç¨®ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._FreeLineMenuLineStyle ) {
 				var wPoint = this.getEventPos( pEvent );
 				this._FreeLineMenuLineStyle.dspMenu( { x: wPoint.x, y: wPoint.y, callback: this.eventLineStyleSelect } );
@@ -418,16 +418,16 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ü•ƒƒjƒ…[•\¦
+	// ç·šå¹…ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsItemFreeLine.prototype.dspLineWidthMenu = function( pEvent ) {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.cancelEvent( pEvent, true );
 
-			// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.eventClear();
 
-			// •¶š‘¾‚³ƒƒjƒ…[•\¦
+			// æ–‡å­—å¤ªã•ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._FreeLineMenuLineWidth ) {
 				var wPoint = this.getEventPos( pEvent );
 				this._FreeLineMenuLineWidth.dspMenu( { x: wPoint.x, y: wPoint.y, callback: this.eventLineWidthSelect } );
@@ -440,16 +440,16 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒ|ƒCƒ“ƒgˆÚ“®
+	// ãƒã‚¤ãƒ³ãƒˆç§»å‹•
 	// **************************************************************
 
-	// ƒ|ƒCƒ“ƒgˆÚ“®ƒCƒxƒ“ƒg@’Ç‰Á
+	// ãƒã‚¤ãƒ³ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã€€è¿½åŠ 
 	clsItemFreeLine.prototype.addPointMoveEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.addEvent( this.getBoxWindow(), 'onmousemove'	, this.eventPointMove );
 
-			// ˆÊ’uŠm’è
+			// ä½ç½®ç¢ºå®š
 			this.addEvent( this.getBoxWindow(), 'onmouseup'		, this.eventCmtPointStop );
 
 		} catch(e) {
@@ -457,13 +457,13 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒ|ƒCƒ“ƒgˆÚ“®ƒCƒxƒ“ƒg@íœ
+	// ãƒã‚¤ãƒ³ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã€€å‰Šé™¤
 	clsItemFreeLine.prototype.delPointMoveEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.delEvent( this.getBoxWindow(), 'onmousemove'	, this.eventPointMove );
 
-			// ˆÊ’uŠm’è
+			// ä½ç½®ç¢ºå®š
 			this.delEvent( this.getBoxWindow(), 'onmouseup'		, this.eventCmtPointStop );
 
 		} catch(e) {
@@ -471,15 +471,15 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒ|ƒCƒ“ƒgˆÚ“®@I—¹ˆ—
+	// ãƒã‚¤ãƒ³ãƒˆç§»å‹•ã€€çµ‚äº†æ™‚å‡¦ç†
 	clsItemFreeLine.prototype.cancelPointMove = function() {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.delPointMoveEvent();
 
 			this._FreeLinePointMove = null;
 
-			// Å‘O–Ê‰ğœ
+			// æœ€å‰é¢è§£é™¤
 			this.setBoxToFront( false );
 
 		} catch(e) {
@@ -487,18 +487,18 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒ|ƒCƒ“ƒgˆÚ“®@ŠJnˆ—
+	// ãƒã‚¤ãƒ³ãƒˆç§»å‹•ã€€é–‹å§‹æ™‚å‡¦ç†
 	clsItemFreeLine.prototype.startPointMove = function( pEvent ) {
 		try {
-			// ˆê’UƒLƒƒƒ“ƒZƒ‹
+			// ä¸€æ—¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this.cancelPointMove();
 
 			this._FreeLinePointMove = {};
 
-			// e‚ÌˆÊ’u‚ğ•Û‘¶
+			// è¦ªã®ä½ç½®ã‚’ä¿å­˜
 			this._FreeLinePointMove.parent = this.getParentPos();
 
-			// ƒNƒŠƒbƒNˆÊ’u‚ğ•Û‘¶
+			// ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã‚’ä¿å­˜
 			var wEvtPos = this.getEventPos( pEvent );
 			var wItmPos = this.getBoxPos();
 
@@ -510,10 +510,10 @@ var clsItemFreeLine = function( pArgument ) {
 				, top : wEvtPos.y - wItmPos.top
 			};
 
-			// ƒCƒxƒ“ƒg’Ç‰Á
+			// ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			this.addPointMoveEvent();
 
-			// Å‘O–Ê•\¦
+			// æœ€å‰é¢è¡¨ç¤º
 			this.setBoxToFront( true );
 
 			return true;
@@ -523,7 +523,7 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒ|ƒCƒ“ƒgˆÚ“®
+	// ãƒã‚¤ãƒ³ãƒˆç§»å‹•
 	clsItemFreeLine.prototype.movePoint = function( pPoint ) {
 		try {
 			var wMovePos = { x: pPoint.x, y: pPoint.y };
@@ -541,12 +541,12 @@ var clsItemFreeLine = function( pArgument ) {
 				}
 			}
 
-			// e—v‘f‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+			// è¦ªè¦ç´ ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 			var wMainScroll = this.getParentScroll();
 			wMovePos.x += wMainScroll.x;
 			wMovePos.y += wMainScroll.y;
 
-			// ã’[A¶’[‚Íˆ—‚È‚µ
+			// ä¸Šç«¯ã€å·¦ç«¯ã¯å‡¦ç†ãªã—
 			if ( wMovePos.x <= 0 ) return false;
 			if ( wMovePos.y <= 0 ) return false;
 
@@ -561,33 +561,33 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒCƒxƒ“ƒg
+	// ã‚¤ãƒ™ãƒ³ãƒˆ
 	// **************************************************************
 
-	// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsItemFreeLine.prototype.eventClear = function() {
 		try {
-			// ˆÚ“®ƒLƒƒƒ“ƒZƒ‹
+			// ç§»å‹•ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this.execFunction( this.cancelPointMove );
 
-			// ƒJƒ‰[ƒƒjƒ…[•Â‚¶‚é
+			// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‰ã˜ã‚‹
 			var wColorMenu = this.loadPublicMenu('color');
 			if ( wColorMenu ) {
 				wColorMenu.hideMenu();
 			}
 
-			// üíƒƒjƒ…[•Â‚¶‚é
+			// ç·šç¨®ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‰ã˜ã‚‹
 			if ( this._FreeLineMenuLineStyle ) {
 				this._FreeLineMenuLineStyle.hideMenu();
 			}
 
-			// ü•ƒƒjƒ…[•\¦
+			// ç·šå¹…ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._FreeLineMenuLineWidth ) {
 				this._FreeLineMenuLineWidth.hideMenu();
 			}
 
 
-			// Œp³Œ³ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹ˆ—
+			// ç¶™æ‰¿å…ƒã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.eventClear.call( this );
 
@@ -598,37 +598,37 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[g—p—L–³İ’è
-	// ¦ clsItemBox‚©‚çŒp³
+	// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½¿ç”¨æœ‰ç„¡è¨­å®š
+	// â€» clsItemBoxã‹ã‚‰ç¶™æ‰¿
 	clsItemFreeLine.prototype.setContextAvailable = function( pAvailable, pParam ) {
 		try {
-			// Œp³Œ³@ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[g—p—L–³İ’è
+			// ç¶™æ‰¿å…ƒã€€ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½¿ç”¨æœ‰ç„¡è¨­å®š
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.setContextAvailable.call( this, pAvailable, pParam );
 
 			}
 
-			// ƒhƒ‰ƒbƒO‹–‰Â‚Ì‚İˆ—
+			// ãƒ‰ãƒ©ãƒƒã‚°è¨±å¯æ™‚ã®ã¿å‡¦ç†
 			if ( !this.getItemDragIs() ) return;
 
-			// ƒRƒƒ“ƒgƒhƒ‰ƒbƒO‰Â”Û
+			// ã‚³ãƒ¡ãƒ³ãƒˆãƒ‰ãƒ©ãƒƒã‚°å¯å¦
 			this._FreeLineDrag = pAvailable;
 
-			// drag‰Â”Ûƒpƒ‰ƒ[ƒ^‚ ‚è
+			// dragå¯å¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚ã‚Š
 			var wDragParam = false;
 			if ( this.isObject(pParam) ) {
 				if ( 'drag' in pParam ) wDragParam = true;
 			}
 
 			if ( wDragParam ) {
-				// ƒpƒ‰ƒ[ƒ^’l‚ğg—p
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤ã‚’ä½¿ç”¨
 				this._FreeLineDrag = pParam.drag;
 
-			// ƒpƒ‰ƒ[ƒ^‚È‚µ
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã—
 			} else {
-				// ƒƒjƒ…[—LŒø
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹æ™‚
 				if ( pAvailable ) {
-					// ’Êíƒhƒ‰ƒbƒO‰Â”Û‚ğİ’è
+					// é€šå¸¸æ™‚ãƒ‰ãƒ©ãƒƒã‚°å¯å¦ã‚’è¨­å®š
 					this._FreeLineDrag = this.getItemMoveInitIs();
 
 				}
@@ -641,31 +641,31 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
 	// -------------------
-	// ƒƒjƒ…[ŠÖ˜A
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 	// -------------------
 
-	// ƒƒjƒ…[‰Šúİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸè¨­å®š
 	clsItemFreeLine.prototype.initItemMenu = function( pArgument ) {
 		try {
-			// Œp³Œ³ƒƒjƒ…[‰Šú‰»ˆ—
+			// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸåŒ–å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initItemMenu.call( this, pArgument );
 
 			}
 
-			// €–ÚƒƒbƒNˆ—•s—v
+			// é …ç›®ãƒ­ãƒƒã‚¯æ™‚å‡¦ç†ä¸è¦
 			if ( this.getItemLockIs() ) return;
 
-			// ƒRƒƒ“ƒgƒhƒ‰ƒbƒO‹–‰Â
+			// ã‚³ãƒ¡ãƒ³ãƒˆãƒ‰ãƒ©ãƒƒã‚°è¨±å¯
 			if ( this.getItemDragIs() ) {
 				this.addBoxEvents( 'onmousedown'	, this.eventPointMoveStart );
 			}
 
-			// üíƒŠƒXƒgƒƒjƒ…[
+			// ç·šç¨®ãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			var wStyleList = {};
 			this.copyProperty( this._DEF_FREELINE_MENU_STYLE, wStyleList );
 
@@ -675,10 +675,10 @@ var clsItemFreeLine = function( pArgument ) {
 			}
 			wStyleMenu.setMenuList( { menuList: wStyleList } );
 
-			// üíƒŠƒXƒgƒƒjƒ…[‚Æ‚µ‚Ä•Û‘¶
+			// ç·šç¨®ãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ã—ã¦ä¿å­˜
 			this._FreeLineMenuLineStyle = wStyleMenu;
 
-			// ü•ƒŠƒXƒgƒƒjƒ…[
+			// ç·šå¹…ãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			var wWidthList = {};
 			this.copyProperty( this._DEF_FREELINE_MENU_WIDTH, wWidthList );
 
@@ -688,7 +688,7 @@ var clsItemFreeLine = function( pArgument ) {
 			}
 			wWidthMenu.setMenuList( { menuList: wWidthList } );
 
-			// ü•ƒŠƒXƒgƒƒjƒ…[‚Æ‚µ‚Ä•Û‘¶
+			// ç·šå¹…ãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ã—ã¦ä¿å­˜
 			this._FreeLineMenuLineWidth = wWidthMenu;
 
 		} catch(e) {
@@ -696,7 +696,7 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg—pƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‘I‘ğˆ—
+	// ã‚³ãƒ¡ãƒ³ãƒˆç”¨ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠæ™‚å‡¦ç†
 	clsItemFreeLine.prototype.execContextSelect = function( pEvent, pSelectMenu ) {
 		try {
 			if ( !pSelectMenu ) return false;
@@ -704,29 +704,29 @@ var clsItemFreeLine = function( pArgument ) {
 			var wRetVal = true;
 
 			switch(pSelectMenu.kind) {
-			// ƒ‰ƒCƒ“@F
+			// ãƒ©ã‚¤ãƒ³ã€€è‰²
 			case 'line-color':
-				// Fƒƒjƒ…[‚ğ•\¦
+				// è‰²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
 				wRetVal = this.dspLineColorMenu( pEvent );
 				break;
 
-			// ƒ‰ƒCƒ“@í—Ş
+			// ãƒ©ã‚¤ãƒ³ã€€ç¨®é¡
 			case 'line-style':
-				// üíƒƒjƒ…[‚ğ•\¦
+				// ç·šç¨®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
 				wRetVal = this.dspLineStyleMenu( pEvent );
 				break;
 
-			// ƒ‰ƒCƒ“@‘¾‚³
+			// ãƒ©ã‚¤ãƒ³ã€€å¤ªã•
 			case 'line-width':
-				// ü•ƒƒjƒ…[‚ğ•\¦
+				// ç·šå¹…ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
 				wRetVal = this.dspLineWidthMenu( pEvent );
 				break;
 
-			// ‘S‚Äíœ
+			// å…¨ã¦å‰Šé™¤
 			case 'delete-all':
-				// Œp³Œ³ƒƒjƒ…[‘€ìˆ—
+				// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œå‡¦ç†
 				if ( this._ItemPrototype ) {
-					// ƒpƒ‰ƒ[ƒ^Äİ’è
+					// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å†è¨­å®š
 					pSelectMenu.kind	= 'delete';
 					pSelectMenu.delAll	= true;
 					wRetVal = this._ItemPrototype.execContextSelect.call( this, pEvent, pSelectMenu );
@@ -734,9 +734,9 @@ var clsItemFreeLine = function( pArgument ) {
 				}
 				break;
 
-			// ˆÈŠO
+			// ä»¥å¤–
 			default:
-				// Œp³Œ³ƒƒjƒ…[‘€ìˆ—
+				// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œå‡¦ç†
 				if ( this._ItemPrototype ) {
 					wRetVal = this._ItemPrototype.execContextSelect.call( this, pEvent, pSelectMenu );
 
@@ -753,25 +753,25 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 	// -------------------
-	// Šî–{î•ñŠÖ˜A
+	// åŸºæœ¬æƒ…å ±é–¢é€£
 	// -------------------
 
-	// ƒXƒe[ƒ^ƒX‰Šúİ’è
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åˆæœŸè¨­å®š
 	clsItemFreeLine.prototype.initItemStatus = function( pArgument ) {
 		try {
-			// Œp³Œ³ƒXƒe[ƒ^ƒXXVˆ—
+			// ç¶™æ‰¿å…ƒã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°æ™‚å‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initItemStatus.call( this, pArgument );
 
 			}
 
-			// Load@İ’è“à—e
+			// Loadæ™‚ã€€è¨­å®šå†…å®¹
 			var wLoadStatus = this.loadDataVal( 'status' );
 			if ( wLoadStatus ) {
 				this._FreeLineStatus = wLoadStatus;
 
 			} else {
-				// ‰Šú’lİ’è
+				// åˆæœŸå€¤è¨­å®š
 				if ( !this._FreeLineStatus ) this._FreeLineStatus = {};
 				this.copyProperty( this._DEF_FREELINE_LINE, this._FreeLineStatus );
 
@@ -783,18 +783,18 @@ var clsItemFreeLine = function( pArgument ) {
 
 			}
 
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			if ( this.isObject(pArgument) ) {
-				// •ÏX‰Šú’l
+				// å¤‰æ›´æ™‚åˆæœŸå€¤
 				for( var wKey in pArgument ) {
-					// ŠÖŒWî•ñ
+					// é–¢ä¿‚æƒ…å ±
 					if ( wKey in this._FreeLinePoint ) {
-						// ’lã‘‚«
+						// å€¤ä¸Šæ›¸ã
 						this._FreeLinePoint[wKey] = pArgument[wKey];
 					}
 				}
 
-			// ‰Šúƒhƒ‰ƒbƒO‰Â”Ûi‰ŠúˆÚ“®‰Â@‚©‚Â@ƒhƒ‰ƒbƒO‰Âj
+			// åˆæœŸãƒ‰ãƒ©ãƒƒã‚°å¯å¦ï¼ˆåˆæœŸç§»å‹•å¯ã€€ã‹ã¤ã€€ãƒ‰ãƒ©ãƒƒã‚°å¯ï¼‰
 			this._FreeLineDrag = ( this.getItemMoveInitIs() && this.getItemDragIs() );
 
 			}
@@ -805,15 +805,15 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 	// -------------------
-	// SAVE/LOADŠÖ˜A
+	// SAVE/LOADé–¢é€£
 	// -------------------
 
-	// ƒf[ƒ^•Û‘¶—p@€–Úİ’è’læ“¾
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ã€€é …ç›®è¨­å®šå€¤å–å¾—
 	clsItemFreeLine.prototype.saveData = function( pSaveParam ) {
 		try {
 			var wSaveData;
 			
-			// Œp³Œ³€–Úİ’è’læ“¾ˆ—
+			// ç¶™æ‰¿å…ƒé …ç›®è¨­å®šå€¤å–å¾—å‡¦ç†
 			if ( this._ItemPrototype ) {
 				wSaveData = this._ItemPrototype.saveData.call( this, pSaveParam );
 
@@ -822,13 +822,13 @@ var clsItemFreeLine = function( pArgument ) {
 
 			}
 
-			// ƒ‰ƒCƒ“î•ñ
+			// ãƒ©ã‚¤ãƒ³æƒ…å ±
 			wSaveData.status	= JSON.stringify( this._FreeLineStatus );
 
-			// Ú‘±î•ñ
+			// æ¥ç¶šæƒ…å ±
 			wSaveData.point		= JSON.stringify( this._FreeLinePoint );
 
-			// İ’è’l‚ğæ“¾
+			// è¨­å®šå€¤ã‚’å–å¾—
 			return wSaveData;
 
 		} catch(e) {
@@ -836,12 +836,12 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^“Ç
+	// ãƒ‡ãƒ¼ã‚¿èª­è¾¼
 	clsItemFreeLine.prototype.loadData = function( pLoadData ) {
 		try {
 			var wLoadBuff;
 
-			// Œp³Œ³ƒf[ƒ^“Çˆ—
+			// ç¶™æ‰¿å…ƒãƒ‡ãƒ¼ã‚¿èª­è¾¼å‡¦ç†
 			if ( this._ItemPrototype ) {
 				wLoadBuff = this._ItemPrototype.loadData.call( this, pLoadData );
 
@@ -851,12 +851,12 @@ var clsItemFreeLine = function( pArgument ) {
 			}
 			if ( !pLoadData ) return wLoadBuff;
 
-			// ƒ‰ƒCƒ“î•ñ
+			// ãƒ©ã‚¤ãƒ³æƒ…å ±
 			if ( pLoadData.status ) {
 				wLoadBuff.status = JSON.parse( pLoadData.status );
 			}
 
-			// Ú‘±î•ñ
+			// æ¥ç¶šæƒ…å ±
 			if ( pLoadData.point ) {
 				wLoadBuff.point = JSON.parse( pLoadData.point );
 			}
@@ -870,33 +870,33 @@ var clsItemFreeLine = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsItemFreeLine.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_FREELINE_STYLE );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êurelationv
+				// ç¨®åˆ¥ã€Œrelationã€
 				wInitArgument.kind = this._DEF_FREELINE_KIND;
 
 			}
 
-			// ƒƒjƒ…[İ’è
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			wInitArgument.menuList		= this._DEF_FREELINE_MENU_CONTEXT;
 			wInitArgument.menuReplace	= true;
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initClass.call( this, wInitArgument );
 
 			}
 			
-			// ˆóü‚µ‚È‚¢
+			// å°åˆ·ã—ãªã„
 			this.setBoxClass('no-print');
 
 		} catch(e) {
@@ -904,13 +904,13 @@ var clsItemFreeLine = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsItemFreeLine.prototype.freeClass = function() {
 		try {
-			// ƒCƒxƒ“ƒgíœ
+			// ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 			this.execFunction( this.delPointMoveEvent );
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._FreeLineStatus			= null;
 			this._FreeLinePoint				= null;
 			this._FreeLinePointMove			= null;
@@ -918,8 +918,8 @@ var clsItemFreeLine = function( pArgument ) {
 			this._FreeLineMenuLineStyle		= null;
 			this._FreeLineMenuLineWidth		= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.freeClass.call( this );
 

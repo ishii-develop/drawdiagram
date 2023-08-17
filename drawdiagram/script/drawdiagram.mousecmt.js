@@ -1,10 +1,10 @@
 
 // --------------------------------------------------------------------
 //
-// ƒ}ƒEƒX’Ç]ƒRƒƒ“ƒgƒNƒ‰ƒX
+// ãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsMouseCmt © clsBaseBox
+// clsMouseCmt â† clsBaseBox
 // --------------------------------------------------------------------
 var clsMouseCmt = function( pArgument ) {
 	try {
@@ -21,20 +21,20 @@ var clsMouseCmt = function( pArgument ) {
 		this._DEF_MOUSECMT_LEFT			= 15;
 		this._DEF_MOUSECMT_TOP			= 5;
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._BasePrototype				= null;
 
-		// ©ƒNƒ‰ƒX‚ÌƒvƒƒpƒeƒB
+		// è‡ªã‚¯ãƒ©ã‚¹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 		this._MouseCmtDsp				= false;
 		this._MouseCmtStop				= false;
 		this._MouseCmtPos				= { left: 0, right: 0, top: 0, bottom: 0 };
 
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒgˆ—
+		// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 
-		// ƒRƒƒ“ƒgˆÚ“®
+		// ã‚³ãƒ¡ãƒ³ãƒˆç§»å‹•
 		this.eventMouseCmtMove = function( pEvent ) {
 			try {
 				if ( !self._MouseCmtDsp ) return true;
@@ -49,7 +49,7 @@ var clsMouseCmt = function( pArgument ) {
 				wCmtEle.style.left	= wCmtPos.left + "px";
 				wCmtEle.style.top	= wCmtPos.top  + "px";
 			
-				// ˆê”ñ•\¦’†
+				// ä¸€æ™‚éè¡¨ç¤ºä¸­
 				if ( self._MouseCmtStop ) {
 					self.dspBox( true );
 					self._MouseCmtStop = false;
@@ -63,13 +63,13 @@ var clsMouseCmt = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._BasePrototype = clsBaseBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsBaseBox.call( this, pArgument );
 
 
@@ -78,16 +78,16 @@ var clsMouseCmt = function( pArgument ) {
 	}
 };
 
-// ƒ}ƒEƒX’Ç]ƒRƒƒ“ƒg prototype
+// ãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆ prototype
 (function(){
-	// clsBaseBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsBaseBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsMouseCmt, clsBaseBox );
 
 	// **************************************************************
-	// ƒRƒƒ“ƒg•\¦
+	// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
 	// **************************************************************
 
-	// ƒRƒƒ“ƒgƒTƒCƒYæ“¾
+	// ã‚³ãƒ¡ãƒ³ãƒˆã‚µã‚¤ã‚ºå–å¾—
 	clsMouseCmt.prototype.getCmtSize = function( pComment ) {
 		try {
 			var wRetSize = { width: 160, height: 16 };
@@ -114,18 +114,18 @@ var clsMouseCmt = function( pArgument ) {
 		}
 	};
 
-	// •\¦ƒRƒƒ“ƒgİ’è
+	// è¡¨ç¤ºã‚³ãƒ¡ãƒ³ãƒˆè¨­å®š
 	clsMouseCmt.prototype.getMouseCmtPos = function( pMousePos ) {
 		try {
 			var wCmtPos = { left: 0, top: 0 };
 
-			// e‚ÌˆÊ’uİ’è
+			// è¦ªã®ä½ç½®è¨­å®š
 			var wParentPos = this.getParentPos();
 			
 			wCmtPos.left	= pMousePos.x - wParentPos.left;
 			wCmtPos.top		= pMousePos.y - wParentPos.top;
 
-			// ƒXƒNƒ[ƒ‹’l‰ÁZ
+			// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 			var wParentScroll = this.getParentScroll();
 			wCmtPos.left	+= wParentScroll.x;
 			wCmtPos.top		+= wParentScroll.y;
@@ -140,26 +140,26 @@ var clsMouseCmt = function( pArgument ) {
 		}
 	};
 
-	// •\¦ƒRƒƒ“ƒgİ’è
+	// è¡¨ç¤ºã‚³ãƒ¡ãƒ³ãƒˆè¨­å®š
 	clsMouseCmt.prototype.setMouseCmt = function( pStartPos, pComment ) {
 		try {
 			var wCmtEle = this.getBoxElement();
 			if ( !wCmtEle ) return true;
 
 			if ( typeof pComment == 'string' ) {
-				// ƒTƒCƒYİ’è
+				// ã‚µã‚¤ã‚ºè¨­å®š
 				var wCmtSize = this.getCmtSize( pComment );
 				wCmtEle.style.width  = wCmtSize.width  + "px";
 				wCmtEle.style.height = wCmtSize.height + "px";
 				
-				// ƒRƒƒ“ƒgİ’è
+				// ã‚³ãƒ¡ãƒ³ãƒˆè¨­å®š
 				wCmtEle.innerHTML = pComment;
 			}
 			if ( String(wCmtEle.innerHTML).length == 0 ) return true;
 
-			// •\¦ˆÊ’uw’è
+			// è¡¨ç¤ºä½ç½®æŒ‡å®š
 			if ( pStartPos ) {
-				// e‚ÌˆÊ’uİ’è
+				// è¦ªã®ä½ç½®è¨­å®š
 				var wCmtPos = this.getMouseCmtPos( pStartPos );
 
 				wCmtEle.style.left	= wCmtPos.left + "px";
@@ -173,13 +173,13 @@ var clsMouseCmt = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg•\¦
+	// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
 	clsMouseCmt.prototype.dspMouseCmt = function( pStPos, pComment ) {
 		try {
-			// ƒRƒƒ“ƒgİ’è
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¨­å®š
 			this.setMouseCmt( pStPos, pComment );
 
-			// •\¦
+			// è¡¨ç¤º
 			this.dspBox( true );
 
 			this._MouseCmtDsp = true;
@@ -189,10 +189,10 @@ var clsMouseCmt = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒg”ñ•\¦
+	// ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 	clsMouseCmt.prototype.hideMouseCmt = function() {
 		try {
-			// ƒRƒƒ“ƒg”ñ•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 			this.dspBox( false );
 
 			this._MouseCmtDsp = false;
@@ -202,10 +202,10 @@ var clsMouseCmt = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒgˆê”ñ•\¦
+	// ã‚³ãƒ¡ãƒ³ãƒˆä¸€æ™‚éè¡¨ç¤º
 	clsMouseCmt.prototype.stopMouseCmt = function() {
 		try {
-			// ƒRƒƒ“ƒg•\¦ˆê’â~
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤ºä¸€æ™‚åœæ­¢
 			this.dspBox( false );
 
 			this._MouseCmtStop = true;
@@ -217,28 +217,28 @@ var clsMouseCmt = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒh
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsMouseCmt.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_MOUSECMT_PROPERTY );
 
-			// í•Êupanelv
+			// ç¨®åˆ¥ã€Œpanelã€
 			wInitArgument.kind = this._DEF_MOUSECMT_KIND;
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._BasePrototype ) {
 				this._BasePrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// classİ’è
+			// classè¨­å®š
 			this.setBoxClass( 'cssMouseCmt' );
 
-			// ƒ}ƒEƒX‚É’Ç]
+			// ãƒã‚¦ã‚¹ã«è¿½å¾“
 			var wParentEle = this.getParent();
 			if ( wParentEle ) {
 				this.addEvent( wParentEle, 'onmousemove'	, this.eventMouseCmtMove );
@@ -249,21 +249,21 @@ var clsMouseCmt = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsMouseCmt.prototype.freeClass = function() {
 		try {
-			// ƒCƒxƒ“ƒgíœ
+			// ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 			var wParentEle = this.getParent();
 			if ( wParentEle ) {
 				this.execFunction( this.delEvent, wParentEle, 'onmousemove', this.eventMouseCmtMove );
 			
 			}
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._MouseCmtPos		= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._BasePrototype ) {
 				this._BasePrototype.freeClass.call( this );
 

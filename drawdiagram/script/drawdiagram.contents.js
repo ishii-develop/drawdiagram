@@ -1,10 +1,10 @@
 
 // --------------------------------------------------------------------
 //
-// ƒx[ƒX•\¦ƒNƒ‰ƒX
+// ãƒ™ãƒ¼ã‚¹è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsContentsBox © clsBaseBox
+// clsContentsBox â† clsBaseBox
 // --------------------------------------------------------------------
 var clsContentsBox = function( pArgument ) {
 	try {
@@ -17,44 +17,44 @@ var clsContentsBox = function( pArgument ) {
 			 'z-index'				: '20'
 		};
 
-		// ƒLƒƒƒ“ƒoƒX‚ÌƒTƒCƒY
-		// ¦ A4‰¡Fwidth - 1620, height - 1120
+		// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®ã‚µã‚¤ã‚º
+		// â€» A4æ¨ªï¼šwidth - 1620, height - 1120
 		this._DEF_CONTENTS_CANVAS_SIZE			= {
 			 'width'				: 1620
 			,'height'				: 1120
 		};
 
-		// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[
+		// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼
 		this._DEF_CONTENTS_MENU					= {
 			 1: [
-					 { kind: 'item'			, title: 'l•¨'			}
-					,{ kind: 'group'		, title: 'ƒOƒ‹[ƒv'		}
-					,{ kind: 'comment'		, title: 'ƒRƒƒ“ƒg'		}
-					,{ kind: 'freeline'		, title: 'ƒ‰ƒCƒ“'		}
+					 { kind: 'item'			, title: 'äººç‰©'			}
+					,{ kind: 'group'		, title: 'ã‚°ãƒ«ãƒ¼ãƒ—'		}
+					,{ kind: 'comment'		, title: 'ã‚³ãƒ¡ãƒ³ãƒˆ'		}
+					,{ kind: 'freeline'		, title: 'ãƒ©ã‚¤ãƒ³'		}
 				]
 			,2: [
-					 { kind: 'color'		, title: 'F•ÏX'		}
+					 { kind: 'color'		, title: 'è‰²å¤‰æ›´'		}
 				]
 		};
 
-		// ‘€ìalert
+		// æ“ä½œalert
 		this._MSG_CONTENTS_ALERT				= {
-			  'overlap'				: '‘¼‚Ì€–Ú‚Æ”ÍˆÍ‚ªd•¡‚µ‚Ä‚¢‚Ü‚·'
-			, 'overflow'			: '”z’uæ‚ª”ÍˆÍŠO‚Å‚·'
-			, 'overflow-group'		: '”z’uæ‚ªŠ‘®ƒOƒ‹[ƒv‚Ì”ÍˆÍŠO‚Å‚·'
-			, 'relation-item'		: 'Š‘®‚µ‚Ä‚¢‚é€–Ú‚Ö‚ÌŠÖ˜A•t‚¯‚Ío—ˆ‚Ü‚¹‚ñ'
-			, 'relation-group'		: 'Š‘®‚µ‚Ä‚¢‚éƒOƒ‹[ƒv‚Ö‚ÌŠÖ˜A•t‚¯‚Ío—ˆ‚Ü‚¹‚ñ'
+			  'overlap'				: 'ä»–ã®é …ç›®ã¨ç¯„å›²ãŒé‡è¤‡ã—ã¦ã„ã¾ã™'
+			, 'overflow'			: 'é…ç½®å…ˆãŒç¯„å›²å¤–ã§ã™'
+			, 'overflow-group'		: 'é…ç½®å…ˆãŒæ‰€å±ã‚°ãƒ«ãƒ¼ãƒ—ã®ç¯„å›²å¤–ã§ã™'
+			, 'relation-item'		: 'æ‰€å±ã—ã¦ã„ã‚‹é …ç›®ã¸ã®é–¢é€£ä»˜ã‘ã¯å‡ºæ¥ã¾ã›ã‚“'
+			, 'relation-group'		: 'æ‰€å±ã—ã¦ã„ã‚‹ã‚°ãƒ«ãƒ¼ãƒ—ã¸ã®é–¢é€£ä»˜ã‘ã¯å‡ºæ¥ã¾ã›ã‚“'
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._BasePrototype						= null;
 
-		// ‘€ì‰Â”Û
+		// æ“ä½œå¯å¦
 		this._ContentsLocked					= false;
 
-		// •ÒWƒƒjƒ…[—L–³
+		// ç·¨é›†ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰ç„¡
 		this._ContentsMenuIs					= null;
-		// •ÒWƒƒjƒ…[ó‘Ô
+		// ç·¨é›†ãƒ¡ãƒ‹ãƒ¥ãƒ¼çŠ¶æ…‹
 		this._ContentsEditMode					= '';
 
 		this._ContentsEleMenu					= null;
@@ -66,15 +66,15 @@ var clsContentsBox = function( pArgument ) {
 		this._ContentsContextValid				= false;
 		this._ContentsContextEvent				= null;
 
-		// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[ƒIƒuƒWƒFƒNƒg
+		// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		this._ContentsMenuData					= null;
 		this._ContentsMenuColor					= null;
 		this._ContentsMenuFile					= null;
 
-		// €–Ú‘€ì’Ê’m—pCallback
+		// é …ç›®æ“ä½œé€šçŸ¥ç”¨Callback
 		this._ContentsLinkCallback				= [];
 
-		// ‘€ì’†€–Úî•ñ
+		// æ“ä½œä¸­é …ç›®æƒ…å ±
 		this._ContentsMoveInf					= { item: null, pos: null, drag: null, parent: null, kind: '', relation: null };
 		this._ContentsResizeInf					= { item: null };
 		this._ContentsSelectInf					= { item: null };
@@ -84,7 +84,7 @@ var clsContentsBox = function( pArgument ) {
 		this._ContentsUpdInf					= { kind: '', param: null };
 		this._ContentsLineInf					= { item: null, pos: null, start: null };
 
-		// Š‘®€–Ú
+		// æ‰€å±é …ç›®
 		this._ContentsItems						= {
 			  person		: {}
 			, group			: {}
@@ -93,30 +93,30 @@ var clsContentsBox = function( pArgument ) {
 			, freeline		: {}
 		};
 
-		// ƒ‰ƒCƒ“•`‰æ—v‘f
+		// ãƒ©ã‚¤ãƒ³æç”»è¦ç´ 
 		this._ContentsCanvas					= null;
 
-		// ƒ}ƒEƒX’Ç]ƒRƒƒ“ƒg
+		// ãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆ
 		this._ContentsMouseCmt					= null;
 
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒgˆ—
+		// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 
-		// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[ˆ—
-		// ¦ƒNƒŠƒbƒN‚µ‚½€–Ú‚Ìƒƒjƒ…[•\¦
+		// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+		// â€»ã‚¯ãƒªãƒƒã‚¯ã—ãŸé …ç›®ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 		this.eventContentsContext = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~iŠù‘¶‚ÌƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‚ğ–³Œø‰»j
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢ï¼ˆæ—¢å­˜ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ç„¡åŠ¹åŒ–ï¼‰
 				self.cancelEvent( pEvent, true );
 
-				// ƒƒbƒN’†‚Íˆ—‚È‚µ
+				// ãƒ­ãƒƒã‚¯ä¸­ã¯å‡¦ç†ãªã—
 				if ( self._ContentsLocked ) return false;
 
-				// ƒx[ƒX‘€ì–³Œøi€–Ú‘€ìj
+				// ãƒ™ãƒ¼ã‚¹æ“ä½œç„¡åŠ¹æ™‚ï¼ˆé …ç›®æ“ä½œæ™‚ï¼‰
 				if ( !self._ContentsContextValid ) {
-					// ‰EƒNƒŠƒbƒN‚ÅƒLƒƒƒ“ƒZƒ‹
+					// å³ã‚¯ãƒªãƒƒã‚¯ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 					var wClickChk = self.getEventClick( pEvent );
 					if ( wClickChk.right ) self.eventClearClick();
 
@@ -124,37 +124,37 @@ var clsContentsBox = function( pArgument ) {
 
 				}
 
-				// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
-				// ¦‘I‘ğ‚Í‰ğœ‚µ‚È‚¢
+				// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
+				// â€»é¸æŠã¯è§£é™¤ã—ãªã„
 				self.cancelControl();
 
-				// ƒNƒŠƒbƒNˆÊ’u‚Ì€–Úƒ`ƒFƒbƒN
+				// ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã®é …ç›®ãƒã‚§ãƒƒã‚¯
 				var wClickItem = self.chkItemOverlapToClick( pEvent );
 
-				// €–Úclick
+				// é …ç›®click
 				if ( wClickItem ) {
-					// €–Ú‚Ìƒƒjƒ…[g—p•s‰Â‚Íˆ—‚È‚µ
+					// é …ç›®ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½¿ç”¨ä¸å¯æ™‚ã¯å‡¦ç†ãªã—
 					if ( !wClickItem.chkItemMenuAvailable() ) return false;
 
-					// €–Ú‚Ìƒƒjƒ…[•\¦
+					// é …ç›®ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 					wClickItem.eventMenuDsp( pEvent );
 
 				}
-				// ƒx[ƒX‰æ–Êclick
+				// ãƒ™ãƒ¼ã‚¹ç”»é¢click
 				else if ( self._ContentsContextMenu ) {
-					// ”z’u•ÒWƒ‚[ƒh
+					// é…ç½®ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚
 					if ( self.isEditModeMove() ) {
-						// ˆ—‚È‚µ
+						// å‡¦ç†ãªã—
 						return false;
 					}
 
-					// ’ÊíƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[•\¦
+					// é€šå¸¸ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 					var wPoint = self.getEventPos( pEvent );
 					self._ContentsContextMenu.dspMenu( wPoint );
 
 				}
 
-				// ƒƒjƒ…[‘€ìŠJn‚ÌƒCƒxƒ“ƒgî•ñ‚ğ•Û‘¶
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œé–‹å§‹æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±ã‚’ä¿å­˜
 				self._ContentsContextEvent = pEvent;
 
 			} catch(e) {
@@ -163,48 +163,48 @@ var clsContentsBox = function( pArgument ) {
 			return false;
 		};
 
-		// €–Ú‘I‘ğƒCƒxƒ“ƒg
+		// é …ç›®é¸æŠã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventContentsClick = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// ƒƒbƒN’†‚Íˆ—‚È‚µ
+				// ãƒ­ãƒƒã‚¯ä¸­ã¯å‡¦ç†ãªã—
 				if ( self._ContentsLocked ) return false;
 
-				// ƒx[ƒX‘€ì—LŒø‚Ì‚İ
+				// ãƒ™ãƒ¼ã‚¹æ“ä½œæœ‰åŠ¹æ™‚ã®ã¿
 				if ( !self._ContentsContextValid ) return false;
 
-				// ¶ƒNƒŠƒbƒN‚Ì‚İ—LŒø
+				// å·¦ã‚¯ãƒªãƒƒã‚¯ã®ã¿æœ‰åŠ¹
 				var wClick = self.getEventClick( pEvent );
 				if ( !wClick.left ) return false;
 
-				// ‘I‘ğ‘ÎÛ
-				// ¦ ŠÖ˜A•t‚¯’†Œp“_AƒtƒŠ[ƒ‰ƒCƒ“‚Í‘I‘ğ•s‰Â
+				// é¸æŠå¯¾è±¡
+				// â€» é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹ã€ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ã¯é¸æŠä¸å¯
 				var wSelectTarget = {
 						  relation	: false
 						, freeline	: false
 				};
 
-				// ƒNƒŠƒbƒNˆÊ’u€–Úƒ`ƒFƒbƒN
+				// ã‚¯ãƒªãƒƒã‚¯ä½ç½®é …ç›®ãƒã‚§ãƒƒã‚¯
 				var wClickItm = self.chkItemOverlapToClick( pEvent, wSelectTarget );
 				if ( !wClickItm ) return false;
 
-				// ˆÚ“®‰Â”\‚©ƒ`ƒFƒbƒN
+				// ç§»å‹•å¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
 				var wMoveMode = self.isEditModeMove();
 				if ( !wMoveMode ) {
-					// ƒhƒ‰ƒbƒO‘€ì‰Â”\@‚©‚Â@’Êíƒhƒ‰ƒbƒO‹–‰Â‚È‚çˆÚ“®‰Â”\
+					// ãƒ‰ãƒ©ãƒƒã‚°æ“ä½œå¯èƒ½ã€€ã‹ã¤ã€€é€šå¸¸æ™‚ãƒ‰ãƒ©ãƒƒã‚°è¨±å¯ãªã‚‰ç§»å‹•å¯èƒ½
 					if ( wClickItm.getItemDragIs() && wClickItm.getItemMoveInitIs() ) wMoveMode = true;
 				}
 
-				// ˆÚ“®‰Â”\
+				// ç§»å‹•å¯èƒ½
 				if ( wMoveMode ) {
-					// ‘I‘ğ€–Ú‚ÌˆÚ“®ŠJn
+					// é¸æŠé …ç›®ã®ç§»å‹•é–‹å§‹
 					self.moveItemStart( pEvent, wClickItm, 'move', true );
 
-				// ‘I‘ğ€–Ú‚ªuƒRƒƒ“ƒgvˆÈŠO
+				// é¸æŠé …ç›®ãŒã€Œã‚³ãƒ¡ãƒ³ãƒˆã€ä»¥å¤–
 				} else if ( !wClickItm.isComment() ) {
-					// €–Ú‚ğ‘I‘ğó‘Ô‚É‚·‚é
+					// é …ç›®ã‚’é¸æŠçŠ¶æ…‹ã«ã™ã‚‹
 					self.selectClickItem( wClickItm );
 
 				}
@@ -215,10 +215,10 @@ var clsContentsBox = function( pArgument ) {
 			return false;
 		};
 
-		// Šî–{‰æ–Ê‚Ìƒƒjƒ…[@‘I‘ğˆ—
+		// åŸºæœ¬ç”»é¢ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€é¸æŠæ™‚å‡¦ç†
 		this.eventMenuSelect = function( pEvent, pSelectMenu ) {
 			try {
-				// ƒƒjƒ…[‘I‘ğˆ—Às
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠæ™‚å‡¦ç†å®Ÿè¡Œ
 				var wRetVal = self.execContentsMenu( pEvent, pSelectMenu );
 
 				return wRetVal;
@@ -230,29 +230,29 @@ var clsContentsBox = function( pArgument ) {
 		};
 
 		// ------------------------------------------
-		// ƒƒjƒ…[‰æ–Ê@ƒ{ƒ^ƒ“‰Ÿ‰ºˆ—
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã€€ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚å‡¦ç†
 		// ------------------------------------------
 
-		// ƒƒjƒ…[‰æ–Ê@‘I‘ğˆ—
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã€€é¸æŠæ™‚å‡¦ç†
 		this.eventMainMenuSelect = function( pEvent ) {
 			try {
-				// ƒƒbƒN’†‚Íˆ—‚È‚µ
+				// ãƒ­ãƒƒã‚¯ä¸­ã¯å‡¦ç†ãªã—
 				if ( self._ContentsLocked ) return false;
 
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// id‚©‚çƒƒjƒ…[keyæ“¾
+				// idã‹ã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼keyå–å¾—
 				var wId = this.id
 				if ( !wId ) return null;
 
 				wId = wId.replace( self.getBoxId() + '_menu_', '' );
 				wId = wId.replace( '_link', '' );
 
-				// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+				// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 				self.eventClear();
 
-				// ƒƒjƒ…[‘I‘ğˆ—Às
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠæ™‚å‡¦ç†å®Ÿè¡Œ
 				var wRetVal = self.execMainMenu( pEvent, wId );
 
 				return wRetVal;
@@ -264,10 +264,10 @@ var clsContentsBox = function( pArgument ) {
 		};
 
 		// ----------------------------
-		// €–ÚˆÚ“®
+		// é …ç›®ç§»å‹•
 		// ----------------------------
 
-		// ˆÚ“®’†ƒ}ƒEƒX’Ç]ƒCƒxƒ“ƒg
+		// ç§»å‹•ä¸­ãƒã‚¦ã‚¹è¿½å¾“ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventItemMove = function( pEvent ) {
 			try {
 				if ( !pEvent ) return true;
@@ -278,11 +278,11 @@ var clsContentsBox = function( pArgument ) {
 				
 				var wMovePos = { left: 0, top: 0 };
 
-				// e‚ÌˆÊ’u•â³
+				// è¦ªã®ä½ç½®è£œæ­£
 				wMovePos.left += self._ContentsMoveInf.pos.left;
 				wMovePos.top  += self._ContentsMoveInf.pos.top;
 
-				// ƒhƒ‰ƒbƒO‚ÅˆÚ“®‚Ìê‡
+				// ãƒ‰ãƒ©ãƒƒã‚°ã§ç§»å‹•ã®å ´åˆ
 				if ( self._ContentsMoveInf.drag ) {
 					wMovePos.left += self._ContentsMoveInf.drag.left;
 					wMovePos.top  += self._ContentsMoveInf.drag.top;
@@ -296,7 +296,7 @@ var clsContentsBox = function( pArgument ) {
 				wPoint.y -= wMovePos.top;
 				if ( wPoint.y < 0 ) wPoint.y = 0;
 
-				// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+				// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 				var wMainScroll = self.getScroll( self._ContentsEleMain );
 				wPoint.x += wMainScroll.x;
 				wPoint.y += wMainScroll.y;
@@ -305,7 +305,7 @@ var clsContentsBox = function( pArgument ) {
 				wEle.style.top	= wPoint.y  + "px";
 
 			} catch(e) {
-				// ‹­§I—¹
+				// å¼·åˆ¶çµ‚äº†
 				self.execFunction( self.moveItemCancel );
 
 				self.catchErrorDsp(e);
@@ -314,13 +314,13 @@ var clsContentsBox = function( pArgument ) {
 			return false;
 		};
 
-		// ˆÚ“®Šm’èƒCƒxƒ“ƒg
+		// ç§»å‹•ç¢ºå®šã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventItemMoveEnd = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// ¶ƒNƒŠƒbƒN‚Ì‚İ—LŒø
+				// å·¦ã‚¯ãƒªãƒƒã‚¯ã®ã¿æœ‰åŠ¹
 				var wClick = self.getEventClick( pEvent );
 				if ( !wClick.left ) return false;
 
@@ -328,27 +328,27 @@ var clsContentsBox = function( pArgument ) {
 				var wMoveKind = self._ContentsMoveInf.kind;
 				var wMoveItem = self._ContentsMoveInf.item;
 
-				// ˆÚ“®ˆ—
+				// ç§»å‹•å‡¦ç†
 				if ( wMoveItem ) {
-					// ˆÚ“®Šm’è
+					// ç§»å‹•ç¢ºå®š
 					wMoveExec = self.moveItemConfirm( pEvent, wMoveKind, wMoveItem );
 					if ( !wMoveExec ) return false;
 
 				}
 
-				// ˆÚ“®I—¹
+				// ç§»å‹•çµ‚äº†
 				self.moveItemCancel();
 
-				// ˆÚ“®Às‚ÍXV‚ğ’Ê’m
+				// ç§»å‹•å®Ÿè¡Œæ™‚ã¯æ›´æ–°ã‚’é€šçŸ¥
 				if ( wMoveExec ) {
-					// €–Ú•ÏX’Ê’miˆÚ“®Šm’èj
+					// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆç§»å‹•ç¢ºå®šï¼‰
 					pEvent.kind = wMoveKind;
 					self.execLinkCallback( pEvent, wMoveItem );
 
 				}
 
 			} catch(e) {
-				// ‹­§I—¹
+				// å¼·åˆ¶çµ‚äº†
 				self.execFunction( self.moveItemCancel );
 
 				self.catchErrorDsp(e);
@@ -358,10 +358,10 @@ var clsContentsBox = function( pArgument ) {
 		};
 
 		// ----------------------------
-		// €–ÚƒTƒCƒY•ÏX
+		// é …ç›®ã‚µã‚¤ã‚ºå¤‰æ›´
 		// ----------------------------
 
-		// ƒŠƒTƒCƒY’†ƒ}ƒEƒX’Ç]ƒCƒxƒ“ƒg
+		// ãƒªã‚µã‚¤ã‚ºä¸­ãƒã‚¦ã‚¹è¿½å¾“ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventItemResize = function( pEvent ) {
 			try {
 				if ( !pEvent ) return true;
@@ -380,7 +380,7 @@ var clsContentsBox = function( pArgument ) {
 				wEle.style.height = wHeight + "px";
 
 			} catch(e) {
-				// ‹­§I—¹
+				// å¼·åˆ¶çµ‚äº†
 				self.execFunction( self.cancelResizeItem );
 
 				self.catchErrorDsp(e);
@@ -388,24 +388,24 @@ var clsContentsBox = function( pArgument ) {
 			return false;
 		};
 
-		// ƒŠƒTƒCƒYŠm’èƒCƒxƒ“ƒg
+		// ãƒªã‚µã‚¤ã‚ºç¢ºå®šã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventItemResizeEnd = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// •ÏXŒã”ÍˆÍƒ`ƒFƒbƒN
+				// å¤‰æ›´å¾Œç¯„å›²ãƒã‚§ãƒƒã‚¯
 				if ( !self.chkItemOverlapToPoint(self._ContentsResizeInf.item) ) {
 					self.alertMouseCmt( 'overlap' );
 					return false;
 				
 				}
 
-				// ƒŠƒTƒCƒYI—¹
+				// ãƒªã‚µã‚¤ã‚ºçµ‚äº†
 				self.cancelResizeItem();
 
 			} catch(e) {
-				// ‹­§I—¹
+				// å¼·åˆ¶çµ‚äº†
 				self.execFunction( self.cancelResizeItem );
 				self.catchErrorDsp(e);
 			}
@@ -414,22 +414,22 @@ var clsContentsBox = function( pArgument ) {
 
 
 		// ----------------------------
-		// €–ÚXV
+		// é …ç›®æ›´æ–°
 		// ----------------------------
 
-		// XV€–ÚŠm’èƒCƒxƒ“ƒg
+		// æ›´æ–°é …ç›®ç¢ºå®šã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventItemUpdSelect = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
 				var wUpdItem = null;
 
-				// €–ÚXV
+				// é …ç›®æ›´æ–°
 				var wParam = self._ContentsUpdInf.param;
 				if ( wParam ) {
-					// ƒNƒŠƒbƒNˆÊ’u€–Úƒ`ƒFƒbƒN
-					// ¦ ƒRƒƒ“ƒgAŠÖ˜A•t‚¯’†Œp“_AƒtƒŠ[ƒ‰ƒCƒ“‚Í‘I‘ğ•s‰Â
+					// ã‚¯ãƒªãƒƒã‚¯ä½ç½®é …ç›®ãƒã‚§ãƒƒã‚¯
+					// â€» ã‚³ãƒ¡ãƒ³ãƒˆã€é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹ã€ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ã¯é¸æŠä¸å¯
 					var wSelectTarget = {
 							  comment	: false
 							, relation	: false
@@ -438,35 +438,35 @@ var clsContentsBox = function( pArgument ) {
 					wUpdItem = self.chkItemOverlapToClick( pEvent, wSelectTarget );
 					if ( !wUpdItem ) return false;
 
-					// ‘I‘ğí•Êƒ`ƒFƒbƒN
+					// é¸æŠç¨®åˆ¥ãƒã‚§ãƒƒã‚¯
 					var wUpdKind = wUpdItem.getBoxKind();
 					if ( self._ContentsUpdInf.kind != wUpdKind ) return false;
 
-					// ã‘‚«Šm”F
-					var wChkMsg = '‘I‘ğ‚µ‚½€–Ú‚Ì“à—e‚ğXV‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H';
+					// ä¸Šæ›¸ãç¢ºèª
+					var wChkMsg = 'é¸æŠã—ãŸé …ç›®ã®å†…å®¹ã‚’æ›´æ–°ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ';
 					if ( 'confirm' in wParam ) wChkMsg = wParam.confirm;
 					if ( !self.dspConfirm(wChkMsg) ) return false;
 
-					// î•ñ‚ğã‘‚«
+					// æƒ…å ±ã‚’ä¸Šæ›¸ã
 					wUpdItem.updStatusValue( wParam );
 				}
 
-				// ˆÚ“®I—¹
+				// ç§»å‹•çµ‚äº†
 				self.updItemCancel();
 
-				// €–ÚXV
+				// é …ç›®æ›´æ–°æ™‚
 				if ( wUpdItem ) {
-					// €–Ú’Ç‰Á‚ğ’Ê’m
+					// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 					self.execFunction( self.execItemAddFunc, wUpdItem );
 
-					// €–Ú•ÏX’Ê’m
+					// é …ç›®å¤‰æ›´é€šçŸ¥
 					pEvent.kind = self._ContentsUpdInf.kind;
 					self.execLinkCallback( pEvent, wUpdItem );
 				
 				}
 
 			} catch(e) {
-				// ‹­§I—¹
+				// å¼·åˆ¶çµ‚äº†
 				self.execFunction( self.updItemCancel );
 
 				self.catchErrorDsp(e);
@@ -477,10 +477,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 		// ----------------------------
-		// ƒtƒŠ[ƒ‰ƒCƒ“’Ç‰Á
+		// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¿½åŠ 
 		// ----------------------------
 
-		// ƒtƒŠ[ƒ‰ƒCƒ“’Ç‰Á’†ƒ}ƒEƒX’Ç]ƒCƒxƒ“ƒg
+		// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¿½åŠ ä¸­ãƒã‚¦ã‚¹è¿½å¾“ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventFreeLineMove = function( pEvent ) {
 			try {
 				if ( !self._ContentsLineInf.item ) return true;
@@ -490,7 +490,7 @@ var clsContentsBox = function( pArgument ) {
 				
 				var wMovePos = { left: 0, top: 0 };
 
-				// e‚ÌˆÊ’u•â³
+				// è¦ªã®ä½ç½®è£œæ­£
 				wMovePos.left += self._ContentsLineInf.pos.left;
 				wMovePos.top  += self._ContentsLineInf.pos.top;
 
@@ -502,7 +502,7 @@ var clsContentsBox = function( pArgument ) {
 				wPoint.y -= wMovePos.top;
 				if ( wPoint.y < 0 ) wPoint.y = 0;
 
-				// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+				// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 				var wMainScroll = self.getScroll( self._ContentsEleMain );
 				wPoint.x += wMainScroll.x;
 				wPoint.y += wMainScroll.y;
@@ -514,7 +514,7 @@ var clsContentsBox = function( pArgument ) {
 				wEle.style.top	= wPoint.y  + "px";
 
 			} catch(e) {
-				// ‹­§I—¹
+				// å¼·åˆ¶çµ‚äº†
 				self.execFunction( self.freeLineCancel );
 
 				self.catchErrorDsp(e);
@@ -523,24 +523,24 @@ var clsContentsBox = function( pArgument ) {
 			return false;
 		};
 
-		// ƒtƒŠ[ƒ‰ƒCƒ“Šm’èƒCƒxƒ“ƒg
+		// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ç¢ºå®šã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventFreeLineSet = function( pEvent ) {
 			try {
 				if ( !self._ContentsLineInf.item ) return false;
 
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				//self.cancelEvent( pEvent, true );
 
-				// ¶ƒNƒŠƒbƒNˆÈŠO‚ÍI—¹
+				// å·¦ã‚¯ãƒªãƒƒã‚¯ä»¥å¤–ã¯çµ‚äº†
 				var wClick = self.getEventClick( pEvent );
 				if ( !wClick.left ) return false;
 
-				// ˆÊ’uŠm’è
+				// ä½ç½®ç¢ºå®š
 				var wExec = self.freeLineConfirm( pEvent, self._ContentsLineInf.item );
 				if ( !wExec ) return false;
 
 			} catch(e) {
-				// ‹­§I—¹
+				// å¼·åˆ¶çµ‚äº†
 				self.execFunction( self.freeLineCancel );
 
 				self.catchErrorDsp(e);
@@ -551,30 +551,30 @@ var clsContentsBox = function( pArgument ) {
 
 
 		// ----------------------------
-		// ˆÊ’u’²®ŠÖ˜A
+		// ä½ç½®èª¿æ•´é–¢é€£
 		// ----------------------------
 
-		// ˆÊ’u’²®‘ÎÛ‘I‘ğƒCƒxƒ“ƒg
+		// ä½ç½®èª¿æ•´å¯¾è±¡é¸æŠã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventPositionConfirm = function( pEvent ) {
 			var wRelExec = false;
 
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// ‘ÎÛ€–Úƒ`ƒFƒbƒN
+				// å¯¾è±¡é …ç›®ãƒã‚§ãƒƒã‚¯
 				var wTargetItm = self._ContentsPosition.item;
 				if ( !wTargetItm ) return false;
 
-				// ƒNƒŠƒbƒNˆÊ’u‚Ì€–Úƒ`ƒFƒbƒN
+				// ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã®é …ç›®ãƒã‚§ãƒƒã‚¯
 				var wClickItem = self.chkItemOverlapToClick( pEvent );
 				if ( !wClickItem ) return false;
 
-				// ˆÊ’u’²®Šm’è
+				// ä½ç½®èª¿æ•´ç¢ºå®š
 				var wConfirm = self.positionItemConfirm( wTargetItm, wClickItem );
 				if ( !wConfirm ) return false;
 
-				// €–Ú•ÏX’Ê’m
+				// é …ç›®å¤‰æ›´é€šçŸ¥
 				pEvent.kind = 'move';
 				self.execLinkCallback( pEvent, wTargetItm );
 
@@ -582,20 +582,20 @@ var clsContentsBox = function( pArgument ) {
 				self.catchErrorDsp(e);
 			}
 			
-			// ˆÊ’u’²®I—¹
+			// ä½ç½®èª¿æ•´çµ‚äº†
 			self.execFunction( self.positionItemCancel );
 
 			return false;
 		};
 
 		// ----------------------------
-		// €–Ú‘€ìiƒƒjƒ…[ˆ—j
+		// é …ç›®æ“ä½œï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†ï¼‰
 		// ----------------------------
 
-		// l•¨‘€ìi•ÏXj‚ÉCall‚³‚ê‚é
+		// äººç‰©æ“ä½œï¼ˆå¤‰æ›´ï¼‰æ™‚ã«Callã•ã‚Œã‚‹
 		this.eventItemPersonChange = function( pEvent, pArgument ) {
 			try {
-				// €–Ú‘€ìˆ—
+				// é …ç›®æ“ä½œæ™‚å‡¦ç†
 				self.execItemControl( pArgument, self._ContentsItems.person );
 
 			} catch(e) {
@@ -604,10 +604,10 @@ var clsContentsBox = function( pArgument ) {
 			return true;
 		};
 
-		// ƒOƒ‹[ƒv‘€ìi•ÏXj‚ÉCall‚³‚ê‚é
+		// ã‚°ãƒ«ãƒ¼ãƒ—æ“ä½œï¼ˆå¤‰æ›´ï¼‰æ™‚ã«Callã•ã‚Œã‚‹
 		this.eventItemGroupChange = function( pEvent, pArgument ) {
 			try {
-				// €–Ú‘€ìˆ—
+				// é …ç›®æ“ä½œæ™‚å‡¦ç†
 				self.execItemControl( pArgument, self._ContentsItems.group );
 
 			} catch(e) {
@@ -616,10 +616,10 @@ var clsContentsBox = function( pArgument ) {
 			return true;
 		};
 
-		// ƒRƒƒ“ƒg‘€ìi•ÏXj‚ÉCall‚³‚ê‚é
+		// ã‚³ãƒ¡ãƒ³ãƒˆæ“ä½œï¼ˆå¤‰æ›´ï¼‰æ™‚ã«Callã•ã‚Œã‚‹
 		this.eventItemCommentChange = function( pEvent, pArgument ) {
 			try {
-				// €–Ú‘€ìˆ—
+				// é …ç›®æ“ä½œæ™‚å‡¦ç†
 				self.execItemControl( pArgument, self._ContentsItems.comment );
 
 			} catch(e) {
@@ -628,10 +628,10 @@ var clsContentsBox = function( pArgument ) {
 			return true;
 		};
 
-		// ’†Œp“_‘€ìi•ÏXj‚ÉCall‚³‚ê‚é
+		// ä¸­ç¶™ç‚¹æ“ä½œï¼ˆå¤‰æ›´ï¼‰æ™‚ã«Callã•ã‚Œã‚‹
 		this.eventItemRelationChange = function( pEvent, pArgument ) {
 			try {
-				// €–Ú‘€ìˆ—
+				// é …ç›®æ“ä½œæ™‚å‡¦ç†
 				self.execItemControl( pArgument, self._ContentsItems.relation );
 
 			} catch(e) {
@@ -640,10 +640,10 @@ var clsContentsBox = function( pArgument ) {
 			return true;
 		};
 
-		// ƒtƒŠ[ƒ‰ƒCƒ“i•ÏXj‚ÉCall‚³‚ê‚é
+		// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ï¼ˆå¤‰æ›´ï¼‰æ™‚ã«Callã•ã‚Œã‚‹
 		this.eventItemFreeLineChange = function( pEvent, pArgument ) {
 			try {
-				// €–Ú‘€ìˆ—
+				// é …ç›®æ“ä½œæ™‚å‡¦ç†
 				self.execItemControl( pArgument, self._ContentsItems.freeline );
 
 			} catch(e) {
@@ -654,13 +654,13 @@ var clsContentsBox = function( pArgument ) {
 
 
 		// ----------------------------
-		// ƒRƒƒ“ƒg
+		// ã‚³ãƒ¡ãƒ³ãƒˆ
 		// ----------------------------
 
-		// ƒRƒƒ“ƒg’Ç‰Ái“à—eİ’èŒãj‚ÉCall‚³‚ê‚é
+		// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ æ™‚ï¼ˆå†…å®¹è¨­å®šå¾Œï¼‰ã«Callã•ã‚Œã‚‹
 		this.eventItemCommentAdd = function( pEvent, pParam ) {
 			try {
-				// ƒRƒƒ“ƒg’Ç‰Á
+				// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ 
 				self.execAddItemComment( pEvent, pParam );
 
 				return true;
@@ -673,22 +673,22 @@ var clsContentsBox = function( pArgument ) {
 
 
 		// ----------------------------
-		// F‘I‘ğ
+		// è‰²é¸æŠ
 		// ----------------------------
 
-		// ƒJƒ‰[ƒpƒŒƒbƒg‘I‘ğƒCƒxƒ“ƒg
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆé¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventColorSelect = function( pEvent, pParam ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pParam ) return false;
 
 				if ( pParam.kind !== 'select' ) return false;
 
-				// F‘I‘ğ
+				// è‰²é¸æŠæ™‚
 				var wColor = pParam.color;
 
-				// ”wŒiF•ÏX
+				// èƒŒæ™¯è‰²å¤‰æ›´
 				self.setStyle( self._ContentsEleMain, { 'background-color' : wColor } );
 
 			} catch(e) {
@@ -699,19 +699,19 @@ var clsContentsBox = function( pArgument ) {
 
 
 		// ----------------------------
-		// ƒtƒ@ƒCƒ‹“Ç
+		// ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼
 		// ----------------------------
 
-		// “Çƒtƒ@ƒCƒ‹‘I‘ğƒCƒxƒ“ƒg
+		// èª­è¾¼ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventLoadFile = function( pEvent, pParam ) {
 			try {
-				// ƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !pEvent ) return false;
 				if ( !pParam ) return false;
 
 				if ( pParam.kind !== 'file' ) return false;
 
-				// ƒf[ƒ^“Çˆ—
+				// ãƒ‡ãƒ¼ã‚¿èª­è¾¼å‡¦ç†
 				self.execLoadData( pParam.fileData );
 
 			} catch(e) {
@@ -722,19 +722,19 @@ var clsContentsBox = function( pArgument ) {
 
 
 		// ----------------------------
-		// ŠÖŒWŠÖ˜A
+		// é–¢ä¿‚é–¢é€£
 		// ----------------------------
 
-		// ŠÖ˜A‘ÎÛ‘I‘ğƒCƒxƒ“ƒg
+		// é–¢é€£å¯¾è±¡é¸æŠã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventRelationConfirm = function( pEvent ) {
 			var wRelExec = false;
 
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// ƒNƒŠƒbƒNˆÊ’u‚Ì€–Úƒ`ƒFƒbƒN
-				// ¦ ƒRƒƒ“ƒgAƒtƒŠ[ƒ‰ƒCƒ“‚ÍŠÖ˜A•t‚¯•s‰Â
+				// ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã®é …ç›®ãƒã‚§ãƒƒã‚¯
+				// â€» ã‚³ãƒ¡ãƒ³ãƒˆã€ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ã¯é–¢é€£ä»˜ã‘ä¸å¯
 				var wCheckParam = {
 					  comment	: false
 					, freeline	: false
@@ -745,62 +745,62 @@ var clsContentsBox = function( pArgument ) {
 				var wClickKd = wClickItem.getBoxKind();
 				var wClickId = wClickItem.getBoxId();
 
-				// ‘ÎÛ€–Ú
+				// å¯¾è±¡é …ç›®
 				var wTargetItm = self._ContentsRelation.item;
 				if ( !wTargetItm ) return false;
 
 				var wTargetKd = wTargetItm.getBoxKind();
 				var wTargetId = wTargetItm.getBoxId();
 
-				// ©€–Ú‚Íˆ—‚È‚µ
+				// è‡ªé …ç›®ã¯å‡¦ç†ãªã—
 				if ( wTargetId == wClickId ) return false;
 
-				// ŠÖ˜Aó‹µæ“¾
+				// é–¢é€£çŠ¶æ³å–å¾—
 				var wRelationFlg = wTargetItm.chkRelationItem( wClickId );
 
-				// íœ
+				// å‰Šé™¤æ™‚
 				if ( self._ContentsRelation.kind == 'unrelation' ) {
-					// ŠÖ˜A•t‚¢‚Ä‚¢‚È‚¯‚ê‚Îˆ—‚È‚µ
+					// é–¢é€£ä»˜ã„ã¦ã„ãªã‘ã‚Œã°å‡¦ç†ãªã—
 					if ( !wRelationFlg ) return false;
 
-				// •ÏX
+				// å¤‰æ›´æ™‚
 				} else if ( self._ContentsRelation.kind == 'relationChg' ) {
-					// ŠÖ˜A•t‚¢‚Ä‚¢‚È‚¯‚ê‚Îˆ—‚È‚µ
+					// é–¢é€£ä»˜ã„ã¦ã„ãªã‘ã‚Œã°å‡¦ç†ãªã—
 					if ( !wRelationFlg ) return false;
 
-				// ’Ç‰Á
+				// è¿½åŠ æ™‚
 				} else {
-					// ŠÖ˜A•t‚¯Ï‚Íˆ—‚È‚µ
+					// é–¢é€£ä»˜ã‘æ¸ˆã¯å‡¦ç†ãªã—
 					if ( wRelationFlg ) return false;
 
-					// ’†Œp“_‚Ìê‡
+					// ä¸­ç¶™ç‚¹ã®å ´åˆ
 					if ( self.isItemRelation(wTargetKd) ) {
-						// ©g‚ÌŠÖ˜AŒ³Eæ€–Ú‚Í‘ÎÛŠO
+						// è‡ªèº«ã®é–¢é€£å…ƒãƒ»å…ˆé …ç›®ã¯å¯¾è±¡å¤–
 						if ( wTargetItm.chkMasterKey(wClickId) ) return false;
 					}
 
-					// ƒNƒŠƒbƒN€–Ú‚ª’†Œp“_
+					// ã‚¯ãƒªãƒƒã‚¯é …ç›®ãŒä¸­ç¶™ç‚¹
 					if ( self.isItemRelation(wClickKd) ) {
-						// ©g‚Ì’†Œp“_‚Í‘ÎÛŠO
+						// è‡ªèº«ã®ä¸­ç¶™ç‚¹ã¯å¯¾è±¡å¤–
 						if ( wTargetItm.chkRelationItemRelay(wClickId) ) return false;
 					}
 
-					// €–ÚƒNƒŠƒbƒN
+					// é …ç›®ã‚¯ãƒªãƒƒã‚¯æ™‚
 					if ( self.isItemPerson(wClickKd) ) {
-						// ©g‚ªƒOƒ‹[ƒv
+						// è‡ªèº«ãŒã‚°ãƒ«ãƒ¼ãƒ—
 						if ( self.isItemGroup(wTargetKd) ) {
-							// ©g‚Ìq‚Ö‚ÍŠÖŒW•s‰Â
+							// è‡ªèº«ã®å­ã¸ã¯é–¢ä¿‚ä¸å¯
 							if ( wClickItem.getParentId() == wTargetId ) {
 								self.alertMouseCmt( 'relation-item' );
 								return false;
 							}
 						}
 
-					// ƒOƒ‹[ƒvƒNƒŠƒbƒN
+					// ã‚°ãƒ«ãƒ¼ãƒ—ã‚¯ãƒªãƒƒã‚¯
 					} else if ( self.isItemGroup(wClickKd) ) {
-						// ©g‚ª€–Ú
+						// è‡ªèº«ãŒé …ç›®
 						if ( self.isItemPerson(wTargetKd) ) {
-							// ©g‚Ìe‚Ö‚ÍŠÖŒW•s‰Â
+							// è‡ªèº«ã®è¦ªã¸ã¯é–¢ä¿‚ä¸å¯
 							if ( wTargetItm.getParentId() == wClickId ) {
 								self.alertMouseCmt( 'relation-group' );
 								return false;
@@ -811,20 +811,20 @@ var clsContentsBox = function( pArgument ) {
 				
 				}
 
-				// íœ
+				// å‰Šé™¤æ™‚
 				if ( self._ContentsRelation.kind == 'unrelation' ) {
-					// ŠÖŒW‰ğœ
+					// é–¢ä¿‚è§£é™¤
 					self.liftRelation( wTargetItm, wClickItem );
 
-					// ŠÖŒWXVÀs
+					// é–¢ä¿‚æ›´æ–°å®Ÿè¡Œ
 					wRelExec = true;
 
-				// ’Ç‰Á^•ÏX
+				// è¿½åŠ ï¼å¤‰æ›´æ™‚
 				} else {
-					// ŠÖŒW•ÏXƒƒjƒ…[•\¦
+					// é–¢ä¿‚å¤‰æ›´ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 					wTargetItm.setRelationInf( pEvent, wClickId );
 
-					// ¦•ÏXŒ‹‰Ê”½‰f‚ÍŠe€–Ú‚©‚ç‚Ì•ÏX’Ê’mƒCƒxƒ“ƒg‚ÅÀ{‚³‚ê‚é
+					// â€»å¤‰æ›´çµæœåæ˜ ã¯å„é …ç›®ã‹ã‚‰ã®å¤‰æ›´é€šçŸ¥ã‚¤ãƒ™ãƒ³ãƒˆã§å®Ÿæ–½ã•ã‚Œã‚‹
 
 				}
 
@@ -832,13 +832,13 @@ var clsContentsBox = function( pArgument ) {
 				self.catchErrorDsp(e);
 			}
 			
-			// ŠÖŒW’Ç‰ÁI—¹
+			// é–¢ä¿‚è¿½åŠ çµ‚äº†
 			self.execFunction( self.addRelationCancel );
 
-			// ŠÖŒWXV‚ÍXV‚ğ’Ê’m
+			// é–¢ä¿‚æ›´æ–°æ™‚ã¯æ›´æ–°ã‚’é€šçŸ¥
 			if ( wRelExec ) {
 				try {
-					// €–Ú•ÏX’Ê’miŠÖŒWXVj
+					// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆé–¢ä¿‚æ›´æ–°ï¼‰
 					self.execLinkCallback( { kind: 'relation', event: pEvent }, wTargetItm );
 				} catch(e) {
 					self.catchErrorDsp(e);
@@ -850,13 +850,13 @@ var clsContentsBox = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._BasePrototype = clsBaseBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsBaseBox.call( this, pArgument );
 
 
@@ -865,19 +865,19 @@ var clsContentsBox = function( pArgument ) {
 	}
 };
 
-// ƒƒCƒ“ƒpƒlƒ‹ prototype
+// ãƒ¡ã‚¤ãƒ³ãƒ‘ãƒãƒ« prototype
 (function(){
-	// clsBaseBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsBaseBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsContentsBox, clsBaseBox );
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBİ’è^æ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®šï¼å–å¾—
 	// **************************************************************
 
-	// €–Úæ“¾
+	// é …ç›®å–å¾—
 	clsContentsBox.prototype.getBelongItems = function( ) {
 		try {
-			// Š‘®‚·‚é€–ÚƒIƒuƒWƒFƒNƒgŒQi‚Ö‚ÌQÆj‚ğ•Ô‚·
+			// æ‰€å±ã™ã‚‹é …ç›®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç¾¤ï¼ˆã¸ã®å‚ç…§ï¼‰ã‚’è¿”ã™
 			return this._ContentsItems.person;
 
 		} catch(e) {
@@ -885,10 +885,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒOƒ‹[ƒvæ“¾
+	// ã‚°ãƒ«ãƒ¼ãƒ—å–å¾—
 	clsContentsBox.prototype.getBelongGroups = function( ) {
 		try {
-			// Š‘®‚·‚éƒOƒ‹[ƒvƒIƒuƒWƒFƒNƒgŒQi‚Ö‚ÌQÆj‚ğ•Ô‚·
+			// æ‰€å±ã™ã‚‹ã‚°ãƒ«ãƒ¼ãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç¾¤ï¼ˆã¸ã®å‚ç…§ï¼‰ã‚’è¿”ã™
 			return this._ContentsItems.group;
 
 		} catch(e) {
@@ -896,10 +896,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒƒ“ƒgæ“¾
+	// ã‚³ãƒ¡ãƒ³ãƒˆå–å¾—
 	clsContentsBox.prototype.getBelongComment = function( ) {
 		try {
-			// Š‘®‚·‚éƒRƒƒ“ƒgƒIƒuƒWƒFƒNƒgŒQi‚Ö‚ÌQÆj‚ğ•Ô‚·
+			// æ‰€å±ã™ã‚‹ã‚³ãƒ¡ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç¾¤ï¼ˆã¸ã®å‚ç…§ï¼‰ã‚’è¿”ã™
 			return this._ContentsItems.group;
 
 		} catch(e) {
@@ -907,10 +907,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A•t‚¯’†Œp“_æ“¾
+	// é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹å–å¾—
 	clsContentsBox.prototype.getBelongRelation = function( ) {
 		try {
-			// Š‘®‚·‚éŠÖ˜A•t‚¯’†Œp“_ƒIƒuƒWƒFƒNƒgŒQi‚Ö‚ÌQÆj‚ğ•Ô‚·
+			// æ‰€å±ã™ã‚‹é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç¾¤ï¼ˆã¸ã®å‚ç…§ï¼‰ã‚’è¿”ã™
 			return this._ContentsItems.relation;
 
 		} catch(e) {
@@ -918,10 +918,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“æ“¾
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³å–å¾—
 	clsContentsBox.prototype.getBelongFreeLine = function( ) {
 		try {
-			// Š‘®‚·‚éŠÖ˜A•t‚¯’†Œp“_ƒIƒuƒWƒFƒNƒgŒQi‚Ö‚ÌQÆj‚ğ•Ô‚·
+			// æ‰€å±ã™ã‚‹é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç¾¤ï¼ˆã¸ã®å‚ç…§ï¼‰ã‚’è¿”ã™
 			return this._ContentsItems.freeline;
 
 		} catch(e) {
@@ -929,10 +929,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‘S‚Äæ“¾
+	// é …ç›®å…¨ã¦å–å¾—
 	clsContentsBox.prototype.getBelongContents = function( ) {
 		try {
-			// Š‘®‚·‚éƒIƒuƒWƒFƒNƒgŒQi‚Ö‚ÌQÆj‚ğ•Ô‚·
+			// æ‰€å±ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç¾¤ï¼ˆã¸ã®å‚ç…§ï¼‰ã‚’è¿”ã™
 			return this._ContentsItems;
 
 		} catch(e) {
@@ -940,12 +940,12 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‘S‚Äæ“¾
+	// é …ç›®å…¨ã¦å–å¾—
 	clsContentsBox.prototype.getContentsItem = function( pItemId, pItemKd ) {
 		try {
 			var wRetItem = null;
 
-			// í•Êw’è
+			// ç¨®åˆ¥æŒ‡å®šæ™‚
 			if ( typeof pItemKd !== 'undefined' ) {
 				if ( this.isItemPerson(pItemKd) ) {
 					wRetItem = this._ContentsItems.person[pItemKd];
@@ -994,10 +994,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Úƒ`ƒFƒbƒN
+	// é …ç›®ãƒã‚§ãƒƒã‚¯
 	// **************************************************************
 
-	// ˆÚ“®æ‚Éd‚È‚é€–Ú‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ç§»å‹•å…ˆã«é‡ãªã‚‹é …ç›®ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsContentsBox.prototype.chkItemOverlapToPoint = function( pTarget, pParam ) {
 		try {
 			self = this;
@@ -1008,13 +1008,13 @@ var clsContentsBox = function( pArgument ) {
 			var wTgKind = pTarget.getBoxKind();
 			var wTgRect = pTarget.getBoxRect();
 
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			var wOverlap = true;
 			if ( this.isObject(pParam) ) {
-				// ”ÍˆÍd•¡‰Â”Û
+				// ç¯„å›²é‡è¤‡å¯å¦
 				if ( 'overlap' in pParam ) wOverlap = pParam.overlap;
 
-				// ˆÚ“®æw’è
+				// ç§»å‹•å…ˆæŒ‡å®š
 				if ( 'targetRect' in pParam ) wTgRect = pParam.targetRect;
 			}
 
@@ -1025,7 +1025,7 @@ var clsContentsBox = function( pArgument ) {
 				for( var key in pTgList ) {
 					if ( !pTgList.hasOwnProperty(key) ) continue;
 
-					// ”ÍˆÍd•¡ƒ`ƒFƒbƒNi©—v‘fˆÈŠOj
+					// ç¯„å›²é‡è¤‡ãƒã‚§ãƒƒã‚¯ï¼ˆè‡ªè¦ç´ ä»¥å¤–ï¼‰
 					if ( pTgList[key].getBoxId() != pId ) {
 						if ( pTgList[key].chkBoxInRect(wTgRect) ) {
 							return true;
@@ -1042,7 +1042,7 @@ var clsContentsBox = function( pArgument ) {
 				for( var key in pTgList ) {
 					if ( !pTgList.hasOwnProperty(key) ) continue;
 
-					// ”ÍˆÍd•¡ƒ`ƒFƒbƒNie—v‘fˆÈŠOj
+					// ç¯„å›²é‡è¤‡ãƒã‚§ãƒƒã‚¯ï¼ˆè¦ªè¦ç´ ä»¥å¤–ï¼‰
 					if ( pTgList[key].getParentId() != pParentId ) {
 						if ( pTgList[key].chkBoxInRect(wTgRect) ) {
 							return true;
@@ -1052,14 +1052,14 @@ var clsContentsBox = function( pArgument ) {
 				return false;
 			};
 
-			// “¯object‚Æ‚Ìd‚È‚èƒ`ƒFƒbƒN
+			// åŒobjectã¨ã®é‡ãªã‚Šãƒã‚§ãƒƒã‚¯
 			var wItemList = null;
 
-			// l•¨
+			// äººç‰©
 			if ( this.isItemPerson(wTgKind) ) {
 				wItemList = this._ContentsItems.person;
 			
-			// ƒOƒ‹[ƒv
+			// ã‚°ãƒ«ãƒ¼ãƒ—
 			} else if ( this.isItemGroup(wTgKind) ) {
 				wItemList = this._ContentsItems.group;
 
@@ -1071,16 +1071,16 @@ var clsContentsBox = function( pArgument ) {
 
 			}
 
-			// group‚Ìê‡‚Íd‚È‚è•s‰Â
+			// groupã®å ´åˆã¯é‡ãªã‚Šä¸å¯
 			if ( this.isItemGroup(wTgKind) ) {
-				// ‘¼object‚Æ‚Ìd‚È‚èƒ`ƒFƒbƒN
+				// ä»–objectã¨ã®é‡ãªã‚Šãƒã‚§ãƒƒã‚¯
 				if ( checkOverlapOther(wTgId, this._ContentsItems.person) ) {
 					return false;
 				}
 
-			// ˆÈŠO@‚©‚Â@d‚È‚è•s‰Â
+			// ä»¥å¤–ã€€ã‹ã¤ã€€é‡ãªã‚Šä¸å¯
 			} else if ( !wOverlap ) {
-				// group‚Æ‚Ìd‚È‚èƒ`ƒFƒbƒN
+				// groupã¨ã®é‡ãªã‚Šãƒã‚§ãƒƒã‚¯
 				var wParentId = pTarget.getParentId();
 				if ( checkOverlap(wParentId, this._ContentsItems.group) ) {
 					return false;
@@ -1094,7 +1094,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒNƒŠƒbƒNˆÊ’u‚É€–Ú‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã«é …ç›®ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsContentsBox.prototype.chkItemOverlapToClick = function( pEvent, pCheckKind ) {
 		try {
 			var self = this;
@@ -1112,7 +1112,7 @@ var clsContentsBox = function( pArgument ) {
 						if ( wChkItem.chkBoxInPoint(pEvtPos) ) {
 							wRetItem = wChkItem;
 
-							// Œã‚©‚ç’Ç‰Á‚µ‚½€–Ú—Dæ‚Ìˆ×break‚µ‚È‚¢
+							// å¾Œã‹ã‚‰è¿½åŠ ã—ãŸé …ç›®å„ªå…ˆã®ç‚ºbreakã—ãªã„
 						}
 					}
 				}
@@ -1120,8 +1120,8 @@ var clsContentsBox = function( pArgument ) {
 				return wRetItem;
 			};
 
-			// ƒ`ƒFƒbƒN‘ÎÛ
-			// ¦—Dæ“x‡
+			// ãƒã‚§ãƒƒã‚¯å¯¾è±¡
+			// â€»å„ªå…ˆåº¦é †
 			var wChkTarget = {
 					  person	: true
 					, relation	: true
@@ -1152,7 +1152,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒNƒŠƒbƒNˆÊ’u‚ÉƒOƒ‹[ƒv‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã«ã‚°ãƒ«ãƒ¼ãƒ—ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsContentsBox.prototype.chkGroupOverlapToClick = function( pEvent ) {
 		try {
 			var wTgList = this._ContentsItems.group;
@@ -1176,10 +1176,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// w’è”ÍˆÍ‚É‘¶İ‚·‚é’†Œp“_‚ğæ“¾
+	// æŒ‡å®šç¯„å›²ã«å­˜åœ¨ã™ã‚‹ä¸­ç¶™ç‚¹ã‚’å–å¾—
 	clsContentsBox.prototype.getRelationOverlapToRect = function( pRect ) {
 		try {
-			// ’†Œp“_‚ğ‘S‚Äƒ`ƒFƒbƒN
+			// ä¸­ç¶™ç‚¹ã‚’å…¨ã¦ãƒã‚§ãƒƒã‚¯
 			var wTgList = this._ContentsItems.relation;
 			if ( !wTgList ) return null;
 
@@ -1187,7 +1187,7 @@ var clsContentsBox = function( pArgument ) {
 			for( var wKey in wTgList ) {
 				if ( !wTgList.hasOwnProperty(wKey) ) continue;
 
-				// ”ÍˆÍ“à‚É‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
+				// ç¯„å›²å†…ã«å­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if ( wTgList[wKey].chkBoxInRect(pRect) ) {
 					wRetList.push( wTgList[wKey] );
 				}
@@ -1206,30 +1206,30 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ªƒLƒƒƒ“ƒoƒX”ÍˆÍ“à‚É”[‚Ü‚é‚©ƒ`ƒFƒbƒN
+	// é …ç›®ãŒã‚­ãƒ£ãƒ³ãƒã‚¹ç¯„å›²å†…ã«ç´ã¾ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsContentsBox.prototype.chkItemOverflowArea = function( pChkItem ) {
 		try {
-			// €–Ú‚Ì•\¦”ÍˆÍ
+			// é …ç›®ã®è¡¨ç¤ºç¯„å›²
 			var wItemRect = pChkItem.getBoxRect();
 			var wItemSize = pChkItem.getBoxSize( { overflow: true, border: true } );
 
 			wItemRect.right  = wItemRect.left + wItemSize.width;
 			wItemRect.bottom = wItemRect.top  + wItemSize.height;
 
-			// ƒƒCƒ“‰æ–Ê‚Ì”ÍˆÍ
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ç¯„å›²
 			var wMainRect = this.getRect( this._ContentsEleMain );
 
 			var wMainScroll	= this.getScroll( this._ContentsEleMain );
 			wMainRect.left -= wMainScroll.x;
 			wMainRect.top  -= wMainScroll.y;
 
-			// ƒLƒƒƒ“ƒoƒX‚Ì”ÍˆÍ
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®ç¯„å›²
 			var wCanvasStat = this._ContentsCanvas.canvasGetStatus();
 
 			wMainRect.right  = wMainRect.left + wCanvasStat.width;
 			wMainRect.bottom = wMainRect.top  + wCanvasStat.height;
 
-			// ƒƒCƒ“‰æ–Ê‚Ì”ÍˆÍ“à‚É”[‚Ü‚é‚©ƒ`ƒFƒbƒN
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ç¯„å›²å†…ã«ç´ã¾ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			return this.chkInRect( wMainRect, wItemRect, { overflow: false } );
 
 		} catch(e) {
@@ -1238,10 +1238,10 @@ var clsContentsBox = function( pArgument ) {
 	};
 
 	// **************************************************************
-	//  ƒ‰ƒCƒ“•`‰æ@ŠÖ˜A•t‚¯
+	//  ãƒ©ã‚¤ãƒ³æç”»ã€€é–¢é€£ä»˜ã‘
 	// **************************************************************
 
-	// ŠÖŒWƒ‰ƒCƒ“•`‰æ
+	// é–¢ä¿‚ãƒ©ã‚¤ãƒ³æç”»
 	clsContentsBox.prototype.drawRelationLine = function( pSrcItm, pDstItm, pRelInf, pLineParam ) {
 		try {
 			var self = this;
@@ -1250,12 +1250,12 @@ var clsContentsBox = function( pArgument ) {
 			if ( !pDstItm ) return false;
 			if ( !pRelInf ) return false;
 
-			// €–ÚˆÊ’uæ“¾
+			// é …ç›®ä½ç½®å–å¾—
 			function getItmPos( pItem ) {
 				var wItmPos  = pItem.getBoxPos();
 
 				var wParentPos = { left: 0, top: 0 };
-				// e‚ªGroup
+				// è¦ªãŒGroup
 				var wParentId = pItem.getParentId();
 				if ( wParentId in self._ContentsItems.group ) {
 					wParentPos = self._ContentsItems.group[wParentId].getParentPos();
@@ -1271,7 +1271,7 @@ var clsContentsBox = function( pArgument ) {
 			};
 
 			
-			// ƒ‰ƒCƒ“‚Ì’†‰›æ“¾
+			// ãƒ©ã‚¤ãƒ³ã®ä¸­å¤®å–å¾—
 			function getCenterPos( pLineSt, pLineEd ) {
 				var wCenterX = pLineSt.x + Math.floor( (pLineEd.x - pLineSt.x) / 2 );
 				var wCenterY = pLineSt.y + Math.floor( (pLineEd.y - pLineSt.y) / 2 );
@@ -1281,14 +1281,14 @@ var clsContentsBox = function( pArgument ) {
 				return wCenter;
 			};
 
-			// €–ÚˆÊ’uEƒTƒCƒYæ“¾
+			// é …ç›®ä½ç½®ãƒ»ã‚µã‚¤ã‚ºå–å¾—
 			var wStPos = getItmPos( pSrcItm );
 			var wEdPos = getItmPos( pDstItm );
 
 			var wStSize = pSrcItm.getBoxSize();
 			var wEdSize = pDstItm.getBoxSize();
 
-			// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 			var wMainScroll = this.getScroll( this._ContentsEleMain );
 			wStPos.left += wMainScroll.x;
 			wStPos.top  += wMainScroll.y;
@@ -1296,7 +1296,7 @@ var clsContentsBox = function( pArgument ) {
 			wEdPos.left += wMainScroll.x;
 			wEdPos.top  += wMainScroll.y;
 
-			// ’†Œp“_‚©‚Ç‚¤‚©
+			// ä¸­ç¶™ç‚¹ã‹ã©ã†ã‹
 			var wStRelay = false;
 			var wStRelayCmt = false;
 			if ( pSrcItm.isRelation() ) {
@@ -1311,36 +1311,36 @@ var clsContentsBox = function( pArgument ) {
 				wEdRelayCmt	= pDstItm.isComment();
 			}
 
-			// ƒRƒƒ“ƒg•\¦ˆÊ’u
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤ºä½ç½®
 			var wCmtPos = Object.create( wStPos );
 
-			// ƒ‰ƒCƒ“•`‰æ
+			// ãƒ©ã‚¤ãƒ³æç”»
 			if ( this._ContentsCanvas ) {
-				// •`‰æİ’èæ“¾
+				// æç”»è¨­å®šå–å¾—
 				var wLineKind = pRelInf.toLineKind();
 
-				// ƒpƒ‰ƒ[ƒ^w’è
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æŒ‡å®šæ™‚
 				if ( pLineParam ) {
-					// ƒ‰ƒCƒ“‘®«
+					// ãƒ©ã‚¤ãƒ³å±æ€§
 					if ( 'width' in pLineParam ) wLineKind.width = pLineParam.width;
 					if ( 'color' in pLineParam ) wLineKind.color = pLineParam.color;
 					if ( 'style' in pLineParam ) wLineKind.style = pLineParam.style;
 					if ( 'way'   in pLineParam ) wLineKind.way   = pLineParam.way;
 				}
 
-				// –îˆóİ’è
+				// çŸ¢å°è¨­å®š
 				var wStArrow = false;
 				var wEdArrow = false;
 
-				// ³•ûŒü
+				// æ­£æ–¹å‘
 				if ( wLineKind.way == 1 ) {
 					wEdArrow = true;
 
-				// ‹t•ûŒü
+				// é€†æ–¹å‘
 				} else if ( wLineKind.way == 2 ) {
 					wStArrow = true;
 
-				// ‘o•ûŒü
+				// åŒæ–¹å‘
 				} else if ( wLineKind.way == 3 ) {
 					wStArrow = true;
 					wEdArrow = true;
@@ -1354,19 +1354,19 @@ var clsContentsBox = function( pArgument ) {
 
 				var wLinePoint = this._ContentsCanvas.canvasGetDrawPoint( wLineParam, wLineKind );
 
-				// ƒ‰ƒCƒ“‚Ì•‚ªˆê’èˆÈ‰º‚Í•`‰æ‚µ‚È‚¢
+				// ãƒ©ã‚¤ãƒ³ã®å¹…ãŒä¸€å®šä»¥ä¸‹ã¯æç”»ã—ãªã„
 				var wWidthX = Math.abs( wLinePoint.EdPoint.x - wLinePoint.StPoint.x );
 				var wWidthY = Math.abs( wLinePoint.EdPoint.y - wLinePoint.StPoint.y );
 				if ( (wWidthX >= 1) || (wWidthY >= 1) ) {
-					// •`‰æ
+					// æç”»
 					this._ContentsCanvas.canvasDrawLine( wLinePoint.StPoint, wLinePoint.EdPoint, wLineKind );
 
-					// ƒRƒƒ“ƒgˆÊ’u•â³
+					// ã‚³ãƒ¡ãƒ³ãƒˆä½ç½®è£œæ­£
 					wCmtPos = getCenterPos( wLinePoint.StPoint, wLinePoint.EdPoint );
 				}
 			}
 
-			// ŠÖŒWƒRƒƒ“ƒg•\¦
+			// é–¢ä¿‚ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
 			pRelInf.dspRelationCmt( wCmtPos.left, wCmtPos.top );
 
 			return true;
@@ -1376,12 +1376,12 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ‘SŠÖŒWƒ‰ƒCƒ“•`‰æ
+	// å…¨é–¢ä¿‚ãƒ©ã‚¤ãƒ³æç”»
 	clsContentsBox.prototype.drawRelationLineAll = function( pItemList, pLineParam ) {
 		try {
 			if ( !pItemList ) return false;
 
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			var wSelectedItm	= null;
 			var wRelayPoint		= null;
 			var wProsessed		= null;
@@ -1392,7 +1392,7 @@ var clsContentsBox = function( pArgument ) {
 			}
 			if ( !this.isObject(wProsessed) ) wProsessed = {};
 
-			// ‘I‘ğ€–Úw’è
+			// é¸æŠé …ç›®æŒ‡å®šæ™‚
 			var wDefParam	= null;
 			if ( wSelectedItm ) {
 				wDefParam = { width: 0.2 };
@@ -1412,12 +1412,12 @@ var clsContentsBox = function( pArgument ) {
 			for( var key in pItemList ) {
 				if ( !pItemList.hasOwnProperty(key) ) continue;
 
-				// ˆ—Ï‚Íˆ—‚µ‚È‚¢
+				// å‡¦ç†æ¸ˆã¯å‡¦ç†ã—ãªã„
 				if ( key in wProsessed ) continue;
 
 				wListItm = pItemList[key];
 
-				// ‘I‘ğ€–Úw’è
+				// é¸æŠé …ç›®æŒ‡å®šæ™‚
 				if ( wListItm == wSelectedItm ) {
 					wTargetFlg = true;
 				} else {
@@ -1428,20 +1428,20 @@ var clsContentsBox = function( pArgument ) {
 				if ( !wRelationList ) continue;
 
 				for ( var wId in wRelationList ) {
-					// ˆ—Ï‚Íˆ—‚µ‚È‚¢
+					// å‡¦ç†æ¸ˆã¯å‡¦ç†ã—ãªã„
 					if ( wId in wProsessed ) continue;
 
-					// ‘ÎÛ‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç€–Úæ“¾
+					// å¯¾è±¡ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰é …ç›®å–å¾—
 					wRelItm = wRelationList[wId];
 					if ( !wRelItm ) continue;
 
 					wChildItm = this.getContentsItem( wId, wRelItm.kind );
 					if ( !wChildItm ) continue;
 
-					// ŠÖ˜A•t‚¯iqj‚ª‘ÎÛ‚©ƒ`ƒFƒbƒN
+					// é–¢é€£ä»˜ã‘ï¼ˆå­ï¼‰ãŒå¯¾è±¡ã‹ãƒã‚§ãƒƒã‚¯
 					wTargetChild = false;
 					if ( !wTargetFlg ) {
-						// ‘I‘ğ€–Ú—LŒø
+						// é¸æŠé …ç›®æœ‰åŠ¹æ™‚
 						if ( wChildItm == wSelectedItm ) wTargetChild = true;
 					}
 
@@ -1452,14 +1452,14 @@ var clsContentsBox = function( pArgument ) {
 					}
 
 					if ( typeof wRelayPoint == 'boolean' ) {
-						// ’†Œp“_‚Æ‚ÌŠÖ˜A•t‚¯‚ª‘ÎÛ
+						// ä¸­ç¶™ç‚¹ã¨ã®é–¢é€£ä»˜ã‘ãŒå¯¾è±¡
 						wChildKd = wChildItm.getBoxKind();
 						if ( wRelayPoint ) {
-							// ’†Œp“_ˆÈŠO‚Íˆ—‚È‚µ
+							// ä¸­ç¶™ç‚¹ä»¥å¤–ã¯å‡¦ç†ãªã—
 							if ( !this.isItemRelation(wChildKd) ) continue;
 
 						} else {
-							// ’†Œp“_‚Íˆ—‚È‚µ
+							// ä¸­ç¶™ç‚¹ã¯å‡¦ç†ãªã—
 							if ( this.isItemRelation(wChildKd) ) continue;
 
 						}
@@ -1475,12 +1475,12 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// w’è€–Úƒ‰ƒCƒ“•`‰æ
+	// æŒ‡å®šé …ç›®ãƒ©ã‚¤ãƒ³æç”»
 	clsContentsBox.prototype.drawItemLine = function( pTarget, pProcessedId ) {
 		try {
 			if ( !pTarget ) return false;
 
-			// ˆ—Ï€–Ú‚Íˆ—‚È‚µ
+			// å‡¦ç†æ¸ˆé …ç›®ã¯å‡¦ç†ãªã—
 			var wTargetId = pTarget.getBoxId();
 			if ( this.isObject(pProcessedId) ) {
 				if ( wTargetId in pProcessedId ) return true;
@@ -1490,10 +1490,10 @@ var clsContentsBox = function( pArgument ) {
 			
 			}
 
-			// ˆ—Ï€–ÚID•Û‘¶
+			// å‡¦ç†æ¸ˆé …ç›®IDä¿å­˜
 			pProcessedId[wTargetId] = true;
 
-			// ŠÖ˜A€–Ú‚È‚¯‚ê‚Îˆ—‚È‚µ
+			// é–¢é€£é …ç›®ãªã‘ã‚Œã°å‡¦ç†ãªã—
 			var wRelationList = pTarget.getRelationList();
 			if ( !wRelationList ) return false;
 
@@ -1501,7 +1501,7 @@ var clsContentsBox = function( pArgument ) {
 			var wChildItm;
 			var wLineKind;
 
-			// ŠÖ˜A€–Ú‚Æ‚Ìƒ‰ƒCƒ“•`‰æ
+			// é–¢é€£é …ç›®ã¨ã®ãƒ©ã‚¤ãƒ³æç”»
 			for ( var wId in wRelationList ) {
 				wRelItm = wRelationList[wId];
 				if ( !wRelItm ) continue;
@@ -1509,12 +1509,12 @@ var clsContentsBox = function( pArgument ) {
 				wChildItm = this.getContentsItem( wId, wRelItm.kind );
 				if ( !wChildItm ) continue;
 
-				// €–Ú‚Ìå‚Å–³‚¢ê‡
+				// é …ç›®ã®ä¸»ã§ç„¡ã„å ´åˆ
 				if ( !wRelItm.parent ) {
-					// ŠÖŒWƒ‰ƒCƒ“î•ñæ“¾
+					// é–¢ä¿‚ãƒ©ã‚¤ãƒ³æƒ…å ±å–å¾—
 					wLineKind = wRelItm.relationInf.toLineKind();
 
-					// –îˆó•ûŒü‹t“]
+					// çŸ¢å°æ–¹å‘é€†è»¢
 					if ( wLineKind.way == 1 ) {
 						wLineKind.way = 2;
 
@@ -1529,7 +1529,7 @@ var clsContentsBox = function( pArgument ) {
 				}
 				this.drawRelationLine( pTarget, wChildItm, wRelItm.relationInf, wLineKind );
 
-				// ¦ Ä‹A‚Å’†Œp“_‚©‚ç‚Ìƒ‰ƒCƒ“‚ğ•`‰æ
+				// â€» å†å¸°ã§ä¸­ç¶™ç‚¹ã‹ã‚‰ã®ãƒ©ã‚¤ãƒ³ã‚’æç”»
 				this.drawItemLine( wRelItm.relationInf, pProcessedId );
 			}
 
@@ -1540,10 +1540,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	//  ƒ‰ƒCƒ“•`‰æ@ƒtƒŠ[ƒ‰ƒCƒ“
+	//  ãƒ©ã‚¤ãƒ³æç”»ã€€ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³
 	// **************************************************************
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“•`‰æ
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³æç”»
 	clsContentsBox.prototype.drawFreeLine = function( pSrcItm, pDstItm, pLineParam ) {
 		try {
 			var self = this;
@@ -1553,7 +1553,7 @@ var clsContentsBox = function( pArgument ) {
 			if ( !pSrcItm ) return false;
 			if ( !pDstItm ) return false;
 
-			// €–ÚˆÊ’uæ“¾
+			// é …ç›®ä½ç½®å–å¾—
 			function getItmPos( pItem ) {
 				var wItmPos  = pItem.getBoxPos();
 
@@ -1565,14 +1565,14 @@ var clsContentsBox = function( pArgument ) {
 				return wItmPos;
 			};
 
-			// €–ÚˆÊ’uEƒTƒCƒYæ“¾
+			// é …ç›®ä½ç½®ãƒ»ã‚µã‚¤ã‚ºå–å¾—
 			var wStPos = getItmPos( pSrcItm );
 			var wEdPos = getItmPos( pDstItm );
 
 			var wStSize = pSrcItm.getBoxSize();
 			var wEdSize = pDstItm.getBoxSize();
 
-			// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 			var wMainScroll = this.getScroll( this._ContentsEleMain );
 			wStPos.left += wMainScroll.x;
 			wStPos.top  += wMainScroll.y;
@@ -1580,7 +1580,7 @@ var clsContentsBox = function( pArgument ) {
 			wEdPos.left += wMainScroll.x;
 			wEdPos.top  += wMainScroll.y;
 
-			// ’†SˆÊ’u
+			// ä¸­å¿ƒä½ç½®
 			var wStPoint = { x: wStPos.left, y: wStPos.top };
 			var wEdPoint = { x: wEdPos.left, y: wEdPos.top };
 
@@ -1590,10 +1590,10 @@ var clsContentsBox = function( pArgument ) {
 			if ( wEdSize.width  > 0 ) wEdPoint.x += Math.floor( wEdSize.width  / 2 );
 			if ( wEdSize.height > 0 ) wEdPoint.y += Math.floor( wEdSize.height / 2 );
 
-			// ƒ‰ƒCƒ“İ’èæ“¾
+			// ãƒ©ã‚¤ãƒ³è¨­å®šå–å¾—
 			var wLineKind = pSrcItm.getLineStatus();
 
-			// ƒ‰ƒCƒ“‘®«w’è
+			// ãƒ©ã‚¤ãƒ³å±æ€§æŒ‡å®šæ™‚
 			if ( this.isObject(pLineParam) ) {
 				if ( 'width' in pLineParam ) wLineKind.width = pLineParam.width;
 				if ( 'color' in pLineParam ) wLineKind.color = pLineParam.color;
@@ -1601,11 +1601,11 @@ var clsContentsBox = function( pArgument ) {
 				if ( 'way'   in pLineParam ) wLineKind.way   = pLineParam.way;
 			}
 
-			// ƒ‰ƒCƒ“‚Ì•‚ªˆê’èˆÈ‰º‚Í•`‰æ‚µ‚È‚¢
+			// ãƒ©ã‚¤ãƒ³ã®å¹…ãŒä¸€å®šä»¥ä¸‹ã¯æç”»ã—ãªã„
 			var wWidthX = Math.abs( wEdPoint.x - wStPoint.x );
 			var wWidthY = Math.abs( wEdPoint.y - wStPoint.y );
 			if ( (wWidthX >= 1) || (wWidthY >= 1) ) {
-				// •`‰æ
+				// æç”»
 				this._ContentsCanvas.canvasDrawLine( wStPoint, wEdPoint, wLineKind );
 			}
 
@@ -1618,10 +1618,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Ú‘€ì - ŠÖ˜A•t‚¯
+	// é …ç›®æ“ä½œ - é–¢é€£ä»˜ã‘
 	// **************************************************************
 
-	// ŠÖ˜A•t‚¯‰ğœ
+	// é–¢é€£ä»˜ã‘è§£é™¤
 	clsContentsBox.prototype.liftRelation = function( pSrcItm, pDstItm ) {
 		try {
 			if ( !pSrcItm ) return false;
@@ -1630,29 +1630,29 @@ var clsContentsBox = function( pArgument ) {
 			var wSrcId = pSrcItm.getBoxId();
 			var wDstId = pDstItm.getBoxId();
 
-			// ŠÖ˜A•t‚¯KEYæ“¾
+			// é–¢é€£ä»˜ã‘KEYå–å¾—
 			var wDelRel = pSrcItm.getRelationItem( wDstId );
 			if ( !wDelRel ) return false;
 
 			var wRelationKey = wDelRel.key;
 			if ( !wRelationKey ) return false;
 
-			// ŠÖ˜A•t‚¯î•ñ‰ğœ
+			// é–¢é€£ä»˜ã‘æƒ…å ±è§£é™¤
 			pSrcItm.delRelationItem( wDstId );
 			pDstItm.delRelationItem( wSrcId );
 
-			// ŠÖ˜A•t‚¯î•ñíœ
+			// é–¢é€£ä»˜ã‘æƒ…å ±å‰Šé™¤
 			var wRelationItm = this._ContentsItems.relation[wRelationKey];
 
 			if ( wRelationItm ) {
-				// ’†Œp“_‚ÌŠÖ˜A•t‚¯‰ğœ
+				// ä¸­ç¶™ç‚¹ã®é–¢é€£ä»˜ã‘è§£é™¤
 				var wRelayList = wRelationItm.getRelationList();
 				if ( wRelayList ) {
 					for( var wRelayKey in wRelayList ) {
-						// ŠÖ˜A‘ÎÛæ“¾
+						// é–¢é€£å¯¾è±¡å–å¾—
 						var wRelayItm = this.getContentsItem( wRelayList[wRelayKey].id, wRelayList[wRelayKey].kind );
 
-						// ¦Ä‹A‚ÅŠÖ˜A•t‚¯‰ğœ
+						// â€»å†å¸°ã§é–¢é€£ä»˜ã‘è§£é™¤
 						if ( wRelayItm ) {
 							this.liftRelation( wRelationItm, wRelayItm );
 
@@ -1661,13 +1661,13 @@ var clsContentsBox = function( pArgument ) {
 					
 				}
 
-				// €–Úíœ‚ğ’Ê’miíœ‚³‚ê‚é‘O‚ÉÀ{j
+				// é …ç›®å‰Šé™¤ã‚’é€šçŸ¥ï¼ˆå‰Šé™¤ã•ã‚Œã‚‹å‰ã«å®Ÿæ–½ï¼‰
 				this.execFunction( this.execItemDelFunc, wRelationItm );
 
-				// QÆíœ
+				// å‚ç…§å‰Šé™¤
 				delete this._ContentsItems.relation[wRelationKey];
 
-				// €–Úíœ
+				// é …ç›®å‰Šé™¤
 				wRelationItm.freeClass();
 			}
 			return true;
@@ -1677,10 +1677,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ‘SŠÖ˜A•t‚¯‰ğœ
+	// å…¨é–¢é€£ä»˜ã‘è§£é™¤
 	clsContentsBox.prototype.liftRelationAll = function( pDelItem ) {
 		try {
-			// ‘SŠÖŒW‚ğíœ
+			// å…¨é–¢ä¿‚ã‚’å‰Šé™¤
 			var wRelationList = pDelItem.getRelationList();
 			if ( !wRelationList ) return false;
 
@@ -1689,14 +1689,14 @@ var clsContentsBox = function( pArgument ) {
 			var wRelInf;
 			var wRelItm;
 			for ( var wId in wRelationList ) {
-				// ŠÖŒW€–Úƒ`ƒFƒbƒN
+				// é–¢ä¿‚é …ç›®ãƒã‚§ãƒƒã‚¯
 				wRelInf = wRelationList[wId];
 				if ( !wRelInf ) continue;
 
 				wRelItm = this.getContentsItem( wId, wRelInf.kind );
 				if ( !wRelItm ) continue;
 
-				// ŠÖŒWíœ
+				// é–¢ä¿‚å‰Šé™¤
 				if ( this.liftRelation(pDelItem, wRelItm) ) wRelationDel = true;
 			}
 
@@ -1707,15 +1707,15 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ‘SŠÖŒWƒ‰ƒCƒ“Ä•`‰æ
+	// å…¨é–¢ä¿‚ãƒ©ã‚¤ãƒ³å†æç”»
 	clsContentsBox.prototype.drawRelationRedo = function( pLineParam ) {
 		try {
-			// ƒLƒƒƒ“ƒoƒXƒNƒŠƒA
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚¯ãƒªã‚¢
 			if ( this._ContentsCanvas ) {
 				this._ContentsCanvas.canvasClear();
 			}
 
-			// ƒ‰ƒCƒ“ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ©ã‚¤ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			var wPriorityItm	= null;
 			var wSelectItm		= null;
 			if ( this.isObject(pLineParam) ) {
@@ -1723,12 +1723,12 @@ var clsContentsBox = function( pArgument ) {
 				wSelectItm		= pLineParam.select;
 			}
 
-			// ˆ—Ï€–ÚID
+			// å‡¦ç†æ¸ˆé …ç›®ID
 			var wProcessedId = {};
 
-			// —Dæ€–Úw’è
+			// å„ªå…ˆé …ç›®æŒ‡å®šæ™‚
 			if ( wPriorityItm ) {
-				// —Dæ€–Ú‚Ìƒ‰ƒCƒ“Ä•`‰æ
+				// å„ªå…ˆé …ç›®ã®ãƒ©ã‚¤ãƒ³å†æç”»
 				this.drawItemLine( wPriorityItm, wProcessedId );
 
 			}
@@ -1737,19 +1737,19 @@ var clsContentsBox = function( pArgument ) {
 					  selected	: wSelectItm
 					, processed	: wProcessedId
 			};
-			// ƒ‰ƒCƒ“Ä•`‰æi’†Œp“_‚Ö‚ÌŠÖ˜A•t‚¯ˆÈŠOj
+			// ãƒ©ã‚¤ãƒ³å†æç”»ï¼ˆä¸­ç¶™ç‚¹ã¸ã®é–¢é€£ä»˜ã‘ä»¥å¤–ï¼‰
 			wLineParam.relation = false;
 			this.drawRelationLineAll( this._ContentsItems.person,	wLineParam );
 			this.drawRelationLineAll( this._ContentsItems.group,	wLineParam );
 			this.drawRelationLineAll( this._ContentsItems.relation,	wLineParam );
 
-			// ƒ‰ƒCƒ“Ä•`‰æi’†Œp“_‚Ö‚ÌŠÖ˜A•t‚¯j
+			// ãƒ©ã‚¤ãƒ³å†æç”»ï¼ˆä¸­ç¶™ç‚¹ã¸ã®é–¢é€£ä»˜ã‘ï¼‰
 			wLineParam.relation = true;
 			this.drawRelationLineAll( this._ContentsItems.person,	wLineParam );
 			this.drawRelationLineAll( this._ContentsItems.group,	wLineParam );
 			this.drawRelationLineAll( this._ContentsItems.relation,	wLineParam );
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“•`‰æ
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³æç”»
 			this.drawFreeLineAll();
 
 		} catch(e) {
@@ -1757,14 +1757,14 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A•t‚¯’Ç‰Á
+	// é–¢é€£ä»˜ã‘è¿½åŠ 
 	clsContentsBox.prototype.addRelation = function( pParam, pRelItem ) {
 		try {
-			// ŠÖ˜Aî•ñ–³Œø‚È‚çˆ—‚È‚µ
+			// é–¢é€£æƒ…å ±ç„¡åŠ¹ãªã‚‰å‡¦ç†ãªã—
 			var wNewRel = pParam.relationInf;
 			if ( !this.isObject(wNewRel) ) return false;
 
-			// ’†Œp“_¶¬
+			// ä¸­ç¶™ç‚¹ç”Ÿæˆ
 			var wAddRelation = this.addItem( null, 'item-relation' );
 			if ( !wAddRelation ) return false;
 
@@ -1773,18 +1773,18 @@ var clsContentsBox = function( pArgument ) {
 			var wDstId = pParam.relationId;
 			if ( !wDstId ) return false;
 
-			// ŠÖ˜Aî•ñæ“¾
+			// é–¢é€£æƒ…å ±å–å¾—
 			var wItemRel = this.getContentsItem( wDstId );
 			if ( !wItemRel ) return false;
 
-			// ŠÖŒW’Ç‰Á
+			// é–¢ä¿‚è¿½åŠ 
 			this.setRelation( pRelItem, wItemRel, wAddRelation );
 
-			// ‘SŠÖŒWƒ‰ƒCƒ“Ä•`‰æ
+			// å…¨é–¢ä¿‚ãƒ©ã‚¤ãƒ³å†æç”»
 			this.drawRelationRedo();
 
 			try {
-				// €–Ú•ÏX’Ê’miŠÖŒWXVj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆé–¢ä¿‚æ›´æ–°ï¼‰
 				pParam.kind = 'relation';
 				this.execLinkCallback( pParam, pRelItem );
 
@@ -1799,34 +1799,34 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A•t‚¯•ÏX
+	// é–¢é€£ä»˜ã‘å¤‰æ›´
 	clsContentsBox.prototype.updRelation = function( pParam, pRelItem ) {
 		try {
-			// ŠÖ˜Aî•ñ–³Œø‚È‚çˆ—‚È‚µ
+			// é–¢é€£æƒ…å ±ç„¡åŠ¹ãªã‚‰å‡¦ç†ãªã—
 			var wNewRel = pParam.relationInf;
 			if ( !this.isObject(wNewRel) ) return false;
 
 			var wDstId = pParam.relationId;
 			if ( !wDstId ) return false;
 
-			// ŠÖ˜Aî•ñæ“¾
+			// é–¢é€£æƒ…å ±å–å¾—
 			var wItemRel = pRelItem.getRelationItem( wDstId );
 			if ( !wItemRel ) return false;
 
 			var wUpdRel = this._ContentsItems.relation[wItemRel.key];
 			if ( !wUpdRel ) return false;
 
-			// İ’è“à—eXV
+			// è¨­å®šå†…å®¹æ›´æ–°
 			wUpdRel.setContents( wNewRel ); 
 
-			// ƒRƒƒ“ƒg—v‘fÄ¶¬
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¦ç´ å†ç”Ÿæˆ
 			wUpdRel.setCmtElement();
 
-			// ‘SŠÖŒWƒ‰ƒCƒ“Ä•`‰æ
+			// å…¨é–¢ä¿‚ãƒ©ã‚¤ãƒ³å†æç”»
 			this.drawRelationRedo();
 
 			try {
-				// €–Ú•ÏX’Ê’miŠÖŒWXVj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆé–¢ä¿‚æ›´æ–°ï¼‰
 				pParam.kind = 'relation';
 				this.execLinkCallback( pParam, pRelItem );
 
@@ -1841,42 +1841,42 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A•t‚¯‘ÎÛƒ`ƒFƒbƒN
+	// é–¢é€£ä»˜ã‘å¯¾è±¡ãƒã‚§ãƒƒã‚¯
 	clsContentsBox.prototype.chkRelationTarget = function( pRelItem ) {
 		try {
 			var wRelIdList = {};
 
-			// ©€–ÚID
+			// è‡ªé …ç›®ID
 			var wId = pRelItem.getBoxId();
 			wRelIdList[wId] = 1;
 
-			// e€–ÚID
+			// è¦ªé …ç›®ID
 			var wParentId = pRelItem.getParentId();
 			if ( wParentId.length > 0 ) {
 				wRelIdList[wParentId] = 1;
 			}
 
-			// Šù‚ÉŠÖ˜A•t‚¢‚Ä‚¢‚é€–Úæ“¾
+			// æ—¢ã«é–¢é€£ä»˜ã„ã¦ã„ã‚‹é …ç›®å–å¾—
 			var wRelList = pRelItem.getRelationList();
 			for( var wKey in wRelList ) {
-				// ŠÖ˜A€–ÚID
+				// é–¢é€£é …ç›®ID
 				wRelIdList[wKey] = 1;
 				
-				// ’†Œp“_‚ÌKEYİ’è
+				// ä¸­ç¶™ç‚¹ã®KEYè¨­å®š
 				wRelIdList[wRelList[wKey].key] = 1;
 			}
 
-			// ŠÖ˜A•t‚¯Œ³‚ª’†Œp“_
+			// é–¢é€£ä»˜ã‘å…ƒãŒä¸­ç¶™ç‚¹
 			var wRelKind = pRelItem.getBoxKind();
 			if ( this.isItemRelation(wRelKind) ) {
-				// Š‘®—v‘f‚ğ’Ç‰Á
+				// æ‰€å±è¦ç´ ã‚’è¿½åŠ 
 				wRelIdList[pRelItem.getMasterParent()] = 1;
 				wRelIdList[pRelItem.getMasterTarget()] = 1;
 			}
 
 			var wTargetFlg = false;
 
-			// ƒOƒ‹[ƒvƒ`ƒFƒbƒN
+			// ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯
 			for( var wGrpKey in this._ContentsItems.group ) {
 				if ( !(wGrpKey in wRelIdList) ) {
 					wTargetFlg = true;
@@ -1884,7 +1884,7 @@ var clsContentsBox = function( pArgument ) {
 				}
 			}
 
-			// €–Úƒ`ƒFƒbƒN
+			// é …ç›®ãƒã‚§ãƒƒã‚¯
 			if ( !wTargetFlg ) {
 				for( var wItmKey in this._ContentsItems.person ) {
 					if ( !(wItmKey in wRelIdList) ) {
@@ -1894,7 +1894,7 @@ var clsContentsBox = function( pArgument ) {
 				}
 			}
 
-			// ’†Œp“_ƒ`ƒFƒbƒN
+			// ä¸­ç¶™ç‚¹ãƒã‚§ãƒƒã‚¯
 			if ( !wTargetFlg ) {
 				for( var wRelKey in this._ContentsItems.relation ) {
 					if ( !(wRelKey in wRelIdList) ) {
@@ -1911,57 +1911,57 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A•t‚¯ŠJn
+	// é–¢é€£ä»˜ã‘é–‹å§‹
 	clsContentsBox.prototype.addRelationStart = function( pParam, pRelItem ) {
 		try {
-			// ŠÖŒW’Ç‰ÁŠJn
+			// é–¢ä¿‚è¿½åŠ é–‹å§‹
 			this.addRelationEvent();
 
 			var wKind = pParam.kind;
 			var wRelayFlg = false;
 			var wReverse  = false;
 
-			// ƒRƒƒ“ƒg•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
 			var wComment = '';
 			if ( wKind == 'unrelation' ) {
-				wComment = '‰ğœ‘ÎÛ‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢';
+				wComment = 'è§£é™¤å¯¾è±¡ã‚’é¸æŠã—ã¦ãã ã•ã„';
 
 			} else if ( wKind == 'relationChg' ) {
-				wComment = '•ÏX‘ÎÛ‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢';
+				wComment = 'å¤‰æ›´å¯¾è±¡ã‚’é¸æŠã—ã¦ãã ã•ã„';
 
 			} else {
-				wComment = 'ŠÖ˜A‘ÎÛ‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢';
+				wComment = 'é–¢é€£å¯¾è±¡ã‚’é¸æŠã—ã¦ãã ã•ã„';
 
-				// ŠÖ˜A•t‚¯‘ÎÛ‘I‘ğ‚Í’†Œp“_‚à‘I‘ğó‘Ô‚Æ‚·‚é
+				// é–¢é€£ä»˜ã‘å¯¾è±¡é¸æŠæ™‚ã¯ä¸­ç¶™ç‚¹ã‚‚é¸æŠçŠ¶æ…‹ã¨ã™ã‚‹
 				wRelayFlg = true;
-				// –¢ŠÖ˜A‚Ì‚İ‘ÎÛ
+				// æœªé–¢é€£ã®ã¿å¯¾è±¡
 				wReverse  = true;
 
 			}
 			this.dspMouseCmt( pParam.event, wComment );
 
-			// ŠÖŒWƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+			// é–¢ä¿‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 			this._ContentsRelation.item			= pRelItem;
 			this._ContentsRelation.relationInf	= pParam.relationInf;
 			this._ContentsRelation.kind			= wKind;
 
-			// ƒx[ƒXƒƒjƒ…[–³Œø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 			this.useContextCtrl( false );
 
-			// €–Ú‚ğ‘I‘ğó‘Ô
+			// é …ç›®ã‚’é¸æŠçŠ¶æ…‹
 			this.setSelectItem( pRelItem, { selected: true, relay: wRelayFlg, emphasis: true, emphasisRev: wReverse } );
 
 		} catch(e) {
-			// ŠÖŒW’Ç‰ÁƒLƒƒƒ“ƒZƒ‹‚µ‚Äthrow
+			// é–¢ä¿‚è¿½åŠ ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦throw
 			this.execFunction( this.addRelationCancel );
 			throw { name: 'addRelationStart.' + e.name, message: e.message };
 		}
 	};
 
-	// ŠÖ˜A‘ÎÛ‘I‘ğƒCƒxƒ“ƒg’Ç‰Á
+	// é–¢é€£å¯¾è±¡é¸æŠã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 	clsContentsBox.prototype.addRelationEvent = function() {
 		try {
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.addBoxEvents( 'onclick' , this.eventRelationConfirm );
 
 		} catch(e) {
@@ -1969,10 +1969,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A‘ÎÛ‘I‘ğƒCƒxƒ“ƒgíœ
+	// é–¢é€£å¯¾è±¡é¸æŠã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 	clsContentsBox.prototype.delRelationEvent = function() {
 		try {
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.delBoxEvents( 'onclick' , this.eventRelationConfirm );
 
 		} catch(e) {
@@ -1980,24 +1980,24 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A•t‚¯ƒLƒƒƒ“ƒZƒ‹
+	// é–¢é€£ä»˜ã‘ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsContentsBox.prototype.addRelationCancel = function() {
 		try {
-			// ˆ—’†‚Å‚È‚¯‚ê‚Îˆ—‚È‚µ
+			// å‡¦ç†ä¸­ã§ãªã‘ã‚Œã°å‡¦ç†ãªã—
 			if ( !this._ContentsRelation.item ) return;
 
-			// ƒCƒxƒ“ƒg’â~
-			// ¦—áŠO–³‹
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
+			// â€»ä¾‹å¤–ç„¡è¦–
 			this.execFunction( this.delRelationEvent );
 			
-			// ƒRƒƒ“ƒg”ñ•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 			this.hideMouseCmt();
 
 			if ( this._ContentsRelation.item ) {
-				// ‘I‘ğó‘ÔE‹­’²•\¦‰ğœ
+				// é¸æŠçŠ¶æ…‹ãƒ»å¼·èª¿è¡¨ç¤ºè§£é™¤
 				this.execFunction( this.resetSelectItem );
 
-				// ‘SŠÖŒWƒ‰ƒCƒ“Ä•`‰æ
+				// å…¨é–¢ä¿‚ãƒ©ã‚¤ãƒ³å†æç”»
 				this.execFunction( this.drawRelationRedo );
 			}
 
@@ -2005,7 +2005,7 @@ var clsContentsBox = function( pArgument ) {
 			this._ContentsRelation.relationInf	= null;
 			this._ContentsRelation.kind			= '';
 
-			// ƒx[ƒXƒƒjƒ…[—LŒø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 			this.useContextCtrl( true );
 
 		} catch(e) {
@@ -2013,7 +2013,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖŒW’Ç‰Á
+	// é–¢ä¿‚è¿½åŠ 
 	clsContentsBox.prototype.setRelation = function( pSrcItm, pDstItm, pRelInf ) {
 		try {
 			if ( !pSrcItm ) return false;
@@ -2022,35 +2022,35 @@ var clsContentsBox = function( pArgument ) {
 			var wMasterId = pDstItm.getBoxId();
 			var wMasterKd = pDstItm.getBoxKind();
 
-			// ŠÖ˜Aæ
+			// é–¢é€£å…ˆ
 			var wTargetId = pSrcItm.getBoxId();
 			var wTargetKd = pSrcItm.getBoxKind();
 
-			// Callbackİ’è
+			// Callbackè¨­å®š
 			pRelInf.setItemCallback( this.eventItemRelationChange );
 
-			// ‹¤’Êƒƒjƒ…[İ’è
+			// å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			var wPublicMenu = this.getItemPublicMenu( 'item-relation' );
 			pRelInf.setPublicMenu( wPublicMenu );
 
-			// ŠÖ˜A•t‚¯î•ñ‚Ìeİ’è
+			// é–¢é€£ä»˜ã‘æƒ…å ±ã®è¦ªè¨­å®š
 			pRelInf.initParent( this._ContentsEleMain );
 
-			// KEYİ’è
+			// KEYè¨­å®š
 			pRelInf.setMasterKey( wMasterId, wTargetId );
 
-			// ƒRƒƒ“ƒg—v‘f¶¬
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¦ç´ ç”Ÿæˆ
 			pRelInf.setCmtElement();
 
-			// ŠÖ˜A•t‚¯î•ñ•Û‘¶
+			// é–¢é€£ä»˜ã‘æƒ…å ±ä¿å­˜
 			var wRelationId  = pRelInf.getBoxId();
 			this._ContentsItems.relation[wRelationId] = pRelInf;
 
-			// €–Ú’Ç‰Á‚ğ’Ê’m
+			// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 			this.execFunction( this.execItemAddFunc, pRelInf );
 
-			// ŠÖ˜A•t‚¯î•ñİ’è
-			// ¦ ŠÖ˜A•t‚¯î•ñ‚Ö‚ÌQÆ‚ğŠe€–Ú‚Öİ’è‚·‚é
+			// é–¢é€£ä»˜ã‘æƒ…å ±è¨­å®š
+			// â€» é–¢é€£ä»˜ã‘æƒ…å ±ã¸ã®å‚ç…§ã‚’å„é …ç›®ã¸è¨­å®šã™ã‚‹
 			pSrcItm.addRelationItem( wMasterId, { kind: wMasterKd, key: wRelationId, parent: true,  relationInf: pRelInf } );
 			pDstItm.addRelationItem( wTargetId, { kind: wTargetKd, key: wRelationId, parent: false, relationInf: pRelInf } );
 
@@ -2059,15 +2059,15 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A•t‚¯’†Œp“_‰Šú‰»
+	// é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹åˆæœŸåŒ–
 	clsContentsBox.prototype.clearRelationRelay = function( pRelItem ) {
 		try {
-			// ©€–Ú‚ÆŠÖ˜A‚µ‚Ä‚¢‚é€–Ú‚Æ‚Ì’†Œp“_‚ğ‘S‚ÄƒNƒŠƒA
+			// è‡ªé …ç›®ã¨é–¢é€£ã—ã¦ã„ã‚‹é …ç›®ã¨ã®ä¸­ç¶™ç‚¹ã‚’å…¨ã¦ã‚¯ãƒªã‚¢
 			var wRelList = pRelItem.getRelationList();
 			if ( !wRelList ) return;
 
 			for( var wKey in wRelList ) {
-				// ’†Œp“_iƒRƒƒ“ƒgˆÊ’ujƒNƒŠƒA
+				// ä¸­ç¶™ç‚¹ï¼ˆã‚³ãƒ¡ãƒ³ãƒˆä½ç½®ï¼‰ã‚¯ãƒªã‚¢
 				wRelList[wKey].relationInf.clearLinePoint();
 
 			}
@@ -2080,39 +2080,39 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Ú‘€ì - ˆÚ“®
+	// é …ç›®æ“ä½œ - ç§»å‹•
 	// **************************************************************
 
-	// €–ÚˆÚ“®‰Šúİ’è
+	// é …ç›®ç§»å‹•åˆæœŸè¨­å®š
 	clsContentsBox.prototype.moveItemStart = function( pEvent, pMoveObj, pMoveKind, pDrag ) {
 		try {
 			if ( !pMoveObj ) return false;
 
-			// €–Ú‚Ìƒƒjƒ…[–³Œø‰»
+			// é …ç›®ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 			pMoveObj.setContextAvailable( false );
 			pMoveObj.setPositionAvailable( false );
 
-			// ˆÚ“®‘ÎÛ€–Ú‚Ìİ’è
+			// ç§»å‹•å¯¾è±¡é …ç›®ã®è¨­å®š
 			this._ContentsMoveInf.kind		= pMoveKind;
 			this._ContentsMoveInf.item		= pMoveObj;
 			this._ContentsMoveInf.parent	= pMoveObj.getParentId();
 
-			// e‚©‚ç‰ğœ
+			// è¦ªã‹ã‚‰è§£é™¤
 			if ( this._ContentsMoveInf.parent !== this.getBoxId() ) {
 				pMoveObj.setParent( this._ContentsEleMain );
 			}
 
-			// ˆÚ“®€–Ú‚ªƒOƒ‹[ƒv
+			// ç§»å‹•é …ç›®ãŒã‚°ãƒ«ãƒ¼ãƒ—
 			if ( pMoveObj.isGroup() ) {
-				// ”ÍˆÍ“à‚Ì’†Œp“_‚ğˆê“I‚ÉŠ‘®
+				// ç¯„å›²å†…ã®ä¸­ç¶™ç‚¹ã‚’ä¸€æ™‚çš„ã«æ‰€å±
 				this.setAreaRelationCmt( pMoveObj );
 
 			}
 
-			// ˆÊ’u•â³@e‚ÌˆÊ’uæ“¾
+			// ä½ç½®è£œæ­£ã€€è¦ªã®ä½ç½®å–å¾—
 			this._ContentsMoveInf.pos = pMoveObj.getParentPos();
 
-			// ƒ}ƒEƒXƒhƒ‰ƒbƒO‚É‚æ‚éˆÊ’uˆÚ“®
+			// ãƒã‚¦ã‚¹ãƒ‰ãƒ©ãƒƒã‚°ã«ã‚ˆã‚‹ä½ç½®ç§»å‹•
 			var wEvtPos = this.getEventPos( pEvent );
 			var wStPos = null;
 			if ( (typeof pDrag == 'boolean') && (pDrag == true) ) {
@@ -2130,84 +2130,84 @@ var clsContentsBox = function( pArgument ) {
 				wStPos.x -= this._ContentsMoveInf.pos.left;
 				wStPos.y -= this._ContentsMoveInf.pos.top;
 
-				// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+				// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 				var wMainScroll = this.getScroll( this._ContentsEleMain );
 				wStPos.x += wMainScroll.x;
 				wStPos.y += wMainScroll.y;
 
 			}
 
-			// Å‘O–Ê‚ÖˆÚ“®
+			// æœ€å‰é¢ã¸ç§»å‹•
 			pMoveObj.dspBox( true, true, wStPos );
 
-			// ƒx[ƒXƒƒjƒ…[–³Œø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 			this.useContextCtrl( false );
 
-			// ‘ÎÛ‚ªƒhƒ‰ƒbƒO‰Â”\‚Èê‡‚ÍƒRƒƒ“ƒg•\¦‚È‚µ
+			// å¯¾è±¡ãŒãƒ‰ãƒ©ãƒƒã‚°å¯èƒ½ãªå ´åˆã¯ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤ºãªã—
 			var wIsDrag = pMoveObj.getItemDragIs();
 			if ( !wIsDrag ) {
-				var wComment = 'æ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢' ;
+				var wComment = 'å…ˆã‚’æŒ‡å®šã—ã¦ãã ã•ã„' ;
 				if ( pMoveKind == 'add' ) {
-					wComment = '’Ç‰Á' + wComment;
+					wComment = 'è¿½åŠ ' + wComment;
 				} else {
-					wComment = 'ˆÚ“®' + wComment;
+					wComment = 'ç§»å‹•' + wComment;
 				}
 				this.dspMouseCmt( pEvent, wComment );
 			}
 
-			// ˆÚ“®ƒCƒxƒ“ƒgİ’è
+			// ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 			this.addMoveEvent( wIsDrag );
 
 
 		} catch(e) {
-			// ˆÚ“®ƒLƒƒƒ“ƒZƒ‹‚µ‚Äthrow
+			// ç§»å‹•ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦throw
 			this.execFunction( this.moveItemCancel );
 			throw { name: 'moveItemStart.' + e.name, message: e.message };
 
 		}
 	};
 
-	// €–ÚˆÚ“®I—¹iŒãˆ—j
+	// é …ç›®ç§»å‹•çµ‚äº†ï¼ˆå¾Œå‡¦ç†ï¼‰
 	clsContentsBox.prototype.moveItemCancel = function() {
 		try {
-			// ˆ—’†‚Å‚È‚¯‚ê‚Îˆ—‚È‚µ
+			// å‡¦ç†ä¸­ã§ãªã‘ã‚Œã°å‡¦ç†ãªã—
 			if ( this._ContentsMoveInf.kind == '' ) return;
 
-			// ƒCƒxƒ“ƒg’â~
-			// ¦—áŠO–³‹
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
+			// â€»ä¾‹å¤–ç„¡è¦–
 			this.execFunction( this.delMoveEvent );
 			
-			// ƒRƒƒ“ƒg”ñ•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 			this.hideMouseCmt();
 
-			// ’†Œp“_‰ğœ
+			// ä¸­ç¶™ç‚¹è§£é™¤
 			this.execFunction( this.freeAreaRelationCmt );
 
 			if ( this._ContentsMoveInf.item ) {
-				// €–Ú’Ç‰Á
+				// é …ç›®è¿½åŠ 
 				if ( this._ContentsMoveInf.kind == 'add' ) {
-					// ’Ç‰Á€–Úíœ
+					// è¿½åŠ é …ç›®å‰Šé™¤
 					this._ContentsMoveInf.item.freeClass();
 
-				// ˆÚ“®‚Ì‚İ
+				// ç§»å‹•ã®ã¿
 				} else {
-					// €–ÚÅ‘O–ÊI—¹
+					// é …ç›®æœ€å‰é¢çµ‚äº†
 					this._ContentsMoveInf.item.dspBox( true, false );
 
-					// ˆÚ“®€–Ú‚ÌŠÖ˜Aî•ñ’†Œp“_‰Šú‰»
+					// ç§»å‹•é …ç›®ã®é–¢é€£æƒ…å ±ä¸­ç¶™ç‚¹åˆæœŸåŒ–
 					this.clearRelationRelay( this._ContentsMoveInf.item );
 
-					// ”z’u•ÒWƒ‚[ƒh
+					// é…ç½®ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚
 					if ( this.isEditModeMove() ) {
-						// €–Ú‚ÌˆÊ’u’²®ƒƒjƒ…[—LŒø‰»
+						// é …ç›®ã®ä½ç½®èª¿æ•´ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 						this._ContentsMoveInf.item.setPositionAvailable( true );
 
 					}
 
-					// ˆÚ“®€–Ú‚ğ—Dæ“I‚É•`‰æ
+					// ç§»å‹•é …ç›®ã‚’å„ªå…ˆçš„ã«æç”»
 					var wLineParam = { priority: this._ContentsMoveInf.item };
 
-					// ‘SŠÖŒWƒ‰ƒCƒ“Ä•`‰æ
+					// å…¨é–¢ä¿‚ãƒ©ã‚¤ãƒ³å†æç”»
 					this.drawRelationRedo( wLineParam );
 
 				}
@@ -2219,7 +2219,7 @@ var clsContentsBox = function( pArgument ) {
 			this._ContentsMoveInf.parent	= null;
 			this._ContentsMoveInf.drag		= null;
 
-			// ƒx[ƒXƒƒjƒ…[—LŒø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 			this.useContextCtrl( true );
 
 		} catch(e) {
@@ -2227,13 +2227,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–ÚˆÚ“®ƒCƒxƒ“ƒgİ’è
+	// é …ç›®ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsContentsBox.prototype.addMoveEvent = function( pDragIs ) {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.addBoxEvents( 'onmousemove'	, this.eventItemMove );
 
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			if ( pDragIs ) {
 				this.addBoxEvents( 'onmouseup'		, this.eventItemMoveEnd );
 			} else {
@@ -2245,13 +2245,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–ÚˆÚ“®ƒCƒxƒ“ƒg‰ğœ
+	// é …ç›®ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 	clsContentsBox.prototype.delMoveEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.delBoxEvents( 'onmousemove'	, this.eventItemMove );
 
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.delBoxEvents( 'onmouseup'		, this.eventItemMoveEnd );
 			this.delBoxEvents( 'onmousedown'	, this.eventItemMoveEnd );
 
@@ -2260,89 +2260,89 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–ÚˆÚ“®Šm’è
+	// é …ç›®ç§»å‹•ç¢ºå®š
 	clsContentsBox.prototype.moveItemConfirm = function( pEvent, pMoveKind, pMoveItem ) {
 		try {
 			var wItemId = pMoveItem.getBoxId();
 			var wItemKd = pMoveItem.getBoxKind();
 
-			// ˆÚ“®æ‚Ì€–Úƒ`ƒFƒbƒN
+			// ç§»å‹•å…ˆã®é …ç›®ãƒã‚§ãƒƒã‚¯
 			if ( !this.chkItemOverlapToPoint(pMoveItem) ) return false;
 
-			// ˆÚ“®æ‚ÌƒLƒƒƒ“ƒoƒX”ÍˆÍƒ`ƒFƒbƒN
+			// ç§»å‹•å…ˆã®ã‚­ãƒ£ãƒ³ãƒã‚¹ç¯„å›²ãƒã‚§ãƒƒã‚¯
 			if ( !this.chkItemOverflowArea(pMoveItem) ) {
 				this.alertMouseCmt( 'overflow' );
 				return false;
 			}
 
-			// l•¨€–Ú‚Ìê‡
+			// äººç‰©é …ç›®ã®å ´åˆ
 			if ( this.isItemPerson(wItemKd) ) {
-				// ƒNƒŠƒbƒNˆÊ’uƒOƒ‹[ƒvƒ`ƒFƒbƒN
+				// ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯
 				var wSelGrp = this.chkGroupOverlapToClick( pEvent );
 
-				// e•ÏX
+				// è¦ªå¤‰æ›´
 				if ( wSelGrp ) {
-					// e‚Éİ’è
+					// è¦ªã«è¨­å®š
 					if ( wSelGrp.getBoxId() !== pMoveItem.getParentId() ) {
 						pMoveItem.setParent( wSelGrp.getBoxElement() );
 						
-						// ŠÖŒW‚ğ‰ğœ
+						// é–¢ä¿‚ã‚’è§£é™¤
 						this.liftRelation( pMoveItem, wSelGrp );
 						
 					}
 				
 				}
 
-			// ’†Œp“_‚Ìê‡
+			// ä¸­ç¶™ç‚¹ã®å ´åˆ
 			} else if ( this.isItemRelation(wItemKd) ) {
-				// ’†Œp“_ƒRƒƒ“ƒgˆÊ’uŠm’è
+				// ä¸­ç¶™ç‚¹ã‚³ãƒ¡ãƒ³ãƒˆä½ç½®ç¢ºå®š
 				pMoveItem.setCommentPoint( pEvent );
 
 			}
 
-			// €–Ú’Ç‰ÁˆÈŠO‚Íˆ—I—¹i³íj
+			// é …ç›®è¿½åŠ æ™‚ä»¥å¤–ã¯å‡¦ç†çµ‚äº†ï¼ˆæ­£å¸¸ï¼‰
 			if ( pMoveKind != 'add' ) return true;
 
 			var wAddCancel = false;
 
-			// l•¨’Ç‰Á
+			// äººç‰©è¿½åŠ 
 			if ( this.isItemPerson(wItemKd) ) {
-				// ’Ç‰Á€–Ú‚ğ•Û‘¶
+				// è¿½åŠ é …ç›®ã‚’ä¿å­˜
 				this._ContentsItems.person[wItemId] = pMoveItem;
-				// €–Ú’Ç‰Á‚ğ’Ê’m
+				// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 				this.execFunction( this.execItemAddFunc, pMoveItem );
 
-			// ƒOƒ‹[ƒv’Ç‰Á
+			// ã‚°ãƒ«ãƒ¼ãƒ—è¿½åŠ 
 			} else if ( this.isItemGroup(wItemKd) ) {
-				// ’Ç‰Á€–Ú‚ğ•Û‘¶
+				// è¿½åŠ é …ç›®ã‚’ä¿å­˜
 				this._ContentsItems.group[wItemId] = pMoveItem;
-				// €–Ú’Ç‰Á‚ğ’Ê’m
+				// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 				this.execFunction( this.execItemAddFunc, pMoveItem );
 
-			// ƒRƒƒ“ƒg’Ç‰Á
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ 
 			} else if ( this.isItemComment(wItemKd) ) {
-				// ’Ç‰Á€–Ú‚ğ•Û‘¶
+				// è¿½åŠ é …ç›®ã‚’ä¿å­˜
 				this._ContentsItems.comment[wItemId] = pMoveItem;
-				// €–Ú’Ç‰Á‚ğ’Ê’m
+				// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 				this.execFunction( this.execItemAddFunc, pMoveItem );
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“’Ç‰Á
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¿½åŠ 
 			} else if ( this.isItemFreeLine(wItemKd) ) {
-				// ’Ç‰Á€–Ú‚ğ•Û‘¶
+				// è¿½åŠ é …ç›®ã‚’ä¿å­˜
 				this._ContentsItems.freeline[wItemId] = pMoveItem;
-				// €–Ú’Ç‰Á‚ğ’Ê’m
+				// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 				this.execFunction( this.execItemAddFunc, pMoveItem );
 
-			// ˆÈŠO
+			// ä»¥å¤–
 			} else {
-				// ’Ç‰ÁƒLƒƒƒ“ƒZƒ‹
+				// è¿½åŠ ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				wAddCancel = true;
 
 			}
 			
 			if ( !wAddCancel ) {
-				// ˆÚ“®í•Ê‚ğuˆÚ“®v‚É•ÏX
-				// ¦u’Ç‰Áv‚Ì‚Ü‚Ü‚¾‚ÆI—¹ˆ—‚Å’Ç‰Á€–Ú‚ªíœ‚³‚ê‚éˆ×
+				// ç§»å‹•ç¨®åˆ¥ã‚’ã€Œç§»å‹•ã€ã«å¤‰æ›´
+				// â€»ã€Œè¿½åŠ ã€ã®ã¾ã¾ã ã¨çµ‚äº†å‡¦ç†ã§è¿½åŠ é …ç›®ãŒå‰Šé™¤ã•ã‚Œã‚‹ç‚º
 				this._ContentsMoveInf.kind = 'move';
 			}
 
@@ -2353,14 +2353,14 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ˆê“I‚ÉŠ‘®‚³‚¹‚½’†Œp“_‚ğ‰ğœ
+	// ä¸€æ™‚çš„ã«æ‰€å±ã•ã›ãŸä¸­ç¶™ç‚¹ã‚’è§£é™¤
 	clsContentsBox.prototype.freeAreaRelationCmt = function() {
 		try {
-			// ‘ÎÛ‘¶İ‚·‚éê‡‚Ì‚İ
+			// å¯¾è±¡å­˜åœ¨ã™ã‚‹å ´åˆã®ã¿
 			var wTargetRel = this._ContentsMoveInf.relation;
 			if ( !wTargetRel ) return null;
 
-			// ƒƒCƒ“‰æ–Ê‚ÌˆÊ’u•â³
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ä½ç½®è£œæ­£
 			var wMainPos	= this.getPos( this._ContentsEleMain );
 			var wMainScroll	= this.getScroll( this._ContentsEleMain );
 
@@ -2370,11 +2370,11 @@ var clsContentsBox = function( pArgument ) {
 
 			var wTargetCnt = wTargetRel.length;
 			for( var wIndex = 0; wIndex < wTargetCnt; wIndex++ ) {
-				// ƒOƒ‹[ƒv‚©‚ç‰ğœ
+				// ã‚°ãƒ«ãƒ¼ãƒ—ã‹ã‚‰è§£é™¤
 				wRelation = wTargetRel[wIndex];
 				wRelation.setParent( this._ContentsEleMain );
 
-				// ’†Œp“_ˆÊ’u‚ğXV
+				// ä¸­ç¶™ç‚¹ä½ç½®ã‚’æ›´æ–°
 				wRelPos = wRelation.getBoxPos();
 				wRelCrt = wRelation.getLinePointCorrection();
 
@@ -2387,7 +2387,7 @@ var clsContentsBox = function( pArgument ) {
 				wRelation.setLinePointPos( wRelPos );
 			}
 
-			// ‘ÎÛ€–Ú‚ğ‰ğœ
+			// å¯¾è±¡é …ç›®ã‚’è§£é™¤
 			this._ContentsMoveInf.relation = null;
 
 		} catch(e) {
@@ -2395,31 +2395,31 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ”ÍˆÍ“à‚Ì’†Œp“_‚ğˆê“I‚ÉŠ‘®
+	// ç¯„å›²å†…ã®ä¸­ç¶™ç‚¹ã‚’ä¸€æ™‚çš„ã«æ‰€å±
 	clsContentsBox.prototype.setAreaRelationCmt = function( pItem ) {
 		try {
-			// ˆê’U‰ğœ
+			// ä¸€æ—¦è§£é™¤
 			this.freeAreaRelationCmt();
 
-			// e‚Æ‚µ‚Äİ’è
+			// è¦ªã¨ã—ã¦è¨­å®š
 			var wParentEle = pItem.getBoxElement();
 			if ( !wParentEle ) return null;
 
-			// €–Ú‚Ì”ÍˆÍæ“¾
+			// é …ç›®ã®ç¯„å›²å–å¾—
 			var wArea = pItem.getBoxRect();
 
-			// ”ÍˆÍ“à‚É‚ ‚é’†Œp“_æ“¾
+			// ç¯„å›²å†…ã«ã‚ã‚‹ä¸­ç¶™ç‚¹å–å¾—
 			var wTargetRel = this.getRelationOverlapToRect( wArea );
 			if ( !wTargetRel ) return null;
 
-			// ˆê’U€–Ú‚ÉŠ‘®
+			// ä¸€æ—¦é …ç›®ã«æ‰€å±
 			var wTargetCnt = wTargetRel.length;
 			for( var wIndex = 0; wIndex < wTargetCnt; wIndex++ ) {
 				wTargetRel[wIndex].setParent( wParentEle );
 			
 			}
 
-			// ‘ÎÛ€–Ú‚ğ•Û‘¶
+			// å¯¾è±¡é …ç›®ã‚’ä¿å­˜
 			this._ContentsMoveInf.relation = wTargetRel;
 
 		} catch(e) {
@@ -2429,63 +2429,63 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Ú‘€ì - ƒTƒCƒY•ÏX
+	// é …ç›®æ“ä½œ - ã‚µã‚¤ã‚ºå¤‰æ›´
 	// **************************************************************
 
-	// ƒŠƒTƒCƒYŠJn
+	// ãƒªã‚µã‚¤ã‚ºé–‹å§‹
 	clsContentsBox.prototype.resizeItem = function( pEvent, pResizeObj ) {
 		try {
 			if ( !pResizeObj ) return false;
 			this._ContentsResizeInf.item = pResizeObj;
 
-			// ƒŠƒTƒCƒYŠJnƒGƒ‰[
+			// ãƒªã‚µã‚¤ã‚ºé–‹å§‹ã‚¨ãƒ©ãƒ¼
 			this.addResizeEvent();
 
-			// Å‘O–Ê‚ÖˆÚ“®
+			// æœ€å‰é¢ã¸ç§»å‹•
 			this._ContentsResizeInf.item.dspBox( true, true );
 
-			// ƒx[ƒXƒƒjƒ…[–³Œø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 			this.useContextCtrl( false );
 
-			// ƒRƒƒ“ƒg•\¦
-			this.dspMouseCmt( pEvent, 'ƒTƒCƒY‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢' );
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
+			this.dspMouseCmt( pEvent, 'ã‚µã‚¤ã‚ºã‚’æŒ‡å®šã—ã¦ãã ã•ã„' );
 
 		} catch(e) {
-			// ˆÚ“®ƒLƒƒƒ“ƒZƒ‹‚µ‚Äthrow
+			// ç§»å‹•ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦throw
 			this.execFunction( this.cancelResizeItem );
 			throw { name: 'resizeItem.' + e.name, message: e.message };
 		}
 	};
 
-	// ƒŠƒTƒCƒYI—¹
+	// ãƒªã‚µã‚¤ã‚ºçµ‚äº†
 	clsContentsBox.prototype.cancelResizeItem = function() {
 		try {
-			// ˆ—’†‚Å‚È‚¯‚ê‚Îˆ—‚È‚µ
+			// å‡¦ç†ä¸­ã§ãªã‘ã‚Œã°å‡¦ç†ãªã—
 			if ( !this._ContentsResizeInf.item ) return;
 
-			// ƒCƒxƒ“ƒg’â~
-			// ¦—áŠO–³‹
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
+			// â€»ä¾‹å¤–ç„¡è¦–
 			this.execFunction( this.delResizeEvent );
 			
-			// ƒRƒƒ“ƒg”ñ•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 			this.hideMouseCmt();
 
-			// Å‘O–Ê‰»‰ğœ
+			// æœ€å‰é¢åŒ–è§£é™¤
 			this._ContentsResizeInf.item.dspBox( true, false );
 
-			// ƒOƒ‹[ƒv‚Ìê‡
+			// ã‚°ãƒ«ãƒ¼ãƒ—ã®å ´åˆ
 			if ( this._ContentsResizeInf.item.isGroup() ) {
-				// ˆÚ“®€–Ú‚ğ—Dæ“I‚É•`‰æ
+				// ç§»å‹•é …ç›®ã‚’å„ªå…ˆçš„ã«æç”»
 				var wLineParam = { priority: this._ContentsResizeInf.item };
 
-				// ‘SŠÖŒWƒ‰ƒCƒ“Ä•`‰æ
+				// å…¨é–¢ä¿‚ãƒ©ã‚¤ãƒ³å†æç”»
 				this.drawRelationRedo( wLineParam );
 			
 			}
 
 			this._ContentsResizeInf.item = null;
 
-			// ƒx[ƒXƒƒjƒ…[—LŒø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 			this.useContextCtrl( true );
 
 		} catch(e) {
@@ -2493,13 +2493,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒŠƒTƒCƒYƒCƒxƒ“ƒgİ’è
+	// ãƒªã‚µã‚¤ã‚ºã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsContentsBox.prototype.addResizeEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.addBoxEvents( 'onmousemove'	, this.eventItemResize );
 
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.addBoxEvents( 'onclick'		, this.eventItemResizeEnd );
 
 		} catch(e) {
@@ -2507,13 +2507,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒŠƒTƒCƒYƒCƒxƒ“ƒg‰ğœ
+	// ãƒªã‚µã‚¤ã‚ºã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 	clsContentsBox.prototype.delResizeEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.delBoxEvents( 'onmousemove'	, this.eventItemResize );
 
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.delBoxEvents( 'onclick'		, this.eventItemResizeEnd );
 
 		} catch(e) {
@@ -2523,57 +2523,57 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Ú‘€ì - XV
+	// é …ç›®æ“ä½œ - æ›´æ–°
 	// **************************************************************
 
-	// XV€–Ú‘I‘ğ@ŠJn
+	// æ›´æ–°é …ç›®é¸æŠã€€é–‹å§‹
 	clsContentsBox.prototype.updItemStart = function( pParam, pItemKind ) {
 		try {
 			if ( !pParam ) return false;
 
-			// ˆÚ“®ƒCƒxƒ“ƒgİ’è
+			// ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 			this.addUpdEvent();
 
-			// ˆÚ“®‘ÎÛ€–Ú‚Ìİ’è
+			// ç§»å‹•å¯¾è±¡é …ç›®ã®è¨­å®š
 			this._ContentsUpdInf.kind	= pItemKind;
 			this._ContentsUpdInf.param	= pParam;
 
-			// ƒx[ƒXƒƒjƒ…[–³Œø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 			this.useContextCtrl( false );
 
-			// ƒRƒƒ“ƒg•\¦
-			var wComment = '‘ÎÛ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢' ;
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
+			var wComment = 'å¯¾è±¡ã‚’æŒ‡å®šã—ã¦ãã ã•ã„' ;
 			if ( 'comment' in pParam ) {
 				wComment = pParam.comment;
 			}
 			this.dspMouseCmt( pParam, wComment );
 
 		} catch(e) {
-			// ˆÚ“®ƒLƒƒƒ“ƒZƒ‹‚µ‚Äthrow
+			// ç§»å‹•ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦throw
 			this.execFunction( this.updItemCancel );
 			throw { name: 'updItemStart.' + e.name, message: e.message };
 
 		}
 	};
 
-	// €–ÚXVI—¹iŒãˆ—j
+	// é …ç›®æ›´æ–°çµ‚äº†ï¼ˆå¾Œå‡¦ç†ï¼‰
 	clsContentsBox.prototype.updItemCancel = function() {
 		try {
-			// ˆ—’†‚Å‚È‚¯‚ê‚Îˆ—‚È‚µ
+			// å‡¦ç†ä¸­ã§ãªã‘ã‚Œã°å‡¦ç†ãªã—
 			if ( !this._ContentsUpdInf.param ) return;
 
-			// ƒCƒxƒ“ƒg’â~
-			// ¦—áŠO–³‹
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
+			// â€»ä¾‹å¤–ç„¡è¦–
 			this.execFunction( this.delUpdEvent );
 			
-			// ƒRƒƒ“ƒg”ñ•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 			this.hideMouseCmt();
 
-			// XVî•ñ”jŠü
+			// æ›´æ–°æƒ…å ±ç ´æ£„
 			this._ContentsUpdInf.kind	= '';
 			this._ContentsUpdInf.param	= null;
 
-			// ƒx[ƒXƒƒjƒ…[—LŒø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 			this.useContextCtrl( true );
 
 		} catch(e) {
@@ -2581,10 +2581,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–ÚXVƒCƒxƒ“ƒgİ’è
+	// é …ç›®æ›´æ–°ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsContentsBox.prototype.addUpdEvent = function() {
 		try {
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.addBoxEvents( 'onclick'	, this.eventItemUpdSelect );
 
 		} catch(e) {
@@ -2592,10 +2592,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–ÚXVƒCƒxƒ“ƒg‰ğœ
+	// é …ç›®æ›´æ–°ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 	clsContentsBox.prototype.delUpdEvent = function() {
 		try {
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.delBoxEvents( 'onclick'	, this.eventItemUpdSelect );
 
 		} catch(e) {
@@ -2605,41 +2605,41 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Ú‘€ì - ˆÊ’u’²®
+	// é …ç›®æ“ä½œ - ä½ç½®èª¿æ•´
 	// **************************************************************
 
-	// ˆÊ’u’²®ŠJn
+	// ä½ç½®èª¿æ•´é–‹å§‹
 	clsContentsBox.prototype.positionItemStart = function( pParam, pTarget ) {
 		try {
-			// ŠÖŒW’Ç‰ÁŠJn
+			// é–¢ä¿‚è¿½åŠ é–‹å§‹
 			this.addPositionEvent();
 
-			// ƒRƒƒ“ƒg•\¦
-			var wComment = '‘ÎÛ‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢';
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
+			var wComment = 'å¯¾è±¡ã‚’é¸æŠã—ã¦ãã ã•ã„';
 
 			this.dspMouseCmt( pParam.event, wComment );
 
-			// ˆÊ’u’²®ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+			// ä½ç½®èª¿æ•´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 			this._ContentsPosition.item		= pTarget;
 			this._ContentsPosition.kind		= pParam.kind;
 
-			// ƒx[ƒXƒƒjƒ…[–³Œø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 			this.useContextCtrl( false );
 
-			// €–Ú‚ğ‘I‘ğó‘Ô
+			// é …ç›®ã‚’é¸æŠçŠ¶æ…‹
 			this.setSelectItem( pTarget, { selected: true, only: true } );
 
 		} catch(e) {
-			// ŠÖŒW’Ç‰ÁƒLƒƒƒ“ƒZƒ‹‚µ‚Äthrow
+			// é–¢ä¿‚è¿½åŠ ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦throw
 			this.execFunction( this.positionItemCancel );
 			throw { name: 'positionItemStart.' + e.name, message: e.message };
 		}
 	};
 
-	// ˆÊ’u’²®‘ÎÛ‘I‘ğƒCƒxƒ“ƒg’Ç‰Á
+	// ä½ç½®èª¿æ•´å¯¾è±¡é¸æŠã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 	clsContentsBox.prototype.addPositionEvent = function() {
 		try {
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.addBoxEvents( 'onclick' , this.eventPositionConfirm );
 
 		} catch(e) {
@@ -2647,10 +2647,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ˆÊ’u’²®‘ÎÛ‘I‘ğƒCƒxƒ“ƒgíœ
+	// ä½ç½®èª¿æ•´å¯¾è±¡é¸æŠã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 	clsContentsBox.prototype.delPositionEvent = function() {
 		try {
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.delBoxEvents( 'onclick' , this.eventPositionConfirm );
 
 		} catch(e) {
@@ -2658,31 +2658,31 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ˆÊ’u’²®ƒLƒƒƒ“ƒZƒ‹
+	// ä½ç½®èª¿æ•´ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsContentsBox.prototype.positionItemCancel = function() {
 		try {
-			// ˆ—’†‚Å‚È‚¯‚ê‚Îˆ—‚È‚µ
+			// å‡¦ç†ä¸­ã§ãªã‘ã‚Œã°å‡¦ç†ãªã—
 			if ( !this._ContentsPosition.item ) return;
 
-			// ƒCƒxƒ“ƒg’â~
-			// ¦—áŠO–³‹
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
+			// â€»ä¾‹å¤–ç„¡è¦–
 			this.execFunction( this.delPositionEvent );
 			
-			// ƒRƒƒ“ƒg”ñ•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 			this.hideMouseCmt();
 
 			if ( this._ContentsPosition.item ) {
-				// ‘I‘ğó‘ÔE‹­’²•\¦‰ğœ
+				// é¸æŠçŠ¶æ…‹ãƒ»å¼·èª¿è¡¨ç¤ºè§£é™¤
 				this.execFunction( this.resetSelectItem );
 
-				// ‘SŠÖŒWƒ‰ƒCƒ“Ä•`‰æ
+				// å…¨é–¢ä¿‚ãƒ©ã‚¤ãƒ³å†æç”»
 				this.execFunction( this.drawRelationRedo );
 			}
 
 			this._ContentsPosition.item		= null;
 			this._ContentsPosition.kind		= '';
 
-			// ƒx[ƒXƒƒjƒ…[—LŒø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 			this.useContextCtrl( true );
 
 		} catch(e) {
@@ -2690,7 +2690,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ˆÊ’u’²®Šm’è
+	// ä½ç½®èª¿æ•´ç¢ºå®š
 	clsContentsBox.prototype.positionItemConfirm = function( pTargetItm, pClickItem ) {
 		try {
 			var wClickKd	= pClickItem.getBoxKind();
@@ -2701,36 +2701,36 @@ var clsContentsBox = function( pArgument ) {
 			var wTargetId	= pTargetItm.getBoxId();
 			var wTargetPid	= pTargetItm.getParentId();
 
-			// ©€–Úƒ`ƒFƒbƒN
+			// è‡ªé …ç›®ãƒã‚§ãƒƒã‚¯
 			if ( wTargetId == wClickId ) return false;
 
-			// ©e€–Úƒ`ƒFƒbƒN
+			// è‡ªè¦ªé …ç›®ãƒã‚§ãƒƒã‚¯
 			if ( wTargetPid == wClickId ) return false;
 			
-			// ‘ÎÛ‚ªgroup
+			// å¯¾è±¡ãŒgroup
 			if ( this.isItemGroup(wTargetKd) ) {
-				// ©g‚ÉŠ‘®‚·‚é€–Úƒ`ƒFƒbƒN
+				// è‡ªèº«ã«æ‰€å±ã™ã‚‹é …ç›®ãƒã‚§ãƒƒã‚¯
 				if ( wTargetId == wClickPid ) return false;
 			}
 
-			// ˆÚ“®‘O‘ÎÛˆÊ’u
+			// ç§»å‹•å‰å¯¾è±¡ä½ç½®
 			var wTargetBef = pTargetItm.getBoxRect();
 			var wClickRect = pClickItem.getBoxRect();
 
-			// €–Ú—Ìˆæƒ`ƒFƒbƒN
+			// é …ç›®é ˜åŸŸãƒã‚§ãƒƒã‚¯
 			if ( pClickItem.chkBoxInRect(wTargetBef) ) return false;
 
-			// ƒNƒŠƒbƒN€–Ú‚ª’†Œp“_
+			// ã‚¯ãƒªãƒƒã‚¯é …ç›®ãŒä¸­ç¶™ç‚¹
 			if ( this.isItemRelation(wClickKd) ) {
 				if ( pTargetItm.chkBoxInRect(wClickRect) ) return false;
 			}
 
-			// ‘ÎÛ€–Úî•ñ
+			// å¯¾è±¡é …ç›®æƒ…å ±
 			var wTargetSize	= pTargetItm.getBoxSize( { border: false } );
 			var wTargetLine	= 0;
 			if ( this.isItemRelation(wTargetKd) ) wTargetLine = pTargetItm.getDefLineWidth();
 
-			// e‚ªGroup‚Ìê‡‚ÍˆÊ’u‚È‚Çæ“¾
+			// è¦ªãŒGroupã®å ´åˆã¯ä½ç½®ãªã©å–å¾—
 			var wParentItem = null;
 			var wParentRect	= null;
 			var wParentLine	= null;
@@ -2743,20 +2743,20 @@ var clsContentsBox = function( pArgument ) {
 
 			}
 
-			// ƒNƒŠƒbƒN€–Ú‚ÌˆÊ’uæ“¾
+			// ã‚¯ãƒªãƒƒã‚¯é …ç›®ã®ä½ç½®å–å¾—
 			var wClickSize	= pClickItem.getBoxSize( { border: false } );
 
-			// ƒƒCƒ“‰æ–Ê‚ÌˆÊ’u•â³
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ä½ç½®è£œæ­£
 			var wMainPos	= this.getPos( this._ContentsEleMain );
 			var wMainScroll	= this.getScroll( this._ContentsEleMain );
 
-			// ˆÊ’u•ÏX
+			// ä½ç½®å¤‰æ›´
 			var wMovePos = {};
 
 			switch( this._ContentsPosition.kind ) {
-			// ˆÊ’u’²®icj
+			// ä½ç½®èª¿æ•´ï¼ˆç¸¦ï¼‰
 			case 'pos-vert':
-				// ’†Œp“_‘I‘ğ‚Ì’²®
+				// ä¸­ç¶™ç‚¹é¸æŠæ™‚ã®èª¿æ•´
 				var wRelationTop = this.getPositionRelMove( {
 										  targetKd		: wTargetKd
 										, targetSize	: wTargetSize.height
@@ -2766,17 +2766,17 @@ var clsContentsBox = function( pArgument ) {
 									} );
 				wClickRect.top += wRelationTop;
 
-				// ˆÚ“®æƒ`ƒFƒbƒN—p
-				// ¦ƒXƒNƒ[ƒ‹Ae‚ÌˆÊ’u’²®•s—v
+				// ç§»å‹•å…ˆãƒã‚§ãƒƒã‚¯ç”¨
+				// â€»ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€è¦ªã®ä½ç½®èª¿æ•´ä¸è¦
 				var wHeight = wTargetBef.bottom - wTargetBef.top;
 				wTargetBef.top		= wClickRect.top;
 				wTargetBef.bottom	= wClickRect.top + wHeight;
 
-				// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’²®
+				// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«èª¿æ•´
 				wClickRect.top -= wMainPos.top;
 				wClickRect.top += wMainScroll.y;
 
-				// e‚ÌˆÊ’u’²®
+				// è¦ªã®ä½ç½®èª¿æ•´
 				if ( wParentItem ) {
 					var wParentTop = wParentRect.top - wMainPos.top;
 					wParentTop += wMainScroll.y;
@@ -2785,14 +2785,14 @@ var clsContentsBox = function( pArgument ) {
 					if ( wParentLine ) wClickRect.top -= wParentLine.width;
 				}
 
-				// ˆÚ“®æİ’è
+				// ç§»å‹•å…ˆè¨­å®š
 				wMovePos.y = wClickRect.top;
 
 				break;
 
-			// ˆÊ’u’²®i‰¡j
+			// ä½ç½®èª¿æ•´ï¼ˆæ¨ªï¼‰
 			case 'pos-side':
-				// ’†Œp“_‘I‘ğ‚Ì’²®
+				// ä¸­ç¶™ç‚¹é¸æŠæ™‚ã®èª¿æ•´
 				var wRelationLeft = this.getPositionRelMove( {
 										  targetKd		: wTargetKd
 										, targetSize	: wTargetSize.width
@@ -2802,17 +2802,17 @@ var clsContentsBox = function( pArgument ) {
 									} );
 				wClickRect.left += wRelationLeft;
 
-				// ˆÚ“®æƒ`ƒFƒbƒN—p
-				// ¦ƒXƒNƒ[ƒ‹Ae‚ÌˆÊ’u’²®•s—v
+				// ç§»å‹•å…ˆãƒã‚§ãƒƒã‚¯ç”¨
+				// â€»ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€è¦ªã®ä½ç½®èª¿æ•´ä¸è¦
 				var wWidth = wTargetBef.right - wTargetBef.left;
 				wTargetBef.left		= wClickRect.left;
 				wTargetBef.right	= wClickRect.left + wWidth;
 
-				// ‰¡ˆÊ’u•ÏX
+				// æ¨ªä½ç½®å¤‰æ›´
 				wClickRect.left -= wMainPos.left;
 				wClickRect.left += wMainScroll.x;
 
-				// e‚ÌˆÊ’u’²®
+				// è¦ªã®ä½ç½®èª¿æ•´
 				if ( wParentItem ) {
 					var wParentLeft = wParentRect.left - wMainPos.left;
 					wParentLeft += wMainScroll.x;
@@ -2821,7 +2821,7 @@ var clsContentsBox = function( pArgument ) {
 					if ( wParentLine ) wClickRect.left -= wParentLine.width;
 				}
 
-				// ˆÚ“®æİ’è
+				// ç§»å‹•å…ˆè¨­å®š
 				wMovePos.x = wClickRect.left;
 
 				break;
@@ -2832,42 +2832,42 @@ var clsContentsBox = function( pArgument ) {
 				  targetRect : wTargetBef
 			};
 
-			// ƒOƒ‹[ƒv
+			// ã‚°ãƒ«ãƒ¼ãƒ—
 			if ( this.isItemGroup(wTargetKd) ) {
-				// ˆÚ“®æ‚É‘¼€–Ú‚ ‚ê‚Î–³Œø
+				// ç§»å‹•å…ˆã«ä»–é …ç›®ã‚ã‚Œã°ç„¡åŠ¹
 				if ( !this.chkItemOverlapToPoint(pTargetItm, wCheckParam) ) {
 					this.alertMouseCmt( 'overlap' );
 					return false;
 				
 				}
 				
-				// ”ÍˆÍ“à‚Ì’†Œp“_‚ğˆê“I‚ÉŠ‘®
+				// ç¯„å›²å†…ã®ä¸­ç¶™ç‚¹ã‚’ä¸€æ™‚çš„ã«æ‰€å±
 				this.setAreaRelationCmt( pTargetItm );
 
-			// €–Ú
+			// é …ç›®
 			} else if ( this.isItemPerson(wTargetKd) ) {
-				// ˆÚ“®æ‚É‘¼€–Ú‚ ‚ê‚Î–³Œø
+				// ç§»å‹•å…ˆã«ä»–é …ç›®ã‚ã‚Œã°ç„¡åŠ¹
 				wCheckParam.overlap = false;
 				if ( !this.chkItemOverlapToPoint(pTargetItm, wCheckParam) ) {
 					this.alertMouseCmt( 'overlap' );
 					return false;
 				}
 
-				// ”ÍˆÍŠOƒ`ƒFƒbƒN
-				// e‚ªƒOƒ‹[ƒv
+				// ç¯„å›²å¤–ãƒã‚§ãƒƒã‚¯
+				// è¦ªãŒã‚°ãƒ«ãƒ¼ãƒ—
 				if ( wParentItem ) {
 					if ( !wParentItem.chkBoxInRect(wTargetBef) ) {
 						this.alertMouseCmt( 'overflow-group' );
 						return false;
 					}
 
-				// e‚ªƒLƒƒƒ“ƒoƒX
+				// è¦ªãŒã‚­ãƒ£ãƒ³ãƒã‚¹
 				} else {
 					var wParentRect = pTargetItm.getParentRect();
 					var wParentSize = pTargetItm.getParentSize( { overflow: true } );
 					var wParentScrl = pTargetItm.getParentScroll();
 
-					// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’²®
+					// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«èª¿æ•´
 					wParentRect.top		-= wParentScrl.y;
 					wParentRect.left	-= wParentScrl.x;
 
@@ -2881,22 +2881,22 @@ var clsContentsBox = function( pArgument ) {
 
 				}
 				
-				// e€–Ú‚©‚ç‚Í‚İo‚µ‚Ä•\¦‚ ‚è
+				// è¦ªé …ç›®ã‹ã‚‰ã¯ã¿å‡ºã—ã¦è¡¨ç¤ºã‚ã‚Š
 				wOverflow = true;
 
-			// ’†Œp“_‚Ìê‡
+			// ä¸­ç¶™ç‚¹ã®å ´åˆ
 			} else if ( this.isItemRelation(wTargetKd) ) {
-				// ’†Œp“_ˆÚ“®
+				// ä¸­ç¶™ç‚¹ç§»å‹•
 				pTargetItm.setLinePointPos( wMovePos );
 
 			}
 
-			// €–ÚˆÚ“®
+			// é …ç›®ç§»å‹•
 			pTargetItm.setBoxPos( wMovePos, { overflow: wOverflow } );
 
-			// ƒOƒ‹[ƒv
+			// ã‚°ãƒ«ãƒ¼ãƒ—
 			if ( this.isItemGroup(wTargetKd) ) {
-				// ’†Œp“_‚ÌŠ‘®‰ğœ
+				// ä¸­ç¶™ç‚¹ã®æ‰€å±è§£é™¤
 				this.execFunction( this.freeAreaRelationCmt );
 			
 			}
@@ -2908,28 +2908,28 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ˆÚ“®æ‚ª’†Œp“_‚Ìê‡‚ÌˆÊ’u•â³’l
+	// ç§»å‹•å…ˆãŒä¸­ç¶™ç‚¹ã®å ´åˆã®ä½ç½®è£œæ­£å€¤
 	clsContentsBox.prototype.getPositionRelMove = function( pParam ) {
 		try {
 			var wRelationPos = 0;
 
-			// ’†Œp“_‚Ìê‡
+			// ä¸­ç¶™ç‚¹ã®å ´åˆ
 			if ( this.isItemRelation(pParam.targetKd) ) {
-				// ƒNƒŠƒbƒN€–Ú‚Ì’†S‚É‡‚í‚¹‚é
+				// ã‚¯ãƒªãƒƒã‚¯é …ç›®ã®ä¸­å¿ƒã«åˆã‚ã›ã‚‹
 				if ( pParam.clickSize > 2 ) {
 					wRelationPos += Math.floor(pParam.clickSize / 2);
 					if ( (pParam.clickSize % 2) == 0 ) wRelationPos++;
 				}
 
-				// ’†Œp“_ˆÈŠO‚ğƒNƒŠƒbƒN
+				// ä¸­ç¶™ç‚¹ä»¥å¤–ã‚’ã‚¯ãƒªãƒƒã‚¯
 				if ( !this.isItemRelation(pParam.clickKd) ) {
-					// ƒ‰ƒCƒ“•‰ÁZ
+					// ãƒ©ã‚¤ãƒ³å¹…åŠ ç®—
 					wRelationPos += pParam.targetLine;
 				}
 
-			// ƒNƒŠƒbƒN€–Ú‚ª’†Œp“_‚Ìê‡
+			// ã‚¯ãƒªãƒƒã‚¯é …ç›®ãŒä¸­ç¶™ç‚¹ã®å ´åˆ
 			} else if ( this.isItemRelation(pParam.clickKd) ) {
-				// ’†S“¯m‚ğ‡‚í‚¹‚é
+				// ä¸­å¿ƒåŒå£«ã‚’åˆã‚ã›ã‚‹
 				if ( pParam.clickSize > 2 ) {
 					wRelationPos += Math.floor(pParam.clickSize / 2);
 					if ( (pParam.clickSize % 2) == 0 ) wRelationPos--;
@@ -2947,10 +2947,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Ú‘€ì - ‘I‘ğ
+	// é …ç›®æ“ä½œ - é¸æŠ
 	// **************************************************************
 
-	// ‘I‘ğó‘Ôİ’è
+	// é¸æŠçŠ¶æ…‹è¨­å®š
 	clsContentsBox.prototype.setSelectState = function( pSelectItm, pParam ) {
 		try {
 			var wRetVal = false;
@@ -2966,7 +2966,7 @@ var clsContentsBox = function( pArgument ) {
 			}
 
 			if ( wSelected ) {
-				// €–Ú‚ğ‘I‘ğó‘Ô
+				// é …ç›®ã‚’é¸æŠçŠ¶æ…‹
 				if ( wRelation ) {
 					wRetVal = pSelectItm.selectItemRel( wSelected );
 					
@@ -2976,14 +2976,14 @@ var clsContentsBox = function( pArgument ) {
 				}
 
 			} else {
-				// ‘I‘ğ‰ğœ
+				// é¸æŠè§£é™¤
 				wRetVal = pSelectItm.selectItemFree();
 
 			}
 
-			// ‘I‘ğó‘Ô•ÏX
+			// é¸æŠçŠ¶æ…‹å¤‰æ›´æ™‚
 			if ( wRetVal ) {
-				// €–Ú•ÏX’Ê’mi€–Ú‘I‘ğj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆé …ç›®é¸æŠï¼‰
 				this.execLinkCallback( { kind: 'select', selected: wSelected }, pSelectItm );
 			
 			}
@@ -2995,40 +2995,40 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ÆŠÖ˜A€–Ú‚Ì‹­’²•\¦i“Á’è€–ÚˆÈŠO‚ğ–Ú—§‚½‚È‚­‚·‚éj
+	// é …ç›®ã¨é–¢é€£é …ç›®ã®å¼·èª¿è¡¨ç¤ºï¼ˆç‰¹å®šé …ç›®ä»¥å¤–ã‚’ç›®ç«‹ãŸãªãã™ã‚‹ï¼‰
 	clsContentsBox.prototype.emphasisSelectItem = function( pSelectedItms, pSelected, pEmphaRev ) {
 		try {
-			// –¢‘I‘ğClassİ’è
+			// æœªé¸æŠClassè¨­å®š
 			function setNoEmphasisClass( pTargetList, pSelectList ) {
 				try {
 					var wTarget;
 
 					for( var wKey in pTargetList ) {
-						// ˆê’U‘I‘ğ—pClassíœ
+						// ä¸€æ—¦é¸æŠç”¨Classå‰Šé™¤
 						pTargetList[wKey].delBoxClass( 'cssItem-emphasis' );
 						pTargetList[wKey].delBoxClass( 'cssItem-non-emphasis' );
 
-						// ‘I‘ğ‚Ì‚İClassÄİ’è
+						// é¸æŠæ™‚ã®ã¿Classå†è¨­å®š
 						if ( !pSelected ) continue;
 
-						// ‘I‘ğ€–Ú‚Ì‚İ‹­’²
+						// é¸æŠé …ç›®ã®ã¿å¼·èª¿
 						if ( !pEmphaRev ) {
 							wTarget = !(wKey in pSelectList)
 						
-						// ‘I‘ğ€–ÚˆÈŠO‚ğ‹­’²
+						// é¸æŠé …ç›®ä»¥å¤–ã‚’å¼·èª¿
 						} else {
 							wTarget = (wKey in pSelectList)
 
 						}
 							
-						// ƒ^[ƒQƒbƒg
+						// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
 						if ( wTarget ) {
-							// –Ú—§‚½‚È‚­‚·‚éClass’Ç‰Á
+							// ç›®ç«‹ãŸãªãã™ã‚‹Classè¿½åŠ 
 							pTargetList[wKey].setBoxClass( 'cssItem-non-emphasis' );
 							
-						// ƒ^[ƒQƒbƒgˆÈŠO
+						// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆä»¥å¤–
 						} else if ( pSelected ) {
-							// ‹­’²class’Ç‰Á
+							// å¼·èª¿classè¿½åŠ 
 							pTargetList[wKey].setBoxClass( 'cssItem-emphasis' );
 
 						}
@@ -3039,7 +3039,7 @@ var clsContentsBox = function( pArgument ) {
 				}
 			};
 			
-			// –¢‘I‘ğClassİ’è
+			// æœªé¸æŠClassè¨­å®š
 			setNoEmphasisClass( this._ContentsItems.person,		pSelectedItms );
 			setNoEmphasisClass( this._ContentsItems.group,		pSelectedItms );
 			setNoEmphasisClass( this._ContentsItems.relation,	pSelectedItms );
@@ -3050,30 +3050,30 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ’†Œp“_‚Ìe‚Ì‘I‘ğó‘Ôİ’è
+	// ä¸­ç¶™ç‚¹ã®è¦ªã®é¸æŠçŠ¶æ…‹è¨­å®š
 	clsContentsBox.prototype.setSelectRelationMaster = function( pRelItm, pParam, pSelectedList ) {
 		try {
-			// ©g‚ª’†Œp“_‚Ìê‡‚Ì‚İ
+			// è‡ªèº«ãŒä¸­ç¶™ç‚¹ã®å ´åˆã®ã¿
 			if ( !pRelItm.isRelation() ) return;
 
-			// e‚Ì‘I‘ğó‘Ôİ’è
+			// è¦ªã®é¸æŠçŠ¶æ…‹è¨­å®š
 			var wParentItm = this.getContentsItem( pRelItm.getMasterParent() );
 			if ( wParentItm ) {
-				// –¢İ’è‚È‚çˆ—
+				// æœªè¨­å®šãªã‚‰å‡¦ç†
 				var wParentId = wParentItm.getBoxId();
 				if ( !(wParentId in pSelectedList) ) {
-					// ¦Ä‹A‚É‚æ‚é‘I‘ğó‘Ôİ’è
+					// â€»å†å¸°ã«ã‚ˆã‚‹é¸æŠçŠ¶æ…‹è¨­å®š
 					this.setSelectItemState( wParentItm, pParam, pSelectedList );
 				}
 			}
 
-			// ŠÖ˜Aæ€–Ú‘I‘ğó‘Ôİ’è
+			// é–¢é€£å…ˆé …ç›®é¸æŠçŠ¶æ…‹è¨­å®š
 			var wTargetItm = this.getContentsItem( pRelItm.getMasterTarget() );
 			if ( wTargetItm ) {
-				// –¢İ’è‚È‚çˆ—
+				// æœªè¨­å®šãªã‚‰å‡¦ç†
 				var wTargetId = wTargetItm.getBoxId();
 				if ( !(wTargetId in pSelectedList) ) {
-					// ¦Ä‹A‚É‚æ‚é‘I‘ğó‘Ôİ’è
+					// â€»å†å¸°ã«ã‚ˆã‚‹é¸æŠçŠ¶æ…‹è¨­å®š
 					this.setSelectItemState( wTargetItm, pParam, pSelectedList );
 				}
 			}
@@ -3083,14 +3083,14 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A€–Ú‚Ì‘I‘ğó‘Ôİ’è
+	// é–¢é€£é …ç›®ã®é¸æŠçŠ¶æ…‹è¨­å®š
 	clsContentsBox.prototype.setSelectRelationItem = function( pSelectItm, pParam, pSelectedList ) {
 		try {
-			// ŠÖ˜A€–Ú‚ğ‘I‘ğó‘Ô
+			// é–¢é€£é …ç›®ã‚’é¸æŠçŠ¶æ…‹
 			var wRelationList = pSelectItm.getRelationList();
 			if ( !wRelationList ) return;
 
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			if ( !pParam ) return;
 			var wSelected = pParam.selected;
 			var wRelayFlg = pParam.relay;
@@ -3100,28 +3100,28 @@ var clsContentsBox = function( pArgument ) {
 			var wRelItm;
 			var wRelayItm;
 			for ( var wId in wRelationList ) {
-				// ‘ÎÛ‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç€–Úæ“¾
+				// å¯¾è±¡ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰é …ç›®å–å¾—
 				wParam = wRelationList[wId];
 				if ( !wParam ) continue;
 
 				wRelItm = this.getContentsItem( wId, wParam.kind );
 				if ( !wRelItm ) continue;
 
-				// ŠÖ˜A€–Ú‚Ì‘I‘ğó‘Ôİ’è
-				// ¦Ä‹A‚É‚æ‚é‘I‘ğó‘Ôİ’è
+				// é–¢é€£é …ç›®ã®é¸æŠçŠ¶æ…‹è¨­å®š
+				// â€»å†å¸°ã«ã‚ˆã‚‹é¸æŠçŠ¶æ…‹è¨­å®š
 				this.setSelectItemState( wRelItm, pParam, pSelectedList );
 
-				// ’†Œp“_‘ÎÛ@‚Ü‚½‚Í@’†Œp“_æ‚à‘ÎÛ
+				// ä¸­ç¶™ç‚¹å¯¾è±¡ã€€ã¾ãŸã¯ã€€ä¸­ç¶™ç‚¹å…ˆã‚‚å¯¾è±¡
 				if ( !wRelayFlg && !wBeyond ) continue;
 
-				// ’†Œp“_ˆ—
+				// ä¸­ç¶™ç‚¹å‡¦ç†
 				if ( !wParam.relationInf ) continue;
 
 				wRelayItm = this._ContentsItems.relation[wParam.relationInf.getBoxId()];
 				if ( !wRelayItm ) continue;
 
-				// ’†Œp“_‘I‘ğó‘Ôİ’è
-				// ¦Ä‹A‚É‚æ‚é‘I‘ğó‘Ôİ’è
+				// ä¸­ç¶™ç‚¹é¸æŠçŠ¶æ…‹è¨­å®š
+				// â€»å†å¸°ã«ã‚ˆã‚‹é¸æŠçŠ¶æ…‹è¨­å®š
 				this.setSelectItemState( wRelayItm, pParam, pSelectedList );
 			}
 
@@ -3130,15 +3130,15 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ŠÖ˜A€–Ú‚Ì‘I‘ğó‘Ôİ’è
+	// é–¢é€£é …ç›®ã®é¸æŠçŠ¶æ…‹è¨­å®š
 	clsContentsBox.prototype.setSelectItemState = function( pSelectItem, pParam, pSelectedList ) {
 		try {
 			var wSelectId = pSelectItem.getBoxId();
 
-			// İ’èÏ‚È‚çˆ—‚È‚µ
+			// è¨­å®šæ¸ˆãªã‚‰å‡¦ç†ãªã—
 			if ( wSelectId in pSelectedList ) return;
 
-			// ‘I‘ğó‘Ôİ’è
+			// é¸æŠçŠ¶æ…‹è¨­å®š
 			var wSelected = pParam.selected;
 			var wRelation = pParam.relation;
 
@@ -3149,48 +3149,48 @@ var clsContentsBox = function( pArgument ) {
 			var wSetRelation	= false;
 			var wSetMaster		= false;
 
-			// å€–Ú‚Ìê‡
+			// ä¸»é …ç›®ã®å ´åˆ
 			if ( !wRelation ) {
-				// ‘I‘ğ€–Ú‚Ì‚İ‚Ìê‡‚Íˆ—I—¹
+				// é¸æŠé …ç›®ã®ã¿ã®å ´åˆã¯å‡¦ç†çµ‚äº†
 				if ( pParam.only ) return;
 
-				// ŠÖ˜A€–Ú‚Ì‘I‘ğó‘Ôİ’è@—LŒø
+				// é–¢é€£é …ç›®ã®é¸æŠçŠ¶æ…‹è¨­å®šã€€æœ‰åŠ¹
 				wSetRelation = true;
 
-				// ’†Œp“_‘ÎÛ
+				// ä¸­ç¶™ç‚¹å¯¾è±¡æ™‚
 				if ( pParam.relay ) {
-					// ’†Œp“_‚Ìê‡‚Íe‚Ìó‘Ôİ’è
+					// ä¸­ç¶™ç‚¹ã®å ´åˆã¯è¦ªã®çŠ¶æ…‹è¨­å®š
 					if ( wIsRelation ) wSetMaster = true;
 				}
 
-				// 1€–Ú–ÚˆÈ~‚ÍŠÖ˜A€–Ú
+				// 1é …ç›®ç›®ä»¥é™ã¯é–¢é€£é …ç›®
 				pParam.relation = true;
 
-			// ŠÖ˜A€–Ú
+			// é–¢é€£é …ç›®
 			} else {
-				// ’†Œp“_ˆÈŠO‚Íˆ—I—¹
+				// ä¸­ç¶™ç‚¹ä»¥å¤–ã¯å‡¦ç†çµ‚äº†
 				if ( !wIsRelation ) return;
 
-				// ’†Œp“_‚Ìæ‚à‘ÎÛ
+				// ä¸­ç¶™ç‚¹ã®å…ˆã‚‚å¯¾è±¡
 				if ( pParam.beyond ) {
-					// ŠÖ˜A€–Ú‚Ì‘I‘ğó‘Ôİ’è@—LŒø
+					// é–¢é€£é …ç›®ã®é¸æŠçŠ¶æ…‹è¨­å®šã€€æœ‰åŠ¹
 					wSetRelation = true;
 
-					// e‚Ìó‘Ôİ’è
+					// è¦ªã®çŠ¶æ…‹è¨­å®š
 					wSetMaster = true;
 				}
 
 			}
 
-			// ’†Œp“_‚Ìe‚Ìó‘Ôİ’è
+			// ä¸­ç¶™ç‚¹ã®è¦ªã®çŠ¶æ…‹è¨­å®š
 			if ( wSetMaster ) {
-				// ¦Ä‹A‚É‚æ‚é‘I‘ğó‘Ôİ’è
+				// â€»å†å¸°ã«ã‚ˆã‚‹é¸æŠçŠ¶æ…‹è¨­å®š
 				this.setSelectRelationMaster( pSelectItem, pParam, pSelectedList );
 			}
 
-			// ŠÖ˜A€–Ú‚Ì‘I‘ğó‘Ôİ’è
+			// é–¢é€£é …ç›®ã®é¸æŠçŠ¶æ…‹è¨­å®š
 			if ( wSetRelation ) {
-				// ¦Ä‹A‚É‚æ‚é‘I‘ğó‘Ôİ’è
+				// â€»å†å¸°ã«ã‚ˆã‚‹é¸æŠçŠ¶æ…‹è¨­å®š
 				this.setSelectRelationItem( pSelectItem, pParam, pSelectedList );
 			}
 
@@ -3199,10 +3199,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ÆŠÖ˜A€–Ú‚Ì‘I‘ğó‘Ôİ’è
+	// é …ç›®ã¨é–¢é€£é …ç›®ã®é¸æŠçŠ¶æ…‹è¨­å®š
 	clsContentsBox.prototype.setSelectItem = function( pSelectItm, pParam ) {
 		try {
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			var wStatPram = {};
 
 			if ( typeof pParam == 'boolean' ) {
@@ -3215,29 +3215,29 @@ var clsContentsBox = function( pArgument ) {
 
 			}
 
-			// ‘I‘ğ€–ÚƒŠƒXƒg
+			// é¸æŠé …ç›®ãƒªã‚¹ãƒˆ
 			var wSelectedItms = {}
 
-			// €–Ú‚ğ‘I‘ğó‘Ô
+			// é …ç›®ã‚’é¸æŠçŠ¶æ…‹
 			this.setSelectItemState( pSelectItm, pParam, wSelectedItms );
 
-			// €–Ú‘I‘ğ
+			// é …ç›®é¸æŠ
 			if ( wStatPram.selected ) {
-				// ‘I‘ğ€–Ú•Û‘¶
+				// é¸æŠé …ç›®ä¿å­˜
 				this._ContentsSelectInf.item = pSelectItm;
 
-			// ‘I‘ğ‰ğœ
+			// é¸æŠè§£é™¤
 			} else {
-				// ‘I‘ğ€–ÚƒNƒŠƒA
+				// é¸æŠé …ç›®ã‚¯ãƒªã‚¢
 				this._ContentsSelectInf.item = null;
 			
 			}
 
 			if ( wStatPram.emphasis ) {
-				// €–Ú‚ğ–Ú—§‚½‚È‚­‚·‚é
+				// é …ç›®ã‚’ç›®ç«‹ãŸãªãã™ã‚‹
 				this.emphasisSelectItem( wSelectedItms, wStatPram.selected, wStatPram.emphasisRev );
 
-				// ‘ÎÛ€–Ú‚ÌŠÖ˜A‚Ì‚İƒ‰ƒCƒ“•`‰æ
+				// å¯¾è±¡é …ç›®ã®é–¢é€£ã®ã¿ãƒ©ã‚¤ãƒ³æç”»
 				this.drawRelationRedo( { select: pSelectItm } );
 			}
 
@@ -3246,20 +3246,20 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‘I‘ğ‰ğœ
+	// é …ç›®é¸æŠè§£é™¤
 	clsContentsBox.prototype.resetSelectItem = function( ) {
 		try {
 			var self = this;
 
-			// ‘S€–Ú‘I‘ğ‰ğœ
+			// å…¨é …ç›®é¸æŠè§£é™¤
 			function resetSelect( pItemList ) {
 				if ( !pItemList ) return;
 
 				for( var wKey in pItemList ) {
-					// ‘I‘ğ‰ğœ
+					// é¸æŠè§£é™¤
 					self.setSelectState( pItemList[wKey], false );
 					
-					// ‘I‘ğ—pClassíœ
+					// é¸æŠç”¨Classå‰Šé™¤
 					pItemList[wKey].delBoxClass( 'cssItem-emphasis' );
 					pItemList[wKey].delBoxClass( 'cssItem-non-emphasis' );
 					
@@ -3272,7 +3272,7 @@ var clsContentsBox = function( pArgument ) {
 			resetSelect( this._ContentsItems.comment );
 			resetSelect( this._ContentsItems.freeline );
 
-			// ‘I‘ğ€–ÚƒNƒŠƒA
+			// é¸æŠé …ç›®ã‚¯ãƒªã‚¢
 			this._ContentsSelectInf.item = null;
 
 		} catch(e) {
@@ -3280,7 +3280,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ÆŠÖ˜A€–Ú‚Ì‘I‘ğó‘Ô‚ğ‘S‚Ä‰ğœ
+	// é …ç›®ã¨é–¢é€£é …ç›®ã®é¸æŠçŠ¶æ…‹ã‚’å…¨ã¦è§£é™¤
 	clsContentsBox.prototype.resetSelectAll = function() {
 		try {
 			var self = this;
@@ -3291,7 +3291,7 @@ var clsContentsBox = function( pArgument ) {
 
 					for( var wKey in pList ) {
 						if ( pList.hasOwnProperty(wKey) ) {
-							// ‘I‘ğ‰ğœ
+							// é¸æŠè§£é™¤
 							if ( pList[wKey].selectItemIs() ) {
 								pList[wKey].selectItem(false);
 								wSelected = true;
@@ -3305,7 +3305,7 @@ var clsContentsBox = function( pArgument ) {
 
 							}
 							
-							// ‘I‘ğ‰ğœ‚Í•ÏX’Ê’m
+							// é¸æŠè§£é™¤æ™‚ã¯å¤‰æ›´é€šçŸ¥
 							if ( wSelected ) {
 								self.execLinkCallback( { kind: 'select', selected: false }, pList[wKey] );
 
@@ -3329,10 +3329,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒNƒŠƒbƒN‚µ‚½€–Ú‚ğ‘I‘ğó‘Ô
+	// ã‚¯ãƒªãƒƒã‚¯ã—ãŸé …ç›®ã‚’é¸æŠçŠ¶æ…‹
 	clsContentsBox.prototype.selectClickItem = function( pClickItem ) {
 		try {
-			// ‘I‘ğ’†‚Ì€–ÚƒNƒŠƒbƒN
+			// é¸æŠä¸­ã®é …ç›®ã‚¯ãƒªãƒƒã‚¯æ™‚
 			var wResetFlg = false;
 			if ( this._ContentsSelectInf.item ) {
 				var wSelId = this._ContentsSelectInf.item.getBoxId();
@@ -3343,12 +3343,12 @@ var clsContentsBox = function( pArgument ) {
 				}
 			}
 
-			// ‘I‘ğ‰ğœ
+			// é¸æŠè§£é™¤
 			this.execFunction( this.resetSelectItem );
 
-			// ƒŠƒZƒbƒgˆÈŠO
+			// ãƒªã‚»ãƒƒãƒˆæ™‚ä»¥å¤–
 			if ( !wResetFlg ) {
-				// €–Ú‚ğ‘I‘ğó‘Ô
+				// é …ç›®ã‚’é¸æŠçŠ¶æ…‹
 				this.setSelectItem( pClickItem, { selected: true, beyond: true } );
 
 			}
@@ -3360,10 +3360,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Ú‘€ì
+	// é …ç›®æ“ä½œ
 	// **************************************************************
 
-	// €–Ú‚ªl•¨‚©‚Ç‚¤‚©
+	// é …ç›®ãŒäººç‰©ã‹ã©ã†ã‹
 	clsContentsBox.prototype.isItemPerson = function( pKind ) {
 		try {
 			if ( !pKind ) return false;
@@ -3375,7 +3375,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ªƒOƒ‹[ƒv‚©‚Ç‚¤‚©
+	// é …ç›®ãŒã‚°ãƒ«ãƒ¼ãƒ—ã‹ã©ã†ã‹
 	clsContentsBox.prototype.isItemGroup = function( pKind ) {
 		try {
 			if ( !pKind ) return false;
@@ -3387,7 +3387,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ªƒRƒƒ“ƒg‚©‚Ç‚¤‚©
+	// é …ç›®ãŒã‚³ãƒ¡ãƒ³ãƒˆã‹ã©ã†ã‹
 	clsContentsBox.prototype.isItemComment = function( pKind ) {
 		try {
 			if ( !pKind ) return false;
@@ -3399,7 +3399,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ªŠÖ˜A•t‚¯’†Œp“_‚©‚Ç‚¤‚©
+	// é …ç›®ãŒé–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹ã‹ã©ã†ã‹
 	clsContentsBox.prototype.isItemRelation = function( pKind ) {
 		try {
 			if ( !pKind ) return false;
@@ -3411,7 +3411,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ªƒtƒŠ[ƒ‰ƒCƒ“‚©‚Ç‚¤‚©
+	// é …ç›®ãŒãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ã‹ã©ã†ã‹
 	clsContentsBox.prototype.isItemFreeLine = function( pKind ) {
 		try {
 			if ( !pKind ) return false;
@@ -3423,7 +3423,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// å€–Úæ“¾
+	// ä¸»é …ç›®å–å¾—
 	clsContentsBox.prototype.getItemMainPerson = function( ) {
 		try {
 			if ( !this._ContentsItems.person ) return null;
@@ -3445,18 +3445,18 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// q—v‘f‚Éíœ•s‰Â€–Ú‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// å­è¦ç´ ã«å‰Šé™¤ä¸å¯é …ç›®ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	clsContentsBox.prototype.chkNoDeleteChiledItem = function( pChkId, pChildList ) {
 		try {
 			var wFind = false;
 
 			var wParentId;
 			for( var wKey in pChildList ) {
-				// eID‚ªˆê’v
+				// è¦ªIDãŒä¸€è‡´
 				wParentId = pChildList[wKey].getParentId();
 				if ( wParentId !== pChkId ) continue;
 
-				// íœ•s‰Âƒ`ƒFƒbƒN
+				// å‰Šé™¤ä¸å¯ãƒã‚§ãƒƒã‚¯
 				if ( !pChildList[wKey].getItemDelIs() ) {
 					wFind = true;
 					break;
@@ -3470,7 +3470,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú’Ç‰Á@‹¤’Êƒƒjƒ…[æ“¾
+	// é …ç›®è¿½åŠ ã€€å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼å–å¾—
 	clsContentsBox.prototype.getItemPublicMenu = function( pItemKind ) {
 		try {
 			var wPublicMenu = {};
@@ -3480,7 +3480,7 @@ var clsContentsBox = function( pArgument ) {
 					wPublicMenu.position	= this._ContentsPublicMenu.common.position;
 				}
 
-				// l•¨
+				// äººç‰©
 				if ( this.isItemPerson(pItemKind) ) {
 					if ( this._ContentsPublicMenu.person ) {
 						wPublicMenu.context		= this._ContentsPublicMenu.person.context;
@@ -3494,7 +3494,7 @@ var clsContentsBox = function( pArgument ) {
 						if ( this._ContentsPublicMenu.person.position ) wPublicMenu.position = this._ContentsPublicMenu.person.position;
 					}
 
-				// ƒOƒ‹[ƒv
+				// ã‚°ãƒ«ãƒ¼ãƒ—
 				} else if ( this.isItemGroup(pItemKind) ) {
 					if ( this._ContentsPublicMenu.group ) {
 						wPublicMenu.context		= this._ContentsPublicMenu.group.context;
@@ -3507,7 +3507,7 @@ var clsContentsBox = function( pArgument ) {
 						if ( this._ContentsPublicMenu.group.position ) wPublicMenu.position = this._ContentsPublicMenu.group.position;
 					}
 
-				// ƒRƒƒ“ƒg
+				// ã‚³ãƒ¡ãƒ³ãƒˆ
 				} else if ( this.isItemComment(pItemKind) ) {
 					if ( this._ContentsPublicMenu.comment ) {
 						wPublicMenu.context		= this._ContentsPublicMenu.comment.context;
@@ -3519,7 +3519,7 @@ var clsContentsBox = function( pArgument ) {
 						if ( this._ContentsPublicMenu.comment.position ) wPublicMenu.position = this._ContentsPublicMenu.comment.position;
 					}
 
-				// ŠÖ˜A•t‚¯’†Œp“_
+				// é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹
 				} else if ( this.isItemRelation(pItemKind) ) {
 					if ( this._ContentsPublicMenu.relation ) {
 						wPublicMenu.context		= this._ContentsPublicMenu.relation.context;
@@ -3531,7 +3531,7 @@ var clsContentsBox = function( pArgument ) {
 						if ( this._ContentsPublicMenu.relation.position ) wPublicMenu.position = this._ContentsPublicMenu.relation.position;
 					}
 
-				// ƒtƒŠ[ƒ‰ƒCƒ“
+				// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³
 				} else if ( this.isItemFreeLine(pItemKind) ) {
 					if ( this._ContentsPublicMenu.freeline ) {
 						wPublicMenu.context		= this._ContentsPublicMenu.freeline.context;
@@ -3554,14 +3554,14 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú’Ç‰Á
+	// é …ç›®è¿½åŠ 
 	clsContentsBox.prototype.addItem = function( pEvent, pItemKind, pLoadData ) {
 		try {
-			// €–Úƒhƒ‰ƒbƒO‰Â”Û
-			// ¦‹N“®ƒpƒ‰ƒ[ƒ^‚©‚çæ“¾
+			// é …ç›®ãƒ‰ãƒ©ãƒƒã‚°å¯å¦
+			// â€»èµ·å‹•æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—
 			var wItemDrag		= this.getSettingItemDrag( pItemKind );
 
-			// ’Ç‰Á€–Úƒpƒ‰ƒ[ƒ^
+			// è¿½åŠ é …ç›®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 			var wAddParam = {
 				  window		: this.getBoxWindow()
 				, parent		: this._ContentsEleMain
@@ -3569,15 +3569,15 @@ var clsContentsBox = function( pArgument ) {
 				, loadData		: pLoadData
 			};
 
-			// €–Ú‘€ìƒvƒƒpƒeƒBİ’è
+			// é …ç›®æ“ä½œãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			this.copyProperty( wItemDrag, wAddParam );
 
-			// ‰Šú’lw’è
+			// åˆæœŸå€¤æŒ‡å®šæ™‚
 			var wPoint		= { x: 0, y: 0 };
 			if ( pEvent ) {
 				wPoint = this.getEventPos( pEvent );
 
-				// €–Úƒpƒ‰ƒ[ƒ^w’è
+				// é …ç›®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æŒ‡å®šæ™‚
 				for( var wParaKey in pEvent ) {
 					if ( !pEvent.hasOwnProperty(wParaKey) ) continue;
 					wAddParam[wParaKey] = pEvent[wParaKey];
@@ -3590,56 +3590,56 @@ var clsContentsBox = function( pArgument ) {
 			wPoint.y -= wBasePos.top;
 			if ( wPoint.y < 0 ) wPoint.y = 0;
 
-			// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 			var wMainScroll = this.getScroll( this._ContentsEleMain );
 			wPoint.x	+= wMainScroll.x;
 			wPoint.y	+= wMainScroll.y;
 
-			// ƒvƒƒpƒeƒBiˆÊ’u‚È‚Çjİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ï¼ˆä½ç½®ãªã©ï¼‰è¨­å®š
 			wAddParam.property = { left: wPoint.x + 'px', top: wPoint.y + 'px' };
 
-			// ‹¤’Êƒƒjƒ…[Œp³İ’è
+			// å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¶™æ‰¿è¨­å®š
 			wAddParam.publicMenu = this.getItemPublicMenu( pItemKind );
 			var wAddItem = null;
 
-			// l•¨
+			// äººç‰©
 			if ( this.isItemPerson(pItemKind) ) {
-				// İ’è•ÏXcallback
+				// è¨­å®šå¤‰æ›´æ™‚callback
 				wAddParam.callback = this.eventItemPersonChange;
 
-				// €–Ú’Ç‰Á
+				// é …ç›®è¿½åŠ 
 				wAddItem = new clsItemPerson( wAddParam );
 
-			// ƒOƒ‹[ƒv
+			// ã‚°ãƒ«ãƒ¼ãƒ—
 			} else if ( this.isItemGroup(pItemKind) ) {
-				// İ’è•ÏXcallback
+				// è¨­å®šå¤‰æ›´æ™‚callback
 				wAddParam.callback = this.eventItemGroupChange;
 
-				// €–Ú’Ç‰Á
+				// é …ç›®è¿½åŠ 
 				wAddItem = new clsItemGroup( wAddParam );
 
-			// ƒRƒƒ“ƒg
+			// ã‚³ãƒ¡ãƒ³ãƒˆ
 			} else if ( this.isItemComment(pItemKind) ) {
-				// İ’è•ÏXcallback
+				// è¨­å®šå¤‰æ›´æ™‚callback
 				wAddParam.callback = this.eventItemCommentChange;
 
-				// €–Ú’Ç‰Á
+				// é …ç›®è¿½åŠ 
 				wAddItem = new clsItemComment( wAddParam );
 
-			// ŠÖ˜A•t‚¯’†Œp“_
+			// é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹
 			} else if ( this.isItemRelation(pItemKind) ) {
-				// İ’è•ÏXcallback
+				// è¨­å®šå¤‰æ›´æ™‚callback
 				wAddParam.callback = this.eventItemRelationChange;
 
-				// €–Ú’Ç‰Á
+				// é …ç›®è¿½åŠ 
 				wAddItem = new clsItemRelation( wAddParam );
 
-			// ŠÖ˜A•t‚¯’†Œp“_
+			// é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹
 			} else if ( this.isItemFreeLine(pItemKind) ) {
-				// İ’è•ÏXcallback
+				// è¨­å®šå¤‰æ›´æ™‚callback
 				wAddParam.callback = this.eventItemFreeLineChange;
 
-				// €–Ú’Ç‰Á
+				// é …ç›®è¿½åŠ 
 				wAddItem = new clsItemFreeLine( wAddParam );
 
 			}
@@ -3651,26 +3651,26 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú’Ç‰Á^íœ’Ê’m—pCallbackæ“¾
+	// é …ç›®è¿½åŠ ï¼å‰Šé™¤é€šçŸ¥ç”¨Callbackå–å¾—
 	clsContentsBox.prototype.getItemChangeFunc = function( pItem, pFuncName ) {
 		try {
-			// callbackæ“¾
-			// ¦€–ÚŒÂ•Ê‚Ìcallback—Dæ
+			// callbackå–å¾—
+			// â€»é …ç›®å€‹åˆ¥ã®callbackå„ªå…ˆ
 			var wCallFunc = pItem.loadArgument(pFuncName);
 
-			// €–Ú‚²‚Æ‚Ìcallback‚È‚¯‚ê‚Î•W€callback
+			// é …ç›®ã”ã¨ã®callbackãªã‘ã‚Œã°æ¨™æº–callback
 			if ( !wCallFunc ) {
-				// å€–Ú
+				// ä¸»é …ç›®æ™‚
 				var wKeyFlag = false;
 				if ( typeof pItem.isKeyPerson == 'function' ) wKeyFlag = pItem.isKeyPerson();
 
 				if ( wKeyFlag ) {
-					// å€–Ú—pcallback‚ ‚ê‚Î—Dæ
+					// ä¸»é …ç›®ç”¨callbackã‚ã‚Œã°å„ªå…ˆ
 					var wKeyPerson = this.loadArgument('keyperson');
 					if ( pFuncName in wKeyPerson ) wCallFunc = wKeyPerson[pFuncName];
 				}
 
-				// •W€callback
+				// æ¨™æº–callback
 				if ( !wCallFunc ) wCallFunc = this.loadArgument(pFuncName);
 			}
 			
@@ -3681,21 +3681,21 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú’Ç‰Á‚ğ’Ê’m
+	// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 	clsContentsBox.prototype.execItemAddFunc = function( pAddItem ) {
 		try {
 			if ( !pAddItem ) return;
 			
-			// €–Ú’Ç‰Ácallbackæ“¾
+			// é …ç›®è¿½åŠ æ™‚callbackå–å¾—
 			var wAddFunc = this.getItemChangeFunc( pAddItem, 'addfunc' );
 			if ( !wAddFunc ) return;
 
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			var wCallbackParam = {};
 
 			wCallbackParam.item = pAddItem;
 
-			// “o˜^‚³‚ê‚Ä‚¢‚éˆ—‚ğÀs
+			// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å‡¦ç†ã‚’å®Ÿè¡Œ
 			var wArguments = [];
 			wArguments.push( wCallbackParam );
 
@@ -3706,19 +3706,19 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú’Ç‰Á@ŠJn
+	// é …ç›®è¿½åŠ ã€€é–‹å§‹
 	clsContentsBox.prototype.addItemStart = function( pEvent, pItemKind ) {
 		try {
-			// €–Ú’Ç‰Á
+			// é …ç›®è¿½åŠ 
 			var wAddItem = this.addItem( pEvent, pItemKind );
 			if ( !wAddItem ) return false;
 
 			try {
-				// €–ÚˆÚ“®ŠJn
+				// é …ç›®ç§»å‹•é–‹å§‹
 				this.moveItemStart( pEvent, wAddItem, 'add' );
 
 			} catch(me) {
-				// ’Ç‰Á€–Úíœ‚µ‚Ä—áŠO‚ğthrow
+				// è¿½åŠ é …ç›®å‰Šé™¤ã—ã¦ä¾‹å¤–ã‚’throw
 				if ( wAddItem ) wAddItem.freeClass();
 				throw { name: me.name, message: me.message };
 
@@ -3730,16 +3730,16 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ğ€–ÚƒŠƒXƒg‚©‚çíœ
+	// é …ç›®ã‚’é …ç›®ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 	clsContentsBox.prototype.delItemFromList = function( pId, pTargetList ) {
 		try {
 			var wDelItm = pTargetList[pId];
 			if ( !wDelItm ) return false;
 
-			// €–Úíœ‚ğ’Ê’m
+			// é …ç›®å‰Šé™¤ã‚’é€šçŸ¥
 			this.execFunction( this.execItemDelFunc, wDelItm );
 
-			// €–Ú‚ğíœ
+			// é …ç›®ã‚’å‰Šé™¤
 			pTargetList[pId].freeClass();
 			pTargetList[pId] = null;
 
@@ -3750,7 +3750,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Úíœ
+	// é …ç›®å‰Šé™¤
 	clsContentsBox.prototype.delItem = function( pId, pTargetList, pRelationDel ) {
 		try {
 			var wRedrawFlg = false;
@@ -3758,9 +3758,9 @@ var clsContentsBox = function( pArgument ) {
 			var wDelItm = pTargetList[pId];
 			if ( !wDelItm ) return false;
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“‚Ìê‡
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ã®å ´åˆ
 			if ( wDelItm.isFreeLine() ) {
-				// Ú‘±“_íœ
+				// æ¥ç¶šç‚¹å‰Šé™¤
 				if ( pRelationDel ) {
 					wRedrawFlg = this.delFreeLineAll( pId );
 				
@@ -3770,12 +3770,12 @@ var clsContentsBox = function( pArgument ) {
 				}
 
 			} else {
-				// ‘SŠÖŒW‚ğíœ
+				// å…¨é–¢ä¿‚ã‚’å‰Šé™¤
 				wRedrawFlg = this.liftRelationAll( wDelItm );
 
 			}
 
-			// ƒŠƒXƒg‚©‚ç€–Úíœ
+			// ãƒªã‚¹ãƒˆã‹ã‚‰é …ç›®å‰Šé™¤
 			this.delItemFromList( pId, pTargetList );
 
 			return wRedrawFlg;
@@ -3785,7 +3785,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// q€–Úíœ
+	// å­é …ç›®å‰Šé™¤
 	clsContentsBox.prototype.delItemChild = function( pId, pTargetList ) {
 		try {
 			if ( !pTargetList ) return false;
@@ -3795,16 +3795,16 @@ var clsContentsBox = function( pArgument ) {
 			var wParentId;
 			for( var wKey in pTargetList ) {
 				if ( pTargetList.hasOwnProperty(wKey) ) {
-					// eID‚ªˆê’v‚·‚ê‚Îíœ
+					// è¦ªIDãŒä¸€è‡´ã™ã‚Œã°å‰Šé™¤
 					wParentId = pTargetList[wKey].getParentId();
 					if ( wParentId !== pId ) continue;
 
-					// €–Úíœ
+					// é …ç›®å‰Šé™¤
 					if ( this.delItem(wKey, pTargetList) ) wRelationDel = true;
 				}
 			}
 
-			// €–ÚŠÖŒW‚ğíœ‚µ‚½‚©‚ğ•Ô‚·
+			// é …ç›®é–¢ä¿‚ã‚’å‰Šé™¤ã—ãŸã‹ã‚’è¿”ã™
 			return wRelationDel;
 
 		} catch(e) {
@@ -3812,7 +3812,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Úíœ
+	// é …ç›®å‰Šé™¤
 	clsContentsBox.prototype.delItemParent = function( pDelItem, pTargetList, pRelationDel ) {
 		try {
 			if ( !pDelItem ) return false;
@@ -3820,35 +3820,35 @@ var clsContentsBox = function( pArgument ) {
 			var wItemId = pDelItem.getBoxId();
 			var wItemKd = pDelItem.getBoxKind();
 
-			// ƒOƒ‹[ƒvíœ
+			// ã‚°ãƒ«ãƒ¼ãƒ—å‰Šé™¤
 			if ( this.isItemGroup(wItemKd) ) {
-				// Š‘®€–Ú‚Éíœ•s‰Â€–Ú‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+				// æ‰€å±é …ç›®ã«å‰Šé™¤ä¸å¯é …ç›®ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if ( this.chkNoDeleteChiledItem(wItemId, this._ContentsItems.person) ) {
-					alert( 'íœ‚Å‚«‚È‚¢€–Ú‚ªŠ‘®‚µ‚Ä‚¢‚é‚½‚ßAíœ‚Å‚«‚Ü‚¹‚ñB' );
+					alert( 'å‰Šé™¤ã§ããªã„é …ç›®ãŒæ‰€å±ã—ã¦ã„ã‚‹ãŸã‚ã€å‰Šé™¤ã§ãã¾ã›ã‚“ã€‚' );
 					return false;
 				}
 			}
 
-			// íœŠm”F
-			if ( !confirm('€–Ú‚ğíœ‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H') ) return;
+			// å‰Šé™¤ç¢ºèª
+			if ( !confirm('é …ç›®ã‚’å‰Šé™¤ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ') ) return;
 
 			var wRelationDel = false;
 
-			// ƒOƒ‹[ƒv
+			// ã‚°ãƒ«ãƒ¼ãƒ—
 			if ( this.isItemGroup(wItemKd) ) {
-				// q€–Úil•¨jíœ
+				// å­é …ç›®ï¼ˆäººç‰©ï¼‰å‰Šé™¤
 				wRelationDel = this.delItemChild(wItemId, this._ContentsItems.person);
 
-			// ˆÈŠO
+			// ä»¥å¤–
 			} else {
-				// q€–Ú‚È‚µ
+				// å­é …ç›®ãªã—
 
 			}
 
-			// ©g‚ğíœ
+			// è‡ªèº«ã‚’å‰Šé™¤
 			if ( this.delItem(wItemId, pTargetList, pRelationDel) ) wRelationDel = true;
 
-			// €–ÚŠÖŒW‚ğíœ‚µ‚½‚©‚ğ•Ô‚·
+			// é …ç›®é–¢ä¿‚ã‚’å‰Šé™¤ã—ãŸã‹ã‚’è¿”ã™
 			return wRelationDel;
 
 		} catch(e) {
@@ -3856,21 +3856,21 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Úíœ‚ğ’Ê’m
+	// é …ç›®å‰Šé™¤ã‚’é€šçŸ¥
 	clsContentsBox.prototype.execItemDelFunc = function( pDelItem ) {
 		try {
 			if ( !pDelItem ) return;
 			
-			// €–Ú’Ç‰Ácallbackæ“¾
+			// é …ç›®è¿½åŠ æ™‚callbackå–å¾—
 			var wDelFunc = this.getItemChangeFunc( pDelItem, 'delfunc' );
 			if ( !wDelFunc ) return;
 
-			// ƒpƒ‰ƒ[ƒ^İ’è
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			var wCallbackParam = {};
 
 			wCallbackParam.item = pDelItem;
 
-			// “o˜^‚³‚ê‚Ä‚¢‚éˆ—‚ğÀs
+			// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å‡¦ç†ã‚’å®Ÿè¡Œ
 			var wArguments = [];
 			wArguments.push( wCallbackParam );
 
@@ -3881,7 +3881,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú’Ç‰Áƒpƒ‰ƒ[ƒ^æ“¾
+	// é …ç›®è¿½åŠ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	clsContentsBox.prototype.getItemParamByValue = function( pParamVal ) {
 		try {
 			var wRetParam = {};
@@ -3891,19 +3891,19 @@ var clsContentsBox = function( pArgument ) {
 				if ( 'y' in pParamVal.pos ) wRetParam.y = pParamVal.pos.y;
 			}
 
-			// ‰Šú’liƒXƒe[ƒ^ƒXj
+			// åˆæœŸå€¤ï¼ˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼‰
 			if ( 'default' in pParamVal ) {
 				wRetParam.default = pParamVal.default;
 			}
 			
-			// €–ÚXVƒRƒƒ“ƒg
+			// é …ç›®æ›´æ–°æ™‚ã‚³ãƒ¡ãƒ³ãƒˆ
 			if ( 'comment' in pParamVal ) wRetParam.comment = pParamVal.comment;
 			if ( 'confirm' in pParamVal ) wRetParam.confirm = pParamVal.confirm;
 
-			// ‚»‚Ì‘¼ƒpƒ‰ƒ[ƒ^
+			// ãã®ä»–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 			var wOthParam = pParamVal.other;
 			if ( wOthParam ) {
-				// ‚»‚Ì‘¼ƒpƒ‰ƒ[ƒ^‚Í‚»‚Ì‚Ü‚Üƒpƒ‰ƒ[ƒ^‚Æ‚·‚é
+				// ãã®ä»–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ãã®ã¾ã¾ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ã™ã‚‹
 				for( var wOthKey in wOthParam ) {
 					wRetParam[wOthKey] = wOthParam[wOthKey];
 				}
@@ -3916,19 +3916,19 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–ÚV‹K’Ç‰Ái’lw’è‚ ‚èj
+	// é …ç›®æ–°è¦è¿½åŠ ï¼ˆå€¤æŒ‡å®šã‚ã‚Šï¼‰
 	clsContentsBox.prototype.addItemByValue = function( pAddParam, pItemKind ) {
 		try {
-			// €–Ú’Ç‰Áƒpƒ‰ƒ[ƒ^æ“¾
+			// é …ç›®è¿½åŠ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 			var wParam = this.getItemParamByValue( pAddParam );
 
-			// ’Ç‰Á•û®İ’è
+			// è¿½åŠ æ–¹å¼è¨­å®š
 			var wMode		= '';
 			if ( pAddParam ) {
 				if ( 'mode' in pAddParam ) wMode = pAddParam.mode;
 			}
 
-			// åƒRƒ“ƒeƒ“ƒc‚Ì’†Sæ“¾
+			// ä¸»ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã®ä¸­å¿ƒå–å¾—
 			if ( !('x' in wParam) || !('y' in wParam) ) {
 				var wContentsSize = this.getBoxSize();
 				var wContentsPos  = this.getBoxPos();
@@ -3943,38 +3943,38 @@ var clsContentsBox = function( pArgument ) {
 				if ( wParam.y < 0 ) wParam.y = 0;
 			}
 
-			// ‘I‘ğ‰ğœ
+			// é¸æŠè§£é™¤
 			this.execFunction( this.resetSelectItem );
 
-			// ˆÊ’uŒÅ’è
+			// ä½ç½®å›ºå®šæ™‚
 			if ( wMode == 'fixed' ) {
-				// å€–Ú‚ğ‘¦’Ç‰Á
+				// ä¸»é …ç›®ã‚’å³æ™‚è¿½åŠ 
 				var wAddItem = this.addItem( wParam, pItemKind );
 				if ( !wAddItem ) return false;
 
 				this._ContentsItems.person[wAddItem.getBoxId()] = wAddItem;
 
-				// €–Ú’Ç‰Á‚ğ’Ê’m
+				// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 				this.execFunction( this.execItemAddFunc, wAddItem );
 
-				// €–Ú•\¦
+				// é …ç›®è¡¨ç¤º
 				wAddItem.dspBox( true );
 
-				// €–Ú•ÏX’Ê’m
+				// é …ç›®å¤‰æ›´é€šçŸ¥
 				wParam.kind = 'add';
 				this.execLinkCallback( wParam, wAddItem );
 
 				return true;
 			}
-			// ‘I‘ğ
+			// é¸æŠ
 			else if ( wMode == 'select' ) {
-				// å€–Ú‘I‘ğŠJn
+				// ä¸»é …ç›®é¸æŠé–‹å§‹
 				this.updItemStart( wParam, pItemKind );
 
 			}
-			// ˆÊ’uw’èi’Ç‰Áj
+			// ä½ç½®æŒ‡å®šï¼ˆè¿½åŠ ï¼‰
 			else {
-				// å€–Ú’Ç‰ÁŠJn
+				// ä¸»é …ç›®è¿½åŠ é–‹å§‹
 				this.addItemStart( wParam, pItemKind );
 
 				return false;
@@ -3985,12 +3985,12 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú’Ç‰Á^XVil•¨j
+	// é …ç›®è¿½åŠ ï¼æ›´æ–°ï¼ˆäººç‰©ï¼‰
 	clsContentsBox.prototype.addPersonByValue = function( pAddParam ) {
 		try {
 			var wResult = false;
 
-			// å€–ÚXVƒ`ƒFƒbƒN
+			// ä¸»é …ç›®æ›´æ–°ãƒã‚§ãƒƒã‚¯
 			var wKeyPerson = false;
 
 			if ( 'other' in pAddParam ) {
@@ -4001,27 +4001,27 @@ var clsContentsBox = function( pArgument ) {
 			var wUpdItm = null;
 
 			if ( wKeyPerson ) {
-				// Šù‚É“o˜^Ï‚Ìê‡
+				// æ—¢ã«ç™»éŒ²æ¸ˆã®å ´åˆ
 				wUpdItm = this.getItemMainPerson();
 				if ( wUpdItm ) wUpdate = true;
 			}
 
 			if ( wUpdate ) {
-				// €–Ú’Ç‰Áƒpƒ‰ƒ[ƒ^æ“¾
+				// é …ç›®è¿½åŠ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 				var wUpdParam = this.getItemParamByValue( pAddParam );
 
-				// XVƒpƒ‰ƒ[ƒ^‚È‚¯‚ê‚Îˆ—‚È‚µ
+				// æ›´æ–°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã‘ã‚Œã°å‡¦ç†ãªã—
 				if ( !('default' in wUpdParam) ) return false;
 
-				// ƒXƒe[ƒ^ƒX‚ğXV
+				// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ›´æ–°
 				wUpdItm.updStatusValue( wUpdParam );
 
-				// €–Ú•ÏX’Ê’m
+				// é …ç›®å¤‰æ›´é€šçŸ¥
 				this.execLinkCallback( { kind: 'status' }, wUpdItm );
 
-			// –¢“o˜^
+			// æœªç™»éŒ²æ™‚
 			} else {
-				// €–Ú‚ğV‹K’Ç‰Á
+				// é …ç›®ã‚’æ–°è¦è¿½åŠ 
 				wResult = this.addItemByValue( pAddParam, 'item-person' );
 
 			}
@@ -4033,10 +4033,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú’Ç‰ÁiƒOƒ‹[ƒvj
+	// é …ç›®è¿½åŠ ï¼ˆã‚°ãƒ«ãƒ¼ãƒ—ï¼‰
 	clsContentsBox.prototype.addGroupByValue = function( pAddParam ) {
 		try {
-			// ƒOƒ‹[ƒv‚ğV‹K’Ç‰Á
+			// ã‚°ãƒ«ãƒ¼ãƒ—ã‚’æ–°è¦è¿½åŠ 
 			var wResult = this.addItemByValue( pAddParam, 'item-group' );
 
 			return wResult;
@@ -4048,40 +4048,40 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒRƒƒ“ƒg
+	// ã‚³ãƒ¡ãƒ³ãƒˆ
 	// **************************************************************
 
-	// ƒRƒƒ“ƒg’Ç‰Á@ŠJn
+	// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ ã€€é–‹å§‹
 	clsContentsBox.prototype.addItemComment = function( pEvent ) {
 		try {
-			// ‘€ìŠJn‚ÌƒCƒxƒ“ƒg—Dæ
+			// æ“ä½œé–‹å§‹æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆå„ªå…ˆ
 			var wEvent = this._ContentsContextEvent;
 			if ( !wEvent ) wEvent = pEvent;
 
-			// ƒRƒƒ“ƒg’Ç‰Á
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ 
 			var wCommentItem = this.addItem( wEvent, 'item-comment' );
 			if ( !wCommentItem ) return false;
 
-			// ’Ç‰ÁƒRƒƒ“ƒg•Û‘¶
+			// è¿½åŠ ã‚³ãƒ¡ãƒ³ãƒˆä¿å­˜
 			this._ContentsCommentInf.item = wCommentItem;
 
-			// ƒRƒƒ“ƒgİ’è‰æ–Ê•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¨­å®šç”»é¢è¡¨ç¤º
 			wCommentItem.dspStatusMenu( pEvent, this.eventItemCommentAdd );
 
 		} catch(e) {
-			// ƒRƒƒ“ƒg’Ç‰ÁƒLƒƒƒ“ƒZƒ‹
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this.execFunction( this.cancelAddItemComment );
 			throw { name: 'addItemComment.' + e.name, message: e.message };
 		}
 	};
 
-	// ƒRƒƒ“ƒg’Ç‰Ái“à—eİ’èŒãj‚ÉCall‚³‚ê‚é
+	// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ æ™‚ï¼ˆå†…å®¹è¨­å®šå¾Œï¼‰ã«Callã•ã‚Œã‚‹
 	clsContentsBox.prototype.execAddItemComment = function( pEvent, pParam ) {
 		try {
 			var wAddComment = this._ContentsCommentInf.item;
 			if ( !wAddComment ) return true;
 
-			// €–Ú‹K’è‚ÌƒXƒe[ƒ^ƒX•ÏXˆ—Às
+			// é …ç›®è¦å®šã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å¤‰æ›´å‡¦ç†å®Ÿè¡Œ
 			var wStatusSet = false;
 			if ( pParam ) {
 				pParam.notCallback = true;
@@ -4089,45 +4089,45 @@ var clsContentsBox = function( pArgument ) {
 
 			}
 
-			// ƒRƒƒ“ƒgŒˆ’è
+			// ã‚³ãƒ¡ãƒ³ãƒˆæ±ºå®š
 			if ( wStatusSet ) {
-				// ’Ç‰Á€–Ú‚ğ•Û‘¶
+				// è¿½åŠ é …ç›®ã‚’ä¿å­˜
 				var wItemId = wAddComment.getBoxId();
 				this._ContentsItems.comment[wItemId] = wAddComment;
 
-				// €–Ú’Ç‰Á‚ğ’Ê’m
+				// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 				this.execFunction( this.execItemAddFunc, wAddComment );
 
-				// €–Ú•\¦
+				// é …ç›®è¡¨ç¤º
 				wAddComment.dspBox( true );
 
-				// ’Ç‰ÁŠ®—¹
+				// è¿½åŠ å®Œäº†
 				this._ContentsCommentInf.item = null;
 
 			}
 
-			// ƒRƒƒ“ƒg’Ç‰ÁI—¹
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ çµ‚äº†
 			this.cancelAddItemComment();
 
 			return true;
 
 		} catch(e) {
-			// ƒRƒƒ“ƒg’Ç‰ÁƒLƒƒƒ“ƒZƒ‹
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this.execFunction( this.cancelAddItemComment );
 			throw { name: 'execAddItemComment.' + e.name, message: e.message };
 		}
 		return true;
 	};
 
-	// ƒRƒƒ“ƒg’Ç‰Á@ƒLƒƒƒ“ƒZƒ‹
+	// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ ã€€ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsContentsBox.prototype.cancelAddItemComment = function( ) {
 		try {
-			// ƒRƒƒ“ƒgíœ
+			// ã‚³ãƒ¡ãƒ³ãƒˆå‰Šé™¤
 			if ( this._ContentsCommentInf.item ) {
-				// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+				// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				this._ContentsCommentInf.item.eventClear();
 
-				// €–Úíœ
+				// é …ç›®å‰Šé™¤
 				this._ContentsCommentInf.item.freeClass();
 			}
 
@@ -4140,66 +4140,66 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒtƒŠ[ƒ‰ƒCƒ“
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³
 	// **************************************************************
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“’Ç‰Á@ŠJn
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¿½åŠ ã€€é–‹å§‹
 	clsContentsBox.prototype.addItemFreeLine = function( pEvent, pStartId ) {
 		try {
-			// €–Ú’Ç‰Á
+			// é …ç›®è¿½åŠ 
 			var wAddItem = this.addItem( pEvent, 'item-freeline' );
 			if ( !wAddItem ) return false;
 
 			try {
-				// ˆÚ“®ŠJn
+				// ç§»å‹•é–‹å§‹
 				this.freeLineStart( pEvent, wAddItem );
 
 			} catch(me) {
-				// ’Ç‰Á€–Úíœ‚µ‚Ä—áŠO‚ğthrow
+				// è¿½åŠ é …ç›®å‰Šé™¤ã—ã¦ä¾‹å¤–ã‚’throw
 				if ( wAddItem ) wAddItem.freeClass();
 				throw { name: me.name, message: me.message };
 
 			}
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“‘±‚«
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ç¶šã
 			if ( typeof pStartId == 'string' ) {
-				// ŠJnƒ|ƒCƒ“ƒgİ’è
+				// é–‹å§‹ãƒã‚¤ãƒ³ãƒˆè¨­å®š
 				this._ContentsLineInf.start = pStartId;
 
-				this.dspMouseCmt( pEvent, 'I—¹ˆÊ’u‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢' );
+				this.dspMouseCmt( pEvent, 'çµ‚äº†ä½ç½®ã‚’æŒ‡å®šã—ã¦ãã ã•ã„' );
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“ŠJn
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³é–‹å§‹
 			} else {
-				// ƒx[ƒXƒƒjƒ…[–³Œø‰»
+				// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 				this.useContextCtrl( false );
 
-				// ƒCƒxƒ“ƒgİ’è
+				// ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 				this.addFreeLineEvent();
 
-				this.dspMouseCmt( pEvent, 'ŠJnˆÊ’u‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢' );
+				this.dspMouseCmt( pEvent, 'é–‹å§‹ä½ç½®ã‚’æŒ‡å®šã—ã¦ãã ã•ã„' );
 			
 			}
 
 			return true;
 
 		} catch(e) {
-			// ˆÚ“®ƒLƒƒƒ“ƒZƒ‹‚µ‚Äthrow
+			// ç§»å‹•ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦throw
 			this.execFunction( this.freeLineCancel );
 			throw { name: 'addItemFreeLine.' + e.name, message: e.message };
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“İ’èŠJn
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¨­å®šé–‹å§‹
 	clsContentsBox.prototype.freeLineStart = function( pEvent, pFreeLine ) {
 		try {
-			// €–Ú‚Ìƒƒjƒ…[–³Œø‰»
+			// é …ç›®ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 			pFreeLine.setContextAvailable( false );
 			pFreeLine.setPositionAvailable( false );
 
-			// ˆÚ“®‘ÎÛ€–Ú‚Ìİ’è
+			// ç§»å‹•å¯¾è±¡é …ç›®ã®è¨­å®š
 			this._ContentsLineInf.item = pFreeLine;
 
-			// ˆÊ’u•â³@e‚ÌˆÊ’uæ“¾
+			// ä½ç½®è£œæ­£ã€€è¦ªã®ä½ç½®å–å¾—
 			this._ContentsLineInf.pos = pFreeLine.getParentPos();
 
 			var wEvtPos = this.getEventPos( pEvent );
@@ -4208,12 +4208,12 @@ var clsContentsBox = function( pArgument ) {
 			wStPos.x -= this._ContentsLineInf.pos.left;
 			wStPos.y -= this._ContentsLineInf.pos.top;
 
-			// ƒƒCƒ“‰æ–Ê‚ÌƒXƒNƒ[ƒ‹’l‰ÁZ
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åŠ ç®—
 			var wMainScroll = this.getScroll( this._ContentsEleMain );
 			wStPos.x += wMainScroll.x;
 			wStPos.y += wMainScroll.y;
 
-			// Å‘O–Ê‚ÖˆÚ“®
+			// æœ€å‰é¢ã¸ç§»å‹•
 			pFreeLine.dspBox( true, true, wStPos );
 
 		} catch(e) {
@@ -4221,21 +4221,21 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“Šm’è
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ç¢ºå®š
 	clsContentsBox.prototype.freeLineConfirm = function( pEvent, pLineItem ) {
 		try {
 			var wItemId = pLineItem.getBoxId();
 
-			// ˆÚ“®æ‚ÌƒLƒƒƒ“ƒoƒX”ÍˆÍƒ`ƒFƒbƒN
+			// ç§»å‹•å…ˆã®ã‚­ãƒ£ãƒ³ãƒã‚¹ç¯„å›²ãƒã‚§ãƒƒã‚¯
 			if ( !this.chkItemOverflowArea(pLineItem) ) return false;
 
-			// ŠJn“_æ“¾
+			// é–‹å§‹ç‚¹å–å¾—
 			var wStItem = null;
 			if ( this._ContentsLineInf.start ) {
 				wStItem = this.getContentsItem( this._ContentsLineInf.start, 'item-freeline' );
 			}
 
-			// ƒ|ƒCƒ“ƒg‘I‘ğƒ`ƒFƒbƒN
+			// ãƒã‚¤ãƒ³ãƒˆé¸æŠãƒã‚§ãƒƒã‚¯
 			var wChkTarget = {
 					  person	: false
 					, group		: false
@@ -4248,88 +4248,88 @@ var clsContentsBox = function( pArgument ) {
 
 			var wRedrawLine = false;
 			if ( wChkItem ) {
-				// ©€–Úƒ`ƒFƒbƒN
+				// è‡ªé …ç›®ãƒã‚§ãƒƒã‚¯
 				wCheckId = wChkItem.getBoxId();
 				if ( wCheckId == wItemId ) return false;
 
-				// ŠJn“_w’è
+				// é–‹å§‹ç‚¹æŒ‡å®šæ™‚
 				if ( !wStItem ) {
-					// ‘I‘ğƒ|ƒCƒ“ƒg‚ğŠJn“_‚Æ‚·‚é
+					// é¸æŠãƒã‚¤ãƒ³ãƒˆã‚’é–‹å§‹ç‚¹ã¨ã™ã‚‹
 					wItemId  = wCheckId;
 					wChkItem = null;
 				
-				// ŠJn“_w’è
+				// é–‹å§‹ç‚¹æŒ‡å®šæ™‚
 				} else if ( wCheckId == this._ContentsLineInf.start ) {
-					// ˆ—‚È‚µiƒ‰ƒCƒ“I—¹j
+					// å‡¦ç†ãªã—ï¼ˆãƒ©ã‚¤ãƒ³çµ‚äº†ï¼‰
 
-				// ŠJn“_‚ÌÚ‘±“_w’è
+				// é–‹å§‹ç‚¹ã®æ¥ç¶šç‚¹æŒ‡å®šæ™‚
 				} else if ( wStItem.chkLinePoint(wCheckId) ) {
-					// ˆ—‚È‚µiƒ‰ƒCƒ“I—¹j
+					// å‡¦ç†ãªã—ï¼ˆãƒ©ã‚¤ãƒ³çµ‚äº†ï¼‰
 
-				// Ÿ“_w’è
+				// æ¬¡ç‚¹æŒ‡å®šæ™‚
 				} else {
-					// ŠJn“_‚ÆI“_‚ğÚ‘±
+					// é–‹å§‹ç‚¹ã¨çµ‚ç‚¹ã‚’æ¥ç¶š
 					wStItem.setLinePoint( wCheckId );
 					wChkItem.setLinePoint( this._ContentsLineInf.start );
 
-					// I“_‚Ìƒ‰ƒCƒ“‚ğŒp³
+					// çµ‚ç‚¹ã®ãƒ©ã‚¤ãƒ³ã‚’ç¶™æ‰¿
 					var wLineParam = wChkItem.getLineStatus();
 
-					// ƒ‰ƒCƒ“İ’è
+					// ãƒ©ã‚¤ãƒ³è¨­å®š
 					wStItem.setLineStatus( wLineParam );
 
-					// ŠJn“_‚©‚çŠm’è“_‚Ü‚Å‚Ìƒ‰ƒCƒ“•`‰æ
+					// é–‹å§‹ç‚¹ã‹ã‚‰ç¢ºå®šç‚¹ã¾ã§ã®ãƒ©ã‚¤ãƒ³æç”»
 					this.drawFreeLine( wStItem, wChkItem, wLineParam );
 					
-					// ŠÖ˜Aƒ|ƒCƒ“ƒg‚Ìƒ‰ƒCƒ“‚ğ‘S‚Ä•ÏX
+					// é–¢é€£ãƒã‚¤ãƒ³ãƒˆã®ãƒ©ã‚¤ãƒ³ã‚’å…¨ã¦å¤‰æ›´
 					this.updFreeLineStatus( wStItem );
 
-					// ƒ‰ƒCƒ“‘S‚ÄÄ•`‰æ
+					// ãƒ©ã‚¤ãƒ³å…¨ã¦å†æç”»
 					wRedrawLine = true;
 
 				}
 				
-				// ’Ç‰Áƒ|ƒCƒ“ƒg”jŠü
+				// è¿½åŠ ãƒã‚¤ãƒ³ãƒˆç ´æ£„
 				pLineItem.freeClass();
 
 			} else {
-				// Ÿ“_w’è
+				// æ¬¡ç‚¹æŒ‡å®šæ™‚
 				if ( wStItem ) {
-					// ŠJn“_‚ÆŸ“_‚ğÚ‘±
+					// é–‹å§‹ç‚¹ã¨æ¬¡ç‚¹ã‚’æ¥ç¶š
 					wStItem.setLinePoint( wItemId );
 					pLineItem.setLinePoint( this._ContentsLineInf.start );
 
-					// ŠJn“_‚Ìƒ‰ƒCƒ“İ’èæ“¾
+					// é–‹å§‹ç‚¹ã®ãƒ©ã‚¤ãƒ³è¨­å®šå–å¾—
 					var wLineParam = wStItem.getLineStatus();
 
-					// ƒ‰ƒCƒ“İ’è
+					// ãƒ©ã‚¤ãƒ³è¨­å®š
 					pLineItem.setLineStatus( wLineParam );
 
-					// ŠJn“_‚©‚çŠm’è“_‚Ü‚Å‚Ìƒ‰ƒCƒ“•`‰æ
+					// é–‹å§‹ç‚¹ã‹ã‚‰ç¢ºå®šç‚¹ã¾ã§ã®ãƒ©ã‚¤ãƒ³æç”»
 					this.drawFreeLine( wStItem, pLineItem, wLineParam );
 
 				}
 
-				// Å‘O–Ê‰ğœ
+				// æœ€å‰é¢è§£é™¤
 				pLineItem.dspBox( true, false );
 
-				// ’Ç‰Á€–Ú‚ğ•Û‘¶
+				// è¿½åŠ é …ç›®ã‚’ä¿å­˜
 				this._ContentsItems.freeline[wItemId] = pLineItem;
-				// €–Ú’Ç‰Á‚ğ’Ê’m
+				// é …ç›®è¿½åŠ ã‚’é€šçŸ¥
 				this.execFunction( this.execItemAddFunc, pLineItem );
 
 			}
 
-			// ƒ|ƒCƒ“ƒg‘I‘ğ‚ÍI—¹
+			// ãƒã‚¤ãƒ³ãƒˆé¸æŠæ™‚ã¯çµ‚äº†
 			if ( wChkItem ) {
-				// ƒtƒŠ[ƒ‰ƒCƒ“I—¹
+				// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³çµ‚äº†
 				this.execFunction( this.freeLineCancel );
 
-				// ƒ‰ƒCƒ“Ä•`‰æ
+				// ãƒ©ã‚¤ãƒ³å†æç”»
 				if ( wRedrawLine ) this.drawRelationRedo();
 
 			} else {
-				// Ÿ‚Ìƒ|ƒCƒ“ƒgw’èŠJn
+				// æ¬¡ã®ãƒã‚¤ãƒ³ãƒˆæŒ‡å®šé–‹å§‹
 				this.addItemFreeLine( pEvent, wItemId );
 
 			}
@@ -4340,29 +4340,29 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“’Ç‰Á@ƒLƒƒƒ“ƒZƒ‹
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¿½åŠ ã€€ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsContentsBox.prototype.freeLineCancel = function( ) {
 		try {
-			// ’Ç‰Á’†‚Ì‚İˆ—
+			// è¿½åŠ ä¸­ã®ã¿å‡¦ç†
 			if ( !this._ContentsLineInf.item ) return;
 
-			// ƒCƒxƒ“ƒg’â~
-			// ¦—áŠO–³‹
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
+			// â€»ä¾‹å¤–ç„¡è¦–
 			this.execFunction( this.delFreeLineEvent );
 			
-			// ƒRƒƒ“ƒg”ñ•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆéè¡¨ç¤º
 			this.hideMouseCmt();
 
-			// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+			// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this._ContentsLineInf.item.eventClear();
 
-			// €–Úíœ
+			// é …ç›®å‰Šé™¤
 			this._ContentsLineInf.item.freeClass();
 
-			// ŠJn“_İ’è
+			// é–‹å§‹ç‚¹è¨­å®šæ™‚
 			var wStartId = this._ContentsLineInf.start;
 			if ( wStartId ) {
-				// ŠJn“_‚ÉÚ‘±“_‚È‚¯‚ê‚Îíœ
+				// é–‹å§‹ç‚¹ã«æ¥ç¶šç‚¹ãªã‘ã‚Œã°å‰Šé™¤
 				var wFreeLineList = this.getBelongFreeLine();
 
 				var wStartItm;
@@ -4370,7 +4370,7 @@ var clsContentsBox = function( pArgument ) {
 
 				if ( wStartItm ) {
 					if ( !wStartItm.getLinePoint() ) {
-						// Ú‘±“_íœ
+						// æ¥ç¶šç‚¹å‰Šé™¤
 						this.delItemFromList( wStartId, wFreeLineList );
 					}
 				}
@@ -4381,7 +4381,7 @@ var clsContentsBox = function( pArgument ) {
 			this._ContentsLineInf.pos		= null;
 			this._ContentsLineInf.start		= null;
 
-			// ƒx[ƒXƒƒjƒ…[—LŒø‰»
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 			this.useContextCtrl( true );
 			
 		} catch(e) {
@@ -4389,13 +4389,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“’Ç‰ÁƒCƒxƒ“ƒgİ’è
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¿½åŠ ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsContentsBox.prototype.addFreeLineEvent = function( pDragIs ) {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.addBoxEvents( 'onmousemove'	, this.eventFreeLineMove );
 
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.addBoxEvents( 'onmousedown'	, this.eventFreeLineSet );
 
 		} catch(e) {
@@ -4403,13 +4403,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“’Ç‰ÁƒCƒxƒ“ƒg‰ğœ
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¿½åŠ ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 	clsContentsBox.prototype.delFreeLineEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.delBoxEvents( 'onmousemove'	, this.eventFreeLineMove );
 
-			// €–ÚŠm’è
+			// é …ç›®ç¢ºå®š
 			this.delBoxEvents( 'onmousedown'	, this.eventFreeLineSet );
 
 		} catch(e) {
@@ -4417,7 +4417,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“•`‰æ
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³æç”»
 	clsContentsBox.prototype.drawFreeLineAll = function() {
 		try {
 			var self = this;
@@ -4427,26 +4427,26 @@ var clsContentsBox = function( pArgument ) {
 			var wChkList = {};
 
 			var fncDrawFreeLine = function( pId ) {
-				// ŠJn“_æ“¾
+				// é–‹å§‹ç‚¹å–å¾—
 				var wStLine = self._ContentsItems.freeline[pId];
 
-				// ƒ‰ƒCƒ“İ’èæ“¾
+				// ãƒ©ã‚¤ãƒ³è¨­å®šå–å¾—
 				var wLineParam = wStLine.getLineStatus();
 
-				// Ú‘±“_æ“¾
+				// æ¥ç¶šç‚¹å–å¾—
 				var wPointList = wStLine.getLinePoint();
 				if ( !wPointList ) return;
 
 				var wEdLine;
 				for( var wEdId in wPointList ) {
-					// ˆ—Ï‚Íˆ—‚È‚µ
+					// å‡¦ç†æ¸ˆã¯å‡¦ç†ãªã—
 					if ( (pId + wEdId) in wChkList ) continue;
 					if ( (wEdId + pId) in wChkList ) continue;
 
 					if ( !(wEdId in self._ContentsItems.freeline) ) continue;
 					wEdLine = self._ContentsItems.freeline[wEdId];
 
-					// ŠJn“_‚©‚çŠm’è“_‚Ü‚Å‚Ìƒ‰ƒCƒ“•`‰æ
+					// é–‹å§‹ç‚¹ã‹ã‚‰ç¢ºå®šç‚¹ã¾ã§ã®ãƒ©ã‚¤ãƒ³æç”»
 					self.drawFreeLine( wStLine, wEdLine, wLineParam );
 
 					wChkList[pId + wEdId]	= true;
@@ -4454,7 +4454,7 @@ var clsContentsBox = function( pArgument ) {
 				}
 			};
 
-			// ‘Sƒ|ƒCƒ“ƒg‚©‚ç‚Ìƒ‰ƒCƒ“•`‰æ
+			// å…¨ãƒã‚¤ãƒ³ãƒˆã‹ã‚‰ã®ãƒ©ã‚¤ãƒ³æç”»
 			for( var wKey in this._ContentsItems.freeline ) {
 				fncDrawFreeLine( wKey );
 			}
@@ -4464,44 +4464,44 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“ƒXƒe[ƒ^ƒXXV
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
 	clsContentsBox.prototype.updFreeLineStatus = function( pUpdItm ) {
 		try {
 			if ( !pUpdItm ) return false;
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“ƒŠƒXƒg
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ãƒªã‚¹ãƒˆ
 			var wFreeLineList = this.getBelongFreeLine();
 			if ( !wFreeLineList ) return false;
 
-			// XV‹N“_
+			// æ›´æ–°èµ·ç‚¹
 			var wUpdStatus	= pUpdItm.getLineStatus();
 
-			// Ú‘±“_‚Ö‚ÌÚ‘±“_XVˆ—
+			// æ¥ç¶šç‚¹ã¸ã®æ¥ç¶šç‚¹æ›´æ–°å‡¦ç†
 			var wProcessedId = {};
 
 			var fncUpdLineStatus = function( pItem, pStatus, pFirstPoint ) {
 				var wId = pItem.getBoxId();
 
-				// Ú‘±“_ƒXƒe[ƒ^ƒXXV
+				// æ¥ç¶šç‚¹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
 				if ( !pFirstPoint ) pItem.setLineStatus( pStatus );
 				wProcessedId[wId] = true;
 				
-				// ¦Ä‹A‚ÅÚ‘±“_‚ğˆ—
+				// â€»å†å¸°ã§æ¥ç¶šç‚¹ã‚’å‡¦ç†
 				var wNextPoint = pItem.getLinePoint();
 				if ( !wNextPoint ) return;
 				
 				for( var wPointId in wNextPoint ) {
-					// –¢ˆ—‚Ì‚İˆ—
+					// æœªå‡¦ç†ã®ã¿å‡¦ç†
 					if ( wPointId in wProcessedId ) continue;
 					if ( !wFreeLineList[wPointId] ) continue;
 
-					// Ú‘±“_‚Ö‚ÌÚ‘±“_ˆ—
+					// æ¥ç¶šç‚¹ã¸ã®æ¥ç¶šç‚¹å‡¦ç†
 					fncUpdLineStatus( wFreeLineList[wPointId], pStatus );
 				}
 			};
 
-			// Ú‘±‚³‚ê‚Ä‚¢‚é“_‚ÌƒXƒe[ƒ^ƒX‘S‚ÄXV
-			// ¦Ä‹A‚ÅÚ‘±“_‚ğ‘S‚Äˆ—
+			// æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ç‚¹ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å…¨ã¦æ›´æ–°
+			// â€»å†å¸°ã§æ¥ç¶šç‚¹ã‚’å…¨ã¦å‡¦ç†
 			fncUpdLineStatus( pUpdItm, wUpdStatus, true );
 
 		} catch(e) {
@@ -4509,27 +4509,27 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“Ú‘±“_íœ
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³æ¥ç¶šç‚¹å‰Šé™¤
 	clsContentsBox.prototype.delFreeLinePoint = function( pId ) {
 		try {
-			// ƒtƒŠ[ƒ‰ƒCƒ“ƒŠƒXƒg
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ãƒªã‚¹ãƒˆ
 			var wFreeLineList = this.getBelongFreeLine();
 			if ( !wFreeLineList ) return false;
 
 			var wDelItm = wFreeLineList[pId];
 			if ( !wDelItm ) return false;
 
-			// Ú‘±“_æ“¾
+			// æ¥ç¶šç‚¹å–å¾—
 			var wPointList = wDelItm.getLinePoint();
 			if ( !wPointList ) return false;
 
-			// Ú‘±“_ƒ`ƒFƒbƒN
+			// æ¥ç¶šç‚¹ãƒã‚§ãƒƒã‚¯
 			var fncChkPoint = function( pChkItm, pDelId ) {
-				// Ú‘±“_‚È‚¯‚ê‚Î‘ÎÛ
+				// æ¥ç¶šç‚¹ãªã‘ã‚Œã°å¯¾è±¡
 				var wChkList = pChkItm.getLinePoint();
 				if ( !wChkList ) return true;
 
-				// íœ‘ÎÛˆÈŠO‚ÌÚ‘±“_‚ ‚ê‚Îíœ‚µ‚È‚¢
+				// å‰Šé™¤å¯¾è±¡ä»¥å¤–ã®æ¥ç¶šç‚¹ã‚ã‚Œã°å‰Šé™¤ã—ãªã„
 				for( var wChkId in wChkList ) {
 					if ( wChkId != pDelId ) return false;
 				}
@@ -4537,20 +4537,20 @@ var clsContentsBox = function( pArgument ) {
 				return true;
 			};
 
-			// Ú‘±“_‚É‘¼‚ÌÚ‘±‚È‚¯‚ê‚Îíœ
+			// æ¥ç¶šç‚¹ã«ä»–ã®æ¥ç¶šãªã‘ã‚Œã°å‰Šé™¤
 			var wPointItm;
 
 			for( var wPointId in wPointList ) {
 				wPointItm = wFreeLineList[wPointId];
 				if ( !wPointItm ) continue;
 
-				// íœ‘ÎÛƒ`ƒFƒbƒN
+				// å‰Šé™¤å¯¾è±¡ãƒã‚§ãƒƒã‚¯
 				if ( fncChkPoint(wPointItm, pId) ) {
-					// Ú‘±“_íœ
+					// æ¥ç¶šç‚¹å‰Šé™¤
 					this.delItemFromList( wPointId, wFreeLineList );
 
 				} else {
-					// íœƒ|ƒCƒ“ƒg‚Ö‚ÌÚ‘±‰ğœ
+					// å‰Šé™¤ãƒã‚¤ãƒ³ãƒˆã¸ã®æ¥ç¶šè§£é™¤
 					wPointItm.delLinePoint( pId );
 
 				}
@@ -4563,44 +4563,44 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒtƒŠ[ƒ‰ƒCƒ“íœ
+	// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³å‰Šé™¤
 	clsContentsBox.prototype.delFreeLineAll = function( pId ) {
 		try {
 			var self = this;
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“ƒŠƒXƒg
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³ãƒªã‚¹ãƒˆ
 			var wFreeLineList = this.getBelongFreeLine();
 			if ( !wFreeLineList ) return false;
 
-			// Ú‘±“_‚Ö‚ÌÚ‘±“_íœˆ—
+			// æ¥ç¶šç‚¹ã¸ã®æ¥ç¶šç‚¹å‰Šé™¤å‡¦ç†
 			var wProcessedId = {};
 
 			var fncDelFreeLine = function( pDelId ) {
 				var wDelItm = wFreeLineList[pDelId];
 				if ( !wDelItm ) return;
 
-				// íœÏ‚İİ’è
+				// å‰Šé™¤æ¸ˆã¿è¨­å®š
 				wProcessedId[pDelId] = true;
 				
-				// ¦Ä‹A‚ÅÚ‘±“_‚ğˆ—
+				// â€»å†å¸°ã§æ¥ç¶šç‚¹ã‚’å‡¦ç†
 				var wNextPoint = wDelItm.getLinePoint();
 				if ( wNextPoint ) {
 					for( var wPointId in wNextPoint ) {
-						// –¢ˆ—‚Ì‚İˆ—
+						// æœªå‡¦ç†ã®ã¿å‡¦ç†
 						if ( wPointId in wProcessedId ) continue;
 						if ( !wFreeLineList[wPointId] ) continue;
 
-						// Ú‘±“_‚Ö‚ÌÚ‘±“_ˆ—
+						// æ¥ç¶šç‚¹ã¸ã®æ¥ç¶šç‚¹å‡¦ç†
 						fncDelFreeLine( wPointId );
 					}
 				}
 
-				// Ú‘±“_íœ
+				// æ¥ç¶šç‚¹å‰Šé™¤
 				self.delItemFromList( pDelId, wFreeLineList );
 			};
 
-			// Ú‘±‚³‚ê‚Ä‚¢‚é“_‚Ìƒ‰ƒCƒ“‘S‚Äíœ
-			// ¦Ä‹A‚ÅÚ‘±“_‚ğ‘S‚Äˆ—
+			// æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ç‚¹ã®ãƒ©ã‚¤ãƒ³å…¨ã¦å‰Šé™¤
+			// â€»å†å¸°ã§æ¥ç¶šç‚¹ã‚’å…¨ã¦å‡¦ç†
 			fncDelFreeLine( pId );
 
 			return true;
@@ -4612,45 +4612,45 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒRƒ“ƒeƒ“ƒc‘€ì
+	// ã‚³ãƒ³ãƒ†ãƒ³ãƒ„æ“ä½œ
 	// **************************************************************
 
-	// €–Ú‰Šú‰»
+	// é …ç›®åˆæœŸåŒ–
 	clsContentsBox.prototype.initContents = function() {
 		try {
-			// ƒRƒƒ“ƒg‘S‚Äíœ
+			// ã‚³ãƒ¡ãƒ³ãƒˆå…¨ã¦å‰Šé™¤
 			for ( var wCmtId in this._ContentsItems.comment ) {
 				this.delItem( wCmtId, this._ContentsItems.comment );
 			}
 
-			// l•¨‘S‚Äíœ
-			// ¦ƒOƒ‹[ƒv‚Ì‘O‚ÉÀ{
+			// äººç‰©å…¨ã¦å‰Šé™¤
+			// â€»ã‚°ãƒ«ãƒ¼ãƒ—ã®å‰ã«å®Ÿæ–½
 			for ( var wItmId in this._ContentsItems.person ) {
 				this.delItem( wItmId, this._ContentsItems.person );
 			}
 
-			// ƒOƒ‹[ƒv‘S‚Äíœ
+			// ã‚°ãƒ«ãƒ¼ãƒ—å…¨ã¦å‰Šé™¤
 			for ( var wGrpId in this._ContentsItems.group ) {
 				this.delItem( wGrpId, this._ContentsItems.group );
 			}
 
-			// ’†Œp“_‘S‚Äíœ
+			// ä¸­ç¶™ç‚¹å…¨ã¦å‰Šé™¤
 			for ( var wRelId in this._ContentsItems.relation ) {
 				this.delItem( wRelId, this._ContentsItems.relation );
 			}
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“íœ
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³å‰Šé™¤
 			for ( var wLineId in this._ContentsItems.freeline ) {
 				this.delItem( wLineId, this._ContentsItems.freeline );
 			}
 
-			// ŠÖ˜Aî•ñÄ•`‰æ
+			// é–¢é€£æƒ…å ±å†æç”»
 			this.drawRelationRedo();
 
-			// ƒTƒCƒhƒpƒlƒ‹‰Šú‰»
-			// ¦ €–Ú•ÏX’Ê’mi€–Ú“¯Šúj
+			// ã‚µã‚¤ãƒ‰ãƒ‘ãƒãƒ«åˆæœŸåŒ–
+			// â€» é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆé …ç›®åŒæœŸï¼‰
 			this.execLinkCallback( { kind: 'link' }, null );
-			// ¦ €–Ú•ÏX’Ê’mi‰Šú‰»j
+			// â€» é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆåˆæœŸåŒ–ï¼‰
 			this.execLinkCallback( { kind: 'init' }, null );
 
 		} catch(e) {
@@ -4658,41 +4658,41 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–ÚÄ•\¦
+	// é …ç›®å†è¡¨ç¤º
 	clsContentsBox.prototype.redspContents = function() {
 		try {
-			// ƒRƒƒ“ƒg‘S‚Ä•\¦
+			// ã‚³ãƒ¡ãƒ³ãƒˆå…¨ã¦è¡¨ç¤º
 			for ( var wCmtId in this._ContentsItems.comment ) {
 				this._ContentsItems.comment[wCmtId].dspBox( true );
 			}
 
-			// ƒOƒ‹[ƒv‘S‚Ä•\¦
+			// ã‚°ãƒ«ãƒ¼ãƒ—å…¨ã¦è¡¨ç¤º
 			for ( var wGrpId in this._ContentsItems.group ) {
 				this._ContentsItems.group[wGrpId].dspBox( true );
 			}
 
-			// l•¨‘S‚Ä•\¦
+			// äººç‰©å…¨ã¦è¡¨ç¤º
 			for ( var wItmId in this._ContentsItems.person ) {
 				this._ContentsItems.person[wItmId].dspBox( true );
 			}
 
-			// ’†Œp“_‘S‚Ä•\¦
+			// ä¸­ç¶™ç‚¹å…¨ã¦è¡¨ç¤º
 			for ( var wRelId in this._ContentsItems.relation ) {
 				this._ContentsItems.relation[wRelId].dspBox( true );
 			}
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“‘S‚Ä•\¦
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³å…¨ã¦è¡¨ç¤º
 			for ( var wLineId in this._ContentsItems.freeline ) {
 				this._ContentsItems.freeline[wLineId].dspBox( true );
 			}
 
-			// ŠÖ˜Aî•ñÄ•`‰æ
+			// é–¢é€£æƒ…å ±å†æç”»
 			this.drawRelationRedo();
 
-			// ƒTƒCƒhƒpƒlƒ‹Ä•\¦
-			// ¦ €–Ú•ÏX’Ê’mi€–Ú“¯Šúj
+			// ã‚µã‚¤ãƒ‰ãƒ‘ãƒãƒ«å†è¡¨ç¤º
+			// â€» é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆé …ç›®åŒæœŸï¼‰
 			this.execLinkCallback( { kind: 'link' }, null );
-			// ¦ €–Ú•ÏX’Ê’miÄİ’èj
+			// â€» é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆå†è¨­å®šï¼‰
 			this.execLinkCallback( { kind: 'reset' }, null );
 
 		} catch(e) {
@@ -4700,7 +4700,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// eqŠÖŒWÄİ’è
+	// è¦ªå­é–¢ä¿‚å†è¨­å®š
 	clsContentsBox.prototype.resetItemParent = function( pContentsItems ) {
 		try {
 			if ( !pContentsItems ) return;
@@ -4708,17 +4708,17 @@ var clsContentsBox = function( pArgument ) {
 			var wParentId;
 			var wParentEle;
 
-			// personAgroupAcomment‚ÌŠe€–Ú‚Ìe‚ğÄİ’è
+			// personã€groupã€commentã®å„é …ç›®ã®è¦ªã‚’å†è¨­å®š
 			for( var wKey in pContentsItems ) {
 				var wItems = pContentsItems[wKey];
 				if ( !this.isObject(wItems) ) continue;
 				
-				// “o˜^€–Ú‘S‚ÄÄİ’è
+				// ç™»éŒ²é …ç›®å…¨ã¦å†è¨­å®š
 				for( var wId in wItems ) {
 					wParentId = wItems[wId].loadDataVal('parentId');
 					if ( !wParentId ) continue;
 					
-					// e—v‘fæ“¾
+					// è¦ªè¦ç´ å–å¾—
 					wParentEle = this.getElement( wParentId );
 					if ( wParentEle ) {
 						wItems[wId].setParent( wParentEle, true );
@@ -4735,10 +4735,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Úƒƒjƒ…[‘€ì
+	// é …ç›®ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œ
 	// **************************************************************
 
-	// €–Ú‘€ìˆ—
+	// é …ç›®æ“ä½œæ™‚å‡¦ç†
 	clsContentsBox.prototype.execItemControl = function( pArgument, pTargetList ) {
 		try {
 			if ( !pArgument ) return false;
@@ -4751,151 +4751,151 @@ var clsContentsBox = function( pArgument ) {
 			if ( !wTargetItem ) return false;
 
 			switch( pArgument.kind ) {
-			// î•ñXV
+			// æƒ…å ±æ›´æ–°
 			case 'status':
-				// €–Ú•ÏX’Ê’miî•ñXVj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆæƒ…å ±æ›´æ–°ï¼‰
 				this.execLinkCallback( pArgument, wTargetItem );
 				break;
 
-			// ˜A—æXV
+			// é€£çµ¡å…ˆæ›´æ–°
 			case 'contact':
-				// €–Ú•ÏX’Ê’miî•ñXVj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆæƒ…å ±æ›´æ–°ï¼‰
 				this.execLinkCallback( pArgument, wTargetItem );
 				break;
 
-			// €–ÚˆÚ“®
+			// é …ç›®ç§»å‹•
 			case 'move':
-				// €–ÚˆÚ“®@ŠJn
+				// é …ç›®ç§»å‹•ã€€é–‹å§‹
 				this.moveItemStart( pArgument.event, wTargetItem, 'move' );
 				break;
 
-			// €–Úíœ
+			// é …ç›®å‰Šé™¤
 			case 'delete':
-				// ‘S‚Äíœƒ`ƒFƒbƒN
+				// å…¨ã¦å‰Šé™¤ãƒã‚§ãƒƒã‚¯
 				var wRelationDel = false;
 				if ( 'delAll' in pArgument ) {
 					wRelationDel = pArgument.delAll;
 				}
 
-				// ‘I‘ğ‰ğœ
+				// é¸æŠè§£é™¤
 				this.execFunction( this.resetSelectItem );
 
-				// €–Úíœ‚µ‚ÄŠÖ˜Aî•ñíœ‚ğƒ`ƒFƒbƒN
+				// é …ç›®å‰Šé™¤ã—ã¦é–¢é€£æƒ…å ±å‰Šé™¤ã‚’ãƒã‚§ãƒƒã‚¯
 				if ( this.delItemParent( wTargetItem, pTargetList, wRelationDel ) ) {
-					// ŠÖ˜Aî•ñÄ•`‰æ
+					// é–¢é€£æƒ…å ±å†æç”»
 					this.drawRelationRedo();
 				}
-				// €–Ú•ÏX’Ê’mi€–Úíœj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆé …ç›®å‰Šé™¤ï¼‰
 				this.execLinkCallback( pArgument, wTargetItem );
 				break;
 
-			// ŠÖŒW’Ç‰Á
+			// é–¢ä¿‚è¿½åŠ 
 			case 'relation':
-				// ŠÖŒW’Ç‰Á@ŠJn
+				// é–¢ä¿‚è¿½åŠ ã€€é–‹å§‹
 				if ( this.chkRelationTarget(wTargetItem) ) {
 					this.addRelationStart( pArgument, wTargetItem );
 
 				} else {
-					alert( 'ŠÖ˜A•t‚¯‰Â”\‚È€–Ú‚ª‚ ‚è‚Ü‚¹‚ñB' );
+					alert( 'é–¢é€£ä»˜ã‘å¯èƒ½ãªé …ç›®ãŒã‚ã‚Šã¾ã›ã‚“ã€‚' );
 
 				}
 				break;
 
-			// ŠÖŒW•ÏX
+			// é–¢ä¿‚å¤‰æ›´
 			case 'relationChg':
-				// ŠÖŒW•ÏX@ŠJn
+				// é–¢ä¿‚å¤‰æ›´ã€€é–‹å§‹
 				if ( wTargetItem.chkRelationItem() ) {
 					this.addRelationStart( pArgument, wTargetItem );
 
 				} else {
-					alert( '•ÏX‰Â”\‚ÈŠÖ˜A€–Ú‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB' );
+					alert( 'å¤‰æ›´å¯èƒ½ãªé–¢é€£é …ç›®ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚' );
 
 				}
 				break;
 			
-			// ŠÖŒW‰ğœ
+			// é–¢ä¿‚è§£é™¤
 			case 'unrelation':
-				// ŠÖŒW‰ğœ@ŠJn
+				// é–¢ä¿‚è§£é™¤ã€€é–‹å§‹
 				if ( wTargetItem.chkRelationItem() ) {
 					this.addRelationStart( pArgument, wTargetItem );
 
 				} else {
-					alert( '‰ğœ‰Â”\‚ÈŠÖ˜A€–Ú‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB' );
+					alert( 'è§£é™¤å¯èƒ½ãªé–¢é€£é …ç›®ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚' );
 
 				}
 				break;
 			
-			// ŠÖŒWXV
-			// ¦Še€–Ú‚ÌŠÖŒWî•ñİ’è‰æ–Ê‚ÌuOKvƒNƒŠƒbƒNƒCƒxƒ“ƒgˆ—
+			// é–¢ä¿‚æ›´æ–°
+			// â€»å„é …ç›®ã®é–¢ä¿‚æƒ…å ±è¨­å®šç”»é¢ã®ã€ŒOKã€ã‚¯ãƒªãƒƒã‚¯ã‚¤ãƒ™ãƒ³ãƒˆæ™‚å‡¦ç†
 			case 'relationUpd':
-				// V‹K/XV@ƒ`ƒFƒbƒN
+				// æ–°è¦/æ›´æ–°ã€€ãƒã‚§ãƒƒã‚¯
 				var wRelMode = pArgument.displayMode;
 				if ( wRelMode == 'update' ) {
-					// ŠÖŒWXV
+					// é–¢ä¿‚æ›´æ–°
 					this.updRelation( pArgument, wTargetItem );
 				} else {
-					// ŠÖŒW’Ç‰Á
+					// é–¢ä¿‚è¿½åŠ 
 					this.addRelation( pArgument, wTargetItem );
 				}
 				break;
 			
-			// ŠÖŒWƒ‰ƒCƒ“’²®
+			// é–¢ä¿‚ãƒ©ã‚¤ãƒ³èª¿æ•´
 			case 'relationLine':
-				// ƒ‰ƒCƒ“Ä•`‰æ
+				// ãƒ©ã‚¤ãƒ³å†æç”»
 				this.drawRelationRedo( { priority: wTargetItem } );
 
-				// €–Ú•ÏX’Ê’mi’†Œp“_ˆÊ’u•ÏXj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆä¸­ç¶™ç‚¹ä½ç½®å¤‰æ›´ï¼‰
 				this.execLinkCallback( pArgument, wTargetItem );
 				break;
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“’²®
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³èª¿æ•´
 			case 'freeLine':
-				// ƒ‰ƒCƒ“Ä•`‰æ
+				// ãƒ©ã‚¤ãƒ³å†æç”»
 				this.drawRelationRedo();
 
-				// €–Ú•ÏX’Ê’miƒtƒŠ[ƒ‰ƒCƒ“•ÏXj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³å¤‰æ›´ï¼‰
 				this.execLinkCallback( pArgument, wTargetItem );
 				break;
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“XV
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³æ›´æ–°
 			case 'freeLineUpd':
-				// ƒ‰ƒCƒ“ƒXƒe[ƒ^ƒXXV
+				// ãƒ©ã‚¤ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
 				this.updFreeLineStatus( wTargetItem );
 
-				// ƒ‰ƒCƒ“Ä•`‰æ
+				// ãƒ©ã‚¤ãƒ³å†æç”»
 				this.drawRelationRedo();
 
-				// €–Ú•ÏX’Ê’miƒtƒŠ[ƒ‰ƒCƒ“•ÏXj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³å¤‰æ›´ï¼‰
 				this.execLinkCallback( pArgument, wTargetItem );
 				break;
 
-			// F•ÏX
+			// è‰²å¤‰æ›´
 			case 'color':
-				// €–Ú•ÏX’Ê’miF•ÏXj
+				// é …ç›®å¤‰æ›´é€šçŸ¥ï¼ˆè‰²å¤‰æ›´ï¼‰
 				this.execLinkCallback( pArgument, wTargetItem );
 				break;
 
-			// ƒTƒCƒY•ÏX
+			// ã‚µã‚¤ã‚ºå¤‰æ›´
 			case 'resize':
-				// ƒTƒCƒY•ÏX@ŠJn
+				// ã‚µã‚¤ã‚ºå¤‰æ›´ã€€é–‹å§‹
 				this.resizeItem( pArgument.event, wTargetItem );
 				break;
 
-			// ˆÊ’u’²®icj
+			// ä½ç½®èª¿æ•´ï¼ˆç¸¦ï¼‰
 			case 'pos-vert':
-				// ˆÊ’u’²®icj@ŠJn
+				// ä½ç½®èª¿æ•´ï¼ˆç¸¦ï¼‰ã€€é–‹å§‹
 				this.positionItemStart( pArgument, wTargetItem );
 				break;
 
-			// ˆÊ’u’²®i‰¡j
+			// ä½ç½®èª¿æ•´ï¼ˆæ¨ªï¼‰
 			case 'pos-side':
-				// ˆÊ’u’²®i‰¡j@ŠJn
+				// ä½ç½®èª¿æ•´ï¼ˆæ¨ªï¼‰ã€€é–‹å§‹
 				this.positionItemStart( pArgument, wTargetItem );
 				break;
 
-			// €–Ú‘€ìƒLƒƒƒ“ƒZƒ‹
+			// é …ç›®æ“ä½œã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			case 'cancel':
-				// ‘€ìiƒCƒxƒ“ƒgj‚ğ‘S‚ÄƒLƒƒƒ“ƒZƒ‹
+				// æ“ä½œï¼ˆã‚¤ãƒ™ãƒ³ãƒˆï¼‰ã‚’å…¨ã¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				this.cancelControl( pArgument.cancel );
 				break;
 			}
@@ -4907,10 +4907,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒ}ƒEƒX’Ç]ƒRƒƒ“ƒg
+	// ãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆ
 	// **************************************************************
 
-	// ƒ}ƒEƒX’Ç]ƒRƒƒ“ƒg@‰Šúİ’è
+	// ãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆã€€åˆæœŸè¨­å®š
 	clsContentsBox.prototype.initMouseCmt = function() {
 		try {
 			this._ContentsMouseCmt = new clsMouseCmt( { parent: this._ContentsEleMain } );
@@ -4920,10 +4920,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒAƒ‰[ƒg•\¦iƒ}ƒEƒX’Ç]ƒRƒƒ“ƒg•\¦’†j
+	// ã‚¢ãƒ©ãƒ¼ãƒˆè¡¨ç¤ºï¼ˆãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤ºä¸­ï¼‰
 	clsContentsBox.prototype.alertMouseCmt = function( pMsgCd ) {
 		try {
-			// ƒ}ƒEƒX’Ç]ƒRƒƒ“ƒgˆê’â~
+			// ãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆä¸€æ™‚åœæ­¢
 			if ( this._ContentsMouseCmt ) this._ContentsMouseCmt.stopMouseCmt();
 			
 			if ( !(pMsgCd in this._MSG_CONTENTS_ALERT) ) return;
@@ -4934,7 +4934,7 @@ var clsContentsBox = function( pArgument ) {
 		} catch(e) { alert(e.message); }
 	};
 
-	// ƒ}ƒEƒX’Ç]ƒRƒƒ“ƒg@•\¦
+	// ãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆã€€è¡¨ç¤º
 	clsContentsBox.prototype.dspMouseCmt = function( pEvent, pComment) {
 		try {
 			if ( !this._ContentsMouseCmt ) return;
@@ -4947,7 +4947,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒ}ƒEƒX’Ç]ƒRƒƒ“ƒg@”ñ•\¦
+	// ãƒã‚¦ã‚¹è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆã€€éè¡¨ç¤º
 	clsContentsBox.prototype.hideMouseCmt = function() {
 		try {
 			if ( !this._ContentsMouseCmt ) return;
@@ -4961,15 +4961,15 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// •Û‘¶^“Ç
+	// ä¿å­˜ï¼èª­è¾¼
 	// **************************************************************
 
-	// ”z’u‚³‚ê‚Ä‚¢‚é€–Ú‚Ìî•ñ‚ğæ“¾
+	// é…ç½®ã•ã‚Œã¦ã„ã‚‹é …ç›®ã®æƒ…å ±ã‚’å–å¾—
 	clsContentsBox.prototype.getItemData = function( pParam ) {
 		try {
 			var wItemData = {};
 
-			// æ“¾‘ÎÛƒ`ƒFƒbƒN
+			// å–å¾—å¯¾è±¡ãƒã‚§ãƒƒã‚¯
 			if ( this.isArray(pParam) ) {
 				for( var wIndex = 0; wIndex < pParam.length; wIndex++ ) {
 					wItemData[pParam[wIndex]] = { count: 0 };
@@ -4989,7 +4989,7 @@ var clsContentsBox = function( pArgument ) {
 
 			for( var wKey in wItemData ) {
 				if ( wKey in this._ContentsItems ) {
-					// €–ÚŒ”æ“¾
+					// é …ç›®ä»¶æ•°å–å¾—
 					wItemData[wKey].count = Object.keys(this._ContentsItems[wKey]).length;
 				}
 			}
@@ -5001,10 +5001,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// •Û‘¶ƒf[ƒ^¶¬
+	// ä¿å­˜ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	clsContentsBox.prototype.getSaveData = function( pSaveParam ) {
 		try {
-			// æ“¾ƒf[ƒ^‘®«
+			// å–å¾—ãƒ‡ãƒ¼ã‚¿å±æ€§
 			var wSaveParam = {
 				  keyperson		: true
 				, personal		: true
@@ -5013,24 +5013,24 @@ var clsContentsBox = function( pArgument ) {
 				, freeline		: true
 			};
 
-			// ƒpƒ‰ƒ[ƒ^‚Åã‘‚«
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ä¸Šæ›¸ã
 			this.copyProperty( pSaveParam, wSaveParam );
 
-			// •Û‘¶—pƒIƒuƒWƒFƒNƒg
+			// ä¿å­˜ç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 			var wSaveObj = {};
 
-			// •Û‘¶ƒf[ƒ^KEYİ’è
+			// ä¿å­˜ãƒ‡ãƒ¼ã‚¿KEYè¨­å®š
 			wSaveObj.savekey = this._DEF_CONTENTS_SAVEKEY;
 			wSaveObj.baseid  = this.getBoxId();
 
-			// €–Úƒf[ƒ^
+			// é …ç›®ãƒ‡ãƒ¼ã‚¿
 			var wItmes;
 			for( var wKey in this._ContentsItems ) {
 				wItmes = this._ContentsItems[wKey];
 				
 				var wSaveItem = {};
 				for( var wId in wItmes ) {
-					// €–Ú‚Ìİ’è“à—e‚ğæ“¾iobjectj
+					// é …ç›®ã®è¨­å®šå†…å®¹ã‚’å–å¾—ï¼ˆobjectï¼‰
 					wSaveData = wItmes[wId].saveData( wSaveParam );
 					wSaveItem[wId] = JSON.stringify( wSaveData );
 				}
@@ -5045,7 +5045,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^•Û‘¶idownloadj@IE
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜ï¼ˆdownloadï¼‰ã€€IE
 	clsContentsBox.prototype.downloadDataIE = function( pSaveData ) {
 		try {
 			var wBlobData = new Blob( [pSaveData], {type: 'application/json'} );
@@ -5059,10 +5059,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^•Û‘¶idownloadj@IEˆÈŠO
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜ï¼ˆdownloadï¼‰ã€€IEä»¥å¤–
 	clsContentsBox.prototype.downloadDataEtc = function( pSaveData ) {
 		try {
-			// download—pLink¶¬
+			// downloadç”¨Linkç”Ÿæˆ
 			var wDownloadLink = this.addElement( 'a', 'a-download' );
 			if ( !wDownloadLink ) return false;
 
@@ -5073,13 +5073,13 @@ var clsContentsBox = function( pArgument ) {
 			wDownloadLink.href = URL.createObjectURL( wBlobData );
 			wDownloadLink.download = this.getNowDateTime() + '.sav';
 
-			// Body—v‘f‚ÉLink‚ğİ’è
+			// Bodyè¦ç´ ã«Linkã‚’è¨­å®š
 			this.appendElementToParent( this.getBoxBody(), wDownloadLink );
 
 			// download
 			wDownloadLink.click();
 
-			// Linkíœ
+			// Linkå‰Šé™¤
 			this.delElement( wDownloadLink );
 
 		} catch(e) {
@@ -5087,14 +5087,14 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^•Û‘¶idownloadj
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜ï¼ˆdownloadï¼‰
 	clsContentsBox.prototype.downloadData = function( pSaveData ) {
 		try {
-			// ƒuƒ‰ƒEƒU‚ªIE
+			// ãƒ–ãƒ©ã‚¦ã‚¶ãŒIE
 			if ( this.isIE() ) {
 				this.downloadDataIE( pSaveData );
 			
-			// ˆÈŠO
+			// ä»¥å¤–
 			} else {
 				this.downloadDataEtc( pSaveData );
 
@@ -5105,10 +5105,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú•œŒ³
+	// é …ç›®å¾©å…ƒ
 	clsContentsBox.prototype.loadItem = function( pKey, pLoadData ) {
 		try {
-			// €–Úí•Êƒ`ƒFƒbƒN
+			// é …ç›®ç¨®åˆ¥ãƒã‚§ãƒƒã‚¯
 			var wItemKind;
 			switch( pKey ) {
 			case 'person':
@@ -5132,17 +5132,17 @@ var clsContentsBox = function( pArgument ) {
 				break;
 
 			default:
-				throw { name: 'checkKey', message: '‘ÎÛŠOƒo[ƒWƒ‡ƒ“‚Ìƒf[ƒ^‚Å‚·[•s–¾‚Èƒf[ƒ^í•Ê]' };
+				throw { name: 'checkKey', message: 'å¯¾è±¡å¤–ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã§ã™[ä¸æ˜ãªãƒ‡ãƒ¼ã‚¿ç¨®åˆ¥]' };
 				breka;
 			}
 
-			// €–Ú“à—e•œŒ³
+			// é …ç›®å†…å®¹å¾©å…ƒ
 			var wLoadInf = JSON.parse( pLoadData );
 
-			// €–Ú’Ç‰Á
+			// é …ç›®è¿½åŠ 
 			var wRetItem = this.addItem( null, wItemKind, wLoadInf );
 			if ( !wRetItem ) {
-				throw { name: 'addItem', message: '•Û‘¶‚³‚ê‚Ä‚¢‚é€–Ú‚ª•œŒ³‚Å‚«‚Ü‚¹‚ñ[€–Ú’Ç‰Á]' };
+				throw { name: 'addItem', message: 'ä¿å­˜ã•ã‚Œã¦ã„ã‚‹é …ç›®ãŒå¾©å…ƒã§ãã¾ã›ã‚“[é …ç›®è¿½åŠ ]' };
 				
 			}
 			
@@ -5153,7 +5153,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú‚ÌŠÖ˜A•t‚¯î•ñ‚ğ•œŒ³
+	// é …ç›®ã®é–¢é€£ä»˜ã‘æƒ…å ±ã‚’å¾©å…ƒ
 	clsContentsBox.prototype.loadItemRelation = function() {
 		try {
 			var self = this;
@@ -5162,15 +5162,15 @@ var clsContentsBox = function( pArgument ) {
 			
 			var mRelationSave = true;
 
-			// ŠÖ˜A•t‚¯î•ñ‚ª•Û‘¶‚³‚ê‚Ä‚¢‚È‚¢ver
+			// é–¢é€£ä»˜ã‘æƒ…å ±ãŒä¿å­˜ã•ã‚Œã¦ã„ãªã„ver
 			if ( !this._ContentsItems.relation ) {
-				// ŠÖ˜A•t‚¯î•ñ‚ğ€–Ú‚©‚ç¶¬
+				// é–¢é€£ä»˜ã‘æƒ…å ±ã‚’é …ç›®ã‹ã‚‰ç”Ÿæˆ
 				this._ContentsItems.relation = {};
 				mRelationSave = false;
 
 			}
 
-			// ŠÖ˜A•t‚¯î•ñ¶¬
+			// é–¢é€£ä»˜ã‘æƒ…å ±ç”Ÿæˆ
 			function createRelationInf( pContentsItem ) {
 				if ( !pContentsItem ) return false;
 
@@ -5182,26 +5182,26 @@ var clsContentsBox = function( pArgument ) {
 					for( var wRelKey in wRelsItem ) {
 						wItemKd = wRelsItem[wRelKey].kind;
 
-						// ŠÖ˜A•t‚¯‘ÎÛæ“¾
+						// é–¢é€£ä»˜ã‘å¯¾è±¡å–å¾—
 						var wDstItem = self.getContentsItem( wRelKey, wItemKd );
 						if ( !wDstItem ) continue;
 
-						// ŠÖ˜A•t‚¯î•ñæ“¾
+						// é–¢é€£ä»˜ã‘æƒ…å ±å–å¾—
 						var wRelInf = null;
 
-						// ŠÖ˜A•t‚¯•Û‘¶ver
+						// é–¢é€£ä»˜ã‘ä¿å­˜ver
 						if ( mRelationSave ) {
-							// ¶¬Ï‚Ìî•ñæ“¾
+							// ç”Ÿæˆæ¸ˆã®æƒ…å ±å–å¾—
 							wRelInf = self._ContentsItems.relation[wRelsItem[wRelKey].key];
 						}
 						
 						if ( (!wRelInf) && (typeof wRelsItem[wRelKey].relationInf !== 'undefined') ) {
-							// €–Ú‚É•Û‘¶‚³‚ê‚Ä‚¢‚éŠÖ˜A•t‚¯î•ñæ“¾
-							// ¦ loadA€–Ú‚ÌrelationInf‚É‚ÍclsItemRelation¶¬‚Ìˆ×‚Ìƒpƒ‰ƒ[ƒ^‚ªİ’è‚³‚ê‚é
+							// é …ç›®ã«ä¿å­˜ã•ã‚Œã¦ã„ã‚‹é–¢é€£ä»˜ã‘æƒ…å ±å–å¾—
+							// â€» loadæ™‚ã€é …ç›®ã®relationInfã«ã¯clsItemRelationç”Ÿæˆã®ç‚ºã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒè¨­å®šã•ã‚Œã‚‹
 							var wRelLoad = {};
 							self.copyProperty( wRelsItem[wRelKey].relationInf, wRelLoad );
 
-							// ŠÖ˜A•t‚¯class¶¬
+							// é–¢é€£ä»˜ã‘classç”Ÿæˆ
 							var wRelParam;
 							if ( (typeof wRelLoad.contents !== 'undefined') && (typeof wRelLoad.masterId !== 'undefined') ) {
 								wRelParam = { loadData: wRelLoad };
@@ -5216,20 +5216,20 @@ var clsContentsBox = function( pArgument ) {
 							wRelInf = new clsItemRelation( wRelParam );
 						}
 
-						// ŠÖ˜A•t‚¯İ’è
+						// é–¢é€£ä»˜ã‘è¨­å®š
 						if ( wRelInf ) self.setRelation( pContentsItem[wKey], wDstItem, wRelInf );
 
 					}
 				}
 			};
 
-			// €–Úiåj
+			// é …ç›®ï¼ˆä¸»ï¼‰
 			createRelationInf( this._ContentsItems.person );
 
-			// ƒOƒ‹[ƒviåj
+			// ã‚°ãƒ«ãƒ¼ãƒ—ï¼ˆä¸»ï¼‰
 			createRelationInf( this._ContentsItems.group );
 
-			// ’†Œp“_iåj
+			// ä¸­ç¶™ç‚¹ï¼ˆä¸»ï¼‰
 			createRelationInf( this._ContentsItems.relation );
 
 		} catch(e) {
@@ -5237,60 +5237,60 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^“Ç
+	// ãƒ‡ãƒ¼ã‚¿èª­è¾¼
 	clsContentsBox.prototype.execLoadData = function( pLoadData ) {
 		try {
-			// “Çƒf[ƒ^–³Œø‚È‚çˆ—‚È‚µ
+			// èª­è¾¼ãƒ‡ãƒ¼ã‚¿ç„¡åŠ¹ãªã‚‰å‡¦ç†ãªã—
 			if ( typeof pLoadData == 'undefined' ) return false;
 			if ( pLoadData == null ) return false;
 
-			// ƒf[ƒ^ƒ`ƒFƒbƒN
+			// ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 			if ( pLoadData.indexOf(this._DEF_CONTENTS_SAVEKEY) == -1 ) {
-				alert( '‘I‘ğ‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ª•Û‘¶ƒf[ƒ^‚Å‚Í‚È‚¢‚©A‘ÎÛŠOƒo[ƒWƒ‡ƒ“‚Ìƒf[ƒ^‚Å‚·[savekey]');
+				alert( 'é¸æŠã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ãŒä¿å­˜ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„ã‹ã€å¯¾è±¡å¤–ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã§ã™[savekey]');
 				return false;
 			}
 
-			// “Ç‚İ‚ñ‚¾ƒf[ƒ^‚©‚ç€–Ú‚ğ•œŒ³
+			// èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰é …ç›®ã‚’å¾©å…ƒ
 			var wLoadObj = JSON.parse(pLoadData);
 
-			// ƒx[ƒX—v‘fidæ“¾
+			// ãƒ™ãƒ¼ã‚¹è¦ç´ idå–å¾—
 			var wBaseId = wLoadObj.baseid;
 			if ( !wBaseId ) {
-				alert( '‘ÎÛŠOƒo[ƒWƒ‡ƒ“‚Ìƒf[ƒ^‚Å‚·[baseid•s–¾]');
+				alert( 'å¯¾è±¡å¤–ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã§ã™[baseidä¸æ˜]');
 				return false;
 			}
 
-			// åƒRƒ“ƒeƒ“ƒc‚Ìid‚ğÄİ’è
+			// ä¸»ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã®idã‚’å†è¨­å®š
 			this._ContentsEleMain.setAttribute( 'id', wBaseId );
 
-			// Œ»î•ñ‚ğ‰Šú‰»
+			// ç¾æƒ…å ±ã‚’åˆæœŸåŒ–
 			this.initContents();
 
 			var wReadContents = {};
 			try {
 				for ( var wKey in wLoadObj ) {
-					// •Û‘¶KEY‚Í•s—v
+					// ä¿å­˜KEYã¯ä¸è¦
 					if ( wKey == 'savekey' ) continue;
 					
-					// ƒx[ƒX—v‘fid‚Í•s—v
+					// ãƒ™ãƒ¼ã‚¹è¦ç´ idã¯ä¸è¦
 					if ( wKey == 'baseid' ) continue;
 
-					// Še€–ÚipersonAgroupAcommentArelationj‚ğ•œŒ³
+					// å„é …ç›®ï¼ˆpersonã€groupã€commentã€relationï¼‰ã‚’å¾©å…ƒ
 					wReadContents[wKey] = {};
 
 					var wReadItems;
 					var wLoadItems = JSON.parse( wLoadObj[wKey] );
 					for( var wId in wLoadItems ) {
-						// •œŒ³‚µ‚½€–Ú‚ğæ“¾
+						// å¾©å…ƒã—ãŸé …ç›®ã‚’å–å¾—
 						wReadContents[wKey][wId] = this.loadItem( wKey, wLoadItems[wId] );
 					}
 
 				}
 
-				// eqŠÖŒW‚ğÄİ’è
+				// è¦ªå­é–¢ä¿‚ã‚’å†è¨­å®š
 				this.resetItemParent( wReadContents );
 
-				// “Ç€–Ú‚ğ•Û‘¶
+				// èª­è¾¼é …ç›®ã‚’ä¿å­˜
 				this._ContentsItems = wReadContents;
 				if ( !('person'   in this._ContentsItems) ) this._ContentsItems.person		= {};
 				if ( !('group'    in this._ContentsItems) ) this._ContentsItems.group		= {};
@@ -5298,11 +5298,11 @@ var clsContentsBox = function( pArgument ) {
 				if ( !('comment'  in this._ContentsItems) ) this._ContentsItems.comment		= {};
 				if ( !('freeline' in this._ContentsItems) ) this._ContentsItems.freeline	= {};
 
-				// €–Ú‚ÌŠÖ˜A•t‚¯î•ñ‚ğÄİ’è
+				// é …ç›®ã®é–¢é€£ä»˜ã‘æƒ…å ±ã‚’å†è¨­å®š
 				this.loadItemRelation();
 
 			} catch(me) {
-				// ’Ç‰Á€–Ú‚ğ‘S‚Äíœ‚µ‚Ä—áŠO‚ğthrow
+				// è¿½åŠ é …ç›®ã‚’å…¨ã¦å‰Šé™¤ã—ã¦ä¾‹å¤–ã‚’throw
 				try {
 					for( var wDel in wReadContents ) {
 						if ( wReadContents[wDel] ) {
@@ -5323,7 +5323,7 @@ var clsContentsBox = function( pArgument ) {
 				
 			}
 
-			// €–ÚÄ•\¦
+			// é …ç›®å†è¡¨ç¤º
 			this.redspContents();
 
 			return true;
@@ -5333,13 +5333,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒf[ƒ^•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	clsContentsBox.prototype.execSaveData = function( pEvent ) {
 		try {
-			// •Û‘¶ƒf[ƒ^¶¬
+			// ä¿å­˜ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 			var wSaveData = this.getSaveData();
 
-			// ƒf[ƒ^•Û‘¶idownloadj
+			// ãƒ‡ãƒ¼ã‚¿ä¿å­˜ï¼ˆdownloadï¼‰
 			this.downloadData( wSaveData );
 
 		} catch(e) {
@@ -5347,10 +5347,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// “Çƒƒjƒ…[•\¦
+	// èª­è¾¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsContentsBox.prototype.dspLoadMenu = function( pEvent ) {
 		try {
-			// “Çƒ_ƒCƒAƒƒO•\¦
+			// èª­è¾¼ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤º
 			if ( this._ContentsMenuFile ) {
 				var wPoint = this.getEventPos( pEvent );
 				this._ContentsMenuFile.dspMenu( { x: wPoint.x, y: wPoint.y, callback: this.eventLoadFile } );
@@ -5363,10 +5363,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ˆóü
+	// å°åˆ·
 	// **************************************************************
 
-	// ƒLƒƒƒ“ƒoƒXˆóü
+	// ã‚­ãƒ£ãƒ³ãƒã‚¹å°åˆ·
 	clsContentsBox.prototype.printCanvasData = function( ) {
 		try {
 			if ( !this._ContentsEleMain ) return false;
@@ -5374,7 +5374,7 @@ var clsContentsBox = function( pArgument ) {
 			var wWindow = this.getBoxWindow();
 			if ( !wWindow ) return false;
 
-			// ˆóüƒvƒŒƒrƒ…[
+			// å°åˆ·ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼
 			wWindow.print();
 
 			return true;
@@ -5384,7 +5384,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ˆóüƒf[ƒ^¶¬
+	// å°åˆ·ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	clsContentsBox.prototype.getPrintData = function( ) {
 		try {
 			if ( !this._ContentsEleMain ) return null;
@@ -5402,25 +5402,25 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ‰æ–Ê‘€ì
+	// ç”»é¢æ“ä½œ
 	// **************************************************************
 
-	// ‘€ìiƒCƒxƒ“ƒgj‚ğ‘S‚ÄƒLƒƒƒ“ƒZƒ‹
-	//@¦ ƒƒCƒ“‰æ–Ê‚©‚çCall‚³‚ê‚é
+	// æ“ä½œï¼ˆã‚¤ãƒ™ãƒ³ãƒˆï¼‰ã‚’å…¨ã¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	//ã€€â€» ãƒ¡ã‚¤ãƒ³ç”»é¢ã‹ã‚‰Callã•ã‚Œã‚‹
 	clsContentsBox.prototype.cancelControl = function( pCancelParam ) {
 		try {
-			// ƒLƒƒƒ“ƒZƒ‹ˆ—İ’è
-			// ¦‘I‘ğ‚ÍƒLƒƒƒ“ƒZƒ‹‚µ‚È‚¢
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†è¨­å®š
+			// â€»é¸æŠã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãªã„
 			var wParam = {
 				  select : false
 			};
 			
-			// ‚»‚Ì‘¼ƒpƒ‰ƒ[ƒ^ã‘‚«
+			// ãã®ä»–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸Šæ›¸ã
 			if ( this.isObject(pCancelParam) ) {
 				this.copyProperty( pCancelParam, wParam );
 			}
 
-			// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.eventClear( wParam );
 
 		} catch(e) {
@@ -5428,10 +5428,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// q€–Ú‚ÌƒCƒxƒ“ƒg‚ğ‘S‚ÄƒLƒƒƒ“ƒZƒ‹
+	// å­é …ç›®ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å…¨ã¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsContentsBox.prototype.cancelChiledEvent = function() {
 		try {
-			// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+			// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			var cancelItemEvent = function( pTgList ) {
 				if ( !pTgList ) return false;
 
@@ -5447,7 +5447,7 @@ var clsContentsBox = function( pArgument ) {
 			for( var wKind in this._ContentsItems ) {
 				if ( !this.isObject(this._ContentsItems[wKind]) ) continue;
 				
-				// €–ÚƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+				// é …ç›®ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				cancelItemEvent( this._ContentsItems[wKind] );
 			}
 
@@ -5456,7 +5456,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒCƒxƒ“ƒg‚ğƒLƒƒƒ“ƒZƒ‹i‰EƒNƒŠƒbƒN‚ÅƒLƒƒƒ“ƒZƒ‹‰Â”\‚È‚à‚Ì‚Ì‚İj
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼ˆå³ã‚¯ãƒªãƒƒã‚¯ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«å¯èƒ½ãªã‚‚ã®ã®ã¿ï¼‰
 	clsContentsBox.prototype.eventClearClick = function( pCancelParam ) {
 		try {
 			if ( this._ContentsMenuColor ) {
@@ -5484,22 +5484,22 @@ var clsContentsBox = function( pArgument ) {
 				if ( 'freeline' in pCancelParam ) wCancelEvent.freeline	= pCancelParam.freeline;
 			}
 
-			// ŠÖŒW’Ç‰Á^‰ğœ
+			// é–¢ä¿‚è¿½åŠ ï¼è§£é™¤
 			if ( wCancelEvent.relation ) this.execFunction( this.addRelationCancel );
 
-			// ƒRƒƒ“ƒg’Ç‰Á@‰ğœ
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ ã€€è§£é™¤
 			if ( wCancelEvent.comment ) this.execFunction( this.cancelAddItemComment );
 
-			// ƒ‰ƒCƒ“’Ç‰Á@‰ğœ
+			// ãƒ©ã‚¤ãƒ³è¿½åŠ ã€€è§£é™¤
 			if ( wCancelEvent.freeline ) this.execFunction( this.freeLineCancel );
 
-			// €–ÚXV‰ğœ
+			// é …ç›®æ›´æ–°è§£é™¤
 			if ( wCancelEvent.itemUpd ) this.execFunction( this.updItemCancel );
 
-			// ˆÊ’u’²®‰ğœ
+			// ä½ç½®èª¿æ•´è§£é™¤
 			if ( wCancelEvent.position ) this.execFunction( this.positionItemCancel );
 
-			// ‘I‘ğ‰ğœ
+			// é¸æŠè§£é™¤
 			if ( wCancelEvent.select ) this.execFunction( this.resetSelectItem );
 
 		} catch(e) {
@@ -5507,7 +5507,7 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒCƒxƒ“ƒg‚ğ‘S‚ÄƒLƒƒƒ“ƒZƒ‹
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚’å…¨ã¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsContentsBox.prototype.eventClear = function( pCancelParam ) {
 		try {
 			if ( this._ContentsMenuColor ) {
@@ -5517,11 +5517,11 @@ var clsContentsBox = function( pArgument ) {
 				this._ContentsMenuFile.hideMenu();
 			}
 
-			//¦ ‰EƒNƒŠƒbƒN‚ÅƒLƒƒƒ“ƒZƒ‹‰Â”\‚ÈƒCƒxƒ“ƒg
+			//â€» å³ã‚¯ãƒªãƒƒã‚¯ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«å¯èƒ½ãªã‚¤ãƒ™ãƒ³ãƒˆ
 			this.eventClearClick( pCancelParam );
 
-			//¦ ‰EƒNƒŠƒbƒN‚ÅƒLƒƒƒ“ƒZƒ‹‚Å‚«‚È‚¢ƒCƒxƒ“ƒg
-			// ƒLƒƒƒ“ƒZƒ‹‘ÎÛİ’è
+			//â€» å³ã‚¯ãƒªãƒƒã‚¯ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§ããªã„ã‚¤ãƒ™ãƒ³ãƒˆ
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«å¯¾è±¡è¨­å®š
 			var wCancelEvent = {
 				  move		: true
 				, resize	: true
@@ -5531,13 +5531,13 @@ var clsContentsBox = function( pArgument ) {
 				if ( 'resize' in pCancelParam ) wCancelEvent.resize	= pCancelParam.resize;
 			}
 
-			// @ˆÚ“®i‚¨‚æ‚Ñ€–Ú’Ç‰Áj
+			// ã€€ç§»å‹•ï¼ˆãŠã‚ˆã³é …ç›®è¿½åŠ ï¼‰
 			if ( wCancelEvent.move ) this.execFunction( this.moveItemCancel );
 			
-			// @ƒŠƒTƒCƒYI—¹
+			// ã€€ãƒªã‚µã‚¤ã‚ºçµ‚äº†
 			if ( wCancelEvent.resize ) this.execFunction( this.cancelResizeItem );
 
-			// q€–Ú‚ÌƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+			// å­é …ç›®ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this.cancelChiledEvent();
 			
 		} catch(e) {
@@ -5545,10 +5545,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ‘S€–Úƒƒjƒ…[@—LŒø‰»E–³Œø‰»
+	// å…¨é …ç›®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€æœ‰åŠ¹åŒ–ãƒ»ç„¡åŠ¹åŒ–
 	clsContentsBox.prototype.useItemContextCtrl = function( pValid, pParam ) {
 		try {
-			// ‘S€–Ú‚Ìƒƒjƒ…[‘€ìİ’è
+			// å…¨é …ç›®ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œè¨­å®š
 			for( var wKey in this._ContentsItems ) {
 				if ( !this._ContentsItems[wKey] ) continue;
 				
@@ -5567,10 +5567,10 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ‘S€–ÚˆÊ’u’²®ƒƒjƒ…[@—LŒø‰»E–³Œø‰»
+	// å…¨é …ç›®ä½ç½®èª¿æ•´ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€æœ‰åŠ¹åŒ–ãƒ»ç„¡åŠ¹åŒ–
 	clsContentsBox.prototype.useItemPositionCtrl = function( pValid ) {
 		try {
-			// ‘S€–Ú‚ÌˆÊ’u’²®ƒƒjƒ…[‘€ìİ’è
+			// å…¨é …ç›®ã®ä½ç½®èª¿æ•´ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œè¨­å®š
 			for( var wKey in this._ContentsItems ) {
 				if ( !this._ContentsItems[wKey] ) continue;
 				
@@ -5589,35 +5589,35 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒx[ƒX‘€ì@—LŒø‰»E–³Œø‰»
+	// ãƒ™ãƒ¼ã‚¹æ“ä½œã€€æœ‰åŠ¹åŒ–ãƒ»ç„¡åŠ¹åŒ–
 	clsContentsBox.prototype.useContextCtrl = function( pValid ) {
 		try {
-			// –³Œø‰»‚Í‘I‘ğ‰ğœ
+			// ç„¡åŠ¹åŒ–æ™‚ã¯é¸æŠè§£é™¤
 			if ( !pValid ) this.execFunction( this.resetSelectItem );
 
-			// €–Úƒƒjƒ…[‘€ìİ’è
+			// é …ç›®ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œè¨­å®š
 			var wMenuValid = pValid;
 
-			// ƒhƒ‰ƒbƒO‰Â”Û
+			// ãƒ‰ãƒ©ãƒƒã‚°å¯å¦
 			var wCtrlParam = {};
 
-			// ”z’u•ÒWƒ‚[ƒh
+			// é…ç½®ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚
 			if ( this.isEditModeMove() ) {
-				// —LŒø‰»‚µ‚È‚¢
+				// æœ‰åŠ¹åŒ–ã—ãªã„
 				wMenuValid = false;
 
-				// ƒhƒ‰ƒbƒO‹–‰Â
+				// ãƒ‰ãƒ©ãƒƒã‚°è¨±å¯
 				wCtrlParam.drag = true;
 			
 			}
 
-			// ‘S€–Ú‚Ì‘€ìİ’è
+			// å…¨é …ç›®ã®æ“ä½œè¨­å®š
 			this.useItemContextCtrl( wMenuValid, wCtrlParam );
 
-			// ƒx[ƒXƒƒjƒ…[
+			// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			this._ContentsContextValid = pValid;
 
-			// ƒTƒCƒhƒpƒlƒ‹Eƒpƒlƒ‹ƒRƒ“ƒgƒ[ƒ‰@‘€ìİ’è
+			// ã‚µã‚¤ãƒ‰ãƒ‘ãƒãƒ«ãƒ»ãƒ‘ãƒãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã€€æ“ä½œè¨­å®š
 			var wValidParam = {
 				  kind		: 'set-valid'
 				, valid		: pValid
@@ -5629,16 +5629,16 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒJƒ‰[ƒƒjƒ…[•\¦
+	// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsContentsBox.prototype.dspColorMenu = function( pEvent ) {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.cancelEvent( pEvent, true );
 
-			// ˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.eventClear();
 
-			// ƒJƒ‰[ƒƒjƒ…[•\¦
+			// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._ContentsMenuColor ) {
 				var wPoint = this.getEventPos( pEvent );
 				this._ContentsMenuColor.dspMenu( { x: wPoint.x, y: wPoint.y, callback: this.eventColorSelect } );
@@ -5651,10 +5651,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// Šî–{‰æ–Ê‚Ìƒƒjƒ…[
+	// åŸºæœ¬ç”»é¢ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 	// **************************************************************
 
-	// ‘I‘ğˆ—
+	// é¸æŠæ™‚å‡¦ç†
 	clsContentsBox.prototype.execContentsMenu = function( pEvent, pSelectMenu ) {
 		try {
 			if ( !pSelectMenu ) return false;
@@ -5662,27 +5662,27 @@ var clsContentsBox = function( pArgument ) {
 			var wRetVal = true;
 
 			switch(pSelectMenu.kind) {
-			// l•¨’Ç‰Á
+			// äººç‰©è¿½åŠ 
 			case 'item':
 				wRetVal = this.addItemStart( pEvent, 'item-person' );
 				break;
 
-			// ƒOƒ‹[ƒv’Ç‰Á
+			// ã‚°ãƒ«ãƒ¼ãƒ—è¿½åŠ 
 			case 'group':
 				wRetVal = this.addItemStart( pEvent, 'item-group' );
 				break;
 
-			// ƒRƒƒ“ƒg’Ç‰Á
+			// ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ 
 			case 'comment':
 				wRetVal = this.addItemComment( pEvent );
 				break;
 
-			// ƒtƒŠ[ƒ‰ƒCƒ“’Ç‰Á
+			// ãƒ•ãƒªãƒ¼ãƒ©ã‚¤ãƒ³è¿½åŠ 
 			case 'freeline':
 				wRetVal = this.addItemFreeLine( pEvent );
 				break;
 
-			// F•ÏX
+			// è‰²å¤‰æ›´
 			case 'color':
 				wRetVal = this.dspColorMenu( pEvent );
 				break;
@@ -5697,10 +5697,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒƒCƒ“ƒƒjƒ…[‰æ–Ê‚Ìƒƒjƒ…[
+	// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 	// **************************************************************
 
-	// •ÒWƒ‚[ƒhƒƒjƒ…[‚ªu”z’u•ÒWv‚©ƒ`ƒFƒbƒN
+	// ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒã€Œé…ç½®ç·¨é›†ã€ã‹ãƒã‚§ãƒƒã‚¯
 	clsContentsBox.prototype.isEditModeMove = function( pEditMode ) {
 		try {
 			var wModeKind = this._ContentsEditMode;
@@ -5714,39 +5714,39 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// •ÒWƒ‚[ƒhİ’è
+	// ç·¨é›†ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	clsContentsBox.prototype.setEditMode = function( pMenuId ) {
 		try {
-			// ƒƒjƒ…[•ÏX‚È‚µ‚Íˆ—‚È‚µ
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¤‰æ›´ãªã—ã¯å‡¦ç†ãªã—
 			if ( this._ContentsEditMode == pMenuId ) return false;
 
 			switch( pMenuId ) {
-			// ”z’u•ÒWƒ‚[ƒh
+			// é…ç½®ç·¨é›†ãƒ¢ãƒ¼ãƒ‰
 			case this._DEF_MENU_ID_MOVE:
-				// ‘I‘ğ‰ğœ
+				// é¸æŠè§£é™¤
 				this.resetSelectItem();
 
-				// €–Úƒƒjƒ…[–³Œø‰»
+				// é …ç›®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 				this.useItemContextCtrl( false, { drag: true } );
 				
-				// €–ÚˆÊ’u’²®ƒƒjƒ…[—LŒø‰»
+				// é …ç›®ä½ç½®èª¿æ•´ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 				this.useItemPositionCtrl( true );
 
 				break;
 
-			// ˆÈŠOi’Êíƒ‚[ƒhj
+			// ä»¥å¤–ï¼ˆé€šå¸¸ãƒ¢ãƒ¼ãƒ‰ï¼‰
 			default:
-				// €–Úƒƒjƒ…[—LŒø‰»
+				// é …ç›®ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 				this.useItemContextCtrl( true );
 
 				break;
 			
 			}
 
-			// ƒ‚[ƒh‚ÉˆÚs
+			// ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
 			this._ContentsEditMode = pMenuId;
 
-			// ƒƒjƒ…[•ÏX
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¤‰æ›´
 			this.chgMenuEditStyle( this._ContentsEditMode );
 
 			return true;
@@ -5756,60 +5756,60 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒƒCƒ“ƒƒjƒ…[‘I‘ğˆ—
+	// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠæ™‚å‡¦ç†
 	clsContentsBox.prototype.execMainMenu = function( pEvent, pMenuId ) {
 		try {
 			var wRetVal = true;
 
-			// ƒx[ƒX‘€ì—LŒø‚Ì‚İ
+			// ãƒ™ãƒ¼ã‚¹æ“ä½œæœ‰åŠ¹æ™‚ã®ã¿
 			if ( !this._ContentsContextValid ) return false;
 
 			switch(pMenuId) {
-			// ƒf[ƒ^
+			// ãƒ‡ãƒ¼ã‚¿
 			case 'data':
-				// ƒf[ƒ^ƒƒjƒ…[•\¦
-				// ”z’u•ÒW—pƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[•\¦
+				// ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
+				// é…ç½®ç·¨é›†ç”¨ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 				var wPoint = this.getEventPos( pEvent );
 				this._ContentsMenuData.dspMenu( wPoint );
 				break;
 
-			// ’Êí•ÒW
+			// é€šå¸¸ç·¨é›†
 			case this._DEF_MENU_ID_NORMAL:
-				// ’Êíƒ‚[ƒh‚ÖØ‘Ö
+				// é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã¸åˆ‡æ›¿
 				wRetVal = this.setEditMode( pMenuId );
 
 				if ( wRetVal ) {
-					// ¦ƒTƒCƒhƒpƒlƒ‹‚Ö•ÒWƒ‚[ƒh•ÏX’Ê’m
+					// â€»ã‚µã‚¤ãƒ‰ãƒ‘ãƒãƒ«ã¸ç·¨é›†ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´é€šçŸ¥
 					this.execLinkCallback( { kind: 'edit', mode: this._DEF_MENU_ID_NORMAL }, null );
 				}
 				break;
 
-			// ”z’u•ÒW
+			// é…ç½®ç·¨é›†
 			case this._DEF_MENU_ID_MOVE:
-				// ”z’u•ÒWƒ‚[ƒh‚ÖØ‘Ö
+				// é…ç½®ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ã¸åˆ‡æ›¿
 				wRetVal = this.setEditMode( pMenuId );
 
 				if ( wRetVal ) {
-					// ¦ƒTƒCƒhƒpƒlƒ‹‚Ö•ÒWƒ‚[ƒh•ÏX’Ê’m
+					// â€»ã‚µã‚¤ãƒ‰ãƒ‘ãƒãƒ«ã¸ç·¨é›†ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´é€šçŸ¥
 					this.execLinkCallback( { kind: 'edit', mode: this._DEF_MENU_ID_MOVE }, null );
 				}
 				break;
 
-			// ˆóü
+			// å°åˆ·
 			case 'print':
-				// ˆóü
+				// å°åˆ·
 				this.printCanvasData()
 				break;
 
-			// ƒf[ƒ^•Û‘¶
+			// ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 			case 'save':
-				// •Û‘¶
+				// ä¿å­˜
 				wRetVal = this.execSaveData( pEvent );
 				break;
 
-			// ƒf[ƒ^“Ç
+			// ãƒ‡ãƒ¼ã‚¿èª­è¾¼
 			case 'load':
-				// “Ç
+				// èª­è¾¼
 				wRetVal = this.dspLoadMenu( pEvent );
 				break;
 
@@ -5823,13 +5823,13 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ‰æ–Ê¶¬
+	// ç”»é¢ç”Ÿæˆ
 	// **************************************************************
 
-	// ƒƒjƒ…[—L–³ƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	clsContentsBox.prototype.chkActiveMenu = function( ) {
 		try {
-			// ƒƒjƒ…[İ’èƒ`ƒFƒbƒN
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®šãƒã‚§ãƒƒã‚¯
 			if ( !this._ContentsMenuIs ) return false;
 
 			var wMenuIs = false;
@@ -5847,16 +5847,16 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[•\¦ƒGƒŠƒA¶¬
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã‚¨ãƒªã‚¢ç”Ÿæˆ
 	clsContentsBox.prototype.createMenuElement = function( ) {
 		try {
-			// ƒƒjƒ…[İ’è—LŒø‚Ì‚İ
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®šæœ‰åŠ¹æ™‚ã®ã¿
 			if ( !this.chkActiveMenu() ) return;
 
-			// ƒƒjƒ…[•\¦ƒGƒŠƒA¶¬
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã‚¨ãƒªã‚¢ç”Ÿæˆ
 			var wMenuEle = this.addElement( 'div', this.getBoxId() + '_menu' );
 			if ( !wMenuEle ) {
-				throw { name: 'addElement', message: '—v‘f‚ª¶¬‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'addElement', message: 'è¦ç´ ãŒç”Ÿæˆã§ãã¾ã›ã‚“' };
 
 			}
 
@@ -5864,14 +5864,14 @@ var clsContentsBox = function( pArgument ) {
 			this.addClass( wMenuEle, 'no-print' );
 			this.appendBoxToParent( wMenuEle );
 
-			// ‘€ì–³Œø‰»
+			// æ“ä½œç„¡åŠ¹åŒ–
 			this.addEvent( wMenuEle, 'onclick',			this.eventInvalid );
 			this.addEvent( wMenuEle, 'oncontextmenu',	this.eventInvalid );
 
-			// —v‘f•Û‘¶
+			// è¦ç´ ä¿å­˜
 			this._ContentsEleMenu = wMenuEle;
 
-			// ƒƒjƒ…[’Ç‰Á
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ 
 			if ( this._ContentsMenuIs.edit ) {
 				var wEditNormal = this.createMenuEditNormal( this._ContentsEleMenu, this.eventMainMenuSelect );
 				this._ContentsEleMenuList.push( wEditNormal );
@@ -5881,9 +5881,9 @@ var clsContentsBox = function( pArgument ) {
 			}
 
 			if ( this._ContentsMenuIs.data ) {
-				// ƒf[ƒ^SAVE
+				// ãƒ‡ãƒ¼ã‚¿SAVE
 				var wParamSave = {
-					  title		: 'ƒf[ƒ^•Û‘¶'
+					  title		: 'ãƒ‡ãƒ¼ã‚¿ä¿å­˜'
 					, name		: 'save'
 					, style		: { 'float': 'right' }
 					, class		: 'cssCommon-menu-list-def'
@@ -5892,9 +5892,9 @@ var clsContentsBox = function( pArgument ) {
 				var wDataSave = this.createMenu( this._ContentsEleMenu, this.eventMainMenuSelect, wParamSave );
 				this._ContentsEleMenuList.push( wDataSave );
 
-				// ƒf[ƒ^LOAD
+				// ãƒ‡ãƒ¼ã‚¿LOAD
 				var wParamLoad = {
-					  title		: 'ƒf[ƒ^“Ç'
+					  title		: 'ãƒ‡ãƒ¼ã‚¿èª­è¾¼'
 					, name		: 'load'
 					, style		: { 'float': 'right' }
 					, class		: 'cssCommon-menu-list-def'
@@ -5905,9 +5905,9 @@ var clsContentsBox = function( pArgument ) {
 			}
 
 			if ( this._ContentsMenuIs.print ) {
-				// ˆóü
+				// å°åˆ·
 				var wParamPrint = {
-					  title		: 'ˆóü'
+					  title		: 'å°åˆ·'
 					, name		: 'print'
 					, style		: { 'float': 'right', 'padding-right': '10px' }
 					, class		: 'cssCommon-menu-list-def'
@@ -5922,23 +5922,23 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒƒCƒ“ƒRƒ“ƒeƒ“ƒcƒGƒŠƒA¶¬
+	// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã‚¨ãƒªã‚¢ç”Ÿæˆ
 	clsContentsBox.prototype.createContentsElement = function() {
 		try {
-			// ƒXƒe[ƒ^ƒX•\¦ƒGƒŠƒA¶¬
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºã‚¨ãƒªã‚¢ç”Ÿæˆ
 			var wMainEle = this.addElement( 'div', this.getBoxId() + '_main' );
 			if ( !wMainEle ) {
-				throw { name: 'addElement', message: '—v‘f‚ª¶¬‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'addElement', message: 'è¦ç´ ãŒç”Ÿæˆã§ãã¾ã›ã‚“' };
 
 			}
 
 			this.addClass( wMainEle, 'cssContents-main' );
 
-			// ƒƒjƒ…[İ’è—LŒø
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®šæœ‰åŠ¹æ™‚
 			if ( this.chkActiveMenu() ) {
 				this.addClass( wMainEle, 'cssContents-main-menu' );
 
-			// ƒƒjƒ…[‚È‚µ
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãªã—
 			} else {
 				this.addClass( wMainEle, 'cssContents-main-nomenu' );
 
@@ -5946,7 +5946,7 @@ var clsContentsBox = function( pArgument ) {
 
 			this.appendBoxToParent( wMainEle );
 
-			// —v‘f•Û‘¶
+			// è¦ç´ ä¿å­˜
 			this._ContentsEleMain = wMainEle;
 
 		} catch(e) {
@@ -5956,14 +5956,14 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// €–Ú“¯Šú
+	// é …ç›®åŒæœŸ
 	// **************************************************************
 
-	// •ÒWƒ‚[ƒhƒƒjƒ…[•ÏX
-	// @¦ƒƒCƒ“ƒIƒuƒWƒFƒNƒg‚©‚çcall‚³‚ê‚é
+	// ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¤‰æ›´
+	// ã€€â€»ãƒ¡ã‚¤ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰callã•ã‚Œã‚‹
 	clsContentsBox.prototype.execChgEditModeNormal = function() {
 		try {
-			// ’Êí•ÒWƒ‚[ƒh‚É•ÏX
+			// é€šå¸¸ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ã«å¤‰æ›´
 			this.setEditMode( this._DEF_MENU_ID_NORMAL );
 
 		} catch(e) {
@@ -5971,28 +5971,28 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// “¯Šú€–Ú•ÏXˆ—
-	// @¦“¯ŠúƒIƒuƒWƒFƒNƒg‚©‚çcall‚³‚ê‚é
+	// åŒæœŸé …ç›®å¤‰æ›´æ™‚å‡¦ç†
+	// ã€€â€»åŒæœŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰callã•ã‚Œã‚‹
 	clsContentsBox.prototype.execLinkItemEvent = function( pArgument ) {
 		try {
 			switch( pArgument.kind ) {
-			// €–Ú‘I‘ğ
+			// é …ç›®é¸æŠ
 			case 'select':
 				var wSelectItm = pArgument.item;
 				if ( wSelectItm ) {
-					// ƒRƒ“ƒeƒ“ƒc‚ÆƒTƒCƒhƒpƒlƒ‹“¯Šú
+					// ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã¨ã‚µã‚¤ãƒ‰ãƒ‘ãƒãƒ«åŒæœŸ
 					this.selectClickItem( wSelectItm );
 				
 				}
 				break;
 
-			// €–Ú‘€ìƒLƒƒƒ“ƒZƒ‹
+			// é …ç›®æ“ä½œã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			case 'cancel':
-				// ‘€ìiƒCƒxƒ“ƒgj‚ğ‘S‚ÄƒLƒƒƒ“ƒZƒ‹
+				// æ“ä½œï¼ˆã‚¤ãƒ™ãƒ³ãƒˆï¼‰ã‚’å…¨ã¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				this.cancelControl( pArgument.cancel );
 				break;
 
-			// •ÒWƒƒjƒ…[‘I‘ğ
+			// ç·¨é›†ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠ
 			case 'edit':
 				this.setEditMode( pArgument.mode );
 				break;
@@ -6005,12 +6005,12 @@ var clsContentsBox = function( pArgument ) {
 	};
 
 
-	// “¯ŠúƒIƒuƒWƒFƒNƒg‚Ö‚Ì€–Ú•ÏX’Ê’mƒCƒxƒ“ƒgİ’è
+	// åŒæœŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®é …ç›®å¤‰æ›´é€šçŸ¥ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsContentsBox.prototype.addLinkCallback = function( pEvtFnc ) {
 		try {
 			if ( !pEvtFnc ) return false;
 
-			// €–Ú•ÏXˆ—’Ç‰Á
+			// é …ç›®å¤‰æ›´æ™‚å‡¦ç†è¿½åŠ 
 			this._ContentsLinkCallback.push( pEvtFnc );
 
 		} catch(e) {
@@ -6018,13 +6018,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// €–Ú•ÏXˆ—
-	// @¦“¯ŠúƒIƒuƒWƒFƒNƒg‚Ö€–Ú•ÏX‚ğ’Ê’m
+	// é …ç›®å¤‰æ›´æ™‚å‡¦ç†
+	// ã€€â€»åŒæœŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸é …ç›®å¤‰æ›´ã‚’é€šçŸ¥
 	clsContentsBox.prototype.execLinkCallback = function( pParam, pItem ) {
 		try {
 			if ( this._ContentsLinkCallback.length == 0 ) return true;
 
-			// ƒCƒxƒ“ƒgƒIƒuƒWƒFƒNƒg‚Öƒpƒ‰ƒ[ƒ^İ’è
+			// ã‚¤ãƒ™ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			var wCallbackParam = {};
 			this.copyProperty( pParam, wCallbackParam );
 
@@ -6032,7 +6032,7 @@ var clsContentsBox = function( pArgument ) {
 
 			for( var wIndex = 0; wIndex < this._ContentsLinkCallback.length; wIndex++ ) {
 				if ( typeof this._ContentsLinkCallback[wIndex] == 'function' ) {
-					// “o˜^‚³‚ê‚Ä‚¢‚éˆ—‚ğÀs
+					// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å‡¦ç†ã‚’å®Ÿè¡Œ
 					var wArguments = [];
 					wArguments.push( wCallbackParam );
 
@@ -6049,10 +6049,10 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// “®ìİ’èƒpƒ‰ƒ[ƒ^æ“¾
+	// å‹•ä½œè¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	// **************************************************************
 
-	// €–Úƒhƒ‰ƒbƒO‰Â”Ûİ’è
+	// é …ç›®ãƒ‰ãƒ©ãƒƒã‚°å¯å¦è¨­å®š
 	clsContentsBox.prototype.getSettingItemDrag = function( pItemKind ) {
 		try {
 			var wItemDrag = {
@@ -6060,36 +6060,36 @@ var clsContentsBox = function( pArgument ) {
 				, moveInit	: false
 			};
 
-			// ‘ÎÛ€–Úí•Ê–¼
+			// å¯¾è±¡é …ç›®ç¨®åˆ¥å
 			var wKindNm = '';
 
-			// l•¨
+			// äººç‰©
 			if ( this.isItemPerson(pItemKind) ) {
 				wKindNm = 'person';
 
-			// ƒOƒ‹[ƒv
+			// ã‚°ãƒ«ãƒ¼ãƒ—
 			} else if ( this.isItemGroup(pItemKind) ) {
 				wKindNm = 'group';
 
-			// ƒRƒƒ“ƒg
+			// ã‚³ãƒ¡ãƒ³ãƒˆ
 			} else if ( this.isItemComment(pItemKind) ) {
 				wKindNm = 'comment';
 
-			// ŠÖ˜A•t‚¯’†Œp“_
+			// é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹
 			} else if ( this.isItemRelation(pItemKind) ) {
 				wKindNm = 'relation';
 
-			// ŠÖ˜A•t‚¯’†Œp“_
+			// é–¢é€£ä»˜ã‘ä¸­ç¶™ç‚¹
 			} else if ( this.isItemFreeLine(pItemKind) ) {
 				wKindNm = 'freeline';
 
-			// ˆÈŠO‚Íˆ—‚È‚µ
+			// ä»¥å¤–ã¯å‡¦ç†ãªã—
 			} else {
 				return wItemDrag;
 
 			}
 
-			// €–Ú‘€ìİ’èæ“¾
+			// é …ç›®æ“ä½œè¨­å®šå–å¾—
 			var wControl = this.loadArgument( 'control' );
 			if ( !wControl ) return wItemDrag;
 			
@@ -6112,71 +6112,71 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsContentsBox.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_CONTENTS_PROPERTY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êucontentsv
+				// ç¨®åˆ¥ã€Œcontentsã€
 				wInitArgument.kind = this._DEF_CONTENTS_KIND;
 
 			}
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._BasePrototype ) {
 				this._BasePrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// •ÒWƒƒjƒ…[‰Šú’l
+			// ç·¨é›†ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸå€¤
 			this._ContentsEditMode = this._DEF_MENU_ID_NORMAL;
 
 			var wArgFlg = this.isObject(pArgument);
 
-			// ƒpƒ‰ƒ[ƒ^æ“¾
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 			var wLocked		= false;
 			var wUseMenu	= null;
 
 			if ( wArgFlg ) {
 				if ( 'locked' in pArgument ) wLocked = pArgument.locked;
 
-				// ƒƒjƒ…[İ’è
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 				if ( 'menu' in pArgument ) {
 					if ( 'contents' in pArgument.menu ) wUseMenu = pArgument.menu.contents;
 				}
 			}
 			this._ContentsLocked = wLocked;
 
-			// ƒƒbƒN‚Íƒƒjƒ…[g—p•s‰Â
+			// ãƒ­ãƒƒã‚¯æ™‚ã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½¿ç”¨ä¸å¯
 			if ( !wLocked ) {
 				this._ContentsMenuIs = wUseMenu;
 			}
 
-			// ƒNƒ‰ƒX’Ç‰Á
+			// ã‚¯ãƒ©ã‚¹è¿½åŠ 
 			this.setBoxClass( 'cssContents-base' );
 			this.setBoxClass( 'main-print' );
 
-			// ƒƒjƒ…[•\¦ƒGƒŠƒA¶¬
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã‚¨ãƒªã‚¢ç”Ÿæˆ
 			this.createMenuElement();
 
-			// ƒƒCƒ“ƒRƒ“ƒeƒ“ƒcƒGƒŠƒA¶¬
+			// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã‚¨ãƒªã‚¢ç”Ÿæˆ
 			this.createContentsElement();
 
 			// ------------------------
-			// ‹¤’Êƒƒjƒ…[İ’è
+			// å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			// ------------------------
-			// ¦ƒƒbƒNƒƒjƒ…[•s—v
+			// â€»ãƒ­ãƒƒã‚¯æ™‚ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä¸è¦
 			if ( !wLocked ) {
-				// ‹¤’Êƒƒjƒ…[İ’è
+				// å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 				this._ContentsPublicMenu = this.loadArgument( 'publicMenu' );
 
-				// ƒJƒ‰[ƒƒjƒ…[İ’è
+				// ã‚«ãƒ©ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 				if ( this._ContentsPublicMenu ) {
 					if ( this._ContentsPublicMenu.common ) {
 						this._ContentsMenuColor = this._ContentsPublicMenu.common.color;
@@ -6186,7 +6186,7 @@ var clsContentsBox = function( pArgument ) {
 
 			}
 
-			// ƒtƒ@ƒCƒ‹‘I‘ğƒƒjƒ…[İ’è
+			// ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			if ( this._ContentsPublicMenu ) {
 				if ( this._ContentsPublicMenu.common ) {
 					this._ContentsMenuFile = this._ContentsPublicMenu.common.file;
@@ -6195,14 +6195,14 @@ var clsContentsBox = function( pArgument ) {
 			if ( !this._ContentsMenuFile ) this._ContentsMenuFile = new clsFileBox();
 
 			// ------------------------
-			// ƒLƒƒƒ“ƒoƒXİ’è
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹è¨­å®š
 			// ------------------------
 			var wCanvasSize = {
 				  width		: this._DEF_CONTENTS_CANVAS_SIZE.width
 				, height	: this._DEF_CONTENTS_CANVAS_SIZE.height
 			};
 
-			// ƒLƒƒƒ“ƒoƒXƒTƒCƒYİ’è‚ ‚è
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚µã‚¤ã‚ºè¨­å®šã‚ã‚Š
 			if ( wArgFlg ) {
 				if ( 'canvas' in pArgument ) {
 					var wCanvasParam = pArgument.canvas;
@@ -6224,49 +6224,49 @@ var clsContentsBox = function( pArgument ) {
 			}
 			this._ContentsCanvas = new clsCanvas( { parent: this._ContentsEleMain, size: wCanvasSize } );
 
-			// –¢ƒƒbƒN
+			// æœªãƒ­ãƒƒã‚¯æ™‚
 			if ( !wLocked ) {
 				// ------------------------
-				// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[İ’è
+				// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 				// ------------------------
 
-				// ƒƒjƒ…[¶¬
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”Ÿæˆ
 				this._ContentsContextMenu = new clsMenuList( { menuList: this._DEF_CONTENTS_MENU, callback: this.eventMenuSelect } );
 
 				// ------------------------
-				// ƒCƒxƒ“ƒgİ’è
+				// ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 				// ------------------------
 
-				// ƒx[ƒXƒƒjƒ…[—LŒø‰»
+				// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼æœ‰åŠ¹åŒ–
 				this.addBoxEvents( 'oncontextmenu'	, this.eventContentsContext );
 
-				// €–ÚƒNƒŠƒbƒN
+				// é …ç›®ã‚¯ãƒªãƒƒã‚¯
 				this.addBoxEvents( 'onmousedown'	, this.eventContentsClick );
 
 				// ------------------------
-				// ’Ç]ƒRƒƒ“ƒgİ’è
+				// è¿½å¾“ã‚³ãƒ¡ãƒ³ãƒˆè¨­å®š
 				// ------------------------
 				this.initMouseCmt();
 
-			// ƒƒbƒN
+			// ãƒ­ãƒƒã‚¯æ™‚
 			} else {
-				// ƒx[ƒXƒƒjƒ…[–³Œø‰»
+				// ãƒ™ãƒ¼ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç„¡åŠ¹åŒ–
 				this.addBoxEvents( 'oncontextmenu'	, this.eventInvalid );
 
 			}
 
-			// ‘€ì‰Â”Ûİ’è
+			// æ“ä½œå¯å¦è¨­å®š
 			this.useContextCtrl( !wLocked );
 
 			// ------------------------
-			// “¯Šú—pcallbackİ’è
+			// åŒæœŸç”¨callbackè¨­å®š
 			// ------------------------
 			if ( wArgFlg ) {
 				this.addLinkCallback( pArgument.callback );
 
 			}
 
-			// åƒRƒ“ƒeƒ“ƒc•\¦
+			// ä¸»ã‚³ãƒ³ãƒ†ãƒ³ãƒ„è¡¨ç¤º
 			this.dspBox( true );
 
 		} catch(e) {
@@ -6274,13 +6274,13 @@ var clsContentsBox = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsContentsBox.prototype.freeClass = function() {
 		try {
-			// €–Ú‘S‚Äíœ
+			// é …ç›®å…¨ã¦å‰Šé™¤
 			this.execFunction( this.initContents );
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._ContentsPublicMenu		= null;
 			this._ContentsMenuColor			= null;
 			this._ContentsMenuFile			= null;
@@ -6315,8 +6315,8 @@ var clsContentsBox = function( pArgument ) {
 			}
 			this._ContentsLinkCallback = null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._BasePrototype ) {
 				this._BasePrototype.freeClass.call( this );
 

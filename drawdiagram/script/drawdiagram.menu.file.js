@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 //
-// ƒtƒ@ƒCƒ‹‘I‘ğ•\¦ƒNƒ‰ƒX
+// ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠè¡¨ç¤ºã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsFileBox © clsMenuBase © clsBaseBox
+// clsFileBox â† clsMenuBase â† clsBaseBox
 // --------------------------------------------------------------------
 var clsFileBox = function( pArgument ) {
 	try {
@@ -16,28 +16,28 @@ var clsFileBox = function( pArgument ) {
 		};
 
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._MenuPrototype				= null;
 
 		this._FileLoadData				= null;
 
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒgˆ—
+		// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 
-		// ƒtƒ@ƒCƒ‹‘I‘ğƒCƒxƒ“ƒg
+		// ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventFileSelect = function( pEvent ) {
 			try {
 				if ( !pEvent ) return false;
 				if ( !pEvent.target ) return false;
 
-				// æ“¾ƒtƒ@ƒCƒ‹‚©‚çî•ñæ“¾
+				// å–å¾—ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰æƒ…å ±å–å¾—
 				var wFileName = '';
 				var wSelFiles = pEvent.target.files;
 				if ( wSelFiles ) {
 					if ( wSelFiles.length ) {
-						// æ“¾ƒtƒ@ƒCƒ‹î•ñ•Û‘¶
+						// å–å¾—ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ä¿å­˜
 						self.getLoadFileData( wSelFiles[0] );
 					}
 				}
@@ -48,16 +48,16 @@ var clsFileBox = function( pArgument ) {
 			return false;
 		};
 
-		// •Â‚¶‚éƒ{ƒ^ƒ“‰Ÿ‰ºƒCƒxƒ“ƒg
+		// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventFileCancel = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// •Â‚¶‚é
+				// é–‰ã˜ã‚‹
 				self.hideMenu();
 
-				// ƒƒjƒ…[ŒÄoŒ³‚ÌŠÖ”‚ğcall
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼å‡ºå…ƒã®é–¢æ•°ã‚’call
 				self.execCallBack( pEvent, { kind: 'close' } );
 
 			} catch(e) {
@@ -66,16 +66,16 @@ var clsFileBox = function( pArgument ) {
 			return false;
 		};
 
-		// Šm’èƒ{ƒ^ƒ“‰Ÿ‰ºƒCƒxƒ“ƒg
+		// ç¢ºå®šãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventFileConfirm = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// •Â‚¶‚é
+				// é–‰ã˜ã‚‹
 				self.hideMenu();
 
-				// ƒƒjƒ…[ŒÄoŒ³‚ÌŠÖ”‚ğcall
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼å‡ºå…ƒã®é–¢æ•°ã‚’call
 				self.execCallBack( pEvent, { kind: 'file', fileData: self._FileLoadData } );
 
 			} catch(e) {
@@ -86,13 +86,13 @@ var clsFileBox = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._MenuPrototype = clsMenuBase.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsMenuBase.call( this, pArgument );
 
 
@@ -102,30 +102,30 @@ var clsFileBox = function( pArgument ) {
 };
 
 
-// Šî–{ƒƒjƒ…[ prototype
+// åŸºæœ¬ãƒ¡ãƒ‹ãƒ¥ãƒ¼ prototype
 (function(){
-	// clsBaseBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsBaseBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsFileBox, clsMenuBase );
 
 	// **************************************************************
-	// ƒtƒ@ƒCƒ‹“Ç
+	// ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼
 	// **************************************************************
 
-	// ƒtƒ@ƒCƒ‹“Ç
+	// ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼
 	clsFileBox.prototype.getLoadFileData = function( pFile ) {
 		try {
 			var self = this;
 
-			// “à—eæ“¾
+			// å†…å®¹å–å¾—
 			var wReader = new FileReader();
 			var wFileName = pFile.name;
 
-			// ƒtƒ@ƒCƒ‹“ÇŒã‚Ìˆ—
+			// ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼å¾Œã®å‡¦ç†
 			wReader.onload = function() {
-				// “à—e‚ğ•Û‘¶
+				// å†…å®¹ã‚’ä¿å­˜
 				self._FileLoadData = wReader.result;
 
-				// î•ñ‚ğæ“¾‚µ‚½ƒtƒ@ƒCƒ‹–¼‚ğ•\¦
+				// æƒ…å ±ã‚’å–å¾—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¡¨ç¤º
 				var wTextId  = self.getBoxId() + '_base' + '_text';
 				var wTextEle = self.getElement(wTextId);
 				if ( wTextEle ) {
@@ -133,18 +133,18 @@ var clsFileBox = function( pArgument ) {
 				}
 			};
 
-			// ƒtƒ@ƒCƒ‹“ÇƒGƒ‰[
+			// ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼ã‚¨ãƒ©ãƒ¼
 			wReader.onerror = function() {
 				var wError = wReader.error;
 
-				// ’†’f
+				// ä¸­æ–­
 				wReader.abort();
 
-				// —áŠO‚ğ”­¶
+				// ä¾‹å¤–ã‚’ç™ºç”Ÿ
 				throw { name: 'FileReader.readAsText', message: wError };
 			};
 
-			// ƒtƒ@ƒCƒ‹“Ç
+			// ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼
 			wReader.readAsText( pFile );
 
 		} catch(e) {
@@ -154,10 +154,10 @@ var clsFileBox = function( pArgument ) {
 
 	
 	// **************************************************************
-	// ƒCƒxƒ“ƒgİ’è
+	// ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	// **************************************************************
 
-	// •Â‚¶‚éƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgİ’è
+	// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsFileBox.prototype.addCancelEvent = function() {
 		try {
 			if ( this.autoCloseIs() ) return;
@@ -175,7 +175,7 @@ var clsFileBox = function( pArgument ) {
 		}
 	};
 
-	// •Â‚¶‚éƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgíœ
+	// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 	clsFileBox.prototype.delCancelEvent = function() {
 		try {
 			if ( this.autoCloseIs() ) return;
@@ -193,7 +193,7 @@ var clsFileBox = function( pArgument ) {
 		}
 	};
 
-	// Šm’èƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgİ’è
+	// ç¢ºå®šãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsFileBox.prototype.addConfirmEvent = function() {
 		try {
 			if ( this.autoCloseIs() ) return;
@@ -211,7 +211,7 @@ var clsFileBox = function( pArgument ) {
 		}
 	};
 
-	// Šm’èƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgíœ
+	// ç¢ºå®šãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 	clsFileBox.prototype.delConfirmEvent = function() {
 		try {
 			if ( this.autoCloseIs() ) return;
@@ -231,36 +231,36 @@ var clsFileBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒƒjƒ…[ì¬
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
 	// **************************************************************
 
-	// ƒtƒ@ƒCƒ‹‘I‘ğ—v‘f
+	// ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠè¦ç´ 
 	clsFileBox.prototype.addFileElement = function( ) {
 		try {
 			var wId  = this.getBoxId() + '_base';
 			var wDivEle = this.addElement( 'div', wId );
 			if ( !wDivEle ) return false;
 
-			// styleİ’è
+			// styleè¨­å®š
 			this.addClass( wDivEle, 'cssMenuFile-select' );
 
-			// —v‘f’Ç‰Á
+			// è¦ç´ è¿½åŠ 
 			this.appendBoxToParent( wDivEle );
 
-			// “à—eİ’è
+			// å†…å®¹è¨­å®š
 			var wFileId = wId + '_file';
 			var wTextId = wId + '_text';
 			
 			var wHtml = '';
 			wHtml += "<div class='cssMenuFile-text'><input type='text' id='" + wTextId + "' readonly ></div>";
 			wHtml += "<label>";
-			wHtml += "<div class='cssMenuFile-file'>‘I‘ğ</div>";
+			wHtml += "<div class='cssMenuFile-file'>é¸æŠ</div>";
 			wHtml += "<input type='file' id='" + wFileId + "' style='display: none;'>";
 			wHtml += "</label>";
 
 			wDivEle.innerHTML = wHtml;
 
-			// ƒtƒ@ƒCƒ‹‘I‘ğƒCƒxƒ“ƒgİ’è
+			// ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 			var wFileEle = this.getElement(wFileId);
 			if ( wFileEle ) {
 				this.addEvent( wFileEle, 'onchange', this.eventFileSelect );
@@ -271,7 +271,7 @@ var clsFileBox = function( pArgument ) {
 		}
 	};
 
-	// ƒ{ƒ^ƒ“—v‘fƒGƒŠƒA’Ç‰Á
+	// ãƒœã‚¿ãƒ³è¦ç´ ã‚¨ãƒªã‚¢è¿½åŠ 
 	clsFileBox.prototype.addFileCommand = function() {
 		try {
 			var wId  = this.getBoxId() + '_cmd';
@@ -283,7 +283,7 @@ var clsFileBox = function( pArgument ) {
 
 			if ( !this.autoCloseIs() ) {
 				var wCloseId = wId + '_close';
-				wHtml += "<a id='" + wCloseId + "' href='javascript:void(0);'>·¬İ¾Ù</a>";
+				wHtml += "<a id='" + wCloseId + "' href='javascript:void(0);'>ï½·ï½¬ï¾ï½¾ï¾™</a>";
 			}
 
 			var wOkId = wId + '_confirm';
@@ -292,10 +292,10 @@ var clsFileBox = function( pArgument ) {
 			wDivEle.innerHTML = wHtml;
 			this.appendBoxToParent( wDivEle );
 			
-			// ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“‚ÖƒCƒxƒ“ƒg’Ç‰Á
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³ã¸ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			this.addCancelEvent();
 
-			// Šm’èƒ{ƒ^ƒ“‚ÖƒCƒxƒ“ƒg’Ç‰Á
+			// ç¢ºå®šãƒœã‚¿ãƒ³ã¸ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			this.addConfirmEvent();
 
 		} catch(e) {
@@ -304,19 +304,19 @@ var clsFileBox = function( pArgument ) {
 	};
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒƒjƒ…[—v‘f‚ğ‰Šúİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ç´ ã‚’åˆæœŸè¨­å®š
 	clsFileBox.prototype.createMenu = function() {
 		try {
-			// ƒtƒ@ƒCƒ‹‘I‘ğ—v‘f
+			// ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠè¦ç´ 
 			this.addFileElement();
 
-			// ƒ{ƒ^ƒ“ƒGƒŠƒA¶¬
+			// ãƒœã‚¿ãƒ³ã‚¨ãƒªã‚¢ç”Ÿæˆ
 			this.addFileCommand();
 
-			// Œp³Œ³‰Šúİ’è
+			// ç¶™æ‰¿å…ƒåˆæœŸè¨­å®š
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.createMenu.call( this );
 
@@ -329,36 +329,36 @@ var clsFileBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsFileBox.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_MENU_FILE_PROPERTY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êumenu-filev
+				// ç¨®åˆ¥ã€Œmenu-fileã€
 				wInitArgument.kind = this._DEF_MENU_FILE_KIND;
 			}
 
-			// ƒ}ƒEƒX”ÍˆÍŠO‚Åclose‚È‚µ
+			// ãƒã‚¦ã‚¹ç¯„å›²å¤–ã§closeãªã—
 			wInitArgument.autoClose = false;
 
-			// ƒƒjƒ…[“à—eİ’è
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å†…å®¹è¨­å®š
 			if ( pArgument ) {
 
 			}
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// ƒNƒ‰ƒX’Ç‰Á
+			// ã‚¯ãƒ©ã‚¹è¿½åŠ 
 			this.setBoxClass( 'cssMenuFile-base' );
 
 		} catch(e) {
@@ -366,17 +366,17 @@ var clsFileBox = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsFileBox.prototype.freeClass = function() {
 		try {
 			this.execFunction( this.delCancelEvent );
 			this.execFunction( this.delConfirmEvent );
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._FileLoadData				= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.freeClass.call( this );
 

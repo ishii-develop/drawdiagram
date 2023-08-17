@@ -1,27 +1,27 @@
 // ---------------------------------------------
-// @ŒÄ‚Ño‚µŒ³‚©‚ç‚ÌƒpƒX
+// ã€€å‘¼ã³å‡ºã—å…ƒã‹ã‚‰ã®ãƒ‘ã‚¹
 // ---------------------------------------------
 const _C_DRAWDIAGRAM_ROOT_PATH_			= ".";
 
 // ---------------------------------------------
-// @‰æ‘œ”z’uƒpƒX
+// ã€€ç”»åƒé…ç½®ãƒ‘ã‚¹
 // ---------------------------------------------
 const _C_DRAWDIAGRAM_IMG_PATH			= _C_DRAWDIAGRAM_ROOT_PATH_ + "/drawdiagram/image";
 
 // ---------------------------------------------
-// @Script”z’uƒpƒX
+// ã€€Scripté…ç½®ãƒ‘ã‚¹
 // ---------------------------------------------
 const _C_DRAWDIAGRAM_SCRIPT_PATH		= _C_DRAWDIAGRAM_ROOT_PATH_ + "/drawdiagram/script";
 
 // ---------------------------------------------
-// @CSS”z’uƒpƒX
+// ã€€CSSé…ç½®ãƒ‘ã‚¹
 // ---------------------------------------------
 const _C_DRAWDIAGRAM_CSS_PATH			= _C_DRAWDIAGRAM_ROOT_PATH_ + "/drawdiagram/css";
 
 
 // --------------------------------------------------------------------
 //
-// ƒNƒ‰ƒXŒp³—pŠÖ”
+// ã‚¯ãƒ©ã‚¹ç¶™æ‰¿ç”¨é–¢æ•°
 //
 // --------------------------------------------------------------------
 var clsInheritance = function( pChildCtor, pParentCtor ) {
@@ -49,7 +49,7 @@ var clsInheritance = function( pChildCtor, pParentCtor ) {
 
 // --------------------------------------------------------------------
 //
-// ŠÖ˜AJS‚ÌƒCƒ“ƒNƒ‹[ƒh
+// é–¢é€£JSã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //
 // --------------------------------------------------------------------
 
@@ -58,13 +58,13 @@ var includeDrawDiagram = function() {
 		var wLoadDate = new Date();
 		var wReload = "?date=" + wLoadDate.toString();
 
-		// ŠÖ˜AStyleSheetƒCƒ“ƒNƒ‹[ƒh
+		// é–¢é€£StyleSheetã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 		var wStyleSheet = "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + _C_DRAWDIAGRAM_CSS_PATH
 
 		document.write( wStyleSheet + "/drawdiagram.css\" />" );
 		document.write( wStyleSheet + "/drawdiagram.print.css\" media=\"print\" />" );
 
-		// ŠÖ˜AJavaScriptƒCƒ“ƒNƒ‹[ƒh
+		// é–¢é€£JavaScriptã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 		var wScriptSt = "<script language=\"javascript\" src=\"" + _C_DRAWDIAGRAM_SCRIPT_PATH
 		var wScriptEd = wReload + "\"></script>";
 
@@ -99,5 +99,5 @@ var includeDrawDiagram = function() {
 	}
 };
 
-// ŠÖ˜AJSƒCƒ“ƒNƒ‹[ƒh
+// é–¢é€£JSã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 includeDrawDiagram();

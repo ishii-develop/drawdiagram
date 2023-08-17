@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 //
-// ƒLƒƒƒ“ƒoƒX
+// ã‚­ãƒ£ãƒ³ãƒã‚¹
 //
 // --------------------------------------------------------------------
-// clsCanvas © clsBaseBox
+// clsCanvas â† clsBaseBox
 // --------------------------------------------------------------------
 
 var clsCanvas = function( pArgument ) {
@@ -23,7 +23,7 @@ var clsCanvas = function( pArgument ) {
 		this._DEF_CANVAS_ARROW			= { width: 10, height: 5 };
 		this._DEF_CANVAS_LINE_PADDING	= 2;
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._BasePrototype				= null;
 
 		this._CanvasSize				= {};
@@ -35,13 +35,13 @@ var clsCanvas = function( pArgument ) {
 		this._CanvasArrow				= { width: this._DEF_CANVAS_ARROW.width, height: this._DEF_CANVAS_ARROW.height };
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._BasePrototype = clsBaseBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsBaseBox.call( this, pArgument );
 
 
@@ -51,16 +51,16 @@ var clsCanvas = function( pArgument ) {
 };
 
 
-// ƒLƒƒƒ“ƒoƒX prototype
+// ã‚­ãƒ£ãƒ³ãƒã‚¹ prototype
 (function(){
-	// clsBaseBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsBaseBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsCanvas, clsBaseBox );
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBİ’è
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 	// **************************************************************
 
-	// ”jü‚ÌŠÔŠuİ’è
+	// ç ´ç·šã®é–“éš”è¨­å®š
 	clsCanvas.prototype.setDashInterval = function( pInterval ) {
 		try {
 			this._CanvasDash.interval = pInterval;
@@ -70,7 +70,7 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// –îˆó‚Ìİ’èi’·‚³j
+	// çŸ¢å°ã®è¨­å®šï¼ˆé•·ã•ï¼‰
 	clsCanvas.prototype.setArrowLength = function( pLength ) {
 		try {
 			this._CanvasArrow.width = pLength;
@@ -80,7 +80,7 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// –îˆó‚Ìİ’èi•j
+	// çŸ¢å°ã®è¨­å®šï¼ˆå¹…ï¼‰
 	clsCanvas.prototype.setArrowWidth = function( pWidth ) {
 		try {
 			this._CanvasArrow.height = pWidth;
@@ -92,10 +92,10 @@ var clsCanvas = function( pArgument ) {
 
 
 	// **************************************************************
-	// •`‰æ—Ìˆæ¶¬
+	// æç”»é ˜åŸŸç”Ÿæˆ
 	// **************************************************************
 
-	// ƒLƒƒƒ“ƒoƒXî•ñæ“¾
+	// ã‚­ãƒ£ãƒ³ãƒã‚¹æƒ…å ±å–å¾—
 	clsCanvas.prototype.canvasGetStatus = function( ) {
 		try {
 			if ( !this._CanvasEle ) return null;
@@ -112,13 +112,13 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// ƒLƒƒƒ“ƒoƒX¶¬
+	// ã‚­ãƒ£ãƒ³ãƒã‚¹ç”Ÿæˆ
 	clsCanvas.prototype.canvasCreate = function( ) {
 		try {
-			// ƒLƒƒƒ“ƒoƒX‚ğ¶¬‚µ‚Äq—v‘f‚Æ‚µ‚Ä’Ç‰Á
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’ç”Ÿæˆã—ã¦å­è¦ç´ ã¨ã—ã¦è¿½åŠ 
 			this._CanvasEle = this.addElement( 'canvas', this.getBoxId() + '_canvas' );
 			if ( !this._CanvasEle ) {
-				throw { name: 'addElement', message: 'ƒLƒƒƒ“ƒoƒX‚ğ¶¬‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'addElement', message: 'ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’ç”Ÿæˆã§ãã¾ã›ã‚“' };
 			}
 
 			this._CanvasEle.setAttribute( 'width'	, this._CanvasSize.width );
@@ -126,10 +126,10 @@ var clsCanvas = function( pArgument ) {
 
 			this.addClass( this._CanvasEle, 'cssCanvas' );
 
-			// •`‰æƒGƒŠƒAİ’è
+			// æç”»ã‚¨ãƒªã‚¢è¨­å®š
 			this._CanvasContext = this._CanvasEle.getContext('2d');
 			if ( !this._CanvasContext ) {
-				throw { name: 'getContext', message: '•`‰æƒGƒŠƒA‚ğ¶¬‚Å‚«‚Ü‚¹‚ñ' };
+				throw { name: 'getContext', message: 'æç”»ã‚¨ãƒªã‚¢ã‚’ç”Ÿæˆã§ãã¾ã›ã‚“' };
 			}
 
 			this._CanvasContext.width  = this._CanvasSize.width;
@@ -137,7 +137,7 @@ var clsCanvas = function( pArgument ) {
 
 			this.appendBoxToParent( this._CanvasEle );
 
-			// ƒLƒƒƒ“ƒoƒX‚Ìƒ‰ƒCƒ“
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®ãƒ©ã‚¤ãƒ³
 			var wLineEle = this.addElement( 'div', this.getBoxId() + '_line' );
 			if ( !wLineEle ) return;
 
@@ -153,10 +153,10 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// ƒLƒƒƒ“ƒoƒX‚ğq—v‘f‚Æ‚µ‚Äİ’è
+	// ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’å­è¦ç´ ã¨ã—ã¦è¨­å®š
 	clsCanvas.prototype.appendCanvas = function( pParentEle ) {
 		if ( !this._CanvasEle ) {
-			throw { name: 'appendCanvas', message: 'ƒLƒƒƒ“ƒoƒX‚ª–¢¶¬‚Å‚·' };
+			throw { name: 'appendCanvas', message: 'ã‚­ãƒ£ãƒ³ãƒã‚¹ãŒæœªç”Ÿæˆã§ã™' };
 		}
 
 		try {
@@ -169,15 +169,15 @@ var clsCanvas = function( pArgument ) {
 
 
 	// **************************************************************
-	// •`‰æî•ñæ“¾
+	// æç”»æƒ…å ±å–å¾—
 	// **************************************************************
 
-	// ƒ‰ƒCƒ“•`‰æî•ñiŠJn“_AI—¹“_jæ“¾
+	// ãƒ©ã‚¤ãƒ³æç”»æƒ…å ±ï¼ˆé–‹å§‹ç‚¹ã€çµ‚äº†ç‚¹ï¼‰å–å¾—
 	clsCanvas.prototype.canvasGetDrawPoint = function( pLineParam, pLineKind ) {
 		try {
 			var self = this;
 
-			// ‹«ŠEüƒ`ƒFƒbƒN
+			// å¢ƒç•Œç·šãƒã‚§ãƒƒã‚¯
 			function chkBorderLine( pYkind, pXkind, pMainPos, pMainSize, pTgPos, pTgSize ) {
 				var wBorder = false;
 				var wBorderTop;
@@ -188,32 +188,32 @@ var clsCanvas = function( pArgument ) {
 				var wChkX = pTgPos.left;
 				var wChkY = pTgPos.top;
 				
-				// ŒX‚«
+				// å‚¾ã
 				var wInc = 0.5;
 
-				// ¶
+				// å·¦
 				if ( pXkind == 'left' ) {
 					wChkX += pTgSize.width;
-					// ‰º
+					// ä¸‹
 					if ( pYkind == 'bottom' ) {
 						wBsY += pMainSize.height;
 
-					// ã
+					// ä¸Š
 					} else {
 						wChkY += pTgSize.height;
 						wInc *= -1;
 
 					}
 
-				// ‰E
+				// å³
 				} else {
 					wBsX += pMainSize.width;
-					// ‰º
+					// ä¸‹
 					if ( pYkind == 'bottom' ) {
 						wBsY += pMainSize.height;
 						wInc *= -1;
 
-					// ã
+					// ä¸Š
 					} else {
 						wChkY += pTgSize.height;
 
@@ -226,22 +226,22 @@ var clsCanvas = function( pArgument ) {
 
 				wPosY *= -1;
 
-				// À•W‚ª’¼ü‚æ‚èã
+				// åº§æ¨™ãŒç›´ç·šã‚ˆã‚Šä¸Š
 				var wUpper;
 				if ( wPosY >= (wInc * wPosX) ) {
 					wUpper = true;
 
-				// À•W‚ª’¼ü‚æ‚è‰º
+				// åº§æ¨™ãŒç›´ç·šã‚ˆã‚Šä¸‹
 				} else {
 					wUpper = false;
 
 				}
 
-				// ãƒGƒŠƒA
+				// ä¸Šã‚¨ãƒªã‚¢
 				if ( pYkind == 'top' ) {
 					if ( wUpper ) wBorder = true;
 
-				// ‰ºƒGƒŠƒA
+				// ä¸‹ã‚¨ãƒªã‚¢
 				} else {
 					if ( !wUpper ) wBorder = true;
 
@@ -250,30 +250,30 @@ var clsCanvas = function( pArgument ) {
 				return wBorder;
 			};
 
-			// ƒ‰ƒCƒ“ŠJnˆÊ’uZo
+			// ãƒ©ã‚¤ãƒ³é–‹å§‹ä½ç½®ç®—å‡º
 			function getLinePos( pKind, pPos, pSize ) {
 				var wLinePos = { x: 0, y: 0 };
 
 				switch(pKind) {
-				// ã
+				// ä¸Š
 				case 'top':
 					wLinePos.x = pPos.left + Math.floor(pSize.width / 2);
 					wLinePos.y = pPos.top - self._DEF_CANVAS_LINE_PADDING;
 					break;
 
-				// ‰º
+				// ä¸‹
 				case 'bottom':
 					wLinePos.x = pPos.left + Math.floor(pSize.width / 2);
 					wLinePos.y = pPos.top  + pSize.height;
 					break;
 
-				// ¶
+				// å·¦
 				case 'left':
 					wLinePos.x = pPos.left - self._DEF_CANVAS_LINE_PADDING;
 					wLinePos.y = pPos.top + Math.floor(pSize.height / 2);
 					break;
 
-				// ‰E
+				// å³
 				case 'right':
 					wLinePos.x = pPos.left + pSize.width;
 					wLinePos.y = pPos.top  + Math.floor(pSize.height / 2);
@@ -284,29 +284,29 @@ var clsCanvas = function( pArgument ) {
 				return wLinePos;
 			};
 
-			// •`‰æŠJn“_æ“¾
+			// æç”»é–‹å§‹ç‚¹å–å¾—
 			function getStartPoint( pStPos, pStSize, pEdPos, pEdSize ) {
 				var wStPoint;
 
-				// ‘ÎÛ‚ª‰E‘¤
+				// å¯¾è±¡ãŒå³å´
 				if ( pStPos.left < (pEdPos.left + pEdSize.width) ) {
-					// ‘ÎÛ‚ª‰E’[‚æ‚è‰E‘¤
+					// å¯¾è±¡ãŒå³ç«¯ã‚ˆã‚Šå³å´
 					if ( (pStPos.left + pStSize.width) < pEdPos.left ) {
-						// ‘ÎÛ‚ªã•”‹«ŠEü‚æ‚èã
+						// å¯¾è±¡ãŒä¸Šéƒ¨å¢ƒç•Œç·šã‚ˆã‚Šä¸Š
 						if ( chkBorderLine('top', 'right', pStPos, pStSize, pEdPos, pEdSize) ) {
 							wStPoint = getLinePos( 'top',    pStPos, pStSize );
 
-						// ‘ÎÛ‚ª‰º•”‹«ŠEü‚æ‚è‰º
+						// å¯¾è±¡ãŒä¸‹éƒ¨å¢ƒç•Œç·šã‚ˆã‚Šä¸‹
 						} else if ( chkBorderLine('bottom', 'right', pStPos, pStSize, pEdPos, pEdSize) ) {
 							wStPoint = getLinePos( 'bottom', pStPos, pStSize );
 
-						// ˆÈŠO
+						// ä»¥å¤–
 						} else {
 							wStPoint = getLinePos( 'right', pStPos, pStSize );
 
 						}
 
-					// ˆÈŠO
+					// ä»¥å¤–
 					} else {
 						if ( pStPos.top < pEdPos.top ) {
 							wStPoint = getLinePos( 'bottom', pStPos, pStSize );
@@ -316,17 +316,17 @@ var clsCanvas = function( pArgument ) {
 
 					}
 
-				// ‘ÎÛ‚ª¶‘¤
+				// å¯¾è±¡ãŒå·¦å´
 				} else {
-					// ‘ÎÛ‚ªã•”‹«ŠEü‚æ‚èã
+					// å¯¾è±¡ãŒä¸Šéƒ¨å¢ƒç•Œç·šã‚ˆã‚Šä¸Š
 					if ( chkBorderLine('top', 'left', pStPos, pStSize, pEdPos, pEdSize) ) {
 						wStPoint = getLinePos( 'top',    pStPos, pStSize );
 
-					// ‘ÎÛ‚ª‰º•”‹«ŠEü‚æ‚è‰º
+					// å¯¾è±¡ãŒä¸‹éƒ¨å¢ƒç•Œç·šã‚ˆã‚Šä¸‹
 					} else if ( chkBorderLine('bottom', 'left', pStPos, pStSize, pEdPos, pEdSize) ) {
 						wStPoint = getLinePos( 'bottom', pStPos, pStSize );
 
-					// ˆÈŠO
+					// ä»¥å¤–
 					} else {
 						wStPoint = getLinePos( 'left',  pStPos, pStSize );
 
@@ -338,11 +338,11 @@ var clsCanvas = function( pArgument ) {
 			
 			};
 
-			// •`‰æŠJn“_æ“¾
+			// æç”»é–‹å§‹ç‚¹å–å¾—
 			function getStartRelayPoint( pRelayPos, pRelaySize ) {
 				var wStPoint = { x: 0, y: 0 };
 
-				// ’†Œp“_‚Ì’†S
+				// ä¸­ç¶™ç‚¹ã®ä¸­å¿ƒ
 				wStPoint.x = pRelayPos.left + Math.floor(pRelaySize.width / 2);
 				wStPoint.y = pRelayPos.top  + Math.floor(pRelaySize.height / 2);
 
@@ -350,27 +350,27 @@ var clsCanvas = function( pArgument ) {
 			
 			};
 
-			// ŠJnƒIƒuƒWƒFƒNƒg
+			// é–‹å§‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 			var wStPos		= pLineParam.StPos;
 			var wStSize		= pLineParam.StSize;
 			var wStArrow	= pLineParam.StArrow;
 			var wStRelay	= pLineParam.StRelay;
 			var wStRelayCmt	= pLineParam.StRelayCmt;
 
-			// I—¹ƒIƒuƒWƒFƒNƒg
+			// çµ‚äº†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 			var wEdPos		= pLineParam.EdPos;
 			var wEdSize		= pLineParam.EdSize;
 			var wEdArrow	= pLineParam.EdArrow;
 			var wEdRelay	= pLineParam.EdRelay;
 			var wEdRelayCmt	= pLineParam.EdRelayCmt;
 
-			// Ú‘±æ
+			// æ¥ç¶šå…ˆ
 			var wStToPos;
 			var wStToSize;
 			var wEdToPos;
 			var wEdToSize;
 
-			// ’†ŠÔ“_
+			// ä¸­é–“ç‚¹
 			var wRelayPos = [];
 			var wRelayCnt = 0;
 			if ( pLineKind.point ) {
@@ -396,32 +396,32 @@ var clsCanvas = function( pArgument ) {
 
 			}
 
-			// ŠJn“_‚ª’†Œp“_
+			// é–‹å§‹ç‚¹ãŒä¸­ç¶™ç‚¹
 			var wStPoint;
 			if ( wStRelay ) {
-				// –îˆó‚È‚µ@‚Ü‚½‚Í@ƒRƒƒ“ƒg‚È‚µ
+				// çŸ¢å°ãªã—ã€€ã¾ãŸã¯ã€€ã‚³ãƒ¡ãƒ³ãƒˆãªã—
 				if ( !wStArrow || !wStRelayCmt ) {
 					wStPoint = getStartRelayPoint( wStPos, wStSize );
 				} else {
 					wStPoint = getStartPoint( wStPos, wStSize, wStToPos, wStToSize );
 				}
 
-			// ˆÈŠO
+			// ä»¥å¤–
 			} else {
 				wStPoint = getStartPoint( wStPos, wStSize, wStToPos, wStToSize );
 			}
 
-			// I—¹“_‚ª’†Œp“_
+			// çµ‚äº†ç‚¹ãŒä¸­ç¶™ç‚¹
 			var wEdPoint;
 			if ( wEdRelay ) {
-				// –îˆó‚È‚µ@‚Ü‚½‚Í@ƒRƒƒ“ƒg‚È‚µ
+				// çŸ¢å°ãªã—ã€€ã¾ãŸã¯ã€€ã‚³ãƒ¡ãƒ³ãƒˆãªã—
 				if ( !wEdArrow || !wEdRelayCmt ) {
 					wEdPoint = getStartRelayPoint( wEdPos, wEdSize );
 				} else {
 					wEdPoint = getStartPoint( wEdPos, wEdSize, wEdToPos, wEdToSize );
 				}
 
-			// ˆÈŠO
+			// ä»¥å¤–
 			} else {
 				wEdPoint = getStartPoint( wEdPos, wEdSize, wEdToPos, wEdToSize );
 			}
@@ -433,10 +433,10 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// –îˆó•`‰æî•ñæ“¾
+	// çŸ¢å°æç”»æƒ…å ±å–å¾—
 	clsCanvas.prototype.canvasGetArrowInf = function( pStPoint, pEdPoint ) {
 		try {
-			// ü‚Ì’·‚³‚ª’Z‚¢ê‡‚Í–îˆó•`‰æ‚È‚µ
+			// ç·šã®é•·ã•ãŒçŸ­ã„å ´åˆã¯çŸ¢å°æç”»ãªã—
 			var wWidthAbs;
 			var wWidthX = Math.abs( pEdPoint.x - pStPoint.x );
 			var wWidthY = Math.abs( pEdPoint.y - pStPoint.y );
@@ -449,22 +449,22 @@ var clsCanvas = function( pArgument ) {
 				wWidthAbs = Math.floor( Math.sqrt( (wWidthX * wWidthX) + (wWidthY * wWidthY) ) );
 			}
 
-			// –îˆóİ’è
+			// çŸ¢å°è¨­å®š
 			var wArrowInf = Object.create( this._CanvasArrow );
 
-			// –îˆóƒTƒCƒY•â³
+			// çŸ¢å°ã‚µã‚¤ã‚ºè£œæ­£
 			if ( wWidthAbs < (wArrowInf.width * 2) ) {
 				wArrowInf.width  = Math.floor(wArrowInf.width / 2);
 				wArrowInf.height = Math.floor(wArrowInf.height / 1.5);
 
-				// ’·‚³‚ª–îˆóƒTƒCƒY‚Ì1/2ˆÈ‰º‚È‚ç•`‰æ‚È‚µ
+				// é•·ã•ãŒçŸ¢å°ã‚µã‚¤ã‚ºã®1/2ä»¥ä¸‹ãªã‚‰æç”»ãªã—
 				if ( wWidthAbs < (wArrowInf.width + 1) ) {
 					return null;
 				}
 				
 			}
 
-			// –îˆó•`‰æŠJn“_Zo
+			// çŸ¢å°æç”»é–‹å§‹ç‚¹ç®—å‡º
 			var wLenX;
 			var wLenY;
 			if ( wWidthX == 0 ) {
@@ -520,11 +520,11 @@ var clsCanvas = function( pArgument ) {
 
 
 	// **************************************************************
-	// •`‰æ
+	// æç”»
 	// **************************************************************
 
-	// ü•`‰æ
-	// pLineKind { width: üƒTƒCƒY, color: üF, style: üí•Ê, way: –îˆó•ûŒü }
+	// ç·šæç”»
+	// pLineKind { width: ç·šã‚µã‚¤ã‚º, color: ç·šè‰², style: ç·šç¨®åˆ¥, way: çŸ¢å°æ–¹å‘ }
 	clsCanvas.prototype.canvasDrawLine = function( pStPoint, pEdPoint, pLineKind ) {
 		try {
 			if ( !this._CanvasContext ) return false;
@@ -533,25 +533,25 @@ var clsCanvas = function( pArgument ) {
 			this._CanvasContext.strokeStyle = pLineKind.color;
 			this._CanvasContext.fillStyle   = pLineKind.color;
 
-			// üíİ’è
+			// ç·šç¨®è¨­å®š
 			if ( pLineKind.style == 'dash' ) {
-				// ”jü
+				// ç ´ç·š
 				this._CanvasContext.lineCap     = 'butt';
 
 			} else {
-				// ’Êí
+				// é€šå¸¸
 				this._CanvasContext.lineCap     = 'round';
 
 			}
 
-			// ŠJnEI—¹“_İ’è
+			// é–‹å§‹ãƒ»çµ‚äº†ç‚¹è¨­å®š
 			var wPntSt = [];
 			var wPntEd = [];
 			var wPntCnt = 0;
 
 			wPntSt.push( Object.create( pStPoint ) );
 			if ( pLineKind.point ) {
-				// ’†ŠÔ“_‚ ‚è
+				// ä¸­é–“ç‚¹ã‚ã‚Š
 				for( var wPoint in pLineKind.point ) {
 					wPntEd.push( Object.create( pLineKind.point[wPoint] ) );
 					wPntSt.push( Object.create( pLineKind.point[wPoint] ) );
@@ -564,37 +564,37 @@ var clsCanvas = function( pArgument ) {
 			var wArrowSt = [];
 			var wArrowEd = [];
 
-			// –îˆó•`‰æ‰ñ”İ’è
+			// çŸ¢å°æç”»å›æ•°è¨­å®š
 			var wWayAry = [];
-			// ³•ûŒü
+			// æ­£æ–¹å‘
 			if ( (pLineKind.way == 1) || (pLineKind.way == 3) ) {
 				wWayAry.push( 1 );
 
-				// ³•ûŒü–îˆóİ’è
+				// æ­£æ–¹å‘çŸ¢å°è¨­å®š
 				wArrowSt.push( Object.create( wPntSt[wPntCnt] ) );
 				wArrowEd.push( Object.create( wPntEd[wPntCnt] ) );
 			}
 
-			// ‹t•ûŒü
+			// é€†æ–¹å‘
 			if ( (pLineKind.way == 2) || (pLineKind.way == 3) ) {
 				wWayAry.push( 2 );
 
-				// ‹t•ûŒü–îˆóİ’è
+				// é€†æ–¹å‘çŸ¢å°è¨­å®š
 				wArrowSt.push( Object.create( wPntEd[0] ) );
 				wArrowEd.push( Object.create( wPntSt[0] ) );
 			}
 
-			// ü•`‰æ
+			// ç·šæç”»
 			for( var wPidx = 0; wPidx < wPntSt.length; wPidx++ ) {
-				// ”jü
+				// ç ´ç·š
 				if ( pLineKind.style == 'dash' ) {
 					this.canvasDrawDash( wPntSt[wPidx], wPntEd[wPidx] );
 
-				// È
+				// ç¸
 				} else if ( pLineKind.style == 'stripe' ) {
 					this.canvasDrawStripe( wPntSt[wPidx], wPntEd[wPidx] );
 
-				// ˆÈŠO
+				// ä»¥å¤–
 				} else {
 					this.canvasDrawNormal( wPntSt[wPidx], wPntEd[wPidx] );
 
@@ -602,10 +602,10 @@ var clsCanvas = function( pArgument ) {
 
 			}
 
-			// –îˆó•`‰æ
+			// çŸ¢å°æç”»
 			if ( pLineKind.way != 0 ) {
 				for( var wCnt = 0; wCnt < wWayAry.length; wCnt++ ) {
-					// –îˆó•`‰æî•ñæ“¾
+					// çŸ¢å°æç”»æƒ…å ±å–å¾—
 					var wArrowInf = this.canvasGetArrowInf( wArrowSt[wCnt], wArrowEd[wCnt] );
 
 					if ( wArrowInf ) {
@@ -621,12 +621,12 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// ’¼ü•`‰æ
+	// ç›´ç·šæç”»
 	clsCanvas.prototype.canvasDrawNormal = function( pStPoint, pEdPoint ) {
 		try {
 			if ( !this._CanvasContext ) return false;
 
-			// •`‰æ
+			// æç”»
 			this._CanvasContext.beginPath();
 
 			this._CanvasContext.moveTo( pStPoint.x, pStPoint.y );
@@ -642,7 +642,7 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// 2“_ŠÔ‚ğ•ªŠ„
+	// 2ç‚¹é–“ã‚’åˆ†å‰²
 	clsCanvas.prototype.canvasGetSplitPoint = function( pStPoint, pEdPoint, pLength, pPointCnt, pJump ) {
 		try {
 			var wPoint = [];
@@ -669,7 +669,7 @@ var clsCanvas = function( pArgument ) {
 			for( var wIdx = 0; wIdx < pPointCnt; wIdx++ ) {
 				wEd += (wSplit * wInc);
 
-				// ÅI“_‚ğ’´‚¦‚ê‚ÎI—¹
+				// æœ€çµ‚ç‚¹ã‚’è¶…ãˆã‚Œã°çµ‚äº†
 				if ( wInc > 0 ) {
 					if ( wEd > pEdPoint ) wEdFlg = true;
 				} else {
@@ -697,7 +697,7 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// “Á’èˆÊ’u‚Ì‚’¼ƒ|ƒCƒ“ƒgæ“¾
+	// ç‰¹å®šä½ç½®ã®å‚ç›´ãƒã‚¤ãƒ³ãƒˆå–å¾—
 	clsCanvas.prototype.canvasGetVerticalPoint = function( pPointX, pPointY, pWidthX, pWidthY, pWidth ) {
 		try {
 			var wSt = { x: pPointX, y: pPointY };
@@ -716,7 +716,7 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// ”jü•`‰æ
+	// ç ´ç·šæç”»
 	clsCanvas.prototype.canvasDrawDash = function( pStPoint, pEdPoint ) {
 		try {
 			if ( !this._CanvasContext ) return false;
@@ -733,7 +733,7 @@ var clsCanvas = function( pArgument ) {
 				wWidthAbs = Math.floor( Math.sqrt( (wWidthX * wWidthX) + (wWidthY * wWidthY) ) );
 			}
 
-			// Å¬”jüƒTƒCƒYˆÈ‰º‚È‚ç’¼ü•`‰æ
+			// æœ€å°ç ´ç·šã‚µã‚¤ã‚ºä»¥ä¸‹ãªã‚‰ç›´ç·šæç”»
 			if ( wWidthAbs < (this._CanvasDash.interval * 2) ) {
 				this.canvasDrawNormal( pStPoint, pEdPoint );
 				return true;
@@ -741,11 +741,11 @@ var clsCanvas = function( pArgument ) {
 
 			var wPointCnt = Math.floor( wWidthAbs / this._CanvasDash.interval );
 
-			// 2“_ŠÔ‚ğ•ªŠ„
+			// 2ç‚¹é–“ã‚’åˆ†å‰²
 			wPointX = this.canvasGetSplitPoint( pStPoint.x, pEdPoint.x, wWidthX, wPointCnt );
 			wPointY = this.canvasGetSplitPoint( pStPoint.y, pEdPoint.y, wWidthY, wPointCnt );
 
-			// •`‰æ
+			// æç”»
 			this._CanvasContext.beginPath();
 
 			var wPointLen = wPointX.length;
@@ -766,7 +766,7 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// Èü•`‰æ
+	// ç¸ç·šæç”»
 	clsCanvas.prototype.canvasDrawStripe = function( pStPoint, pEdPoint ) {
 		try {
 			if ( !this._CanvasContext ) return false;
@@ -783,7 +783,7 @@ var clsCanvas = function( pArgument ) {
 				wWidthAbs = Math.floor( Math.sqrt( (wWidthX * wWidthX) + (wWidthY * wWidthY) ) );
 			}
 
-			// Å¬”jüƒTƒCƒYˆÈ‰º‚È‚ç’¼ü•`‰æ
+			// æœ€å°ç ´ç·šã‚µã‚¤ã‚ºä»¥ä¸‹ãªã‚‰ç›´ç·šæç”»
 			if ( wWidthAbs < (this._CanvasStripe.interval * 2) ) {
 				this.canvasDrawNormal( pStPoint, pEdPoint );
 				return true;
@@ -791,11 +791,11 @@ var clsCanvas = function( pArgument ) {
 
 			var wPointCnt = Math.floor( wWidthAbs / this._CanvasStripe.interval );
 
-			// 2“_ŠÔ‚ğ•ªŠ„
+			// 2ç‚¹é–“ã‚’åˆ†å‰²
 			wPointX = this.canvasGetSplitPoint( pStPoint.x, pEdPoint.x, wWidthX, wPointCnt, false );
 			wPointY = this.canvasGetSplitPoint( pStPoint.y, pEdPoint.y, wWidthY, wPointCnt, false );
 
-			// •`‰æ
+			// æç”»
 			this._CanvasContext.beginPath();
 
 			this._CanvasContext.moveTo( pStPoint.x, pStPoint.y );
@@ -810,7 +810,7 @@ var clsCanvas = function( pArgument ) {
 				wPx = 0;
 			
 			} else {
-				// ŒX‚«‚ğl—¶‚µ‚½Îü‚Ì’·‚³İ’è
+				// å‚¾ãã‚’è€ƒæ…®ã—ãŸæ–œç·šã®é•·ã•è¨­å®š
 				var wX = pEdPoint.x - pStPoint.x;
 				var wY = pEdPoint.y - pStPoint.y;
 
@@ -825,7 +825,7 @@ var clsCanvas = function( pArgument ) {
 
 			var wStripe;
 
-			// ÅI“_‚É‚Íƒ‰ƒCƒ“•`‰æ‚È‚µ
+			// æœ€çµ‚ç‚¹ã«ã¯ãƒ©ã‚¤ãƒ³æç”»ãªã—
 			var wPointLen = wPointX.length;
 			if ( wPointLen > wPointY.length ) wPointLen = wPointY.length;
 
@@ -847,8 +847,8 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// –îˆó•`‰æ
-	// pArrowInf { width: –îˆó‚Ì’·‚³, height: –îˆó‚Ì‚‚³i‰¡•j }
+	// çŸ¢å°æç”»
+	// pArrowInf { width: çŸ¢å°ã®é•·ã•, height: çŸ¢å°ã®é«˜ã•ï¼ˆæ¨ªå¹…ï¼‰ }
 	clsCanvas.prototype.canvasDrawArrow = function( pStPoint, pEdPoint, pArrowInf, pAdjustment ) {
 		try {
 			if ( !this._CanvasContext ) return false;
@@ -860,17 +860,17 @@ var clsCanvas = function( pArgument ) {
 				pArrowInf = Object.create( this._CanvasArrow );
 			}
 
-			// –îˆóƒTƒCƒY•â³‚ ‚è
+			// çŸ¢å°ã‚µã‚¤ã‚ºè£œæ­£ã‚ã‚Š
 			if ( pAdjustment == true ) {
 				var wWidthAbs = Math.abs( wWidthX );
 				if ( wWidthAbs < Math.abs(wWidthY) ) wWidthAbs = Math.abs(wWidthY);
 
-				// –îˆóƒTƒCƒY•â³
+				// çŸ¢å°ã‚µã‚¤ã‚ºè£œæ­£
 				if ( wWidthAbs < (pArrowInf.width * 2) ) {
 					pArrowInf.width  = Math.floor(pArrowInf.width / 2);
 					pArrowInf.height = Math.floor(pArrowInf.height / 1.5);
 
-					// ’·‚³‚ª–îˆóƒTƒCƒY‚Ì1/2ˆÈ‰º‚È‚ç’¼ü•`‰æ
+					// é•·ã•ãŒçŸ¢å°ã‚µã‚¤ã‚ºã®1/2ä»¥ä¸‹ãªã‚‰ç›´ç·šæç”»
 					if ( wWidthAbs < pArrowInf.width ) {
 						this.canvasDrawNormal( pStPoint, pEdPoint );
 						return true;
@@ -894,7 +894,7 @@ var clsCanvas = function( pArgument ) {
 			var wX;
 			var wY;
 
-			// –îˆóã•”
+			// çŸ¢å°ä¸Šéƒ¨
 			wPoint.push(0, 0);
 			for ( var wUidx = 0; wUidx < wArrowPoint.length; wUidx++ ) {
 				wX = wArrowPoint[wUidx].x;
@@ -905,7 +905,7 @@ var clsCanvas = function( pArgument ) {
 			}
 			wPoint.push(wLen, 0);
 
-			// –îˆó‰º•”
+			// çŸ¢å°ä¸‹éƒ¨
 			for ( var wDidx = (wArrowPoint.length - 1); wDidx > 0; wDidx-- ) {
 				wX = wArrowPoint[wDidx].x;
 				wY = wArrowPoint[wDidx].y;
@@ -915,7 +915,7 @@ var clsCanvas = function( pArgument ) {
 			}
 			wPoint.push(0, 0);
 
-			// •`‰æ
+			// æç”»
 			this._CanvasContext.beginPath();
 
 			var wSin = wWidthY / wLen;
@@ -942,7 +942,7 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// ƒNƒŠƒA
+	// ã‚¯ãƒªã‚¢
 	clsCanvas.prototype.canvasClear = function( ) {
 		try {
 			if ( !this._CanvasContext ) return false;
@@ -956,35 +956,35 @@ var clsCanvas = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsCanvas.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_CANVAS_PROPERY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êucanvasv
+				// ç¨®åˆ¥ã€Œcanvasã€
 				wInitArgument.kind = this._DEF_CANVAS_KIND;
 
 			}
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._BasePrototype ) {
 				this._BasePrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// ƒNƒ‰ƒX’Ç‰Á
+			// ã‚¯ãƒ©ã‚¹è¿½åŠ 
 			this.setBoxClass( 'cssCanvas-base' );
 
 			if ( !this._CanvasStripe ) this._CanvasStripe = {};
 			this.copyProperty( this._DEF_CANVAS_STRIPE, this._CanvasStripe );
 
-			// ƒLƒƒƒ“ƒoƒXƒTƒCƒYİ’è
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚µã‚¤ã‚ºè¨­å®š
 			var wArgSize = this.loadArgument( 'size' );
 			if ( wArgSize ) {
 				this.copyProperty( wArgSize, this._CanvasSize );
@@ -994,17 +994,17 @@ var clsCanvas = function( pArgument ) {
 
 			}
 
-			// ƒLƒƒƒ“ƒoƒX¶¬
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ç”Ÿæˆ
 			this.canvasCreate();
 
-			// ƒLƒƒƒ“ƒoƒX‚Æƒx[ƒX‚ÌƒTƒCƒY“¯Šú
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ã¨ãƒ™ãƒ¼ã‚¹ã®ã‚µã‚¤ã‚ºåŒæœŸ
 			var wSizeStyle = {
 				  'width'  : this._CanvasSize.width  + 'px'
 				, 'height' : this._CanvasSize.height + 'px'
 			};
 			this.setStyle( this.getBoxElement(), wSizeStyle );
 
-			// åƒRƒ“ƒeƒ“ƒc•\¦
+			// ä¸»ã‚³ãƒ³ãƒ†ãƒ³ãƒ„è¡¨ç¤º
 			this.dspBox( true );
 
 		} catch(e) {
@@ -1012,20 +1012,20 @@ var clsCanvas = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsCanvas.prototype.freeClass = function() {
 		try {
-			// Canvasíœ
+			// Canvaså‰Šé™¤
 			if ( this.CanvasEle ) {
 				this.execFunction( this.delElement, this.CanvasEle );
 			}
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._CanvasContext				= null;
 			this._CanvasEle					= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._BasePrototype ) {
 				this._BasePrototype.freeClass.call( this );
 

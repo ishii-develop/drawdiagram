@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 //
-// ƒOƒ‹[ƒv€–ÚƒNƒ‰ƒX
+// ã‚°ãƒ«ãƒ¼ãƒ—é …ç›®ã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsItemGroup © clsItemBox © clsBaseBox
+// clsItemGroup â† clsItemBox â† clsBaseBox
 // --------------------------------------------------------------------
 var clsItemGroup = function( pArgument ) {
 	try {
@@ -17,35 +17,35 @@ var clsItemGroup = function( pArgument ) {
 
 		this._DEF_ITEM_GROUP_MENU				= {
 			 3: [
-				{ kind: 'resize'	, title: 'ƒTƒCƒY•ÏX'	}
+				{ kind: 'resize'	, title: 'ã‚µã‚¤ã‚ºå¤‰æ›´'	}
 			 ]
 		};
 
 		this._DEF_ITEM_GROUP_MENU_POSITION		= {
 			 1: [
-				{ kind: 'resize'	, title: 'ƒTƒCƒY•ÏX'	}
+				{ kind: 'resize'	, title: 'ã‚µã‚¤ã‚ºå¤‰æ›´'	}
 			 ]
 		};
 
 		this._DEF_ITEM_GROUP_LIST_RELATION		= {
-				  1		: '‰Æ‘°'
-				, 2		: 'e‘°'
-				, 10	: 'ˆã—Ã‹@ŠÖ'
-				, 11	: '‚»‚Ì‘¼‹@ŠÖ'
+				  1		: 'å®¶æ—'
+				, 2		: 'è¦ªæ—'
+				, 10	: 'åŒ»ç™‚æ©Ÿé–¢'
+				, 11	: 'ãã®ä»–æ©Ÿé–¢'
 		};
 
 		// ----------------------------
-		// ƒOƒ‹[ƒv@˜A—æ
+		// ã‚°ãƒ«ãƒ¼ãƒ—ã€€é€£çµ¡å…ˆ
 		// ----------------------------
 
-		// ˜A—æİ’è
+		// é€£çµ¡å…ˆè¨­å®š
 		this._DEF_ITEM_GROUP_CONTACT_FAX_NAME	= {
 				  name		: 'contact-fax'
-				, title		: '˜A—æ2'
+				, title		: 'é€£çµ¡å…ˆ2'
 				, type		: 'text'
 				, length	: 40
 				, display	: true
-				, default	: 'FAX”Ô†'
+				, default	: 'FAXç•ªå·'
 				, design	: {
 					 data	: { width: '150px' }
 					,input	: { width: '146px' }
@@ -54,7 +54,7 @@ var clsItemGroup = function( pArgument ) {
 
 		this._DEF_ITEM_GROUP_CONTACT_FAX_NO		= {
 				  name		: 'contact-fax-no'
-				, title		: '”Ô†'
+				, title		: 'ç•ªå·'
 				, type		: 'text'
 				, length	: 13
 				, display	: true
@@ -70,18 +70,18 @@ var clsItemGroup = function( pArgument ) {
 			  2: [ this._DEF_ITEM_GROUP_CONTACT_FAX_NAME	, this._DEF_ITEM_GROUP_CONTACT_FAX_NO  ]
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._ItemPrototype				= null;
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._ItemPrototype = clsItemBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsItemBox.call( this, pArgument );
 
 
@@ -90,25 +90,25 @@ var clsItemGroup = function( pArgument ) {
 	}
 };
 
-// ƒOƒ‹[ƒv prototype
+// ã‚°ãƒ«ãƒ¼ãƒ— prototype
 (function(){
-	// clsItemBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsItemBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsItemGroup, clsItemBox );
 
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
 	// -------------------
-	// ƒƒjƒ…[ŠÖ˜A
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 	// -------------------
 
-	// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[•\¦
+	// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 	clsItemGroup.prototype.execContextDsp = function( pEvent, pParam ) {
 		try {
 
-			// Œp³Œ³ƒƒjƒ…[•\¦ˆ—
+			// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºå‡¦ç†
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.execContextDsp.call( this, pEvent, pParam );
 
@@ -119,7 +119,7 @@ var clsItemGroup = function( pArgument ) {
 		}
 	};
 
-	// ƒOƒ‹[ƒv—pƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‘I‘ğˆ—
+	// ã‚°ãƒ«ãƒ¼ãƒ—ç”¨ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠæ™‚å‡¦ç†
 	clsItemGroup.prototype.execContextSelect = function( pEvent, pSelectMenu ) {
 		try {
 			if ( !pSelectMenu ) return false;
@@ -127,16 +127,16 @@ var clsItemGroup = function( pArgument ) {
 			var wRetVal = true;
 
 			switch(pSelectMenu.kind) {
-			// ƒŠƒTƒCƒY
+			// ãƒªã‚µã‚¤ã‚º
 			case 'resize':
-				// e‚Öó‘Ô•ÏX‚ğ’Ê’m
-				// ¦ƒŠƒTƒCƒYˆ—‚Íe—v‘f‚ÅÀ{
+				// è¦ªã¸çŠ¶æ…‹å¤‰æ›´ã‚’é€šçŸ¥
+				// â€»ãƒªã‚µã‚¤ã‚ºå‡¦ç†ã¯è¦ªè¦ç´ ã§å®Ÿæ–½
 				wRetVal = this.execItemCallback( pEvent, { kind: 'resize' } );
 				break;
 
-			// ˆÈŠO
+			// ä»¥å¤–
 			default:
-				// Œp³Œ³ƒƒjƒ…[‘€ìˆ—
+				// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œå‡¦ç†
 				if ( this._ItemPrototype ) {
 					wRetVal = this._ItemPrototype.execContextSelect.call( this, pEvent, pSelectMenu );
 
@@ -153,41 +153,41 @@ var clsItemGroup = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsItemGroup.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_ITEM_GROUP_PROPERTY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êuitem-groupv
+				// ç¨®åˆ¥ã€Œitem-groupã€
 				wInitArgument.kind = this._DEF_ITEM_GROUP_KIND;
 
 			}
 
-			// ’Ç‰Áƒƒjƒ…[İ’è
+			// è¿½åŠ ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			wInitArgument.menuList		= this._DEF_ITEM_GROUP_MENU;
 
-			// ’Ç‰ÁˆÊ’u’²®ƒƒjƒ…[İ’è
+			// è¿½åŠ ä½ç½®èª¿æ•´ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 			wInitArgument.positionList	= this._DEF_ITEM_GROUP_MENU_POSITION;
 
-			// ’Ç‰ÁƒXƒe[ƒ^ƒXİ’è
+			// è¿½åŠ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š
 			var wUpdProperty = {
 					title		: {
-						 title	: 'í•Ê'
+						 title	: 'ç¨®åˆ¥'
 						,list	: this._DEF_ITEM_GROUP_LIST_RELATION
 					}
 			};
 			wInitArgument.statusProperty = wUpdProperty;
 
-			// ’Ç‰Á˜A—æİ’è
+			// è¿½åŠ é€£çµ¡å…ˆè¨­å®š
 			wInitArgument.contactList	= this._DEF_ITEM_GROUP_CONTACT;
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.initClass.call( this, wInitArgument );
 
@@ -198,11 +198,11 @@ var clsItemGroup = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsItemGroup.prototype.freeClass = function() {
 		try {
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._ItemPrototype ) {
 				this._ItemPrototype.freeClass.call( this );
 

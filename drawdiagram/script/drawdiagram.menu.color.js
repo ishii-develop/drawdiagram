@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 //
-// ƒJƒ‰[ƒpƒŒƒbƒg•\¦ƒNƒ‰ƒX
+// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè¡¨ç¤ºã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsColorBox © clsMenuBase © clsBaseBox
+// clsColorBox â† clsMenuBase â† clsBaseBox
 // --------------------------------------------------------------------
 var clsColorBox = function( pArgument ) {
 	try {
@@ -15,12 +15,12 @@ var clsColorBox = function( pArgument ) {
 			 'z-index'				: '4100'
 		};
 
-		// ƒƒjƒ…[‚Ìstyle
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®style
 		this._DEF_MENU_COLOR_LIST_PROPERTY = {
 			 'z-index'				: '4110'
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._MenuPrototype				= null;
 
 		this._ColorList = [
@@ -40,22 +40,22 @@ var clsColorBox = function( pArgument ) {
 		this._ColorElement				= [];
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒgˆ—
+		// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 		
-		// F‘I‘ğƒCƒxƒ“ƒg
+		// è‰²é¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventColorClick = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// ‘I‘ğ—v‘f‚ÌFî•ñæ“¾
+				// é¸æŠè¦ç´ ã®è‰²æƒ…å ±å–å¾—
 				var wSelectColor = self.getColorInf( this );
 
-				// •Â‚¶‚é
+				// é–‰ã˜ã‚‹
 				self.hideMenu();
 
-				// ƒƒjƒ…[ŒÄoŒ³‚ÌŠÖ”‚ğcall
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼å‡ºå…ƒã®é–¢æ•°ã‚’call
 				if ( wSelectColor ) {
 					self.execCallBack( pEvent, { kind: 'select', color: wSelectColor.color } );
 
@@ -72,13 +72,13 @@ var clsColorBox = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._MenuPrototype = clsMenuBase.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsMenuBase.call( this, pArgument );
 
 
@@ -88,16 +88,16 @@ var clsColorBox = function( pArgument ) {
 };
 
 
-// Šî–{ƒƒjƒ…[ prototype
+// åŸºæœ¬ãƒ¡ãƒ‹ãƒ¥ãƒ¼ prototype
 (function(){
-	// clsBaseBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsBaseBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsColorBox, clsMenuBase );
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBİ’è^æ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®šï¼å–å¾—
 	// **************************************************************
 
-	// FƒŠƒXƒgİ’è
+	// è‰²ãƒªã‚¹ãƒˆè¨­å®š
 	clsColorBox.prototype.setColorList = function( pColorAry ) {
 		try {
 			if ( !pColorAry ) return false;
@@ -111,7 +111,7 @@ var clsColorBox = function( pArgument ) {
 		}
 	};
 
-	// —v‘f‚ÌFæ“¾
+	// è¦ç´ ã®è‰²å–å¾—
 	clsColorBox.prototype.getColorInf = function( pElement ) {
 		try {
 			if ( !pElement ) return null;
@@ -131,17 +131,17 @@ var clsColorBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒƒjƒ…[ì¬
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
 	// **************************************************************
 
-	// ƒJƒ‰[BOX—v‘f¶¬
+	// ã‚«ãƒ©ãƒ¼BOXè¦ç´ ç”Ÿæˆ
 	clsColorBox.prototype.addColorElement = function( pIdx, pColor, pFloat ) {
 		try {
 			var wId  = this.getBoxId() + '_color_' + String(pIdx);
 			var wDivEle = this.addElement( 'div', wId );
 			if ( !wDivEle ) return false;
 
-			// styleİ’è
+			// styleè¨­å®š
 			this.addClass( wDivEle, 'cssMenuColor-box' );
 			this.setStyle( wDivEle, this._DEF_MENU_COLOR_LIST_PROPERTY );
 			wDivEle.style['background-color'] = pColor;
@@ -150,13 +150,13 @@ var clsColorBox = function( pArgument ) {
 				wDivEle.style['clear']	= 'left';
 			}
 
-			// ƒƒjƒ…[‚Ö’Ç‰Á
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸è¿½åŠ 
 			this.appendBoxToParent( wDivEle );
 
-			// clickƒCƒxƒ“ƒgİ’è
+			// clickã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 			this.addEvent( wDivEle, 'onclick', this.eventColorClick );
 
-			// î•ñ•Û‘¶
+			// æƒ…å ±ä¿å­˜
 			this._ColorContents[wId] = { index: pIdx, color: pColor };
 			this._ColorElement.push( wDivEle );
 			
@@ -169,10 +169,10 @@ var clsColorBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒƒjƒ…[—v‘f‚ğ‰Šúİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ç´ ã‚’åˆæœŸè¨­å®š
 	clsColorBox.prototype.createMenu = function() {
 		try {
 			if ( !this._ColorList ) return false;
@@ -199,7 +199,7 @@ var clsColorBox = function( pArgument ) {
 				
 			}
 
-			// Œp³Œ³‰Šúİ’è
+			// ç¶™æ‰¿å…ƒåˆæœŸè¨­å®š
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.createMenu.call( this );
 
@@ -212,31 +212,31 @@ var clsColorBox = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsColorBox.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_MENU_COLOR_PROPERTY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êumenu-colorv
+				// ç¨®åˆ¥ã€Œmenu-colorã€
 				wInitArgument.kind = this._DEF_MENU_COLOR_KIND;
 			}
 
-			// ƒƒjƒ…[“à—eİ’è
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å†…å®¹è¨­å®š
 			if ( pArgument ) {
-				// FƒŠƒXƒgw’è
+				// è‰²ãƒªã‚¹ãƒˆæŒ‡å®šæ™‚
 				if ( typeof pArgument.colorList !== 'undefined' ) {
 					this.setColorList(pArgument.colorList);
 				}
 
 			}
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.initClass.call( this, wInitArgument );
 
@@ -247,10 +247,10 @@ var clsColorBox = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsColorBox.prototype.freeClass = function() {
 		try {
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			var wColor;
 			for( var wIdx = 0; wIdx < this._ColorElement.length; wIdx++ ) {
 				wColor = this._ColorElement[wIdx];
@@ -263,8 +263,8 @@ var clsColorBox = function( pArgument ) {
 			this._ColorContents		= null;
 			this._ColorElement		= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.freeClass.call( this );
 

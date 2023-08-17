@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 //
-// ƒXƒe[ƒ^ƒX•\¦ƒNƒ‰ƒX
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsMenuStatus © clsMenuBase © clsBaseBox
+// clsMenuStatus â† clsMenuBase â† clsBaseBox
 // --------------------------------------------------------------------
 var clsMenuStatus = function( pArgument ) {
 	try {
@@ -15,12 +15,12 @@ var clsMenuStatus = function( pArgument ) {
 			 'z-index'				: '1200'
 		};
 
-		// ƒXƒe[ƒ^ƒX‚Ìstyle
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®style
 		this._DEF_MENU_STATUS_LIST_PROPERTY		= {
 			 'z-index'				: '1210'
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._MenuPrototype						= null;
 
 		this._StatusList						= [];
@@ -31,19 +31,19 @@ var clsMenuStatus = function( pArgument ) {
 		this._StatusAddList						= [];
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒgˆ—
+		// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 
-		// ’Ç‰Áƒ{ƒ^ƒ“‰Ÿ‰ºƒCƒxƒ“ƒg
+		// è¿½åŠ ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventStatusAdd = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// ˜A—æ‚ğ’Ç‰Á
+				// é€£çµ¡å…ˆã‚’è¿½åŠ 
 				self.execAddStatus();
 
-				// ƒƒjƒ…[ŒÄoŒ³‚ÌŠÖ”‚ğcall
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼å‡ºå…ƒã®é–¢æ•°ã‚’call
 				self.execCallBack( pEvent, { kind: 'close' } );
 
 			} catch(e) {
@@ -52,16 +52,16 @@ var clsMenuStatus = function( pArgument ) {
 			return false;
 		};
 
-		// •Â‚¶‚éƒ{ƒ^ƒ“‰Ÿ‰ºƒCƒxƒ“ƒg
+		// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventStatusCancel = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// •Â‚¶‚é
+				// é–‰ã˜ã‚‹
 				self.hideMenu();
 
-				// ƒƒjƒ…[ŒÄoŒ³‚ÌŠÖ”‚ğcall
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼å‡ºå…ƒã®é–¢æ•°ã‚’call
 				self.execCallBack( pEvent, { kind: 'close' } );
 
 			} catch(e) {
@@ -70,20 +70,20 @@ var clsMenuStatus = function( pArgument ) {
 			return false;
 		};
 
-		// Šm’èƒ{ƒ^ƒ“‰Ÿ‰ºƒCƒxƒ“ƒg
+		// ç¢ºå®šãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventStatusConfirm = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// •Â‚¶‚é
+				// é–‰ã˜ã‚‹
 				self.hideMenu();
 
-				// İ’è“à—e•Û‘¶
+				// è¨­å®šå†…å®¹ä¿å­˜
 				var wStatList = self.getCallbackList();
 				var wStatVal  = self.getCallbackValue();
 
-				// ƒƒjƒ…[ŒÄoŒ³‚ÌŠÖ”‚ğcall
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼å‡ºå…ƒã®é–¢æ•°ã‚’call
 				self.execCallBack( pEvent, { kind: 'status', statusList: wStatList, statusValue: wStatVal } );
 
 			} catch(e) {
@@ -94,13 +94,13 @@ var clsMenuStatus = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._MenuPrototype = clsMenuBase.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsMenuBase.call( this, pArgument );
 
 	} catch(e) {
@@ -108,17 +108,17 @@ var clsMenuStatus = function( pArgument ) {
 	}
 };
 
-// Šî–{ƒƒjƒ…[ prototype
+// åŸºæœ¬ãƒ¡ãƒ‹ãƒ¥ãƒ¼ prototype
 (function(){
-	// clsBaseBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsBaseBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsMenuStatus, clsMenuBase );
 
 
 	// **************************************************************
-	// ƒvƒƒpƒeƒBİ’è^æ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®šï¼å–å¾—
 	// **************************************************************
 
-	// ƒXƒe[ƒ^ƒX“à—e‚ª—LŒø‚©
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å†…å®¹ãŒæœ‰åŠ¹ã‹
 	clsMenuStatus.prototype.isStatusList = function() {
 		try {
 			if ( !this._StatusList ) return false;
@@ -131,27 +131,27 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// ƒXƒe[ƒ^ƒX“à—e‚ğ‰Šúİ’è
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å†…å®¹ã‚’åˆæœŸè¨­å®š
 	clsMenuStatus.prototype.setStatusList = function( pArgument ) {
 		try {
 			var wArgMenu = pArgument.statusList;
 			if ( !wArgMenu ) return false;
 
-			// ˆê’UƒNƒŠƒA
+			// ä¸€æ—¦ã‚¯ãƒªã‚¢
 			this._StatusList = [];
 
 			if ( this.isArray(wArgMenu) ) {
-				// “à—e‚ğ•¡Ê
+				// å†…å®¹ã‚’è¤‡å†™
 				for( var wIdx = 0; wIdx < wArgMenu.length; wIdx++ ) {
 					this._StatusList.push( wArgMenu[wIdx] );
 
 				}
 
-			// objectw’è
+			// objectæŒ‡å®š
 			} else if ( this.isObject(wArgMenu) ) {
-				// Key‡‚Éƒ\[ƒg
+				// Keyé †ã«ã‚½ãƒ¼ãƒˆ
 				var wSortMenu = this.sortNumObject( wArgMenu );
-				// ”z—ñ‚É‚µ‚Äİ’è
+				// é…åˆ—ã«ã—ã¦è¨­å®š
 				for( var wKey in wSortMenu ) {
 					if ( this.isArray(wSortMenu[wKey]) ) {
 						this._StatusList.push( wSortMenu[wKey] );
@@ -174,27 +174,27 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// ƒXƒe[ƒ^ƒX“à—ei’Ç‰Á€–Új‚ğ‰Šúİ’è
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å†…å®¹ï¼ˆè¿½åŠ é …ç›®ï¼‰ã‚’åˆæœŸè¨­å®š
 	clsMenuStatus.prototype.setStatusAddList = function( pArgument ) {
 		try {
 			var wArgMenu = pArgument.statusAddList;
 			if ( !wArgMenu ) return false;
 
-			// ˆê’UƒNƒŠƒA
+			// ä¸€æ—¦ã‚¯ãƒªã‚¢
 			this._StatusAddList = [];
 
 			if ( this.isArray(wArgMenu) ) {
-				// “à—e‚ğ•¡Ê
+				// å†…å®¹ã‚’è¤‡å†™
 				for( var wIdx = 0; wIdx < wArgMenu.length; wIdx++ ) {
 					this._StatusAddList.push( wArgMenu[wIdx] );
 
 				}
 
-			// objectw’è
+			// objectæŒ‡å®š
 			} else if ( this.isObject(wArgMenu) ) {
-				// Key‡‚Éƒ\[ƒg
+				// Keyé †ã«ã‚½ãƒ¼ãƒˆ
 				var wSortMenu = this.sortNumObject( wArgMenu );
-				// ”z—ñ‚É‚µ‚Äİ’è
+				// é…åˆ—ã«ã—ã¦è¨­å®š
 				for( var wKey in wSortMenu ) {
 					if ( this.isArray(wSortMenu[wKey]) ) {
 						this._StatusAddList.push( wSortMenu[wKey] );
@@ -210,7 +210,7 @@ var clsMenuStatus = function( pArgument ) {
 
 			}
 
-			// ’Ç‰Á€–Ú‚ ‚ê‚Î’Ç‰Á—LŒø
+			// è¿½åŠ é …ç›®ã‚ã‚Œã°è¿½åŠ æœ‰åŠ¹
 			if ( this._StatusAddList.length > 0 ) this._StatusAddCmd = true;
 
 			return true;
@@ -220,13 +220,13 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// ƒXƒe[ƒ^ƒXİ’è’l‚ğ•Û‘¶
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®šå€¤ã‚’ä¿å­˜
 	clsMenuStatus.prototype.saveStatusValue = function( pArgument ) {
 		try {
 			var wArgValue = pArgument.statusValue;
 			if ( !wArgValue ) return;
 
-			// ˆê’UƒNƒŠƒA
+			// ä¸€æ—¦ã‚¯ãƒªã‚¢
 			this._StatusValue = {};
 
 			for( var wKey in wArgValue ) {
@@ -238,7 +238,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// “ü—Í’l‚ğİ’è
+	// å…¥åŠ›å€¤ã‚’è¨­å®š
 	clsMenuStatus.prototype.setStatusValue = function() {
 		try {
 			if ( !this.isStatusList() ) return false;
@@ -255,7 +255,7 @@ var clsMenuStatus = function( pArgument ) {
 					wValue = this._StatusValue[wStatusInf.name];
 					if ( typeof wValue == 'undefined' ) continue;
 
-					// —v‘f‚É’l‚ğİ’è
+					// è¦ç´ ã«å€¤ã‚’è¨­å®š
 					switch( wStatusInf.type ) {
 					case 'text':
 						this.setElementValue( wId, wValue );
@@ -283,7 +283,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// •Ô‚·İ’è“à—e‚ğæ“¾
+	// è¿”ã™è¨­å®šå†…å®¹ã‚’å–å¾—
 	clsMenuStatus.prototype.getCallbackList = function() {
 		try {
 			if ( !this.isStatusList() ) return null;
@@ -308,7 +308,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 	
-	// •Ô‚·“ü—Í’l‚ğæ“¾
+	// è¿”ã™å…¥åŠ›å€¤ã‚’å–å¾—
 	clsMenuStatus.prototype.getCallbackValue = function() {
 		try {
 			if ( !this.isStatusList() ) return null;
@@ -323,7 +323,7 @@ var clsMenuStatus = function( pArgument ) {
 
 					wId = this.getBoxId() + '_' + wStatusInf.name;
 
-					// —v‘f‚Ì’l‚ğæ“¾
+					// è¦ç´ ã®å€¤ã‚’å–å¾—
 					switch( wStatusInf.type ) {
 					case 'text':
 						wStatusValue[wStatusInf.name] = this.getElementValue( wId );
@@ -354,20 +354,20 @@ var clsMenuStatus = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒCƒxƒ“ƒgİ’è
+	// ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	// **************************************************************
 
-	// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	clsMenuStatus.prototype.cancelStatusEvent = function() {
 		try {
-			// ¦ƒTƒuƒƒjƒ…[•\¦‚ ‚éê‡‚Í‚±‚±‚Åclose
+			// â€»ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã‚ã‚‹å ´åˆã¯ã“ã“ã§close
 
 		} catch(e) {
 			throw { name: 'cancelStatusEvent.' + e.name, message: e.message };
 		}
 	};
 
-	// ’Ç‰Áƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgİ’è
+	// è¿½åŠ ãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsMenuStatus.prototype.addAddEvent = function() {
 		try {
 			if ( !this._StatusAddCmd ) return;
@@ -385,7 +385,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// •Â‚¶‚éƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgíœ
+	// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 	clsMenuStatus.prototype.delAddEvent = function() {
 		try {
 			if ( !this._StatusAddCmd ) return;
@@ -403,7 +403,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// •Â‚¶‚éƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgİ’è
+	// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsMenuStatus.prototype.addCancelEvent = function() {
 		try {
 			if ( this.autoCloseIs() ) return;
@@ -421,7 +421,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// •Â‚¶‚éƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgíœ
+	// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 	clsMenuStatus.prototype.delCancelEvent = function() {
 		try {
 			if ( this.autoCloseIs() ) return;
@@ -439,7 +439,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// Šm’èƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgİ’è
+	// ç¢ºå®šãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	clsMenuStatus.prototype.addConfirmEvent = function() {
 		try {
 			if ( this.autoCloseIs() ) return;
@@ -457,7 +457,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// Šm’èƒ{ƒ^ƒ“@ƒCƒxƒ“ƒgíœ
+	// ç¢ºå®šãƒœã‚¿ãƒ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 	clsMenuStatus.prototype.delConfirmEvent = function() {
 		try {
 			if ( this.autoCloseIs() ) return;
@@ -477,10 +477,10 @@ var clsMenuStatus = function( pArgument ) {
 
 
 	// **************************************************************
-	// —v‘fİ’è
+	// è¦ç´ è¨­å®š
 	// **************************************************************
 
-	// s—v‘f’Ç‰Á
+	// è¡Œè¦ç´ è¿½åŠ 
 	clsMenuStatus.prototype.addStatusLineBase = function( pIdx, pRefEle ) {
 		try {
 			var wId  = this.getBoxId() + '_status_' + String(pIdx);
@@ -498,7 +498,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// s—v‘f’Ç‰Á
+	// è¡Œè¦ç´ è¿½åŠ 
 	clsMenuStatus.prototype.resetStatusLineBase = function( pIdx ) {
 		try {
 			var wId  = this.getBoxId() + '_status_' + String(pIdx);
@@ -515,12 +515,12 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// “ü—Í—v‘f’Ç‰Á
+	// å…¥åŠ›è¦ç´ è¿½åŠ 
 	clsMenuStatus.prototype.addStatusLineContents = function( pDivId, pStatusItem ) {
 		try {
 			var self = this;
 
-			// î•ñ“à—eİ’è
+			// æƒ…å ±å†…å®¹è¨­å®š
 			var getStatusHtml = function( pId, pContents, pValues, pLast ) {
 				var wStatId = pId + '_' + pContents.name;
 
@@ -546,7 +546,7 @@ var clsMenuStatus = function( pArgument ) {
 					wThStyle = "style='"
 					for( var wKey in pContents.design.head ) {
 						wThStyle += wKey + ':' + pContents.design.head[wKey] + ';';
-						// width‚Ì‚İheader‚Ìinput‚Éİ’è
+						// widthã®ã¿headerã®inputã«è¨­å®š
 						if ( String(wKey) == 'width' ) wThInput = " style='width: " + pContents.design.head[wKey] + ";' "
 					}
 					wThStyle += "'"
@@ -565,7 +565,7 @@ var clsMenuStatus = function( pArgument ) {
 				if ( wDesignData ) {
 					wTdStyle = " style='"
 					for( var wKey in pContents.design.data ) {
-						// ÅI—ñ‚Ìwidth‚Íİ’è‚µ‚È‚¢
+						// æœ€çµ‚åˆ—ã®widthã¯è¨­å®šã—ãªã„
 						if ( !pLast || (wKey != 'width') ) {
 							wTdStyle += wKey + ':' + pContents.design.data[wKey] + ';';
 						}
@@ -607,7 +607,7 @@ var clsMenuStatus = function( pArgument ) {
 					if ( pContents.length ) wInpPrm += " maxlength='" + pContents.length + "' ";
 					wInpPrm += wInpStyle + " />"; 
 					
-					// ƒf[ƒ^ƒŠƒXƒg
+					// ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
 					if ( pContents.list ) {
 						wInpPrm += "<datalist id='" + wStatId + "_list'>";
 						for( wLkey in pContents.list ) {
@@ -702,17 +702,17 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// “ü—Í—v‘fÄİ’è
+	// å…¥åŠ›è¦ç´ å†è¨­å®š
 	clsMenuStatus.prototype.resetStatusLineContents = function( pDivId, pStatusItem ) {
 		try {
 			var self = this;
 
-			// î•ñ“à—eİ’è
+			// æƒ…å ±å†…å®¹è¨­å®š
 			var setStatusDefault = function( pId, pContents, pValues, pLast ) {
-				// —v‘fID
+				// è¦ç´ ID
 				var wStatId = pId + '_' + pContents.name;
 
-				// ‰Šú’lİ’è
+				// åˆæœŸå€¤è¨­å®š
 				var wValue = null;
 				if ( self.isObject(pValues) ) {
 					if ( typeof pValues[pContents.name] !== 'undefined' ) wValue = pValues[pContents.name];
@@ -754,7 +754,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// ƒ{ƒ^ƒ“—v‘fƒGƒŠƒA’Ç‰Á
+	// ãƒœã‚¿ãƒ³è¦ç´ ã‚¨ãƒªã‚¢è¿½åŠ 
 	clsMenuStatus.prototype.addStatusCommand = function() {
 		try {
 			var wId  = this.getBoxId() + '_cmd';
@@ -771,11 +771,11 @@ var clsMenuStatus = function( pArgument ) {
 			wAddStyle += "'";
 
 			var wAddId = wId + '_add';
-			wHtml += "<a id='" + wAddId + "' href='javascript:void(0);' " + wAddStyle + ">’Ç‰Á</a>";
+			wHtml += "<a id='" + wAddId + "' href='javascript:void(0);' " + wAddStyle + ">è¿½åŠ </a>";
 
 			if ( !this.autoCloseIs() ) {
 				var wCloseId = wId + '_close';
-				wHtml += "<a id='" + wCloseId + "' href='javascript:void(0);'>·¬İ¾Ù</a>";
+				wHtml += "<a id='" + wCloseId + "' href='javascript:void(0);'>ï½·ï½¬ï¾ï½¾ï¾™</a>";
 			}
 
 			var wOkId = wId + '_confirm';
@@ -784,13 +784,13 @@ var clsMenuStatus = function( pArgument ) {
 			wDivEle.innerHTML = wHtml;
 			this.appendBoxToParent( wDivEle );
 			
-			// ’Ç‰Áƒ{ƒ^ƒ“‚ÖƒCƒxƒ“ƒg’Ç‰Á
+			// è¿½åŠ ãƒœã‚¿ãƒ³ã¸ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			this.addAddEvent();
 
-			// ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“‚ÖƒCƒxƒ“ƒg’Ç‰Á
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³ã¸ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			this.addCancelEvent();
 
-			// Šm’èƒ{ƒ^ƒ“‚ÖƒCƒxƒ“ƒg’Ç‰Á
+			// ç¢ºå®šãƒœã‚¿ãƒ³ã¸ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			this.addConfirmEvent();
 
 		} catch(e) {
@@ -798,7 +798,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// “ü—Í€–Ú‚ÖƒtƒH[ƒJƒX‚ğİ’è
+	// å…¥åŠ›é …ç›®ã¸ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’è¨­å®š
 	clsMenuStatus.prototype.setFocusInput = function() {
 		try {
 			if ( !this.isStatusList() ) return;
@@ -826,17 +826,17 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// €–Úisj’Ç‰Á
+	// é …ç›®ï¼ˆè¡Œï¼‰è¿½åŠ 
 	clsMenuStatus.prototype.execAddStatus = function() {
 		try {
-			// ’Ç‰Ásİ’è‚È‚¯‚ê‚Îˆ—‚È‚µ
+			// è¿½åŠ è¡Œè¨­å®šãªã‘ã‚Œã°å‡¦ç†ãªã—
 			if ( !this._StatusAddList ) return;
 			if ( this._StatusAddList.length == 0 ) return;
 
-			// İ’èÏ€–Ú‚ÌƒCƒ“ƒfƒbƒNƒX•Û‘¶
+			// è¨­å®šæ¸ˆé …ç›®ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¿å­˜
 			var wMaxIdx = this._StatusList.length;
 
-			// ’Ç‰Áæiƒ{ƒ^ƒ“ƒGƒŠƒA‚Ì—v‘fjæ“¾
+			// è¿½åŠ å…ˆï¼ˆãƒœã‚¿ãƒ³ã‚¨ãƒªã‚¢ã®è¦ç´ ï¼‰å–å¾—
 			var wRefId  = this.getBoxId() + '_cmd';
 			var wRefEle = this.getElement( wRefId );
 
@@ -849,10 +849,10 @@ var clsMenuStatus = function( pArgument ) {
 					var wAddItem = {};
 					this.copyProperty( wLineItem[wColIdx], wAddItem );
 					
-					// –¼Ì‚Éindex•t—^
+					// åç§°ã«indexä»˜ä¸
 					wAddItem.name = wAddItem.name + '-' + String(wMaxIdx + wLineIdx + 1);
 
-					// æ“ª€–Ú‚Ìƒ^ƒCƒgƒ‹‚Ì‚İ•ÒW
+					// å…ˆé ­é …ç›®ã®ã‚¿ã‚¤ãƒˆãƒ«ã®ã¿ç·¨é›†
 					if ( wLineIdx == 0 ) {
 						wAddItem.title = wAddItem.title + String(wMaxIdx + wLineIdx + 1);
 					}
@@ -865,39 +865,39 @@ var clsMenuStatus = function( pArgument ) {
 
 			var wId;
 			for( var wAddIdx = 0; wAddIdx < wAddMenu.length; wAddIdx++ ) {
-				// “à—e’Ç‰Á
+				// å†…å®¹è¿½åŠ 
 				this._StatusList.push( wAddMenu[wAddIdx] );
 
-				// ’Ç‰Ás‚ªŠù‚É‘¶İ
+				// è¿½åŠ è¡ŒãŒæ—¢ã«å­˜åœ¨
 				if ( (wMaxIdx + wAddIdx + 1) <= this._StatusListMax ) {
-					// sÄ•\¦
+					// è¡Œå†è¡¨ç¤º
 					wId = this.resetStatusLineBase( (wMaxIdx + wAddIdx) );
 
-					// “à—eÄİ’è
+					// å†…å®¹å†è¨­å®š
 					if ( wId ) this.resetStatusLineContents( wId, this._StatusList[(wMaxIdx + wAddIdx)] );
 
-				// ’Ç‰Ás‚È‚µ
+				// è¿½åŠ è¡Œãªã—
 				} else {
-					// s’Ç‰Á
+					// è¡Œè¿½åŠ 
 					wId = this.addStatusLineBase( (wMaxIdx + wAddIdx), wRefEle );
 
-					// “à—eİ’è
+					// å†…å®¹è¨­å®š
 					this.addStatusLineContents( wId, this._StatusList[(wMaxIdx + wAddIdx)] );
 					
-					// Å‘å’lXV
+					// æœ€å¤§å€¤æ›´æ–°
 					this._StatusListMax++;
 
 				}
 
 			}
 
-			// windowƒTƒCƒYÄİ’è
+			// windowã‚µã‚¤ã‚ºå†è¨­å®š
 			this.saveMenuSize();
 
-			// Ä”z’u
+			// å†é…ç½®
 			this.resetPosition();
 
-			// ’Ç‰Á€–Ú‚ÖƒtƒH[ƒJƒXİ’è
+			// è¿½åŠ é …ç›®ã¸ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 			var wAddId = this.getBoxId() + this._StatusList[wMaxIdx][0].name;
 			var wAddEle = this.getElement( wAddId );
 			if ( wAddEle ) {
@@ -909,7 +909,7 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[—v‘f‚ğÄİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ç´ ã‚’å†è¨­å®š
 	clsMenuStatus.prototype.resetMenu = function() {
 		try {
 			var wListCnt = 0;
@@ -918,36 +918,36 @@ var clsMenuStatus = function( pArgument ) {
 
 			}
 
-			// ’Ç‰Áæiƒ{ƒ^ƒ“ƒGƒŠƒA‚Ì—v‘fjæ“¾
+			// è¿½åŠ å…ˆï¼ˆãƒœã‚¿ãƒ³ã‚¨ãƒªã‚¢ã®è¦ç´ ï¼‰å–å¾—
 			var wRefId  = this.getBoxId() + '_cmd';
 			var wRefEle = this.getElement( wRefId );
 
-			// ƒXƒe[ƒ^ƒX‚ÌŠî–{Id
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®åŸºæœ¬Id
 			var wIdBs  = this.getBoxId() + '_status_';
 
-			// •K—v•ª‚ğ•\¦i‚¨‚æ‚Ñ’Ç‰Áj
+			// å¿…è¦åˆ†ã‚’è¡¨ç¤ºï¼ˆãŠã‚ˆã³è¿½åŠ ï¼‰
 			var wAddId;
 			var wLineEle;
 			for( var wIdx = 0; wIdx < wListCnt; wIdx++ ) {
-				// s•\¦İ’è
+				// è¡Œè¡¨ç¤ºè¨­å®š
 				wLineEle = this.getElement(wIdBs + String(wIdx));
 				if ( wLineEle ) {
 					this.setStyle( wLineEle, { display: '' } );
 
 				} else {
-					// s’Ç‰Á
+					// è¡Œè¿½åŠ 
 					wAddId = this.addStatusLineBase( wIdx, wRefEle );
 					
-					// “à—eİ’è
+					// å†…å®¹è¨­å®š
 					this.addStatusLineContents( wAddId, this._StatusList[wIdx] );
 					
-					// s”•Û‘¶
+					// è¡Œæ•°ä¿å­˜
 					this._StatusListMax++;
 
 				}
 			}
 
-			// —]•ª‚ğ”ñ•\¦
+			// ä½™åˆ†ã‚’éè¡¨ç¤º
 			if ( wListCnt < this._StatusListMax ) {
 				for( var wIdx = wListCnt; wIdx < this._StatusListMax; wIdx++ ) {
 					wLineEle = this.getElement(wIdBs + String(wIdx));
@@ -955,10 +955,10 @@ var clsMenuStatus = function( pArgument ) {
 				}
 			}
 
-			// windowƒTƒCƒYÄİ’è
+			// windowã‚µã‚¤ã‚ºå†è¨­å®š
 			this.saveMenuSize();
 
-			// Ä”z’u
+			// å†é…ç½®
 			this.resetPosition();
 
 		} catch(e) {
@@ -968,31 +968,31 @@ var clsMenuStatus = function( pArgument ) {
 
 	
 	// **************************************************************
-	// Œp³‘ÎÛƒƒ\ƒbƒh
+	// ç¶™æ‰¿å¯¾è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒƒjƒ…[—v‘f‚ğ‰Šúİ’è
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ç´ ã‚’åˆæœŸè¨­å®š
 	clsMenuStatus.prototype.createMenu = function() {
 		try {
 			if ( !this.isStatusList() ) return false;
 
 			var wId;
 			for( var wIdx = 0; wIdx < this._StatusList.length; wIdx++ ) {
-				// s’Ç‰Á
+				// è¡Œè¿½åŠ 
 				wId = this.addStatusLineBase( wIdx );
 				
-				// “à—eİ’è
+				// å†…å®¹è¨­å®š
 				this.addStatusLineContents( wId, this._StatusList[wIdx] );
 				
-				// s”•Û‘¶
+				// è¡Œæ•°ä¿å­˜
 				this._StatusListMax++;
 
 			}
 			
-			// ƒ{ƒ^ƒ“İ’è
+			// ãƒœã‚¿ãƒ³è¨­å®š
 			this.addStatusCommand();
 
-			// Œp³Œ³‰Šúİ’è
+			// ç¶™æ‰¿å…ƒåˆæœŸè¨­å®š
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.createMenu.call( this );
 
@@ -1003,46 +1003,46 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[‚ğ•\¦‚·‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
 	clsMenuStatus.prototype.dspMenu = function( pParam ) {
 		try {
-			// “ü—Í’lƒNƒŠƒA
+			// å…¥åŠ›å€¤ã‚¯ãƒªã‚¢
 			this._StatusValue = {};
 
 			if ( pParam ) {
 				var wConfigured = this.isStatusList();
 
-				// status“à—eİ’è
+				// statuså†…å®¹è¨­å®š
 				this.setStatusList( pParam );
 
-				// İ’è’l•Û‘¶
+				// è¨­å®šå€¤ä¿å­˜
 				this.saveStatusValue( pParam );
 
-				// ’Ç‰Á€–Úİ’è
+				// è¿½åŠ é …ç›®è¨­å®š
 				this.setStatusAddList( pParam );
 
-				// “à—e–¢İ’è
+				// å†…å®¹æœªè¨­å®š
 				if ( !wConfigured ) {
-					// html‰Šúİ’è
+					// htmlåˆæœŸè¨­å®š
 					this.createMenu();
 				
 				} else {
-					// htmlÄİ’è
+					// htmlå†è¨­å®š
 					this.resetMenu();
 					
-					// İ’è’l”½‰f
+					// è¨­å®šå€¤åæ˜ 
 					this.setStatusValue();
 
 				}
 			}
 
-			// Œp³Œ³ƒƒjƒ…[•\¦
+			// ç¶™æ‰¿å…ƒãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.dspMenu.call( this, pParam );
 
 			}
 			
-			// “ü—ÍƒGƒŠƒA‚ÉƒtƒH[ƒJƒXİ’è
+			// å…¥åŠ›ã‚¨ãƒªã‚¢ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 			this.setFocusInput();
 
 		} catch(e) {
@@ -1050,13 +1050,13 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// ƒƒjƒ…[‚ğ”ñ•\¦
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’éè¡¨ç¤º
 	clsMenuStatus.prototype.hideMenu = function() {
 		try {
-			// ƒXƒe[ƒ^ƒX‰æ–Ê‚Ìˆ—’†ƒCƒxƒ“ƒg‰ğœ
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®å‡¦ç†ä¸­ã‚¤ãƒ™ãƒ³ãƒˆè§£é™¤
 			this.cancelStatusEvent();
 
-			// Œp³Œ³”ñ•\¦ˆ—
+			// ç¶™æ‰¿å…ƒéè¡¨ç¤ºå‡¦ç†
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.hideMenu.call( this );
 
@@ -1069,43 +1069,43 @@ var clsMenuStatus = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒhiƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^j
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsMenuStatus.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_MENU_STATUS_PROPERTY );
 
-			// í•Ê–¢İ’è
+			// ç¨®åˆ¥æœªè¨­å®šæ™‚
 			if ( typeof wInitArgument.kind == 'undefined' ) {
-				// í•Êumenu-statusv
+				// ç¨®åˆ¥ã€Œmenu-statusã€
 				wInitArgument.kind = this._DEF_MENU_STATUS_KIND;
 			}
 			
-			// ƒ}ƒEƒX”ÍˆÍŠO‚Åclose‚È‚µ
+			// ãƒã‚¦ã‚¹ç¯„å›²å¤–ã§closeãªã—
 			wInitArgument.autoClose = false;
 
 			if ( pArgument ) {
-				// İ’è’l•Û‘¶
+				// è¨­å®šå€¤ä¿å­˜
 				this.saveStatusValue( pArgument );
 
-				// status“à—eİ’è
+				// statuså†…å®¹è¨­å®š
 				this.setStatusList( pArgument );
 				
-				// status’Ç‰Á€–Úİ’è
+				// statusè¿½åŠ é …ç›®è¨­å®š
 				this.setStatusAddList( pArgument );
 
 			}
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// ƒNƒ‰ƒX’Ç‰Á
+			// ã‚¯ãƒ©ã‚¹è¿½åŠ 
 			this.setBoxClass( 'cssStatus-base' );
 
 		} catch(e) {
@@ -1113,20 +1113,20 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsMenuStatus.prototype.freeClass = function() {
 		try {
 			this.execFunction( this.delAddEvent );
 			this.execFunction( this.delCancelEvent );
 			this.execFunction( this.delConfirmEvent );
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._StatusList						= null;
 			this._StatusValue						= null;
 			this._StatusAddList						= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._MenuPrototype ) {
 				this._MenuPrototype.freeClass.call( this );
 

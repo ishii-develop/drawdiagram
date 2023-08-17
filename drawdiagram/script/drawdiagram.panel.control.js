@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 //
-// ƒpƒlƒ‹ƒRƒ“ƒgƒ[ƒ‰ƒNƒ‰ƒX
+// ãƒ‘ãƒãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¯ãƒ©ã‚¹
 //
 // --------------------------------------------------------------------
-// clsPanelControl © clsBaseBox
+// clsPanelControl â† clsBaseBox
 // --------------------------------------------------------------------
 var clsPanelControl = function( pArgument ) {
 	try {
@@ -15,10 +15,10 @@ var clsPanelControl = function( pArgument ) {
 			 'z-index'				: '30'
 		};
 
-		// Œp³Œ³ƒNƒ‰ƒX‚Ìprototype
+		// ç¶™æ‰¿å…ƒã‚¯ãƒ©ã‚¹ã®prototype
 		this._BasePrototype				= null;
 
-		// ©ƒNƒ‰ƒX‚ÌƒvƒƒpƒeƒB
+		// è‡ªã‚¯ãƒ©ã‚¹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 		this._PanelCtrlSize				= null;
 		this._PanelCtrlLinkEle			= null;
 		this._PanelCtrlLinkFlg			= false;
@@ -36,13 +36,13 @@ var clsPanelControl = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒCƒxƒ“ƒgˆ—
+		// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		// **************************************************************
 		
-		// window‚Æ‚Ìresize“¯ŠúƒCƒxƒ“ƒg
+		// windowã¨ã®resizeåŒæœŸã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventPanelSyncResize = function( pEvent ) {
 			try {
-				// “¯Šúƒ^[ƒQƒbƒg–³Œø‚È‚çˆ—‚È‚µ
+				// åŒæœŸã‚¿ãƒ¼ã‚²ãƒƒãƒˆç„¡åŠ¹ãªã‚‰å‡¦ç†ãªã—
 				if ( !self._PanelCtrlSyncBody ) return true;
 				if ( self._PanelCtrlSyncEle.length == 0 ) return true;
 
@@ -51,7 +51,7 @@ var clsPanelControl = function( pArgument ) {
 				var wWinWidth;
 				var wTarget;
 
-				// ƒRƒ“ƒgƒ[ƒ‰ˆÊ’u
+				// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ä½ç½®
 				var wCtrlPos = self.getBoxPos();
 
 				for ( var i = 0; i < self._PanelCtrlSyncEle.length; i++ ) {
@@ -66,12 +66,12 @@ var clsPanelControl = function( pArgument ) {
 
 						if ( wTarget.diffWidth !== null ) {
 							wWinWidth = wWinSize.width;
-							// ‰Eƒpƒlƒ‹
+							// å³ãƒ‘ãƒãƒ«
 							if ( wTarget.position == 'right' ) {
-								// ƒRƒ“ƒgƒ[ƒ‰ˆÊ’u•â³
+								// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ä½ç½®è£œæ­£
 								wWinWidth -= (wCtrlPos.left + self._PanelCtrlSize.width);
 
-							// ˆÈŠO
+							// ä»¥å¤–
 							} else {
 								wWinWidth -= wTarget.diffWidth;
 
@@ -89,19 +89,19 @@ var clsPanelControl = function( pArgument ) {
 		}
 
 		// ---------------
-		// @€–ÚˆÚ“®
+		// ã€€é …ç›®ç§»å‹•
 		// ---------------
 
-		// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®@ŠJn
+		// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã€€é–‹å§‹
 		this.eventPanelMoveStart = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.cancelEvent( pEvent, true );
 
-				// ¶ƒNƒŠƒbƒN‚Ì‚İ—LŒø
+				// å·¦ã‚¯ãƒªãƒƒã‚¯ã®ã¿æœ‰åŠ¹
 				var wClick = self.getEventClick( pEvent );
 				if ( wClick.left ) {
-					// ƒpƒlƒ‹ˆÚ“®ŠJn
+					// ãƒ‘ãƒãƒ«ç§»å‹•é–‹å§‹
 					self.startPanelMove();
 				}
 
@@ -111,28 +111,28 @@ var clsPanelControl = function( pArgument ) {
 			return false;
 		};
 
-		// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®@ˆÚ“®’†
+		// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã€€ç§»å‹•ä¸­
 		this.eventPanelMove = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
 				var wEle = self.getBoxElement();
 				if ( (!wEle) || (!self._PanelMovePos) ) {
-					throw { name: 'eventPanelMove', message: 'ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹‚ª¶¬‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ' };
+					throw { name: 'eventPanelMove', message: 'ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ãŒç”Ÿæˆã•ã‚Œã¦ã„ã¾ã›ã‚“' };
 				}
 
-				// ƒhƒ‰ƒbƒO‚µ‚Ä‚¢‚È‚¯‚ê‚Îˆ—I—¹
+				// ãƒ‰ãƒ©ãƒƒã‚°ã—ã¦ã„ãªã‘ã‚Œã°å‡¦ç†çµ‚äº†
 				var wClickChk = self.getEventMouse( pEvent );
 				if ( !wClickChk.right ) {
-					// ƒpƒlƒ‹ˆÚ“®I—¹
+					// ãƒ‘ãƒãƒ«ç§»å‹•çµ‚äº†
 					self.cancelPanelMove();
 
 				} else {
 					var wPoint = self.getEventPos( pEvent );
 					wPoint.x -= self._PanelMovePos.left;
 					
-					// ¶’[ or Å‘åƒTƒCƒY‚Íˆ—‚È‚µ
+					// å·¦ç«¯ or æœ€å¤§ã‚µã‚¤ã‚ºæ™‚ã¯å‡¦ç†ãªã—
 					if ( ( wPoint.x <= 0 ) || ( wPoint.x >= self._PanelLeftMax ) ) {
 						return false;
 					}
@@ -148,13 +148,13 @@ var clsPanelControl = function( pArgument ) {
 			return false;
 		};
 
-		// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®@I—¹
+		// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã€€çµ‚äº†
 		this.eventPanelMoveStop = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
-				// ƒpƒlƒ‹ˆÚ“®I—¹
+				// ãƒ‘ãƒãƒ«ç§»å‹•çµ‚äº†
 				self.cancelPanelMove();
 
 			} catch(e) {
@@ -164,16 +164,16 @@ var clsPanelControl = function( pArgument ) {
 		};
 
 		// ---------------
-		// @ƒRƒ}ƒ“ƒh
+		// ã€€ã‚³ãƒãƒ³ãƒ‰
 		// ---------------
 
-		// Å‘å‰»^Å¬‰»ƒŠƒ“ƒN@ƒNƒŠƒbƒNƒCƒxƒ“ƒg
+		// æœ€å¤§åŒ–ï¼æœ€å°åŒ–ãƒªãƒ³ã‚¯ã€€ã‚¯ãƒªãƒƒã‚¯ã‚¤ãƒ™ãƒ³ãƒˆ
 		this.eventClickLink = function( pEvent ) {
 			try {
-				// ƒCƒxƒ“ƒg’â~
+				// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 				self.execFunction( self.cancelEvent, pEvent, true );
 
-				// ‘€ì–³Œø‚Íˆ—‚È‚µ
+				// æ“ä½œç„¡åŠ¹æ™‚ã¯å‡¦ç†ãªã—
 				if ( !self._PanelCtrlValid ) return true;
 
 				var wEle = self.getBoxElement();
@@ -195,13 +195,13 @@ var clsPanelControl = function( pArgument ) {
 
 
 		// **************************************************************
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		// **************************************************************
-		// eƒNƒ‰ƒX‚Ìprototype‚ğ•Û‘¶
+		// è¦ªã‚¯ãƒ©ã‚¹ã®prototypeã‚’ä¿å­˜
 		this._BasePrototype = clsBaseBox.prototype;
 
-		// eƒNƒ‰ƒX‚Ìconstructor
-		// ¦Œp³‚µ‚½uinitClassv‚ªcall‚³‚ê‚é
+		// è¦ªã‚¯ãƒ©ã‚¹ã®constructor
+		// â€»ç¶™æ‰¿ã—ãŸã€ŒinitClassã€ãŒcallã•ã‚Œã‚‹
 		clsBaseBox.call(this, pArgument );
 
 
@@ -211,19 +211,19 @@ var clsPanelControl = function( pArgument ) {
 	
 };
 
-// ƒpƒlƒ‹ƒRƒ“ƒgƒ[ƒ‰ prototype
+// ãƒ‘ãƒãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© prototype
 (function(){
-	// clsBaseBox‚Ìƒvƒƒgƒ^ƒCƒv‚ğŒp³
+	// clsBaseBoxã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚’ç¶™æ‰¿
 	clsInheritance( clsPanelControl, clsBaseBox );
 
 	// **************************************************************
-	// Šî–{‘€ì
+	// åŸºæœ¬æ“ä½œ
 	// **************************************************************
 
-	// ‰æ–Ê‚Ì‘€ì‰Â”Ûİ’è
+	// ç”»é¢ã®æ“ä½œå¯å¦è¨­å®š
 	clsPanelControl.prototype.setControlValid = function( pValid ) {
 		try {
-			// ‘€ì‰Â”Ûİ’è
+			// æ“ä½œå¯å¦è¨­å®š
 			this._PanelCtrlValid = pValid;
 
 		} catch(e) {
@@ -233,16 +233,16 @@ var clsPanelControl = function( pArgument ) {
 
 
 	// **************************************************************
-	// ‘€ì—v‘fİ’è
+	// æ“ä½œè¦ç´ è¨­å®š
 	// **************************************************************
 
-	// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹¶¬
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç”Ÿæˆ
 	clsPanelControl.prototype.createControlPanel = function() {
 		try {
 			var wCtrlEle = this.getBoxElement();
 			if ( !wCtrlEle ) return false;
 
-			// ‘€ì—p—v‘f¶¬
+			// æ“ä½œç”¨è¦ç´ ç”Ÿæˆ
 			this.addClass( wCtrlEle, 'cssControl-btn' );
 
 			var wId = this.getBoxId();
@@ -268,7 +268,7 @@ var clsPanelControl = function( pArgument ) {
 		}
 	};
 	
-	// Å¬‰»^Å‘å‰»ƒŠƒ“ƒN¶¬
+	// æœ€å°åŒ–ï¼æœ€å¤§åŒ–ãƒªãƒ³ã‚¯ç”Ÿæˆ
 	clsPanelControl.prototype.setControlLink = function( pOpen ) {
 		try {
 			if ( this._PanelCtrlLinkFlg == pOpen ) return;
@@ -291,10 +291,10 @@ var clsPanelControl = function( pArgument ) {
 
 
 	// **************************************************************
-	// ŠÇ—‘ÎÛ—v‘fŠÖ˜A
+	// ç®¡ç†å¯¾è±¡è¦ç´ é–¢é€£
 	// **************************************************************
 
-	// ŠÇ—‘ÎÛƒpƒlƒ‹İ’è
+	// ç®¡ç†å¯¾è±¡ãƒ‘ãƒãƒ«è¨­å®š
 	clsPanelControl.prototype.setTargetPanel = function( pLeftPanel, pRightPanel ) {
 		try {
 			var wWinBody = this.getBoxBody();
@@ -304,7 +304,7 @@ var clsPanelControl = function( pArgument ) {
 			var wHeight;
 			var wWidth;
 			if ( pLeftPanel ) {
-				// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®‚Æ“¯Šú
+				// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã¨åŒæœŸ
 				var wLeftPos  = this.getPosByStyle( pLeftPanel );
 				var wLeftSize = this.getSize( pLeftPanel );
 
@@ -317,12 +317,12 @@ var clsPanelControl = function( pArgument ) {
 
 				this._PanelLeftMax = wLeft;
 
-				// window‚ÌResize‚Æ“¯Šú‚Ö’Ç‰Á
+				// windowã®Resizeã¨åŒæœŸã¸è¿½åŠ 
 				this._PanelCtrlSyncEle.push( { element: pLeftPanel, position: 'left', diffHeight: 3, diffWidth: null } );
 			}
 
 			if ( pRightPanel ) {
-				// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®‚Æ“¯Šú
+				// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã¨åŒæœŸ
 				wLeft  += this._PanelCtrlSize.width;
 				wHeight = wWinSize.height;
 				wWidth  = wWinSize.width - wLeft - 1;
@@ -333,7 +333,7 @@ var clsPanelControl = function( pArgument ) {
 				
 				this._PanelRightEle = { element: pRightPanel, winBody: wWinBody };
 
-				// window‚ÌResize‚Æ“¯Šú‚Ö’Ç‰Á
+				// windowã®Resizeã¨åŒæœŸã¸è¿½åŠ 
 				this._PanelCtrlSyncEle.push( { element: pRightPanel, position: 'right', diffHeight: 0, diffWidth: wLeft } );
 			}
 			return true;
@@ -343,12 +343,12 @@ var clsPanelControl = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•
 	clsPanelControl.prototype.movePanel = function( pElement, pPoint ) {
 		try {
 			pElement.style.left = (pPoint.x) + "px";
 
-			// ¶ƒpƒlƒ‹
+			// å·¦ãƒ‘ãƒãƒ«
 			if ( this._PanelLeftEle ) {
 				var wLeftEle = this._PanelLeftEle.element;
 				if ( wLeftEle ) {
@@ -358,7 +358,7 @@ var clsPanelControl = function( pArgument ) {
 				}
 			}
 
-			// ‰Eƒpƒlƒ‹
+			// å³ãƒ‘ãƒãƒ«
 			if ( this._PanelRightEle ) {
 				var wRightEle = this._PanelRightEle.element;
 
@@ -388,13 +388,13 @@ var clsPanelControl = function( pArgument ) {
 
 
 	// **************************************************************
-	// ƒCƒxƒ“ƒgŠÖ˜A
+	// ã‚¤ãƒ™ãƒ³ãƒˆé–¢é€£
 	// **************************************************************
 
-	// WindowƒŠƒTƒCƒY‚É“¯Šú
+	// Windowãƒªã‚µã‚¤ã‚ºã«åŒæœŸ
 	clsPanelControl.prototype.syncWindowOnResize = function( pSyncEle, pDiffHeight, pDiffWidth ) {
 		try {
-			// “¯Šúƒ^[ƒQƒbƒg–³Œø‚È‚çˆ—‚È‚µ
+			// åŒæœŸã‚¿ãƒ¼ã‚²ãƒƒãƒˆç„¡åŠ¹ãªã‚‰å‡¦ç†ãªã—
 			var wPenelWin = this.getBoxWindow();
 			if ( !wPenelWin ) return false;
 			if ( !pSyncEle ) return false;
@@ -413,7 +413,7 @@ var clsPanelControl = function( pArgument ) {
 			if ( wPenelWin == window ) {
 				var wDocument = this.getDocument( wPenelWin );
 				if ( !wDocument ) {
-					throw { name: 'syncWindowOnResize', message: '“¯Šú‘ÎÛ‚Ìdocument‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ' };
+					throw { name: 'syncWindowOnResize', message: 'åŒæœŸå¯¾è±¡ã®documentãŒå–å¾—ã§ãã¾ã›ã‚“' };
 				}
 				wSyncBody = this.getDocumentBody( wDocument );
 			} else {
@@ -421,10 +421,10 @@ var clsPanelControl = function( pArgument ) {
 			}
 			this._PanelCtrlSyncBody = wSyncBody;
 
-			// “¯Šú‘ÎÛİ’è
+			// åŒæœŸå¯¾è±¡è¨­å®š
 			this._PanelCtrlSyncEle.push( { element: pSyncEle, position: 'center', diffHeight: pDiffHeight, diffWidth: wDiffWidth } );
 
-			// Window‚ÌƒŠƒTƒCƒY‚Æ“¯Šú
+			// Windowã®ãƒªã‚µã‚¤ã‚ºã¨åŒæœŸ
 			this.addEvent( wPenelWin, 'onresize', this.eventPanelSyncResize );
 
 			return true;
@@ -434,19 +434,19 @@ var clsPanelControl = function( pArgument ) {
 		}
 	}
 
-	// ƒCƒxƒ“ƒg‰Šúİ’è
+	// ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸè¨­å®š
 	clsPanelControl.prototype.initPanelEvent = function() {
 		try {
-			// window‚ÌResize‚Æ“¯Šú
+			// windowã®Resizeã¨åŒæœŸ
 			if ( !this.syncWindowOnResize( this.getBoxElement(), 3, null ) ) {
-				throw { name: 'syncWindowOnResize', message: '“¯Šú‘ÎÛ‚ª–³Œø‚Å‚·' };
+				throw { name: 'syncWindowOnResize', message: 'åŒæœŸå¯¾è±¡ãŒç„¡åŠ¹ã§ã™' };
 
 			}
 
-			// •s—v‚ÈƒCƒxƒ“ƒg‚ğ–³Œø‰»
+			// ä¸è¦ãªã‚¤ãƒ™ãƒ³ãƒˆã‚’ç„¡åŠ¹åŒ–
 			this.addBoxEvents( 'oncontextmenu'	, this.eventInvalid );
 
-			// ˆÚ“®ƒCƒxƒ“ƒgİ’è
+			// ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 			this.addBoxEvents( 'onmousedown'	, this.eventPanelMoveStart );
 
 		} catch(e) {
@@ -454,13 +454,13 @@ var clsPanelControl = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®ƒCƒxƒ“ƒg@’Ç‰Á
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã€€è¿½åŠ 
 	clsPanelControl.prototype.addPanelMoveEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.addEvent( this.getBoxWindow(), 'onmousemove'	, this.eventPanelMove );
 
-			// ˆÊ’uŠm’è
+			// ä½ç½®ç¢ºå®š
 			this.addEvent( this.getBoxWindow(), 'onmouseup'		, this.eventPanelMoveStop );
 
 		} catch(e) {
@@ -468,13 +468,13 @@ var clsPanelControl = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®ƒCƒxƒ“ƒg@íœ
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã€€å‰Šé™¤
 	clsPanelControl.prototype.delPanelMoveEvent = function() {
 		try {
-			// ƒ}ƒEƒX’Ç]
+			// ãƒã‚¦ã‚¹è¿½å¾“
 			this.delEvent( this.getBoxWindow(), 'onmousemove'	, this.eventPanelMove );
 
-			// ˆÊ’uŠm’è
+			// ä½ç½®ç¢ºå®š
 			this.delEvent( this.getBoxWindow(), 'onmouseup'		, this.eventPanelMoveStop );
 
 		} catch(e) {
@@ -482,22 +482,22 @@ var clsPanelControl = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®@ŠJnˆ—
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã€€é–‹å§‹æ™‚å‡¦ç†
 	clsPanelControl.prototype.startPanelMove = function() {
 		try {
-			// ˆê’UƒLƒƒƒ“ƒZƒ‹
+			// ä¸€æ—¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			this.cancelPanelMove();
 
-			// ‘€ì–³Œø‚Íˆ—‚È‚µ
+			// æ“ä½œç„¡åŠ¹æ™‚ã¯å‡¦ç†ãªã—
 			if ( !this._PanelCtrlValid ) return true;
 
-			// Œ»İˆÊ’uæ“¾
+			// ç¾åœ¨ä½ç½®å–å¾—
 			this._PanelMovePos = this.getParentPos();
 
-			// ƒCƒxƒ“ƒg’Ç‰Á
+			// ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ 
 			this.addPanelMoveEvent();
 
-			// Å‘O–Ê•\¦
+			// æœ€å‰é¢è¡¨ç¤º
 			this.setBoxToFront( true );
 
 			return true;
@@ -507,15 +507,15 @@ var clsPanelControl = function( pArgument ) {
 		}
 	};
 
-	// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹ˆÚ“®@I—¹ˆ—
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ç§»å‹•ã€€çµ‚äº†æ™‚å‡¦ç†
 	clsPanelControl.prototype.cancelPanelMove = function() {
 		try {
-			// ƒCƒxƒ“ƒg’â~
+			// ã‚¤ãƒ™ãƒ³ãƒˆåœæ­¢
 			this.delPanelMoveEvent();
 
 			this._PanelMovePos = null;
 
-			// Å‘O–Ê‰ğœ
+			// æœ€å‰é¢è§£é™¤
 			this.setBoxToFront( false );
 
 		} catch(e) {
@@ -525,25 +525,25 @@ var clsPanelControl = function( pArgument ) {
 
 
 	// **************************************************************
-	// Œp³ƒƒ\ƒbƒh
+	// ç¶™æ‰¿ãƒ¡ã‚½ãƒƒãƒ‰
 	// **************************************************************
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsPanelControl.prototype.initClass = function( pArgument ) {
 		try {
-			// ƒvƒƒpƒeƒBİ’è
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_PANELCTRL_PROPERY );
 
-			// í•Êupanelv
+			// ç¨®åˆ¥ã€Œpanelã€
 			wInitArgument.kind = this._DEF_PANELCTRL_KIND;
 
-			// Œp³Œ³ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			// ç¶™æ‰¿å…ƒã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			if ( this._BasePrototype ) {
 				this._BasePrototype.initClass.call( this, wInitArgument );
 
 			}
 
-			// ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹g—p—L–³
+			// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ä½¿ç”¨æœ‰ç„¡
 			var wIsUsed		= true;
 			var wControlCls	= 'cssControl';
 
@@ -551,43 +551,43 @@ var clsPanelControl = function( pArgument ) {
 				if ( 'control' in pArgument ) wIsUsed = pArgument.control;
 			}
 
-			// g—p‚·‚é
+			// ä½¿ç”¨ã™ã‚‹
 			if ( wIsUsed ) {
-				// ‘€ì—p—v‘f¶¬
+				// æ“ä½œç”¨è¦ç´ ç”Ÿæˆ
 				if ( !this.createControlPanel(wIsUsed) ) {
-					throw { name: 'createControlPanel', message: '‘€ì—p—v‘f‚ğ¶¬‚Å‚«‚Ü‚¹‚ñB' };
+					throw { name: 'createControlPanel', message: 'æ“ä½œç”¨è¦ç´ ã‚’ç”Ÿæˆã§ãã¾ã›ã‚“ã€‚' };
 				
 				}
 			
-			// g—p‚µ‚È‚¢
+			// ä½¿ç”¨ã—ãªã„
 			} else {
-				// –¢g—pƒNƒ‰ƒX‚É•ÏX
+				// æœªä½¿ç”¨æ™‚ã‚¯ãƒ©ã‚¹ã«å¤‰æ›´
 				 wControlCls += '-NoUsed';
 
 			}
 
-			// ƒNƒ‰ƒX’Ç‰Á
+			// ã‚¯ãƒ©ã‚¹è¿½åŠ 
 			this.setBoxClass( wControlCls );
 			this.setBoxClass( 'no-print' );
 
-			// ‘€ìƒŠƒ“ƒNİ’è
+			// æ“ä½œãƒªãƒ³ã‚¯è¨­å®š
 			this.setControlLink( true );
 
-			// ‘€ì—pƒpƒlƒ‹•\¦
+			// æ“ä½œç”¨ãƒ‘ãƒãƒ«è¡¨ç¤º
 			this.dspBox( true );
 
-			// ƒpƒlƒ‹ƒTƒCƒY•Û‘¶
+			// ãƒ‘ãƒãƒ«ã‚µã‚¤ã‚ºä¿å­˜
 			this._PanelCtrlSize = this.getBoxSize();
 
-			// ƒpƒlƒ‹İ’è
+			// ãƒ‘ãƒãƒ«è¨­å®š
 			var wPanelLeft  = this.getArgument( pArgument, 'panelLeft' );
 			var wPanelRight = this.getArgument( pArgument, 'panelRight' );
 			this.setTargetPanel( wPanelLeft, wPanelRight );
 
-			// ƒCƒxƒ“ƒgİ’è
+			// ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 			this.initPanelEvent();
 
-			// ‰‰ñƒTƒCƒYİ’è
+			// åˆå›ã‚µã‚¤ã‚ºè¨­å®š
 			this.eventPanelSyncResize();
 
 		} catch(e) {
@@ -595,16 +595,16 @@ var clsPanelControl = function( pArgument ) {
 		}
 	};
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	clsPanelControl.prototype.freeClass = function() {
 		try {
-			// ƒCƒxƒ“ƒgíœ
+			// ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 			this.execFunction( this.delPanelMoveEvent );
 
-			// ƒŠƒTƒCƒY“¯ŠúƒCƒxƒ“ƒgíœ
+			// ãƒªã‚µã‚¤ã‚ºåŒæœŸã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
 			this.execFunction( this.delEvent, this.getBoxWindow(), 'onresize', this.eventPanelSyncResize );
 
-			// ƒvƒƒpƒeƒBŠJ•ú
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 			this._PanelCtrlSize			= null;
 			this._PanelCtrlLinkEle		= null;
 
@@ -622,8 +622,8 @@ var clsPanelControl = function( pArgument ) {
 			this._PanelLeftEle			= null;
 			this._PanelRightEle			= null;
 
-			// Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^
-			// ¦Œp³Œ³ƒfƒXƒgƒ‰ƒNƒ^‚ÍÅŒã‚Écall‚·‚é
+			// ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+			// â€»ç¶™æ‰¿å…ƒãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æœ€å¾Œã«callã™ã‚‹
 			if ( this._BasePrototype ) {
 				this._BasePrototype.freeClass.call( this );
 
