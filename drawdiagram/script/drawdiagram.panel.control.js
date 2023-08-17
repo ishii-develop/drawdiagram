@@ -548,7 +548,7 @@ var clsPanelControl = function( pArgument ) {
 			var wControlCls	= 'cssControl';
 
 			if ( pArgument ) {
-				if ( 'control' in pArgument ) wIsUsed = pArgument.control;
+				if ( 'ctrlpanel' in pArgument ) wIsUsed = pArgument.ctrlpanel;
 			}
 
 			// 使用する

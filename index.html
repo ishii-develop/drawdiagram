@@ -10,11 +10,11 @@
 
 <style type = "text/css">
 <!--
-	h1 {
-		background-color	: dimgray;
-		color				: white;
-		padding-left		: 15px;
-		border-radius		: 0 10px 10px 0;
+	html, body {
+		width				: 100%;
+		height				: 100%;
+		padding				: 0px;
+		margin				: 0px;
 	}
 
 	h4 {
@@ -22,7 +22,34 @@
 	}
 
 	ul {
-		width				: fit-content;
+		margin				: 0px;
+		padding				: 0px 0px 0px 20px;
+	}
+
+	#divHeader {
+		position			: absolute;
+		top					: 0px;
+		left				: 0px;
+		width				: 100%;
+		height				: 70px;
+	}
+
+	.header-title {
+		width				: 95%;
+		background-color	: dimgray;
+		color				: white;
+		border-radius		: 0 10px 10px 0;
+		margin				: 10px 0px 0px 20px;
+		padding-left		: 15px;
+	}
+
+	#divMenu {
+		position			: absolute;
+		top					: 70px;
+		left				: 0px;
+		width				: 320px;
+		margin				: 0px;
+		padding				: 0px;
 	}
 
 	.group {
@@ -34,7 +61,7 @@
 		padding			: 5px;
 		background-color: dimgray;
 		color			: white;
-		width			: 500px;
+		width			: 280px;
 		border-radius	: 5px;
 	}
 
@@ -62,6 +89,28 @@
 		height				: 15px;
 	}
 
+	#divContents {
+		position			: absolute;
+		top					: 70px;
+		left				: 320px;
+		width				: calc(100% - 340px);
+		height				: calc(100% - 80px);
+	}
+	
+	#frmContents {
+		width				: 100%;
+		height				: 100%;
+		padding				: 0px;
+		margin				: 0px;
+		border				: none;
+	}
+
+	.explanation {
+		padding				: 20px 50px 50px 20px;
+		margin				: 0px;
+		border				: none;
+	}
+
 -->
 </style>
 
@@ -72,7 +121,9 @@ var mDrawDiagram = null;
 // 起動時処理
 function fncLoad() {
 	try {
-		// 処理なし
+		fncDspFrame( 'frmContents',	false );
+		fncDspFrame( 'divGenogram',	false );
+		fncDspFrame( 'divEcoMap',	false );
 
 	} catch(e) { alert(e.message) }
 }
@@ -84,14 +135,63 @@ function fncUnLoad() {
 
 }
 
+// iframe表示切替
+function fncChangeIframe( pUrl ) {
+	try {
+		fncDspFrame( 'divGenogram',	false );
+		fncDspFrame( 'divEcoMap',	false );
+		fncDspFrame( 'frmContents',	true );
+
+		var wContents = document.getElementById('frmContents');
+		if ( !wContents ) return;
+
+		wContents.src = pUrl;
+
+	} catch(e) { alert(e.message); }
+}
+
+// 説明欄切替
+function fncDspExplanation( pId ) {
+	try {
+		fncDspFrame( 'frmContents',	false );
+
+		if ( pId == 'divGenogram' ) {
+			fncDspFrame( 'divGenogram',	true );
+			fncDspFrame( 'divEcoMap',	false );
+		} else {
+			fncDspFrame( 'divGenogram',	false );
+			fncDspFrame( 'divEcoMap',	true );
+		}
+
+	} catch(e) { alert(e.message); }
+}
+
+// div
+function fncDspFrame( pId, pDsp ) {
+	try {
+		var wContents = document.getElementById(pId);
+		if ( !wContents ) return;
+
+		if ( pDsp ) {
+			wContents.style.display = '';
+		} else {
+			wContents.style.display = 'none';
+		}
+
+	} catch(e) { alert(e.message); }
+}
+
 //-->
 </script>
 </head>
 
 <body onLoad="fncLoad();" onUnload="fncUnLoad();">
 
-	<h1>ジェノグラム　／　エコマップ　作成</h1>
+	<div id='divHeader'>
+	<h1 class='header-title'>ジェノグラム　／　エコマップ　作成</h1>
+	</div>
 
+	<div id='divMenu'>
 	<ul>
 		<li class="group">
 			<h4 class='group-title'>サンプル</h4>
@@ -112,9 +212,49 @@ function fncUnLoad() {
 			<h4 class='group-title'>マニュアル</h4>
 			<li class='group-list' title="図形描画機能">
 				<span class="file-i"></span>
-				<a target="'_blank'" href="./manual/drawdiagram.pdf" class="link">図形描画機能</a>
+				<a href="javascript:void(0);" onClick="fncChangeIframe('./manual/drawdiagram.pdf');" class="link">図形描画機能</a>
 			</li>
 		</li>
 	</ul>
+
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>ジェノグラム／エコマップとは</h4>
+			<li class='group-list' title="ジェノグラム">
+				<span class="file-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspExplanation('divGenogram');" class="link">ジェノグラム</a>
+			</li>
+
+			<li class='group-list' title="エコマップ">
+				<span class="file-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspExplanation('divEcoMap');" class="link">エコマップ</a>
+			</li>
+		</li>
+	</ul>
+
+	</div>
+	
+	<div id='divContents'>
+		<iframe name='frmContents' id='frmContents'></iframe>
+		<div id='divGenogram' class='explanation'>
+ジェノグラムとは、家族構成やその関係性をわかりやすくした家系図およびマップです。<br>
+少なくとも3世代分の家系図を、記号と線を用いるマッピング（図式化）という手法で視覚的にすみやかに把握できるよう表します。<br>
+<p>
+家族構成を図式で表すことによって、特有の課題や機微を把握することに使われます。 <br>
+ジェノグラムを作ることで、家族関係の歴史や本人を取り巻く現在の状況がわかりやすくなります。<br>
+<p>
+<img src='./image/genogram.jpg' />
+		</div>
+
+		<div id='divEcoMap' class='explanation'>
+エコマップとは、対象者を中心としてその周辺にある社会資源（家族、兄弟姉妹、友人、近隣住民、医師、各種介護関連機関など）との相関関係を、ネットワークとして表現した地図のことです。<br>
+生態地図とも言われます。<br>
+<p>
+エコマップの目的は、複雑な家族の人間関係をアセスメント（評価）し、そこに課題や可能性、解消したい不和などを見出すことです。家族とその外部にいる人々や組織との関わりを「見える化」するためのツールとも言えます。<br>
+<p>
+<img src='./image/ecomap.jpg' />
+		</div>
+
+	</div>
 </body>
 </html>

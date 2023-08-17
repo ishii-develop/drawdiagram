@@ -39,7 +39,7 @@ function fncDrawStartDiagram() {
 		// parent	: キャンバスの親要素
 		// locked	: キャンバス操作ロック状態
 		// sidepanel: サイドパネル使用有無
-		// control	: コントロールパネル使用有無
+		// ctrlpanel: コントロールパネル使用有無
 		// addfunc	: 項目追加時の標準callback
 		// delfunc	: 項目削除時の標準callback
 		// statfunc	: 項目ステータス変更時の標準callback
@@ -80,7 +80,23 @@ function fncDrawStartDiagram() {
 		var wMainParam = {
 			  parent	: wMain
 			, sidepanel	: false
-			, control	: false
+			, ctrlpanel	: false
+			, control		: {
+				  drag		: {
+					  person	: false
+					, group		: false
+					, comment	: true
+					, relation	: true
+					, freeline	: true
+				}
+				, moveInit	: {
+					  person	: true
+					, group		: true
+					, comment	: true
+					, relation	: true
+					, freeline	: true
+				}
+			}
 			, menu		: {
 				  sidepanel		: false
 				, contents		: {

@@ -460,6 +460,7 @@ var clsDrawMain = function( pArgument ) {
 			// 基本動作パラメータ取得
 			var wIsLocked		= false;
 			var wIsSidePanel	= true;
+			var wIsCtrlPanel	= true;
 
 			// メニュー基本設定
 			//　関係メニュー
@@ -468,6 +469,7 @@ var clsDrawMain = function( pArgument ) {
 			if ( this.isObject(pArgument) ) {
 				if ( 'locked'    in pArgument ) wIsLocked    = pArgument.locked;
 				if ( 'sidepanel' in pArgument ) wIsSidePanel = pArgument.sidepanel;
+				if ( 'ctrlpanel' in pArgument ) wIsCtrlPanel = pArgument.ctrlpanel;
 
 				// メニュー基本設定
 				if ( 'menu' in pArgument ) {
@@ -638,19 +640,22 @@ var clsDrawMain = function( pArgument ) {
 			// --------------------------------
 			// パネルコントローラ生成
 			// --------------------------------
-			var wMainPanel = null;
-			if ( this._MainPanelContents ) wMainPanel = this._MainPanelContents.getBoxElement();
+			if ( wIsCtrlPanel ) {
+				var wMainPanel = null;
+				if ( this._MainPanelContents ) wMainPanel = this._MainPanelContents.getBoxElement();
 
-			var wSidePanel = null;
-			if ( this._MainPanelSide ) wSidePanel = this._MainPanelSide.getBoxElement();
+				var wSidePanel = null;
+				if ( this._MainPanelSide ) wSidePanel = this._MainPanelSide.getBoxElement();
 
-			var wParamPanelControl = {
-						  panelLeft		: wSidePanel
-						, panelRight	: wMainPanel
-			};
-			self.copyProperty( pArgument, wParamPanelControl );
+				var wParamPanelControl = {
+							  panelLeft		: wSidePanel
+							, panelRight	: wMainPanel
+				};
+				self.copyProperty( pArgument, wParamPanelControl );
 
-			this._MainPanelControl = new clsPanelControl( wParamPanelControl );
+				this._MainPanelControl = new clsPanelControl( wParamPanelControl );
+
+			}
 
 		} catch(e) {
 			throw { name: 'clsDrawMain.initClass.' + e.name, message: e.message };
