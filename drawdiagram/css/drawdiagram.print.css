@@ -1,0 +1,22 @@
+@media print {
+	body {
+		-webkit-print-color-adjust	: exact;
+	}
+
+	.no-print {
+		display			: none		!important;
+	}
+
+	.main-print {
+		top				: 0px		!important;
+		left			: 0px		!important;
+		width			: 1620px	!important;
+		height			: 1120px	!important;
+	}
+
+	@page {
+		margin			: 5mm;
+		size			: A4 landscape;
+	}
+}
+

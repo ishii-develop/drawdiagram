@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html lang="ja">
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=Shift_JIS'>
+<meta http-equiv='Pragma' content='no-cache'>
+<meta http-equiv='Cache-Control' content='no-cache'>
+<meta http-equiv='Expires' content='Thu, 01 Dec 1994 16:00:00 GMT'>
+<meta http-equiv='content-language' content='ja'>
+<title>【ジェノグラム／エコマップ】</title>
+
+<style type = "text/css">
+<!--
+	h1 {
+		background-color	: dimgray;
+		color				: white;
+		padding-left		: 15px;
+		border-radius		: 0 10px 10px 0;
+	}
+
+	h4 {
+		margin				: 5px;
+	}
+
+	ul {
+		width				: fit-content;
+	}
+
+	.group {
+		list-style			: none;
+	}
+
+	.group-title {
+		margin-top		: 10px;
+		padding			: 5px;
+		background-color: dimgray;
+		color			: white;
+		width			: 500px;
+		border-radius	: 5px;
+	}
+
+	.group-list {
+		margin-left		: 24px;
+		list-style		: none;
+	}
+
+	.link-i::after {
+		content				: " ";
+		background-color	: greenyellow;
+		display				: inline-block;
+		vertical-align		: middle;
+		border-radius		: 50%;
+		width				: 15px;
+		height				: 15px;
+	}
+
+	.file-i {
+		content				: " ";
+		background-color	: aqua;
+		display				: inline-block;
+		vertical-align		: middle;
+		width				: 15px;
+		height				: 15px;
+	}
+
+-->
+</style>
+
+<script language="javascript">
+<!--
+var mDrawDiagram = null;
+
+// 起動時処理
+function fncLoad() {
+	try {
+		// 処理なし
+
+	} catch(e) { alert(e.message) }
+}
+
+// 終了時処理
+function fncUnLoad() {
+
+	// 処理なし
+
+}
+
+//-->
+</script>
+</head>
+
+<body onLoad="fncLoad();" onUnload="fncUnLoad();">
+
+	<h1>ジェノグラム　／　エコマップ　作成</h1>
+
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>サンプル</h4>
+			<li class='group-list' title="基本作成画面">
+				<span class="link-i"></span>
+				<a target="'_blank'" href="./sample_base.html" class="link">基本作成画面</a>
+			</li>
+
+			<li class='group-list' title="図形描画のみ画面">
+				<span class="link-i"></span>
+				<a target="'_blank'" href="./sample_simple.html" class="link">図形描画のみ</a>
+			</li>
+		</li>
+	</ul>
+
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>マニュアル</h4>
+			<li class='group-list' title="図形描画機能">
+				<span class="file-i"></span>
+				<a target="'_blank'" href="./manual/drawdiagram.pdf" class="link">図形描画機能</a>
+			</li>
+		</li>
+	</ul>
+</body>
+</html>
