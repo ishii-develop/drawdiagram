@@ -466,25 +466,44 @@ var clsDrawMain = function( pArgument ) {
 			//　関係メニュー
 			var wMenuRelationStat = null;
 
+			// メニューごとの基本設定取得
+			var fncSetItemMenuArgument = function( pMenuId ) {
+				if ( !('menu' in pArgument) ) return null;
+
+				var wArgumentMenu = pArgument['menu'];
+				if ( !self.isObject(wArgumentMenu) ) return null;
+
+				// メニュー詳細設定
+				if ( !(pMenuId in wArgumentMenu) ) return null;
+				var wMenuStat = wArgumentMenu[pMenuId];
+
+				var wResultStat = {};
+				for( var wRelKey in wMenuStat ) wResultStat[wRelKey] = wMenuStat[wRelKey];
+
+				return wResultStat;
+			};
+
+			// メニュー詳細設定
+			var fncSetItemMenuConfig = function( pConfigKey, pItemKd, pMenuConfig ) {
+				// 詳細設定ない場合は処理なし
+				if ( !(pConfigKey in pMenuConfig) ) return;
+				if ( typeof pMenuConfig[pConfigKey] == 'boolean' ) return;
+
+				var wMenuConfigDitail = pMenuConfig[pConfigKey];
+				if ( pItemKd in wMenuConfigDitail ) {
+					pMenuConfig[pConfigKey] = wMenuConfigDitail[pItemKd];
+
+				}
+
+			};
+
 			if ( this.isObject(pArgument) ) {
 				if ( 'locked'    in pArgument ) wIsLocked    = pArgument.locked;
 				if ( 'sidepanel' in pArgument ) wIsSidePanel = pArgument.sidepanel;
 				if ( 'ctrlpanel' in pArgument ) wIsCtrlPanel = pArgument.ctrlpanel;
 
-				// メニュー基本設定
-				if ( 'menu' in pArgument ) {
-					var wArgumentMenu = pArgument['menu'];
-					if ( this.isObject(wArgumentMenu) ) {
-						// 関係メニュー
-						if ( 'relation' in wArgumentMenu ) {
-							var wMenuRelation = wArgumentMenu['relation'];
-
-							wMenuRelationStat = {};
-							for( var wRelKey in wMenuRelation ) wMenuRelationStat[wRelKey] = wMenuRelation[wRelKey];
-						}
-					}
-
-				}
+				// 関係メニュー基本設定
+				var wMenuRelationStat = fncSetItemMenuArgument( 'relation' );
 
 				// Callback関数保存
 				this._MainFuncChgStat	= pArgument.statfunc;

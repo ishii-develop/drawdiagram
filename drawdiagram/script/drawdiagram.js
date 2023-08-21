@@ -2547,7 +2547,7 @@ var clsBaseBox = function( pArgument ) {
 	// **************************************************************
 
 	// コンストラクタ
-	clsBaseBox.prototype.initClass = function( pArgument ) {
+	clsBaseBox.prototype.initClass = function( pArgument, pNoBoxReq ) {
 		try {
 			// パラメータ取得
 			this.saveArgument( pArgument );
@@ -2566,7 +2566,7 @@ var clsBaseBox = function( pArgument ) {
 			var wLoadStyle	= this.loadDataVal( 'style' );
 
 			// BOX生成
-			this.createBoxElement( wLoadId );
+			if ( !pNoBoxReq ) this.createBoxElement( wLoadId );
 
 			// 親要素設定
 			this.initParent( this._BoxParent );

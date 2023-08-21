@@ -1687,22 +1687,29 @@ var clsItemBox = function( pArgument ) {
 	};
 
 	// 関連情報設定
-	clsItemBox.prototype.setRelationInf = function( pEvent, pId ) {
+	clsItemBox.prototype.setRelationInf = function( pEvent, pParam ) {
 		try {
+			// パラメータ無効時は処理なし
+			if ( !this.isObject(pParam) ) return false;
+
 			// 対象IDクリア
 			this._ItemRelationSetId = '';
 
+			var wTargetId = pParam.id;
+			if ( !wTargetId ) return false;
+
+			var wSrcKind = this.getBoxKind();
+			var wTargetKind = pParam.kind;
+
 			// 登録済チェック
 			var wRelationInf = null;
-			if ( typeof pId == 'string' ) {
-				if ( pId in this._ItemRelation ) {
-					wRelationInf = this._ItemRelation[pId].relationInf;
-				
-				}
+			if ( wTargetId in this._ItemRelation ) {
+				wRelationInf = this._ItemRelation[wTargetId].relationInf;
+			
 			}
 
 			// 登録対象ID保存
-			this._ItemRelationSetId = pId;
+			this._ItemRelationSetId = wTargetId;
 
 			// 関連情報設定メニュー（共通）有効ならメニュー表示
 			var wRelationMenu = this.loadPublicMenu('relation');
@@ -1712,10 +1719,14 @@ var clsItemBox = function( pArgument ) {
 			var wEvePos = this.getEventPos( pEvent );
 
 			wRelationMenu.dspMenu( { 
-							  x: wEvePos.x
-							, y: wEvePos.y
-							, callback: this.eventRelationSet
-							, relationInf: wRelationInf
+							  x				: wEvePos.x
+							, y				: wEvePos.y
+							, callback		: this.eventRelationSet
+							, relationInf	: wRelationInf
+							, targetKind	: {
+								  src	: wSrcKind
+								, dst	: wTargetKind
+							  }
 						} );
 			
 			// 関連付け開始は関連情報メニューイベントから実行

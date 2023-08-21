@@ -17,6 +17,7 @@ var clsMenuRelation = function( pArgument ) {
 			 'z-index'				: '3200'
 		};
 
+		this._DEF_MENU_RELATION_COLOR		= '#000000';
 		this._DEF_MENU_RELATION_SIZE		= { width: 180, height: 210 };
 		this._DEF_MENU_RELATION_LINE_HEIGHT	= 24;
 
@@ -66,6 +67,10 @@ var clsMenuRelation = function( pArgument ) {
 		// 関係選択イベント
 		this.eventMenuRelChange = function( pEvent ) {
 			try {
+				// CHG 2023.08.21
+				// ※ 関係変更による色変更処理停止
+				return false;
+
 				var wRelId = self.getBoxId() + '_rel';
 				var wRelEle = self.getElement( wRelId );
 				if ( !wRelEle ) return false;
@@ -73,12 +78,8 @@ var clsMenuRelation = function( pArgument ) {
 				var wRelVal = wRelEle.options[wRelEle.selectedIndex].value;
 				var wSelRel = self._RelationContents.getDefKind( wRelVal );
 
-				var wColorId = self.getBoxId() + '_color';
-				var wColorEle = self.getElement( wColorId );
-				if ( !wColorEle ) return false;
-
 				// 背景色変更
-				self.setStyle( wColorEle, { 'background-color' : wSelRel.color } );
+				self.setSelectColor( wSelRel.color );
 
 			} catch(e) {
 				self.catchErrorDsp(e);
@@ -97,14 +98,8 @@ var clsMenuRelation = function( pArgument ) {
 				
 				// 色選択時
 				if ( wKind == 'select' ) {
-					var wColor = pParam.color;
-
-					var wColorId = self.getBoxId() + '_color';
-					var wColorEle = self.getElement( wColorId );
-					if ( !wColorEle ) return false;
-
 					// 背景色変更
-					self.setStyle( wColorEle, { 'background-color' : wColor } );
+					self.setSelectColor( pParam.color );
 
 				}
 
@@ -272,10 +267,26 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
+	// 背景色設定
+	clsMenuRelation.prototype.setSelectColor = function( pColor ) {
+		try {
+			var wColorId = this.getBoxId() + '_color';
+			var wColorEle = this.getElement( wColorId );
+			if ( !wColorEle ) return false;
+
+			// 背景色変更
+			this.setStyle( wColorEle, { 'background-color' : pColor } );
+
+		} catch(e) {
+			throw { name: 'setSelectColor.' + e.name, message: e.message };
+		}
+	};
+
 	// 設定内容初期化
-	clsMenuRelation.prototype.initCondition = function( pRelationInf ) {
+	clsMenuRelation.prototype.initCondition = function( pRelationInf, pInitParam ) {
 		try {
 			var wId = this.getBoxId();
+			var wDspParam = {};
 
 			// 種別
 			var wStatEle = this.getElement( wId + '_stat' );
@@ -294,11 +305,29 @@ var clsMenuRelation = function( pArgument ) {
 			var wRelEle = this.getElement( wId + '_rel' );
 			if ( wRelEle ) {
 				var wRelIdx = this._DEF_MENU_RELATION_VALUE.kind;
+
 				// 関係有効時のみ値設定
-				if ( this._RelationConfig.kind ) {
+				var wKindUse = this._RelationConfig.kind;
+				if ( this.isObject(pInitParam) ) {
+					if ( 'kind' in pInitParam ) wKindUse = pInitParam.kind;
+				}
+
+				// 「関係」が有効な関係性
+				if ( wKindUse ) {
 					if ( pRelationInf ) {
 						wRelIdx = this.getSelectIndex( '_rel', pRelationInf.getRelation() );
 					}
+
+					// 「関係」を表示
+					this.resetContents( '_rel', true );
+
+				// 「関係」が有効な項目からのメニュー表示時
+				} else if ( this._RelationConfig.kind ) {
+					// 「関係」を非表示
+					this.resetContents( '_rel', false );
+					
+					wDspParam.kind = false;
+
 				}
 				wRelEle.selectedIndex = wRelIdx;
 			}
@@ -331,15 +360,72 @@ var clsMenuRelation = function( pArgument ) {
 
 			// 色
 			if ( pRelationInf ) {
-				this.eventMenuColorSelect( {}, { kind: 'select', color: pRelationInf.getColor() } );
+				this.setSelectColor( pRelationInf.getColor() );
 
 			} else {
-				this.eventMenuRelChange();
+				this.setSelectColor( this._DEF_MENU_RELATION_COLOR );
+
+			}
+
+			// windowサイズ設定
+			this.setContentsSize( wDspParam );
+
+		} catch(e) {
+			throw { name: 'initCondition.' + e.name, message: e.message };
+		}
+	};
+
+
+	// **************************************************************
+	// Config値
+	// **************************************************************
+
+	// Config値取得
+	clsMenuRelation.prototype.getConfigValue = function( pConfigKey, pRelKind, pArgument ) {
+		try {
+			var wConfigParam = pArgument;
+			if ( !wConfigParam ) {
+				wConfigParam = this.loadArgument( 'config' );
+			}
+
+			// Config値なければnull
+			if ( !this.isObject(wConfigParam) ) return null;
+			if ( !(pConfigKey in wConfigParam) ) return null;
+
+			// Objectでなければそのままの値
+			var wConfigVal = wConfigParam[pConfigKey];
+			if ( !this.isObject(wConfigVal) ) return wConfigVal;
+
+			// 種別ごとの値取得
+			var wKind = pRelKind;
+			if ( wKind.length == 0 ) return null;
+
+			switch (wKind) {
+			case 'item-person':
+				wKind = 'person';
+				break;
+
+			case 'item-group':
+				wKind = 'group';
+				break;
+
+			case 'item-relation':
+				wKind = 'relation';
+				break;
+			
+			}
+
+			// Key値存在時のみ値返す
+			if ( wKind in wConfigVal ) {
+				return wConfigVal[wKind];
+
+			} else {
+				return null;
 
 			}
 
 		} catch(e) {
-			throw { name: 'initCondition.' + e.name, message: e.message };
+			throw { name: 'getConfigValue.' + e.name, message: e.message };
 		}
 	};
 
@@ -447,7 +533,7 @@ var clsMenuRelation = function( pArgument ) {
 				}
 
 				var wHtml = '';
-				wHtml += "<tr" + wDisplay + ">"
+				wHtml += "<tr id='" + pId + "_tr' " + wDisplay + ">"
 				wHtml += "<td style='text-align: right; width: 60px;'>" + pTitle + "：</td>";
 				wHtml += "<td>"
 				wHtml += "<select id='" + pId + "' " + wDisabled + ">";
@@ -534,6 +620,48 @@ var clsMenuRelation = function( pArgument ) {
 		}
 	};
 
+	// html設定　windowサイズ変更
+	clsMenuRelation.prototype.setContentsSize = function( pDspParam ) {
+		try {
+			var wConfVal;
+			var wParamFlg = this.isObject( pDspParam );
+
+			// サイズ設定
+			var wHeight = this._DEF_MENU_RELATION_SIZE.height;
+			for( var wKey in this._RelationConfig ) {
+				wConfVal = this._RelationConfig[wKey];
+				if ( wParamFlg ) {
+					if ( wKey in pDspParam ) wConfVal = pDspParam[wKey];
+				}
+
+				if ( !wConfVal ) wHeight -= this._DEF_MENU_RELATION_LINE_HEIGHT;
+			}
+
+			this.setBoxStyle( { height: (wHeight + 'px'), width: (this._DEF_MENU_RELATION_SIZE.width + 'px') } );
+
+		} catch(e) {
+			throw { name: 'setContentsSize.' + e.name, message: e.message };
+		}
+	};
+
+	// html設定　表示項目変更
+	clsMenuRelation.prototype.resetContents = function( pEleId, pDisplay ) {
+		try {
+			var wId = this.getBoxId();
+
+			var wLineEle = this.getElement( wId + pEleId + '_tr' );
+			if ( !wLineEle ) return;
+
+			// 表示切替
+			var wDispVal = '';
+			if ( !pDisplay ) wDispVal = 'none';
+			this.setStyle( wLineEle, { display: wDispVal } );
+
+		} catch(e) {
+			throw { name: 'resetContents.' + e.name, message: e.message };
+		}
+	};
+
 
 	// **************************************************************
 	// 継承対象メソッド
@@ -555,8 +683,21 @@ var clsMenuRelation = function( pArgument ) {
 				}
 
 			}
+
+			// 表示設定
+			var wKindUse = this._RelationConfig.kind;
+
+			var wTargetKind = pParam.targetKind;
+			if ( this.isObject(wTargetKind) ) {
+				var wSrcKind = this.getConfigValue( 'kind', wTargetKind.src );
+				var wDstKind = this.getConfigValue( 'kind', wTargetKind.dst );
+
+				if ( wSrcKind != null ) wKindUse = (wKindUse && wSrcKind);
+				if ( wDstKind != null ) wKindUse = (wKindUse && wDstKind);
+			}
+
 			// 設定値初期化
-			this.initCondition( wRelationInf );
+			this.initCondition( wRelationInf, { kind: wKindUse } );
 
 			// 継承元メニュー表示
 			if ( this._MenuPrototype ) {
@@ -592,16 +733,11 @@ var clsMenuRelation = function( pArgument ) {
 			// html設定
 			this.createContents();
 
+			// サイズ設定
+			this.setContentsSize();
+
 			// イベント設定
 			this.setRelationEvent( false );
-
-			// サイズ設定
-			var wHeight = this._DEF_MENU_RELATION_SIZE.height;
-			for( var wKey in this._RelationConfig ) {
-				if ( !this._RelationConfig[wKey] ) wHeight -= this._DEF_MENU_RELATION_LINE_HEIGHT;
-			}
-
-			this.setBoxStyle( { height: (wHeight + 'px'), width: (this._DEF_MENU_RELATION_SIZE.width + 'px') } );
 
 			// 継承元初期設定
 			if ( this._MenuPrototype ) {
@@ -622,6 +758,8 @@ var clsMenuRelation = function( pArgument ) {
 	// コンストラクタ
 	clsMenuRelation.prototype.initClass = function( pArgument ) {
 		try {
+			var self = this;
+
 			// プロパティ設定
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_MENU_RELATION_PROPERTY );
 
@@ -634,23 +772,19 @@ var clsMenuRelation = function( pArgument ) {
 			// メニュー設定取得
 			var wAutoClose = false;
 
-			var wMenuConfig = null;
 			if ( this.isObject(pArgument) ) {
-				if ( 'config' in pArgument ) {
-					if ( this.isObject(pArgument.config) ) wMenuConfig = pArgument.config;
-				}
-			}
+				var wMenuRelKind = '';
+				if ( 'relKind' in pArgument ) wMenuRelKind = pArgument.relKind;
 
-			if ( wMenuConfig ) {
-				if ( 'autoClose' in wMenuConfig ) wAutoClose = wMenuConfig.autoClose;
+				// Config設定値取得
+				var wValue = this.getConfigValue( 'autoClose', wMenuRelKind, pArgument.config );
+				if ( wValue != null ) wAutoClose = wValue;
 
-				// 表示情報設定
 				for( var wKindKey in this._RelationConfig ) {
-					if ( wKindKey in wMenuConfig ) {
-						this._RelationConfig[wKindKey] = wMenuConfig[wKindKey];
-					}
+					wValue = this.getConfigValue( wKindKey, wMenuRelKind, pArgument.config );
+					if ( wValue != null ) this._RelationConfig[wKindKey] = wValue;
 				}
-			
+
 			}
 
 			// 自動close設定

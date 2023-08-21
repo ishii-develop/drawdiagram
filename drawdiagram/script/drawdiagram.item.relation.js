@@ -46,20 +46,16 @@ var clsItemRelation = function( pArgument ) {
 		];
 
 		this._DEF_RELATIONINF_LIST_KIND			= [
-				  { value: 99, name: 'その他'		, color: '#000000'	}
-				, { value:  1, name: '親子'			, color: '#339900'	}
-				, { value: 20, name: '親族'			, color: '#00CC00'	}
-				, { value: 10, name: '夫婦'			, color: '#333399'	}
-				, { value: 11, name: '離婚'			, color: '#FF9900'	}
-				, { value: 12, name: '再婚'			, color: '#FF99CC'	}
-				, { value: 30, name: '敵対'			, color: '#FF0000'	}
+				  { value: 99, name: ''				, color: '#000000'	, icon : ''	}
+				, { value: 10, name: '離婚'			, color: '#FF9900'	, icon : 'icon_stat_divorce.png'	}
+				, { value: 20, name: '別居'			, color: '#FF99CC'	, icon : 'icon_stat_separation.png'	}
 		];
 
 		this._DEF_RELATIONINF_LIST_KIND_GROUP	= [
-				  { value: 99, name: 'その他'		, color: '#000000'	}
+				  { value: 99, name: ''				, color: '#000000'	}
 				, { value:  1, name: '親子'			, color: '#339900'	}
-				, { value: 20, name: '親族'			, color: '#00CC00'	}
-				, { value: 30, name: '敵対'			, color: '#FF0000'	}
+				, { value: 30, name: '親族'			, color: '#00CC00'	}
+				, { value: 31, name: '敵対'			, color: '#FF0000'	}
 		];
 
 		this._DEF_RELATIONINF_LIST_WAY			= [
@@ -100,6 +96,9 @@ var clsItemRelation = function( pArgument ) {
 
 		// 中継点
 		this._RelationInfPoints					= {};
+		
+		// 状態設定
+		this._RelationInfStatus					= { kind: '', item: null, size: null };
 
 
 		// **************************************************************
@@ -288,6 +287,13 @@ var clsItemRelation = function( pArgument ) {
 	clsItemRelation.prototype.setContents = function( pContents ) {
 		try {
 			for( var wKey in pContents ) {
+				// 関係状態設定時
+				if ( wKey == 'rel' ) {
+					// 関係状態設定
+					this.setStatusItem( pContents[wKey] );
+
+				}
+
 				this._RelationInfContents[wKey] = pContents[wKey];
 			}
 
@@ -299,6 +305,9 @@ var clsItemRelation = function( pArgument ) {
 	// 関係　設定／取得
 	clsItemRelation.prototype.setRelation = function( pRelation ) {
 		try {
+			// 関係状態設定
+			this.setStatusItem( pRelation );
+
 			this._RelationInfContents.rel = pRelation;
 
 		} catch(e) {
@@ -312,6 +321,62 @@ var clsItemRelation = function( pArgument ) {
 
 		} catch(e) {
 			throw { name: 'getRelation', message: e.message };
+		}
+	};
+
+	// 関係　アイコン取得
+	clsItemRelation.prototype.getStatusIcon = function( pStatusId ) {
+		try {
+			var wIconFile = '';
+
+			for( var wIdx=0; wIdx < this._DEF_RELATIONINF_LIST_KIND.length; wIdx++ ) {
+				if ( String(pStatusId) == String(this._DEF_RELATIONINF_LIST_KIND[wIdx].value) ) {
+					wIconFile = this._DEF_RELATIONINF_LIST_KIND[wIdx].icon;
+					break;
+				}
+
+			}
+			
+			return wIconFile;
+
+		} catch(e) {
+			throw { name: 'getStatusIcon', message: e.message };
+		}
+	};
+
+	// 関係　状態項目有無
+	clsItemRelation.prototype.isRelationStat = function() {
+		try {
+			if ( !this._RelationInfStatus.item ) return false;
+			if ( !this._RelationInfStatus.kind ) return false;
+
+			return true;
+
+		} catch(e) {
+			throw { name: 'isRelationStat', message: e.message };
+		}
+	};
+
+	// 関係　状態項目サイズ
+	clsItemRelation.prototype.getRelationStatSize = function() {
+		try {
+			if ( !this.isRelationStat() ) return null;
+
+			return this._RelationInfStatus.size;
+
+		} catch(e) {
+			throw { name: 'getRelationStatSize', message: e.message };
+		}
+	};
+
+	clsItemRelation.prototype.getRelationStatSizeH = function() {
+		try {
+			if ( !this.isRelationStat() ) return null;
+
+			return this._RelationInfStatus.sizeH;
+
+		} catch(e) {
+			throw { name: 'getRelationStatSizeH', message: e.message };
 		}
 	};
 
@@ -372,6 +437,29 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
+	clsItemRelation.prototype.getCommentSize = function() {
+		try {
+			if ( !this._RelationInfContents.cmtSize ) return null;
+
+			return this._RelationInfContents.cmtSize;
+
+		} catch(e) {
+			throw { name: 'getCommentSize', message: e.message };
+		}
+	};
+
+	clsItemRelation.prototype.isComment = function() {
+		try {
+			if ( !this._RelationInfContents.cmt ) return 0;
+
+			var wComLen = String(this._RelationInfContents.cmt).length;
+			return ( wComLen > 0 );
+
+		} catch(e) {
+			throw { name: 'isComment', message: e.message };
+		}
+	};
+
 	// 色　設定／取得
 	clsItemRelation.prototype.setColor = function( pColor ) {
 		try {
@@ -388,6 +476,201 @@ var clsItemRelation = function( pArgument ) {
 
 		} catch(e) {
 			throw { name: 'getColor', message: e.message };
+		}
+	};
+
+
+	// **************************************************************
+	// 関係状態設定
+	// **************************************************************
+
+	// 関係状態設定時　関係状態項目設定
+	clsItemRelation.prototype.setStatusItem = function( pStatus ) {
+		try {
+			var wStatId = String(pStatus);
+
+			// 状態　アイコン設定
+			switch( wStatId ) {
+			// 離婚
+			case '10':
+			// 別居
+			case '20':
+				// 関係状態　項目追加
+				this.addStatusItem( wStatId );
+				break;
+
+			default:
+				// 関係状態クリア
+				this.clearStatusItem();
+			}
+
+		} catch(e) {
+			throw { name: 'clearStatusItem', message: e.message };
+		}
+	};
+
+	// 関係状態項目設定
+	clsItemRelation.prototype.addStatusItem = function( pStatuId ) {
+		try {
+			if ( !this._RelationInfStatus ) this._RelationInfStatus = {};
+
+			// 設定済なら処理なし
+			var wKind = this._RelationInfStatus.kind;
+			if ( wKind == pStatuId ) return;
+
+			// 項目未作成
+			if ( !this._RelationInfStatus.item ) {
+				// 項目作成
+				var wAddItem = this.createStatusItem();
+				if ( !wAddItem ) retrun;
+
+				// 項目保存
+				this._RelationInfStatus.item = wAddItem;
+
+				// 項目サイズ保存
+				this._RelationInfStatus.size = this.getSize( wAddItem );
+
+				// 配置補正値保存
+				var wHw = Math.floor( this._RelationInfStatus.size.width / 2 );
+				var wHh = Math.floor( this._RelationInfStatus.size.height / 2 );
+				this._RelationInfStatus.sizeH = {
+					  width		: wHw
+					, height	: wHh
+				};
+
+			}
+
+			// 項目のアイコン変更
+			var wIconFile = this.getStatusIcon( pStatuId );
+			if ( String(wIconFile).length > 0 ) {
+				var wImgPath = this.getImagePath();
+				var wBackGround = "url(" + wImgPath + wIconFile + ")";
+
+				this.setStyle( this._RelationInfStatus.item, { 'background-image': wBackGround } );
+
+			}
+			this._RelationInfStatus.kind = pStatuId;
+
+		} catch(e) {
+			throw { name: 'addStatusItem', message: e.message };
+		}
+	};
+
+	// 関係状態項目作成
+	clsItemRelation.prototype.createStatusItem = function( ) {
+		try {
+			// ユニークID設定
+			var wItemId = this.getBoxId() + '_kind';
+
+			// 要素生成
+			var wAddEle = this.addElement( 'div', wItemId );
+			if ( !wAddEle ) return null;
+
+			// 一旦非表示
+			this.setStyle( wAddEle, { display: 'none' } );
+
+			this.addClass( wAddEle, 'cssItem-relation-kind' );
+
+			// 親要素へ追加
+			this.appendElementToParent( this.getParent(), wAddEle );
+
+			return wAddEle;
+
+		} catch(e) {
+			throw { name: 'createStatusItem', message: e.message };
+		}
+	};
+
+	// 関係状態項目削除
+	clsItemRelation.prototype.delStatusItem = function( ) {
+		try {
+			if ( !this._RelationInfStatus ) return;
+			if ( !this._RelationInfStatus.item ) return;
+
+this.consoleLog( 1 );
+			// 要素削除
+			this.delElement( this._RelationInfStatus.item );
+
+			this._RelationInfStatus.item = null;
+
+		} catch(e) {
+			throw { name: 'delStatusItem', message: e.message };
+		}
+	};
+
+	// 関係状態クリア
+	clsItemRelation.prototype.clearStatusItem = function( ) {
+		try {
+			if ( this._RelationInfStatus.item ) {
+				this.setStyle( this._RelationInfStatus.item, { 'display': 'none' } );
+			}
+
+			this._RelationInfStatus.kind = '';
+
+		} catch(e) {
+			throw { name: 'clearStatusItem', message: e.message };
+		}
+	};
+
+	// 関係状態項目表示
+	clsItemRelation.prototype.dspStatusItem = function( pStatPos ) {
+		try {
+			if ( !this._RelationInfStatus.kind ) return;
+			if ( !this._RelationInfStatus.item ) return;
+
+			// 表示位置未指定時は表示なし
+			if ( !pStatPos ) {
+				this.setStyle( this._RelationInfStatus.item, { display: 'none' } );
+				return;
+
+			}
+
+			// 配置中心点取得
+			var wItmPos = Object.create( pStatPos );
+
+			// コメントサイズ補正
+			if ( this._RelationInfStatus.sizeH ) {
+				wItmPos.left -= this._RelationInfStatus.sizeH.width;
+				wItmPos.top  -= this._RelationInfStatus.sizeH.height;
+			}
+
+			var wStyle = {
+				  left		: wItmPos.left + 'px'
+				, top		: wItmPos.top  + 'px'
+				, display	: ''
+			};
+
+			// 角度調整
+			// ※ アイコンのラインと関係ラインが重ならないようにする
+			if ( 'deg' in pStatPos ) {
+				var wRotate = 0;
+				// 離婚
+				if ( this._RelationInfStatus.kind == '10' ) {
+					if ( pStatPos.deg < -45 ) {
+						wRotate = ( 90 - Math.abs(pStatPos.deg) );
+					} else if ( pStatPos.deg < 0 ) {
+						wRotate = pStatPos.deg;
+					}
+
+				// 別居
+				} else if ( this._RelationInfStatus.kind == '20' ) {
+					if ( pStatPos.deg > 0 ) {
+						if ( pStatPos.deg < 45 ) {
+							wRotate = Math.abs(pStatPos.deg);
+						} else if ( pStatPos.deg < 75 ) {
+							wRotate = -30;
+						}
+					}
+				}
+
+				wStyle.transform = 'rotate(' + wRotate + 'deg)';
+			}
+
+			// 表示
+			this.setStyle( this._RelationInfStatus.item, wStyle );
+
+		} catch(e) {
+			throw { name: 'dspStatusItem', message: e.message };
 		}
 	};
 
@@ -429,7 +712,7 @@ var clsItemRelation = function( pArgument ) {
 		try {
 			var wRetLineKind = Object.create( this._DEF_RELATIONINF_LINE );
 
-			// 種別取得
+			// 状態取得
 			var wStatus = this._RelationInfContents.stat;
 			for( var wIdx=0; wIdx < this._DEF_RELATIONINF_LIST_STAT.length; wIdx++ ) {
 				if ( String(wStatus) == String(this._DEF_RELATIONINF_LIST_STAT[wIdx].value) ) {
@@ -647,6 +930,29 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
+	// 中継点コメント位置取得
+	clsItemRelation.prototype.getCommentPoint = function( ) {
+		try {
+			var wPointEle = this.getBoxElement();
+			if ( !wPointEle ) return null;
+
+			// 中継点位置設定あれば返す
+			var wId = wPointEle.getAttribute('id');
+			
+			if ( wId in this._RelationInfPoints ) {
+				return Object.create( this._RelationInfPoints[wId] );
+			
+			} else {
+				return null;
+
+			}
+
+		} catch(e) {
+			throw { name: 'getCommentPoint.' + e.name, message: e.message };
+
+		}
+	};
+
 	// 中継点クリア
 	clsItemRelation.prototype.clearLinePoint = function( pEvent, pElement ) {
 		try {
@@ -671,37 +977,20 @@ var clsItemRelation = function( pArgument ) {
 	clsItemRelation.prototype.setCmtElement = function( pRelId ) {
 		try {
 			// コメント設定
-			var wCmtHtml  = '';
-			var wDivTitle = '';
 			var wComment  = this._RelationInfContents.cmt;
-
-			var wLineKind = this.getRelationKind();
-			// 関係　その他
-			if ( wLineKind.value == 99 ) {
-				wCmtHtml = wComment;
-
-			// 以外
-			} else {
-				wCmtHtml  = wLineKind.name;
-				wDivTitle = wComment;
-
-			}
 
 			// 表示内容設定
 			var wCmtEle = this.getBoxElement();
-			wCmtEle.innerHTML = wCmtHtml;
+			wCmtEle.innerHTML = wComment;
 
 			// 表示コメント保存
-			this._RelationInfHtml = wCmtHtml;
-
-			// タイトル設定
-			this.setBoxAttribute( { title: wDivTitle } );
+			this._RelationInfHtml = wComment;
 
 			// 枠設定
 			this.setBoxStyle( { 'border-color': this.getRelationColor() } );
 
 			// コメントない場合
-			if ( String(wCmtHtml).length == 0 ) {
+			if ( String(wComment).length == 0 ) {
 				// 空コメントclass追加
 				this.setBoxClass('cssItem-relation-nocmt');
 				this.setBoxClass('no-print');
@@ -712,6 +1001,9 @@ var clsItemRelation = function( pArgument ) {
 				this.delBoxClass('no-print');
 
 			}
+
+			// コメントサイズ保存
+			this._RelationInfContents.cmtSize = this.getBoxSize();
 
 		} catch(e) {
 			throw { name: 'setCmtElement.' + e.name, message: e.message };
@@ -737,7 +1029,7 @@ var clsItemRelation = function( pArgument ) {
 	};
 
 	// 関係コメント表示
-	clsItemRelation.prototype.dspRelationCmt = function( pX, pY ) {
+	clsItemRelation.prototype.dspRelationCmt = function( pX, pY, pStatPos ) {
 		try {
 			// コメント位置補正
 			var wSize = this.getBoxSize();
@@ -764,6 +1056,9 @@ var clsItemRelation = function( pArgument ) {
 
 			// 表示
 			this.dspBox(true);
+			
+			// 関係状態項目表示
+			this.dspStatusItem( pStatPos );
 
 		} catch(e) {
 			throw { name: 'dspRelationCmt.' + e.name, message: e.message };
@@ -1176,7 +1471,7 @@ var clsItemRelation = function( pArgument ) {
 	// **************************************************************
 
 	// コンストラクタ
-	clsItemRelation.prototype.initClass = function( pArgument ) {
+	clsItemRelation.prototype.initClass = function( pArgument, pNoBoxReq ) {
 		try {
 			// プロパティ設定
 			var wInitArgument = this.setArgumentInProperty( pArgument, this._DEF_RELATIONINF_STYLE );
@@ -1194,7 +1489,7 @@ var clsItemRelation = function( pArgument ) {
 
 			// 継承元コンストラクタ
 			if ( this._ItemPrototype ) {
-				this._ItemPrototype.initClass.call( this, wInitArgument );
+				this._ItemPrototype.initClass.call( this, wInitArgument, pNoBoxReq );
 
 			}
 
@@ -1215,6 +1510,10 @@ var clsItemRelation = function( pArgument ) {
 			this._RelationInfKind			= null;
 			this._RelationInfCmtMove		= null;
 			this._RelationInfMaster			= null;
+
+			// 要素削除
+			this.execFunction( this.delStatusItem );
+			this._RelationInfStatus			= null;
 
 			// 継承元デストラクタ
 			// ※継承元デストラクタは最後にcallする

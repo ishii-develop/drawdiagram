@@ -9,6 +9,7 @@
 // 　 200：グループ
 // 　 250：キャンバス
 // 　 260：フリーライン
+// 　 270：関係情報　関係状態アイコン
 // 　 300：人物
 // 　 310：関係コメント
 // 　5000：マウス追従コメント
@@ -286,6 +287,16 @@ body {
 	width				: 10px;
 	height				: 10px;
 	border-radius		: 10px;
+}
+
+.cssItem-relation-kind {
+	z-index				: 270;
+	position			: absolute;
+	width				: 32px;
+	height				: 32px;
+	margin				: 0px;
+	padding				: 0px;
+	border-width		: 0px;
 }
 
 .cssItem-sel {

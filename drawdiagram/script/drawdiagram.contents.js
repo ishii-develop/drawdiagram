@@ -822,7 +822,7 @@ var clsContentsBox = function( pArgument ) {
 				// 追加／変更時
 				} else {
 					// 関係変更メニュー表示
-					wTargetItm.setRelationInf( pEvent, wClickId );
+					wTargetItm.setRelationInf( pEvent, { id: wClickId, kind: wClickKd } );
 
 					// ※変更結果反映は各項目からの変更通知イベントで実施される
 
@@ -1246,6 +1246,8 @@ var clsContentsBox = function( pArgument ) {
 		try {
 			var self = this;
 
+			if ( !this._ContentsCanvas ) return false;
+
 			if ( !pSrcItm ) return false;
 			if ( !pDstItm ) return false;
 			if ( !pRelInf ) return false;
@@ -1281,6 +1283,101 @@ var clsContentsBox = function( pArgument ) {
 				return wCenter;
 			};
 
+			// 中心点指定距離の座標取得
+			function getDistanceFromCenter( pLineSt, pLineEd, pCenterPos ) {
+				if ( !pRelInf.isRelationStat() ) return null;
+				
+				var wStatSize = pRelInf.getRelationStatSizeH();
+				if ( !wStatSize ) return null;
+
+				// 起点設定（xが小さい方）
+				var wLinePos;
+				if ( pLineSt.x > pLineEd.x ) {
+					wLinePos = Object.create( pLineEd );
+				} else {
+					wLinePos = Object.create( pLineSt );
+				}
+
+				var wStatWay;
+				var wStatSt;
+				var wStatEd;
+				if ( pCenterPos.x > wLinePos.x ) {
+					wStatWay = 1;
+					wStatSt = wLinePos;
+					wStatEd = Object.create( pCenterPos );
+				} else {
+					wStatWay = -1;
+					wStatSt = Object.create( pCenterPos );
+					wStatEd = wLinePos;
+				}
+
+				var wDx = wStatEd.x - wStatSt.x;
+				var wDy = wStatEd.y - wStatSt.y;
+
+				// 角度取得
+				var wRadian = Math.atan2( wDy, wDx );
+				var wAngle  = Math.floor( wRadian * (180 / Math.PI) );
+
+				// コメントなし
+				if ( !pRelInf.isComment() ) {
+					// 中心点を返す
+					return { left : pCenterPos.x, top : pCenterPos.y, deg : wAngle };
+				
+				}
+
+				// コメントサイズ
+				var wCmtSize = pRelInf.getCommentSize();
+
+				var wSize = wStatSize.width;
+
+				if ( wCmtSize ) {
+					var wCmtW = Math.floor( wCmtSize.width  / 2 );
+					var wCmtH = Math.floor( wCmtSize.height / 2 );
+
+					// コメントがラインより大きければ関係状態表示なし
+					if ( (wCmtW > Math.abs(wDx)) && (wCmtH > Math.abs(wDy)) ) {
+						return null;
+					}
+				
+					if ( wDx == 0 ) {
+						wSize += wCmtH;
+
+					} else if ( wDy == 0 ) {
+						wSize += wCmtW;
+
+					} else {
+						// 角度によって距離調整
+						if ( Math.abs(wAngle) > 42 ) {
+							wSize += wCmtH;
+						} else {
+							wSize += wCmtW;
+						}
+
+					}
+				}
+
+				// 移動方向補正
+				wSize *= wStatWay;
+
+				if ( wDx == 0 ) {
+					return { left : pCenterPos.x, top : (pCenterPos.y - wSize), deg : wAngle };
+
+				} else if ( wDy == 0 ) {
+					return { left : (pCenterPos.x - wSize), top : pCenterPos.y, deg : wAngle };
+
+				}
+
+				// 関係状態項目　位置補正
+				var wAx = pCenterPos.x - wSize * Math.cos( wRadian );
+				var wAy = pCenterPos.y - wSize * Math.sin( wRadian );
+
+				wAx = Math.floor( wAx );
+				wAy = Math.floor( wAy );
+
+				return { left : wAx, top : wAy, deg : wAngle };
+			}
+
+
 			// 項目位置・サイズ取得
 			var wStPos = getItmPos( pSrcItm );
 			var wEdPos = getItmPos( pDstItm );
@@ -1313,61 +1410,70 @@ var clsContentsBox = function( pArgument ) {
 
 			// コメント表示位置
 			var wCmtPos = Object.create( wStPos );
+			var wCmtStatPos = null;
+
+			// 描画設定取得
+			var wLineKind = pRelInf.toLineKind();
+
+			// パラメータ指定時
+			if ( pLineParam ) {
+				// ライン属性
+				if ( 'width' in pLineParam ) wLineKind.width = pLineParam.width;
+				if ( 'color' in pLineParam ) wLineKind.color = pLineParam.color;
+				if ( 'style' in pLineParam ) wLineKind.style = pLineParam.style;
+				if ( 'way'   in pLineParam ) wLineKind.way   = pLineParam.way;
+			}
+
+			// 矢印設定
+			var wStArrow = false;
+			var wEdArrow = false;
+
+			// 正方向
+			if ( wLineKind.way == 1 ) {
+				wEdArrow = true;
+
+			// 逆方向
+			} else if ( wLineKind.way == 2 ) {
+				wStArrow = true;
+
+			// 双方向
+			} else if ( wLineKind.way == 3 ) {
+				wStArrow = true;
+				wEdArrow = true;
+
+			}
 
 			// ライン描画
-			if ( this._ContentsCanvas ) {
-				// 描画設定取得
-				var wLineKind = pRelInf.toLineKind();
+			var wLineParam = { 
+						  StPos: wStPos, StSize: wStSize, StArrow: wStArrow, StRelay: wStRelay, StRelayCmt: wStRelayCmt
+						, EdPos: wEdPos, EdSize: wEdSize, EdArrow: wEdArrow, EdRelay: wEdRelay, EdRelayCmt: wEdRelayCmt
+			};
 
-				// パラメータ指定時
-				if ( pLineParam ) {
-					// ライン属性
-					if ( 'width' in pLineParam ) wLineKind.width = pLineParam.width;
-					if ( 'color' in pLineParam ) wLineKind.color = pLineParam.color;
-					if ( 'style' in pLineParam ) wLineKind.style = pLineParam.style;
-					if ( 'way'   in pLineParam ) wLineKind.way   = pLineParam.way;
+			var wLinePoint = this._ContentsCanvas.canvasGetDrawPoint( wLineParam, wLineKind );
+
+			// ラインの幅が一定以下は描画しない
+			var wWidthX = Math.abs( wLinePoint.EdPoint.x - wLinePoint.StPoint.x );
+			var wWidthY = Math.abs( wLinePoint.EdPoint.y - wLinePoint.StPoint.y );
+			if ( (wWidthX >= 2) || (wWidthY >= 2) ) {
+				// 描画
+				this._ContentsCanvas.canvasDrawLine( wLinePoint.StPoint, wLinePoint.EdPoint, wLineKind );
+
+				// コメント位置補正
+				wCmtPos = getCenterPos( wLinePoint.StPoint, wLinePoint.EdPoint );
+
+				// コメント位置が変更されている場合
+				var wStatPos = pRelInf.getCommentPoint();
+				if ( !wStatPos ) {
+					wStatPos = { x: wCmtPos.left, y: wCmtPos.top };
 				}
 
-				// 矢印設定
-				var wStArrow = false;
-				var wEdArrow = false;
+				// 関係状態項目位置設定
+				wCmtStatPos = getDistanceFromCenter( wLinePoint.StPoint, wLinePoint.EdPoint, wStatPos );
 
-				// 正方向
-				if ( wLineKind.way == 1 ) {
-					wEdArrow = true;
-
-				// 逆方向
-				} else if ( wLineKind.way == 2 ) {
-					wStArrow = true;
-
-				// 双方向
-				} else if ( wLineKind.way == 3 ) {
-					wStArrow = true;
-					wEdArrow = true;
-
-				}
-
-				var wLineParam = { 
-							  StPos: wStPos, StSize: wStSize, StArrow: wStArrow, StRelay: wStRelay, StRelayCmt: wStRelayCmt
-							, EdPos: wEdPos, EdSize: wEdSize, EdArrow: wEdArrow, EdRelay: wEdRelay, EdRelayCmt: wEdRelayCmt
-				};
-
-				var wLinePoint = this._ContentsCanvas.canvasGetDrawPoint( wLineParam, wLineKind );
-
-				// ラインの幅が一定以下は描画しない
-				var wWidthX = Math.abs( wLinePoint.EdPoint.x - wLinePoint.StPoint.x );
-				var wWidthY = Math.abs( wLinePoint.EdPoint.y - wLinePoint.StPoint.y );
-				if ( (wWidthX >= 1) || (wWidthY >= 1) ) {
-					// 描画
-					this._ContentsCanvas.canvasDrawLine( wLinePoint.StPoint, wLinePoint.EdPoint, wLineKind );
-
-					// コメント位置補正
-					wCmtPos = getCenterPos( wLinePoint.StPoint, wLinePoint.EdPoint );
-				}
 			}
 
 			// 関係コメント表示
-			pRelInf.dspRelationCmt( wCmtPos.left, wCmtPos.top );
+			pRelInf.dspRelationCmt( wCmtPos.left, wCmtPos.top, wCmtStatPos );
 
 			return true;
 

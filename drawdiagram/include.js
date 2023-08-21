@@ -56,13 +56,13 @@ var clsInheritance = function( pChildCtor, pParentCtor ) {
 var includeDrawDiagram = function() {
 	try {
 		var wLoadDate = new Date();
-		var wReload = "?date=" + wLoadDate.toString();
+		var wReload = "?date=" + wLoadDate.getSeconds() + '_' + wLoadDate.getMilliseconds();
 
 		// 関連StyleSheetインクルード
 		var wStyleSheet = "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + _C_DRAWDIAGRAM_CSS_PATH
 
-		document.write( wStyleSheet + "/drawdiagram.css\" />" );
-		document.write( wStyleSheet + "/drawdiagram.print.css\" media=\"print\" />" );
+		document.write( wStyleSheet + "/drawdiagram.css" + wReload + "\" />" );
+		document.write( wStyleSheet + "/drawdiagram.print.css" + wReload + "\" media=\"print\" />" );
 
 		// 関連JavaScriptインクルード
 		var wScriptSt = "<script language=\"javascript\" src=\"" + _C_DRAWDIAGRAM_SCRIPT_PATH
