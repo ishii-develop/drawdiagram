@@ -98,7 +98,8 @@ var clsItemRelation = function( pArgument ) {
 		this._RelationInfPoints					= {};
 		
 		// 状態設定
-		this._RelationInfStatus					= { kind: '', item: null, size: null };
+		this._RelationInfStatus					= { kind: '', size: null, sizeH: null };
+		this._RelationInfStatusItem				= null;
 
 
 		// **************************************************************
@@ -347,7 +348,7 @@ var clsItemRelation = function( pArgument ) {
 	// 関係　状態項目有無
 	clsItemRelation.prototype.isRelationStat = function() {
 		try {
-			if ( !this._RelationInfStatus.item ) return false;
+			if ( !this._RelationInfStatusItem ) return false;
 			if ( !this._RelationInfStatus.kind ) return false;
 
 			return true;
@@ -519,13 +520,13 @@ var clsItemRelation = function( pArgument ) {
 			if ( wKind == pStatuId ) return;
 
 			// 項目未作成
-			if ( !this._RelationInfStatus.item ) {
+			if ( !this._RelationInfStatusItem ) {
 				// 項目作成
 				var wAddItem = this.createStatusItem();
 				if ( !wAddItem ) retrun;
 
 				// 項目保存
-				this._RelationInfStatus.item = wAddItem;
+				this._RelationInfStatusItem = wAddItem;
 
 				// 項目サイズ保存
 				this._RelationInfStatus.size = this.getSize( wAddItem );
@@ -546,7 +547,7 @@ var clsItemRelation = function( pArgument ) {
 				var wImgPath = this.getImagePath();
 				var wBackGround = "url(" + wImgPath + wIconFile + ")";
 
-				this.setStyle( this._RelationInfStatus.item, { 'background-image': wBackGround } );
+				this.setStyle( this._RelationInfStatusItem, { 'background-image': wBackGround } );
 
 			}
 			this._RelationInfStatus.kind = pStatuId;
@@ -585,13 +586,12 @@ var clsItemRelation = function( pArgument ) {
 	clsItemRelation.prototype.delStatusItem = function( ) {
 		try {
 			if ( !this._RelationInfStatus ) return;
-			if ( !this._RelationInfStatus.item ) return;
+			if ( !this._RelationInfStatusItem ) return;
 
-this.consoleLog( 1 );
 			// 要素削除
-			this.delElement( this._RelationInfStatus.item );
+			this.delElement( this._RelationInfStatusItem );
 
-			this._RelationInfStatus.item = null;
+			this._RelationInfStatusItem = null;
 
 		} catch(e) {
 			throw { name: 'delStatusItem', message: e.message };
@@ -601,8 +601,8 @@ this.consoleLog( 1 );
 	// 関係状態クリア
 	clsItemRelation.prototype.clearStatusItem = function( ) {
 		try {
-			if ( this._RelationInfStatus.item ) {
-				this.setStyle( this._RelationInfStatus.item, { 'display': 'none' } );
+			if ( this._RelationInfStatusItem ) {
+				this.setStyle( this._RelationInfStatusItem, { 'display': 'none' } );
 			}
 
 			this._RelationInfStatus.kind = '';
@@ -616,11 +616,11 @@ this.consoleLog( 1 );
 	clsItemRelation.prototype.dspStatusItem = function( pStatPos ) {
 		try {
 			if ( !this._RelationInfStatus.kind ) return;
-			if ( !this._RelationInfStatus.item ) return;
+			if ( !this._RelationInfStatusItem ) return;
 
 			// 表示位置未指定時は表示なし
 			if ( !pStatPos ) {
-				this.setStyle( this._RelationInfStatus.item, { display: 'none' } );
+				this.setStyle( this._RelationInfStatusItem, { display: 'none' } );
 				return;
 
 			}
@@ -667,7 +667,7 @@ this.consoleLog( 1 );
 			}
 
 			// 表示
-			this.setStyle( this._RelationInfStatus.item, wStyle );
+			this.setStyle( this._RelationInfStatusItem, wStyle );
 
 		} catch(e) {
 			throw { name: 'dspStatusItem', message: e.message };
@@ -1343,6 +1343,23 @@ this.consoleLog( 1 );
 				this._RelationInfPoints = wLoadRelay;
 			}
 
+			// Load時　関係状態
+			var wLoadStatus = this.loadDataVal( 'relstat' );
+			if ( wLoadStatus ) {
+				this._RelationInfStatus = wLoadStatus;
+
+				// アイコン設定
+				var wLoadKind = this._RelationInfStatus.kind;
+				if ( typeof wLoadKind !== 'string' ) wLoadKind = '';
+
+				if ( wLoadKind.length > 0 ) {
+					// 一旦状態IDクリア
+					this._RelationInfStatus.kind = '';
+					// 状態再設定（アイコン）
+					this.addStatusItem( wLoadKind );
+				}
+			}
+
 			// パラメータ設定
 			if ( this.isObject(pArgument) ) {
 				// 所属要素情報
@@ -1411,7 +1428,10 @@ this.consoleLog( 1 );
 
 			// 中継点
 			wSaveData.relay		= JSON.stringify( this._RelationInfPoints );
-			
+
+			// 関係状態設定
+			wSaveData.relstat	= JSON.stringify( this._RelationInfStatus );
+
 			// 設定値を取得
 			return wSaveData;
 
@@ -1452,10 +1472,15 @@ this.consoleLog( 1 );
 				}
 
 			}
-			
+
 			// 中継点
 			if ( pLoadData.relay ) {
 				wLoadBuff.relay = JSON.parse( pLoadData.relay );
+			}
+
+			// 関係状態設定
+			if ( pLoadData.relstat ) {
+				wLoadBuff.relstat = JSON.parse( pLoadData.relstat );
 			}
 
 			return wLoadBuff;

@@ -3149,7 +3149,6 @@ var clsContentsBox = function( pArgument ) {
 			setNoEmphasisClass( this._ContentsItems.person,		pSelectedItms );
 			setNoEmphasisClass( this._ContentsItems.group,		pSelectedItms );
 			setNoEmphasisClass( this._ContentsItems.relation,	pSelectedItms );
-			setNoEmphasisClass( this._ContentsItems.freeline,	pSelectedItms );
 
 		} catch(e) {
 			throw { name: 'emphasisSelectItem.' + e.name, message: e.message };
