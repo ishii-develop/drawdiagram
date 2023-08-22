@@ -766,7 +766,7 @@ var clsItemFreeLine = function( pArgument ) {
 			}
 
 			// Load時　設定内容
-			var wLoadStatus = this.loadDataVal( 'status' );
+			var wLoadStatus = this.loadDataVal( 'freestatus' );
 			if ( wLoadStatus ) {
 				this._FreeLineStatus = wLoadStatus;
 
@@ -777,7 +777,7 @@ var clsItemFreeLine = function( pArgument ) {
 
 			}
 
-			var wLoadPoint = this.loadDataVal( 'point' );
+			var wLoadPoint = this.loadDataVal( 'freepoint' );
 			if ( wLoadPoint ) {
 				this._FreeLinePoint = wLoadPoint;
 
@@ -823,10 +823,10 @@ var clsItemFreeLine = function( pArgument ) {
 			}
 
 			// ライン情報
-			wSaveData.status	= JSON.stringify( this._FreeLineStatus );
+			wSaveData.freestatus	= JSON.stringify( this._FreeLineStatus );
 
 			// 接続情報
-			wSaveData.point		= JSON.stringify( this._FreeLinePoint );
+			wSaveData.freepoint		= JSON.stringify( this._FreeLinePoint );
 
 			// 設定値を取得
 			return wSaveData;
@@ -852,13 +852,13 @@ var clsItemFreeLine = function( pArgument ) {
 			if ( !pLoadData ) return wLoadBuff;
 
 			// ライン情報
-			if ( pLoadData.status ) {
-				wLoadBuff.status = JSON.parse( pLoadData.status );
+			if ( pLoadData.freestatus ) {
+				wLoadBuff.freestatus = JSON.parse( pLoadData.freestatus );
 			}
 
 			// 接続情報
-			if ( pLoadData.point ) {
-				wLoadBuff.point = JSON.parse( pLoadData.point );
+			if ( pLoadData.freepoint ) {
+				wLoadBuff.freepoint = JSON.parse( pLoadData.freepoint );
 			}
 
 			return wLoadBuff;
