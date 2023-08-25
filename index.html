@@ -106,9 +106,74 @@
 	}
 
 	.explanation {
-		padding				: 20px 50px 50px 20px;
+		padding				: 10px 50px 50px 20px;
 		margin				: 0px;
 		border				: none;
+	}
+
+	.explanation-title {
+		margin-top		: 30px;
+		padding			: 5px;
+		background-color: #191970;
+		color			: white;
+		width			: 280px;
+		border-radius	: 5px;
+	}
+
+	.expContents {
+		width				: 850px;
+		height				: 100%;
+		padding				: 10px 10px 0px 10px;
+	}
+
+	#divSampleGenogram {
+		width				: 100%;
+		height				: 100%;
+		padding				: 0px;
+		margin				: 0px;
+		border				: none;
+	}
+
+	#divSampleEcoMap {
+		width				: 100%;
+		height				: 100%;
+		padding				: 0px;
+		margin				: 0px;
+		border				: none;
+	}
+
+	.sample-title {
+		background-color	: #008080;
+		cursor				: pointer;
+	}
+
+	.sample-list {
+		margin-top			: 5px;
+		margin-left			: 24px;
+		list-style			: none;
+	}
+
+	.sample-i {
+		content				: " ";
+		background-color	: #dc143c;
+		display				: inline-block;
+		vertical-align		: middle;
+		width				: 15px;
+		height				: 15px;
+		margin-right		: 5px;
+	}
+
+	.sample-l > .sample-p {
+		font-weight			: bold;
+	}
+
+	.sample-l > .sample-chk {
+		color				: red;
+	}
+
+	.sample-img {
+		width				: 640px;
+		float				: left;
 	}
 
 -->
@@ -121,9 +186,8 @@ var mDrawDiagram = null;
 // 起動時処理
 function fncLoad() {
 	try {
-		fncDspFrame( 'frmContents',	false );
-		fncDspFrame( 'divGenogram',	false );
-		fncDspFrame( 'divEcoMap',	false );
+		// コンテンツ全て非表示
+		fncHideContents();
 
 	} catch(e) { alert(e.message) }
 }
@@ -135,12 +199,25 @@ function fncUnLoad() {
 
 }
 
+
+// コンテンツ部全て非表示
+function fncHideContents() {
+	fncDspFrame( 'frmContents',			false );
+	fncDspFrame( 'divGenogram',			false );
+	fncDspFrame( 'divEcoMap',			false );
+	fncDspFrame( 'divSampleGenogram',	false );
+	fncDspFrame( 'divSampleEcoMap',		false );
+	fncDspFrame( 'divSampleOther',		false );
+}
+
 // iframe表示切替
 function fncChangeIframe( pUrl ) {
 	try {
-		fncDspFrame( 'divGenogram',	false );
-		fncDspFrame( 'divEcoMap',	false );
-		fncDspFrame( 'frmContents',	true );
+		// コンテンツ全て非表示
+		fncHideContents();
+
+		// 画像描画フレーム表示
+		fncDspFrame( 'frmContents',			true );
 
 		var wContents = document.getElementById('frmContents');
 		if ( !wContents ) return;
@@ -153,14 +230,15 @@ function fncChangeIframe( pUrl ) {
 // 説明欄切替
 function fncDspExplanation( pId ) {
 	try {
-		fncDspFrame( 'frmContents',	false );
+		// コンテンツ全て非表示
+		fncHideContents();
 
 		if ( pId == 'divGenogram' ) {
 			fncDspFrame( 'divGenogram',	true );
-			fncDspFrame( 'divEcoMap',	false );
-		} else {
-			fncDspFrame( 'divGenogram',	false );
+
+		} else if ( pId == 'divEcoMap' ) {
 			fncDspFrame( 'divEcoMap',	true );
+
 		}
 
 	} catch(e) { alert(e.message); }
@@ -181,6 +259,76 @@ function fncDspFrame( pId, pDsp ) {
 	} catch(e) { alert(e.message); }
 }
 
+// サンプル表示切替
+function fncDspSample( pTarget, pNum ) {
+	try {
+		// コンテンツ全て非表示
+		fncHideContents();
+
+		// 選択ケース表示状態変更
+		var dspCase = function( pCaseNo, pDisplay ) {
+			let wCase = document.getElementsByName( 'sample-' + pCaseNo );
+			if ( !wCase ) return;
+
+			for( let wIndex = 0; wIndex < wCase.length; wIndex++ ) {
+				if ( !wCase[wIndex] ) continue;
+				
+				wCase[wIndex].style.display = pDisplay;
+			}
+		};
+
+		let wDisplay = new Array( 'none', 'none', 'none', 'none' );
+		wDisplay[pNum - 1] = '';
+
+		for ( let wCaseIdx = 0; wCaseIdx < wDisplay.length; wCaseIdx++ ) {
+			dspCase( (wCaseIdx + 1), wDisplay[wCaseIdx] );
+
+			fncSwitchSampleDetail( (wCaseIdx + 1), 'hearing',	true );
+			fncSwitchSampleDetail( (wCaseIdx + 1), 'demo',		false );
+			fncSwitchSampleDetail( (wCaseIdx + 1), 'image',		false );
+		}
+
+		fncDspFrame( pTarget, true );
+
+	} catch(e) { alert(e.message); }
+}
+
+// サンプル詳細表示
+function fncSwitchSampleDetail( pCaseNo, pKind, pDisplay ) {
+	try {
+		let wElement = document.getElementsByName( 'sample-' + pCaseNo + '-' + pKind );
+		if ( !wElement ) return;
+
+		let wSetStyle = null;
+		if ( typeof pDisplay == 'boolean' ) {
+			if ( pDisplay ) {
+				wSetStyle = '';
+			} else {
+				wSetStyle = 'none';
+			}
+		}
+
+		for( let wNo = 0; wNo < wElement.length; wNo++ ) {
+			if ( !wElement[wNo] ) continue;
+
+			// 表示状態切替
+			let wDispStyle = wSetStyle;
+
+			if ( wDispStyle == null ) {
+				wDispStyle = wElement[wNo].style.display;
+				if ( !wDispStyle ) {
+					wDispStyle = 'none';
+				} else {
+					wDispStyle = '';
+				}
+
+			}
+
+			wElement[wNo].style.display = wDispStyle;
+		}
+	} catch(e) { alert(e.message); }
+}
+
 //-->
 </script>
 </head>
@@ -192,30 +340,6 @@ function fncDspFrame( pId, pDsp ) {
 	</div>
 
 	<div id='divMenu'>
-	<ul>
-		<li class="group">
-			<h4 class='group-title'>サンプル</h4>
-			<li class='group-list' title="基本作成画面">
-				<span class="link-i"></span>
-				<a target="'_blank'" href="./sample_base.html" class="link">基本作成画面</a>
-			</li>
-
-			<li class='group-list' title="図形描画のみ画面">
-				<span class="link-i"></span>
-				<a target="'_blank'" href="./sample_simple.html" class="link">図形描画のみ</a>
-			</li>
-		</li>
-	</ul>
-
-	<ul>
-		<li class="group">
-			<h4 class='group-title'>マニュアル</h4>
-			<li class='group-list' title="図形描画機能">
-				<span class="file-i"></span>
-				<a href="javascript:void(0);" onClick="fncChangeIframe('./manual/drawdiagram.pdf');" class="link">図形描画機能</a>
-			</li>
-		</li>
-	</ul>
 
 	<ul>
 		<li class="group">
@@ -232,29 +356,444 @@ function fncDspFrame( pId, pDsp ) {
 		</li>
 	</ul>
 
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>ジェノグラム　サンプル</h4>
+			<li class='group-list' title="初回相談">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleGenogram', 1);" class="link">初回相談</a>
+			</li>
+
+			<li class='group-list' title="第二回">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleGenogram', 2);" class="link">第二回</a>
+			</li>
+
+			<li class='group-list' title="第三回">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleGenogram', 3);" class="link">第三回</a>
+			</li>
+
+			<li class='group-list' title="比較">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleGenogram', 4);" class="link">サンプル比較</a>
+			</li>
+
+			<li class='group-list' title="印刷">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncChangeIframe('./pdf/genogram_print.pdf');" class="link">サンプル印刷</a>
+			</li>
+		</li>
+	</ul>
+
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>エコマップ　サンプル</h4>
+			<li class='group-list' title="初回相談">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleEcoMap', 1);" class="link">初回相談</a>
+			</li>
+
+			<li class='group-list' title="第二回">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleEcoMap', 2);" class="link">第二回</a>
+			</li>
+
+			<li class='group-list' title="第三回">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleEcoMap', 3);" class="link">第三回</a>
+			</li>
+
+			<li class='group-list' title="比較">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleEcoMap', 4);" class="link">サンプル比較</a>
+			</li>
+
+			<li class='group-list' title="印刷">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncChangeIframe('./pdf/ecomap_print.pdf');" class="link">サンプル印刷</a>
+			</li>
+		</li>
+	</ul>
+
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>その他情報設定　サンプル</h4>
+			<li class='group-list' title="その他情報設定">
+				<span class="link-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspSample('divSampleOther', 1);" class="link">その他情報設定</a>
+			</li>
+		</li>
+	</ul>
+
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>サンプル</h4>
+			<li class='group-list' title="基本作成画面">
+				<span class="link-i"></span>
+				<a target="'_blank'" href="./sample_base.html" class="link">基本作成画面</a>
+			</li>
+
+			<li class='group-list' title="図形描画のみ画面">
+				<span class="link-i"></span>
+				<a target="'_blank'" href="./sample_simple.html" class="link">図形描画のみ</a>
+			</li>
+		</li>
+	</ul>
+<!--
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>マニュアル</h4>
+			<li class='group-list' title="図形描画機能">
+				<span class="file-i"></span>
+				<a href="javascript:void(0);" onClick="fncChangeIframe('./manual/drawdiagram.pdf');" class="link">図形描画機能</a>
+			</li>
+		</li>
+	</ul>
+-->
 	</div>
-	
+
+	<!-- ---------------------------------------------------------------------- -->
+	<!-- メインコンテンツ														-->
+	<!-- ---------------------------------------------------------------------- -->
 	<div id='divContents'>
+		<!-- ================================================================================== -->
+		<!-- 図形描画用フレーム																	-->
+		<!-- ================================================================================== -->
 		<iframe name='frmContents' id='frmContents'></iframe>
+
+		<!-- ================================================================================== -->
+		<!-- ジェノグラムとは																	-->
+		<!-- ================================================================================== -->
 		<div id='divGenogram' class='explanation'>
-ジェノグラムとは、家族構成やその関係性をわかりやすくした家系図およびマップです。<br>
-少なくとも3世代分の家系図を、記号と線を用いるマッピング（図式化）という手法で視覚的にすみやかに把握できるよう表します。<br>
-<p>
-家族構成を図式で表すことによって、特有の課題や機微を把握することに使われます。 <br>
-ジェノグラムを作ることで、家族関係の歴史や本人を取り巻く現在の状況がわかりやすくなります。<br>
-<p>
-<img src='./image/genogram.jpg' />
+			<div class='expContents'>
+			ジェノグラムとは、家族構成やその関係性をわかりやすくした家系図およびマップです。<br>
+			少なくとも3世代分の家系図を、記号と線を用いるマッピング（図式化）という手法で視覚的にすみやかに把握できるよう表します。<br>
+			<p>
+			家族構成を図式で表すことによって、特有の課題や機微を把握することに使われます。 <br>
+			ジェノグラムを作ることで、家族関係の歴史や本人を取り巻く現在の状況がわかりやすくなります。<br>
+			<p>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>サンプル図</h4>
+					<img src='./image/genogram.jpg' />
+				</li>
+			</ul>
+			</div>
 		</div>
 
+		<!-- ================================================================================== -->
+		<!-- エコマップとは																		-->
+		<!-- ================================================================================== -->
 		<div id='divEcoMap' class='explanation'>
-エコマップとは、対象者を中心としてその周辺にある社会資源（家族、兄弟姉妹、友人、近隣住民、医師、各種介護関連機関など）との相関関係を、ネットワークとして表現した地図のことです。<br>
-生態地図とも言われます。<br>
-<p>
-エコマップの目的は、複雑な家族の人間関係をアセスメント（評価）し、そこに課題や可能性、解消したい不和などを見出すことです。家族とその外部にいる人々や組織との関わりを「見える化」するためのツールとも言えます。<br>
-<p>
-<img src='./image/ecomap.jpg' />
+			<div class='expContents'>
+			エコマップとは、対象者を中心としてその周辺にある社会資源（家族、兄弟姉妹、友人、近隣住民、医師、各種介護関連機関など）との相関関係を、ネットワークとして表現した地図のことです。<br>
+			生態地図とも言われます。<br>
+			<p>
+			エコマップの目的は、複雑な家族の人間関係をアセスメント（評価）し、そこに課題や可能性、解消したい不和などを見出すことです。家族とその外部にいる人々や組織との関わりを「見える化」するためのツールとも言えます。<br>
+			<p>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>サンプル図</h4>
+					<img src='./image/ecomap.jpg' />
+				</li>
+			</ul>
+			</div>
+		</div>
+
+		<!-- ================================================================================== -->
+		<!-- サンプル　ジェノグラム																-->
+		<!-- ================================================================================== -->
+		<div id='divSampleGenogram' class='explanation'>
+
+			<!-- ------------------------------------- -->
+			<!-- 第１回									-->
+			<!-- ------------------------------------- -->
+			<ul name='sample-1'>
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'hearing');">初回　ヒアリング内容</h4>
+					<li name='sample-1-hearing' class='sample-list'>
+						<span class="sample-i"></span>家族構成<br>
+						<span name='sample-l' class="sample-l">
+							・両親<span class='sample-chk'>離婚</span><br>
+							・<span class='sample-p'>母親（27）</span><span class='sample-chk'>同居</span><br>
+							・<span class='sample-p'>父親（36）</span><span class='sample-chk'>別居</span><br>
+							・<span class='sample-p'>兄（8）</span>は<span class='sample-chk'>父親と同居</span><br>
+						</span>
+					</li>
+					<li name='sample-1-hearing' class='sample-list'>
+						<span class="sample-i"></span>補足<br>
+						<span name='sample-l' class="sample-l">
+							・母親は本児の父親の前に<span class='sample-p'>別の男性（35）</span>と<span class='sample-chk'>離婚歴</span>あり<br>
+						</span>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'demo');">初回　操作デモ</h4>
+					<li name='sample-1-demo' class='sample-list'>
+						<div style='float: left; width: 300px;'>
+						<b>１．</b>家族構成　作成<br>
+						<video controls width="250"><source src="./movie/01_genogram_1_1.mp4" type="video/mp4" /></video>
+						</div>
+
+						<div style='padding-left: 30px;'>
+						<b>２．</b>配置調整<br>
+						<video controls width="250"><source src="./movie/01_genogram_1_2.mp4" type="video/mp4" /></video>
+						</div>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'image');">初回　作成イメージ</h4>
+					<div  name='sample-1-image'><img src='./image/smple_genogram_1.png' /></div>
+				</li>
+			</ul>
+
+			<!-- ------------------------------------- -->
+			<!-- 第２回									-->
+			<!-- ------------------------------------- -->
+			<ul name='sample-2'>
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(2,'hearing');">第２回　ヒアリング内容</h4>
+					<li name='sample-2-hearing' class='sample-list'>
+						<span class="sample-i"></span>家族構成<br>
+						<span name='sample-l' class="sample-l">
+							・母親が2019年に<span class='sample-p'>男性（23）</span>と<span class='sample-chk'>再婚</span><br>
+							・<span class='sample-p'>再婚男性の両親「祖父（60）」「祖母（56）」</span>と<span class='sample-chk'>同居</span><br>
+							・<span class='sample-p'>母親の両親「祖父（死去）」「祖母（63）」</span>は<span class='sample-chk'>別居（県外）</span><br>
+						</span>
+					</li>
+					<li name='sample-2-hearing' class='sample-list'>
+						<span class="sample-i"></span>補足<br>
+						<span name='sample-l' class="sample-l">
+							・再婚男性の祖父が入院中<br>
+						</span>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(2,'demo');">第２回　操作デモ</h4>
+					<li name='sample-2-demo' class='sample-list'>
+						<div style='width: 300px;'>
+						<video controls width="250"><source src="./movie/01_genogram_2.mp4" type="video/mp4" /></video>
+						</div>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(2,'image');">第２回　作成イメージ</h4>
+					<div  name='sample-2-image'><img src='./image/smple_genogram_2.png' /></div>
+				</li>
+			</ul>
+
+			<!-- ------------------------------------- -->
+			<!-- 第３回									-->
+			<!-- ------------------------------------- -->
+			<ul name='sample-3'>
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(3,'hearing');">第３回　ヒアリング内容</h4>
+					<li name='sample-3-hearing' class='sample-list'>
+						<span class="sample-i"></span>家族構成<br>
+						<span name='sample-l' class="sample-l">
+							・母親と再婚男性の間に<span class='sample-p'>妹（1）</span><br>
+						</span>
+					</li>
+					<li name='sample-3-hearing' class='sample-list'>
+						<span class="sample-i"></span>補足<br>
+						<span name='sample-l' class="sample-l">
+							・母親がうつ病で療養中<br>
+						</span>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(3,'demo');">第３回　操作デモ</h4>
+					<li name='sample-3-demo' class='sample-list'>
+						<div style='width: 300px;'>
+						<video controls width="250"><source src="./movie/01_genogram_3.mp4" type="video/mp4" /></video>
+						</div>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(3,'image');">第３回　作成イメージ</h4>
+					<div  name='sample-3-image'><img src='./image/smple_genogram_3.png' /></div>
+				</li>
+			</ul>
+
+			<!-- ------------------------------------- -->
+			<!-- サンプル比較							-->
+			<!-- ------------------------------------- -->
+			<ul name='sample-4'>
+				<li class="group">
+					<div class='sample-img'>
+						<h4 class='group-title sample-title'>サンプル図</h4>
+						<div><img src='./image/genogram.jpg' /></div>
+					</div>
+
+					<div class='sample-img'>
+						<h4 class='group-title sample-title'>作成図</h4>
+						<div><img src='./image/smple_genogram_4.png' /></div>
+					</div>
+				</li>
+			</ul>
+
+		</div>
+
+
+		<!-- ================================================================================== -->
+		<!-- サンプル　エコマップ																-->
+		<!-- ================================================================================== -->
+		<div id='divSampleEcoMap' class='explanation'>
+
+			<!-- ------------------------------------- -->
+			<!-- 第１回									-->
+			<!-- ------------------------------------- -->
+			<ul name='sample-1'>
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'hearing');">初回　ヒアリング内容</h4>
+					<li name='sample-1-hearing' class='sample-list'>
+						<span class="sample-i"></span>家族構成<br>
+						<span name='sample-l' class="sample-l">
+							・両親<span class='sample-chk'>離婚</span><br>
+							・<span class='sample-p'>母親、妹</span>と<span class='sample-chk'>同居</span><br>
+							・<span class='sample-p'>父親</span><span class='sample-chk'>別居</span><br>
+						</span>
+					</li>
+					<li name='sample-1-hearing' class='sample-list'>
+						<span class="sample-i"></span>補足<br>
+						<span name='sample-l' class="sample-l">
+							・母親と父親が<span class='sample-chk'>対立関係</span><br>
+							・本児家庭と父親の関係は<span class='sample-chk'>希薄</span><br>
+						</span>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'demo');">初回　操作デモ</h4>
+					<li name='sample-1-demo' class='sample-list'>
+						<div style='width: 300px;'>
+						<video controls width="250"><source src="./movie/02_ecomap_1.mp4" type="video/mp4" /></video>
+						</div>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'image');">初回　作成イメージ</h4>
+					<div  name='sample-1-image'><img src='./image/smple_ecomap_1.png' /></div>
+				</li>
+			</ul>
+
+			<!-- ------------------------------------- -->
+			<!-- 第２回									-->
+			<!-- ------------------------------------- -->
+			<ul name='sample-2'>
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(2,'hearing');">第２回　ヒアリング内容</h4>
+					<li name='sample-2-hearing' class='sample-list'>
+						<span class="sample-i"></span>外部との関わり<br>
+						<span name='sample-l' class="sample-l">
+							・母親の<span class='sample-p'>かかりつけ医</span>が<span class='sample-chk'>母親に対してケア</span>を行っている<br>
+							・<span class='sample-p'>本児家庭</span>と<span class='sample-p'>母方の両親</span>は<span class='sample-chk'>良好な関係</span><br>
+							・<span class='sample-p'>保健センター</span>と<span class='sample-p'>児童相談所</span>から<span class='sample-chk'>支援</span>を受けている<br>
+						</span>
+					</li>
+					<li name='sample-2-hearing' class='sample-list'>
+						<span class="sample-i"></span>補足<br>
+						<span name='sample-l' class="sample-l">
+							・保健センターとは特に<span class='sample-chk'>信頼関係</span>が築けている<br>
+						</span>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(2,'demo');">第２回　操作デモ</h4>
+					<li name='sample-2-demo' class='sample-list'>
+						<div style='width: 300px;'>
+						<video controls width="250"><source src="./movie/02_ecomap_2.mp4" type="video/mp4" /></video>
+						</div>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(2,'image');">第２回　作成イメージ</h4>
+					<div  name='sample-2-image'><img src='./image/smple_ecomap_2.png' /></div>
+				</li>
+			</ul>
+
+			<!-- ------------------------------------- -->
+			<!-- 第３回									-->
+			<!-- ------------------------------------- -->
+			<ul name='sample-3'>
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(3,'hearing');">第３回　ヒアリング内容</h4>
+					<li name='sample-3-hearing' class='sample-list'>
+						<span class="sample-i"></span>家族構成<br>
+						<span name='sample-l' class="sample-l">
+							・本児は<span class='sample-p'>A保育園</span>に通っている<br>
+							・A保育園の<span class='sample-p'>C君</span>と<span class='sample-chk'>とても仲が良い</span><br>
+							・A保育園の<span class='sample-p'>保育士B子さん</span>も本児に<span class='sample-chk'>深くかかわっている</span><br>
+						</span>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(3,'demo');">第３回　操作デモ</h4>
+					<li name='sample-3-demo' class='sample-list'>
+						<div style='width: 300px;'>
+						<video controls width="250"><source src="./movie/02_ecomap_3.mp4" type="video/mp4" /></video>
+						</div>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(3,'image');">第３回　作成イメージ</h4>
+					<div  name='sample-3-image'><img src='./image/smple_ecomap_3.png' /></div>
+				</li>
+			</ul>
+
+			<!-- ------------------------------------- -->
+			<!-- サンプル比較							-->
+			<!-- ------------------------------------- -->
+			<ul name='sample-4'>
+				<li class="group">
+					<div class='sample-img'>
+						<h4 class='group-title sample-title'>サンプル図</h4>
+						<div><img src='./image/ecomap.jpg' /></div>
+					</div>
+
+					<div class='sample-img'>
+						<h4 class='group-title sample-title'>作成図</h4>
+						<div><img src='./image/smple_ecomap_4.png' /></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+
+		<!-- ================================================================================== -->
+		<!-- サンプル　その他情報設定															-->
+		<!-- ================================================================================== -->
+		<div id='divSampleOther' class='explanation'>
+			<ul name='sample-1'>
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'demo');">操作デモ</h4>
+					<li name='sample-1-demo' class='sample-list'>
+						<div style='width: 300px;'>
+						<video controls width="250"><source src="./movie/03_other_1.mp4" type="video/mp4" /></video>
+						</div>
+					</li>
+				</li>
+
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'image');">作成イメージ</h4>
+					<div  name='sample-1-image'><img src='./image/smple_other_1.png' /></div>
+				</li>
+			</ul>
 		</div>
 
 	</div>
+
 </body>
 </html>
