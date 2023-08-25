@@ -16,6 +16,16 @@ var clsItemBox = function( pArgument ) {
 			 'z-index'				: '300'
 		};
 
+
+		// ----------------------------------
+		// 関連付け設定
+		// ----------------------------------
+		this._DEF_ITEM_REL_USE_STAT		= {
+			  stat				: true
+			, kind				: true
+			, way				: true
+		};
+
 		// ----------------------------------
 		// 基本メニュー設定
 		// ----------------------------------
@@ -480,7 +490,7 @@ var clsItemBox = function( pArgument ) {
 		}
 	};
 
-	// 項目が中継点かどうか
+	// 項目がフリーラインかどうか
 	clsItemBox.prototype.isFreeLine = function() {
 		try {
 			var wItemKind = this.getBoxKind();
@@ -1236,17 +1246,28 @@ var clsItemBox = function( pArgument ) {
 
 			// ステータス表示
 			if ( this._ItemMenuStatus ) {
+				// 表示内容設定
+				var wStatContents = {};
+				this.copyProperty( this._ItemStatus.contents, wStatContents );
+
 				var wCallback = pCallback;
 				if ( !wCallback ) wCallback = this.eventStatusUpdate;
 
 				var wPoint	= this.getEventPos( pEvent );
-				
+
+				// 設定変更あれば設定
+				var wStatConfig = null;
+				if ( this.isObject(pEvent) ) {
+					if ( 'statusConfig' in pEvent ) wStatConfig = pEvent.statusConfig;
+				}
+
 				var wParam = {
 					  x				: wPoint.x
 					, y				: wPoint.y
 					, callback		: wCallback
-					, statusList	: this._ItemStatus.contents
+					, statusList	: wStatContents
 					, statusValue	: this._ItemStatus.values
+					, statusConfig	: wStatConfig
 				};
 				this._ItemMenuStatus.dspMenu( wParam );
 			}
@@ -1695,11 +1716,12 @@ var clsItemBox = function( pArgument ) {
 			// 対象IDクリア
 			this._ItemRelationSetId = '';
 
-			var wTargetId = pParam.id;
+			var wTargetId	= pParam.id;
+			var wTargetKind = pParam.kind;
 			if ( !wTargetId ) return false;
 
-			var wSrcKind = this.getBoxKind();
-			var wTargetKind = pParam.kind;
+			var wSrcId		= this.getBoxId();
+			var wSrcKind	= this.getBoxKind();
 
 			// 登録済チェック
 			var wRelationInf = null;
@@ -1718,14 +1740,25 @@ var clsItemBox = function( pArgument ) {
 			// クリック位置に関連情報設定画面表示
 			var wEvePos = this.getEventPos( pEvent );
 
+			// 使用関連付け情報設定
+			var wSrcConfig		= this.getUseRelationStat();
+			var wTargetConfig	= pParam.dspConfig
+			if ( this.isObject(wTargetConfig) ) {
+				wSrcConfig.stat &= wTargetConfig.stat;
+				wSrcConfig.kind &= wTargetConfig.kind;
+				wSrcConfig.way  &= wTargetConfig.way;
+
+			}
+
 			wRelationMenu.dspMenu( { 
 							  x				: wEvePos.x
 							, y				: wEvePos.y
 							, callback		: this.eventRelationSet
 							, relationInf	: wRelationInf
-							, targetKind	: {
-								  src	: wSrcKind
-								, dst	: wTargetKind
+							, dspConfig		: wSrcConfig
+							, target		: {
+								  src	: { id: wSrcId,    kind: wSrcKind }
+								, dst	: { id: wTargetId, kind: wTargetKind }
 							  }
 						} );
 			
@@ -1796,6 +1829,16 @@ var clsItemBox = function( pArgument ) {
 	// **************************************************************
 	// 継承対象メソッド
 	// **************************************************************
+
+	// 有効な「関係メニュー」の情報
+	clsItemBox.prototype.getUseRelationStat = function() {
+		try {
+			return Object.create( this._DEF_ITEM_REL_USE_STAT );
+
+		} catch(e) {
+			throw { name: 'getUseRelationStat', message: e.message };
+		}
+	};
 
 	// イベントキャンセル
 	clsItemBox.prototype.eventClear = function() {
@@ -2605,6 +2648,7 @@ var clsItemBox = function( pArgument ) {
 				break;
 			
 			}
+
 			this.setBoxClass( wClass );
 			this.setBoxClass( wColor );
 

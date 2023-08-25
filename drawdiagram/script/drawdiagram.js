@@ -1268,7 +1268,72 @@ var clsBaseBox = function( pArgument ) {
 			throw { name: 'chgMenuEditStyle.' + e.name, message: e.message };
 		}
 	};
-	
+
+
+	// -------------------
+	// 項目種別チェック
+	// -------------------
+
+	// 項目が人物かどうか
+	clsBaseBox.prototype.isItemPerson = function( pKind ) {
+		try {
+			if ( !pKind ) return false;
+
+			return ( String(pKind) == 'item-person' );
+
+		} catch(e) {
+			throw { name: 'isItemPerson', message: e.message };
+		}
+	};
+
+	// 項目がグループかどうか
+	clsBaseBox.prototype.isItemGroup = function( pKind ) {
+		try {
+			if ( !pKind ) return false;
+
+			return ( String(pKind) == 'item-group' );
+
+		} catch(e) {
+			throw { name: 'isItemGroup', message: e.message };
+		}
+	};
+
+	// 項目がコメントかどうか
+	clsBaseBox.prototype.isItemComment = function( pKind ) {
+		try {
+			if ( !pKind ) return false;
+
+			return ( String(pKind) == 'item-comment' );
+
+		} catch(e) {
+			throw { name: 'isItemComment', message: e.message };
+		}
+	};
+
+	// 項目が関連付け中継点かどうか
+	clsBaseBox.prototype.isItemRelation = function( pKind ) {
+		try {
+			if ( !pKind ) return false;
+
+			return ( String(pKind) == 'item-relation' );
+
+		} catch(e) {
+			throw { name: 'isItemRelation', message: e.message };
+		}
+	};
+
+	// 項目がフリーラインかどうか
+	clsBaseBox.prototype.isItemFreeLine = function( pKind ) {
+		try {
+			if ( !pKind ) return false;
+
+			return ( String(pKind) == 'item-freeline' );
+
+		} catch(e) {
+			throw { name: 'isItemFreeLine', message: e.message };
+		}
+	};
+
 
 	// **************************************************************
 	// プロパティを参照する共通関数

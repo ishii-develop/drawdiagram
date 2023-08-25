@@ -47,8 +47,13 @@ var clsItemRelation = function( pArgument ) {
 
 		this._DEF_RELATIONINF_LIST_KIND			= [
 				  { value: 99, name: ''				, color: '#000000'	, icon : ''	}
+				, { value: 12, name: '別居'			, color: '#FF99CC'	, icon : 'icon_stat_separation1.png'	}
 				, { value: 10, name: '離婚'			, color: '#FF9900'	, icon : 'icon_stat_divorce.png'	}
-				, { value: 20, name: '別居'			, color: '#FF99CC'	, icon : 'icon_stat_separation.png'	}
+				, { value: 11, name: '再婚'			, color: '#FF9900'	, icon : 'icon_stat_remarriage.png'	}
+		];
+
+		this._DEF_RELATIONINF_LIST_KIND_ADD		= [
+				  { value: 20, name: '別居2'		, color: '#FF99CC'	, icon : 'icon_stat_separation2.png'	}
 		];
 
 		this._DEF_RELATIONINF_LIST_KIND_GROUP	= [
@@ -358,6 +363,46 @@ var clsItemRelation = function( pArgument ) {
 		}
 	};
 
+	// 関係　ラインの角度によるアイコン回転角度取得
+	clsItemRelation.prototype.getStatusIconRotate = function( pAngle ) {
+		try {
+			if ( !this._RelationInfStatus.kind ) return 0;
+
+			var wRotate = 0;
+
+			var wKindNum = Number(this._RelationInfStatus.kind);
+
+			// 右上がり斜線
+			if ( (wKindNum >= 10) && (wKindNum <= 19) ) {
+				if ( pAngle < -45 ) {
+					wRotate = ( 90 - Math.abs(pAngle) );
+
+				} else if ( pAngle < 0 ) {
+					wRotate = pAngle;
+
+				}
+
+			// 右下がり斜線
+			} else if ( (wKindNum >= 20) && (wKindNum <= 29) ) {
+				if ( pAngle > 0 ) {
+					if ( pAngle < 45 ) {
+						wRotate = Math.abs(pAngle);
+
+					} else if ( pAngle < 75 ) {
+						wRotate = -30;
+
+					}
+				}
+
+			}
+
+			return wRotate;
+
+		} catch(e) {
+			throw { name: 'getStatusIconRotate', message: e.message };
+		}
+	};
+
 	// 関係　状態項目サイズ
 	clsItemRelation.prototype.getRelationStatSize = function() {
 		try {
@@ -485,33 +530,8 @@ var clsItemRelation = function( pArgument ) {
 	// 関係状態設定
 	// **************************************************************
 
-	// 関係状態設定時　関係状態項目設定
-	clsItemRelation.prototype.setStatusItem = function( pStatus ) {
-		try {
-			var wStatId = String(pStatus);
-
-			// 状態　アイコン設定
-			switch( wStatId ) {
-			// 離婚
-			case '10':
-			// 別居
-			case '20':
-				// 関係状態　項目追加
-				this.addStatusItem( wStatId );
-				break;
-
-			default:
-				// 関係状態クリア
-				this.clearStatusItem();
-			}
-
-		} catch(e) {
-			throw { name: 'clearStatusItem', message: e.message };
-		}
-	};
-
 	// 関係状態項目設定
-	clsItemRelation.prototype.addStatusItem = function( pStatuId ) {
+	clsItemRelation.prototype.setStatusItem = function( pStatuId ) {
 		try {
 			if ( !this._RelationInfStatus ) this._RelationInfStatus = {};
 
@@ -549,11 +569,16 @@ var clsItemRelation = function( pArgument ) {
 
 				this.setStyle( this._RelationInfStatusItem, { 'background-image': wBackGround } );
 
+			// アイコンなし
+			} else {
+				// 関係状態クリア
+				this.clearStatusItem();
+
 			}
 			this._RelationInfStatus.kind = pStatuId;
 
 		} catch(e) {
-			throw { name: 'addStatusItem', message: e.message };
+			throw { name: 'setStatusItem', message: e.message };
 		}
 	};
 
@@ -640,28 +665,10 @@ var clsItemRelation = function( pArgument ) {
 				, display	: ''
 			};
 
-			// 角度調整
+			// アイコン種別による角度調整
 			// ※ アイコンのラインと関係ラインが重ならないようにする
 			if ( 'deg' in pStatPos ) {
-				var wRotate = 0;
-				// 離婚
-				if ( this._RelationInfStatus.kind == '10' ) {
-					if ( pStatPos.deg < -45 ) {
-						wRotate = ( 90 - Math.abs(pStatPos.deg) );
-					} else if ( pStatPos.deg < 0 ) {
-						wRotate = pStatPos.deg;
-					}
-
-				// 別居
-				} else if ( this._RelationInfStatus.kind == '20' ) {
-					if ( pStatPos.deg > 0 ) {
-						if ( pStatPos.deg < 45 ) {
-							wRotate = Math.abs(pStatPos.deg);
-						} else if ( pStatPos.deg < 75 ) {
-							wRotate = -30;
-						}
-					}
-				}
+				var wRotate = this.getStatusIconRotate( pStatPos.deg );
 
 				wStyle.transform = 'rotate(' + wRotate + 'deg)';
 			}
@@ -1356,7 +1363,7 @@ var clsItemRelation = function( pArgument ) {
 					// 一旦状態IDクリア
 					this._RelationInfStatus.kind = '';
 					// 状態再設定（アイコン）
-					this.addStatusItem( wLoadKind );
+					this.setStatusItem( wLoadKind );
 				}
 			}
 

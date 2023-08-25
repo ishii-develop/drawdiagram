@@ -20,6 +20,9 @@ var clsItemPerson = function( pArgument ) {
 			 'background-color'		: '#FFEEEE'
 		};
 
+		this._DEF_ITEM_PERSON_ICON_PET			= 'icon_pet.png';
+
+
 		// ----------------------------
 		// 人物　定数値
 		// ----------------------------
@@ -53,6 +56,10 @@ var clsItemPerson = function( pArgument ) {
 				,{ kind: 'woman'		,title: '女性'			, image: 'icon_woman.png'			}
 				,{ kind: 'unknown'		,title: '不明'			, image: 'icon_unknown.png'			}
 		];
+		this._DEF_ITEM_PERSON_ICON_GENDERADD	= [
+				 { kind: 'man-woman'	,title: '性同一'		, image: 'icon_man_woman.png'		}
+				,{ kind: 'woman-man'	,title: '性同一'		, image: 'icon_woman_man.png'		}
+		];
 
 		this._DEF_ITEM_PERSON_ICON_GENDER_KEY	= [
 				 { kind: ''				,title: '未設定'		, image: ''							}
@@ -60,15 +67,24 @@ var clsItemPerson = function( pArgument ) {
 				,{ kind: 'key-woman'	,title: '女性'			, image: 'icon_key_woman.png'		}
 				,{ kind: 'key-unknown'	,title: '不明'			, image: 'icon_key_unknown.png'		}
 		];
+		this._DEF_ITEM_PERSON_ICON_GENDERADD_KEY= [
+				 { kind: 'key-man-woman',title: '性同一'		, image: 'icon_key_man_woman.png'	}
+				,{ kind: 'key-woman-man',title: '性同一'		, image: 'icon_key_woman_man.png'	}
+		];
 
 		this._DEF_ITEM_PERSON_ICON_SITUATION	= [
 				 { kind: ''				,title: '未設定'		, image: ''							}
 				,{ kind: 'death'		,title: '死亡'			, image: 'icon_death.png'			}
 		];
 
-		this._DEF_ITEM_PERSON_ICON_PREGNANCY	= { 
-				kind: 'pregnancy'	,title: '妊娠'		, image: 'icon_pregnancy.png'
-		};
+		this._DEF_ITEM_PERSON_ICON_NORMAL	=	 [
+				 { kind: 'homosexuality',title: '同性愛'		, image: 'icon_homosexuality.png'	}
+				,{ kind: 'bisexual'		,title: '両性愛'		, image: 'icon_bisexual.png'		}
+		];
+
+		this._DEF_ITEM_PERSON_ICON_FETUS	=	 [
+				 { kind: 'abortion'		,title: '流産'			, image: 'icon_abortion_unknown.png'	}
+		];
 
 		this._DEF_ITEM_PERSON_LIST_RELATION = {
 				  1		: '父'
@@ -80,6 +96,12 @@ var clsItemPerson = function( pArgument ) {
 				, 10	: '祖父'
 				, 11	: '祖母'
 				, 99	: '※要注意※'
+		};
+
+		this._DEF_ITEM_PERSON_LIST_PET = {
+				  1		: '犬'
+				, 2		: '猫'
+				, 3		: '鳥'
 		};
 
 		// ----------------------------
@@ -181,6 +203,7 @@ var clsItemPerson = function( pArgument ) {
 
 		this._PersonStatus						= {
 					  keyperson		: false
+					, class			: ''
 					, gender		: { kind: '' }
 					, situation		: { kind: '' }
 					, other			: { contents: null, values: null }
@@ -334,6 +357,51 @@ var clsItemPerson = function( pArgument ) {
 		}
 	};
 
+	// 項目分類取得
+	clsItemPerson.prototype.getStatusClass = function() {
+		try {
+			if ( !this._PersonStatus ) return '';
+			if ( !this._PersonStatus.class ) return '';
+
+			return this._PersonStatus.class;
+
+		} catch(e) {
+			throw { name: 'getStatusClass', message: e.message };
+		}
+	};
+
+	// 項目分類ごとの関係パラメータ使用有無取得
+	clsItemPerson.prototype.getRelationParamByClass = function( pClass ) {
+		try {
+			var wRelationParam = {
+				  stat		: true
+				, kind		: true
+				, way		: true
+			};
+
+			if ( typeof pClass != 'string' ) return wRelationParam;
+
+			// 「胎児」
+			if ( pClass == 'fetus' ) {
+				// 状態、関係、働きかけ　なし
+				wRelationParam.stat = false;
+				wRelationParam.kind = false;
+				wRelationParam.way  = false;
+
+			// 「ペット」
+			} else if ( pClass == 'pet' ) {
+				// 関係　なし
+				wRelationParam.kind = false;
+
+			}
+
+			return wRelationParam;
+
+		} catch(e) {
+			throw { name: 'getRelationParamByClass', message: e.message };
+		}
+	};
+
 
 	// **************************************************************
 	// 項目状態取得／設定
@@ -356,8 +424,32 @@ var clsItemPerson = function( pArgument ) {
 			wImage = this._PersonStatus.situation.image;
 			if ( !wImage ) wImage = '';
 			if ( String(wImage).length > 0 ) {
+				// 流産の場合
+				if ( this._PersonStatus.situation.kind == 'abortion' ) {
+					// 性別による設定
+					switch( this._PersonStatus.gender.kind ) {
+					case 'man':
+					case 'key-man':
+						wImage = 'icon_abortion_man.png';
+						break;
+
+					case 'woman':
+					case 'key-woman':
+						wImage = 'icon_abortion_woman.png';
+						break;
+					}
+				}
+
 				if ( String(wBackGround).length > 0 ) wBackGround += ',';
 				wBackGround += "url(" + wImgPath + wImage + ")";
+			}
+
+			// 項目分類
+			var wItemClass = this.getStatusClass();
+			if ( wItemClass == 'pet' ) {
+				if ( String(wBackGround).length > 0 ) wBackGround += ',';
+				wBackGround += "url(" + wImgPath + this._DEF_ITEM_PERSON_ICON_PET + ")";
+
 			}
 
 			this.setBoxStyle( { 'background-image': wBackGround } );
@@ -565,12 +657,27 @@ var clsItemPerson = function( pArgument ) {
 			if ( this._PersonMenuStat ) {
 				// 選択情報設定
 				var wPoint	= this.getEventPos( pEvent );
-				
+
 				var wParam = {
 					  x:			wPoint.x
 					, y:			wPoint.y
 					, callback:		this.eventStatSelect
 				};
+
+				// 項目分類によるメニュー変更
+				var wItemClass = this.getStatusClass();
+
+				// 通常以外
+				if ( wItemClass == 'fetus' ) {
+					wParam.hide = [];
+					wParam.hide.push( 'base' );
+
+				} else if ( wItemClass == 'pet' ) {
+					wParam.hide = [];
+					wParam.hide.push( 'gender' );
+
+				}
+
 				this._PersonMenuStat.dspMenu( wParam );
 			}
 
@@ -595,11 +702,26 @@ var clsItemPerson = function( pArgument ) {
 				var wPoint	= this.getEventPos( pEvent );
 				
 				// アイコン設定
-				var wMenu;
+				var wIconList;
+				var wIconAdd;
 				if ( this._PersonStatus.keyperson ) {
-					wMenu	= Array.prototype.slice.call(this._DEF_ITEM_PERSON_ICON_GENDER_KEY, 0);
+					wIconList	= Array.prototype.slice.call(this._DEF_ITEM_PERSON_ICON_GENDER_KEY, 0);
+					wIconAdd	= this._DEF_ITEM_PERSON_ICON_GENDERADD_KEY;
 				} else {
-					wMenu	= Array.prototype.slice.call(this._DEF_ITEM_PERSON_ICON_GENDER, 0);
+					wIconList	= Array.prototype.slice.call(this._DEF_ITEM_PERSON_ICON_GENDER, 0);
+					wIconAdd	= this._DEF_ITEM_PERSON_ICON_GENDERADD;
+				}
+
+				// 項目分類未設定
+				var wItemClass = this.getStatusClass();
+
+				// ノーマル
+				if ( wItemClass.length > 0 ) wIconAdd = null;
+
+				if ( wIconAdd ) {
+					for( var wIconIdx = 0; wIconIdx < wIconAdd.length; wIconIdx++ ) {
+						wIconList.push( wIconAdd[wIconIdx] );
+					}
 				}
 
 				var wParam = {
@@ -607,7 +729,7 @@ var clsItemPerson = function( pArgument ) {
 					, y:			wPoint.y
 					, callback:		this.eventGenderSelect
 					, icon:			wIcon
-					, iconList:		wMenu
+					, iconList:		wIconList
 				};
 				this._PersonMenuIcon.dspMenu( wParam );
 			}
@@ -632,12 +754,28 @@ var clsItemPerson = function( pArgument ) {
 				var wIcon = { kind: this._PersonStatus.situation.kind };
 				var wPoint = this.getEventPos( pEvent );
 
-				// 女性
 				var wIconList = Array.prototype.slice.call(this._DEF_ITEM_PERSON_ICON_SITUATION, 0);
-				if ( this.chkGenderWhetherWoman() ) {
-					wIconList.push( this._DEF_ITEM_PERSON_ICON_PREGNANCY );
+
+				// 項目分類未設定
+				var wItemClass = this.getStatusClass();
+				var wIconAdd = null;
+				
+				// ノーマル
+				if ( wItemClass.length == 0 ) {
+					wIconAdd = this._DEF_ITEM_PERSON_ICON_NORMAL;
+
+				// 胎児
+				} else if ( wItemClass == 'fetus' ) {
+					wIconAdd = this._DEF_ITEM_PERSON_ICON_FETUS;
 
 				}
+				
+				if ( wIconAdd ) {
+					for( var wIconIdx = 0; wIconIdx < wIconAdd.length; wIconIdx++ ) {
+						wIconList.push( wIconAdd[wIconIdx] );
+					}
+				}
+
 				var wParam = {
 					  x:			wPoint.x
 					, y:			wPoint.y
@@ -697,6 +835,41 @@ var clsItemPerson = function( pArgument ) {
 			switch(pSelectMenu.kind) {
 			// 基本情報
 			case 'base':
+				// 項目分類による基本情報変更
+				var wItemClass = this.getStatusClass();
+				var wStatConfig = null;
+
+				// ペット
+				if ( wItemClass == 'pet' ) {
+					// 表示名 -> 関係性
+					wStatConfig = {
+							title		: {
+								 title	: '種類'
+								,list	: this._DEF_ITEM_PERSON_LIST_PET
+							}
+					};
+					
+					// カナ名、年齢　不要
+					wStatConfig.kana	= { display: false };
+					wStatConfig.age		= { display: false };
+
+				// ノーマル
+				} else {
+					// 表示名 -> 関係性
+					wStatConfig = {
+							title		: {
+								 title	: '関係性'
+								,list	: this._DEF_ITEM_PERSON_LIST_RELATION
+							}
+					};
+
+					// カナ名、年齢　表示
+					wStatConfig.kana	= { display: true };
+					wStatConfig.age		= { display: true };
+
+				}
+				if ( wStatConfig ) pEvent.statusConfig = wStatConfig;
+
 				// 項目クラス（継承元）のメソッドをcall
 				wRetVal = this.dspStatusMenu( pEvent );
 				break;
@@ -716,7 +889,6 @@ var clsItemPerson = function( pArgument ) {
 				wRetVal = this.dspMenuOther( pEvent );
 				break;
 
-
 			}
 
 			return wRetVal;
@@ -730,6 +902,20 @@ var clsItemPerson = function( pArgument ) {
 	// **************************************************************
 	// 継承対象メソッド
 	// **************************************************************
+
+	// 有効な「関係メニュー」の情報
+	clsItemPerson.prototype.getUseRelationStat = function() {
+		try {
+			// 項目分類による有効情報変更
+			var wItemClass = this.getStatusClass();
+			var wRelationStat = this.getRelationParamByClass( wItemClass );
+
+			return wRelationStat;
+
+		} catch(e) {
+			throw { name: 'getUseRelationStat', message: e.message };
+		}
+	};
 
 	// イベントキャンセル
 	clsItemPerson.prototype.eventClear = function() {
@@ -819,6 +1005,17 @@ var clsItemPerson = function( pArgument ) {
 	// コンテキストメニュー表示
 	clsItemPerson.prototype.execContextDsp = function( pEvent, pParam ) {
 		try {
+			// 項目分類によるメニュー変更
+			var wItemClass = this.getStatusClass();
+
+			// 通常以外
+			if ( wItemClass.length > 0 ) {
+				if ( !this.isObject(pParam) ) pParam = {};
+				if ( !('hide' in pParam) ) pParam.hide = [];
+
+				pParam.hide.push( 'contact' );
+
+			}
 
 			// 継承元メニュー表示処理
 			if ( this._ItemPrototype ) {
@@ -883,6 +1080,10 @@ var clsItemPerson = function( pArgument ) {
 			this._PersonStatusOtherDef.contents = this.setStatusContents( this._DEF_ITEM_PERSON_STATUS_OTHER );
 			this._PersonStatusOtherDef.values   = this.initStatusValues( this._PersonStatusOtherDef.contents );
 
+			// 項目分類
+			var wInitClass = this.loadArgument('class');
+			if ( wInitClass == null ) wInitClass = '';
+
 			// Load時
 			var wLoadStat = this.loadDataVal( 'person' );
 			if ( wLoadStat ) {
@@ -903,6 +1104,11 @@ var clsItemPerson = function( pArgument ) {
 				if ( wKeyPerson ) {
 					this.setBoxStyle( this._DEF_ITEM_PERSON_MAIN_PROPERTY );
 				}
+
+				// 項目分類
+				this._PersonStatus.class = wInitClass;
+				// ペットはデフォルトアイコン設定
+				if ( wInitClass == 'pet' ) wIconDef = true;
 
 				// 初期値チェック
 				var wDefault = false;
@@ -944,6 +1150,12 @@ var clsItemPerson = function( pArgument ) {
 				// 性別／状態初期値設定時　表示更新
 				if ( wIconDef ) this.setPersonIcon();
 
+			}
+
+			// 項目分類クラス設定
+			if ( typeof this._PersonStatus.class !== 'string' ) this._PersonStatus.class = '';
+			if ( this._PersonStatus.class.length > 0 ) {
+				this.setBoxClass( 'cssItem-person-' + this._PersonStatus.class );
 			}
 
 		} catch(e) {

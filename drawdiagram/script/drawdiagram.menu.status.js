@@ -131,6 +131,35 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
+	// ステータスの行番号取得
+	clsMenuStatus.prototype.getStatusIndexByName = function( pKey ) {
+		try {
+			if ( !this._StatusList ) return -1;
+			if ( !this._StatusList.length ) return -1;
+
+			var wResultIdx = -1;
+
+			var wStatusInf;
+			for( var wIdx = 0; wIdx < this._StatusList.length; wIdx++ ) {
+				for( var wCol = 0; wCol < this._StatusList[wIdx].length; wCol++ ) {
+					wStatusInf = this._StatusList[wIdx][wCol];
+				
+					// KEY名称が一致すればindexを返す
+					if ( pKey == wStatusInf.name ) {
+						wResultIdx = wIdx;
+						break;
+					}
+				}
+				if ( wResultIdx >= 0 ) break;
+			}
+
+			return wResultIdx;
+
+		} catch(e) {
+			throw { name: 'getStatusIndexByName', message: e.message };
+		}
+	};
+
 	// ステータス内容を初期設定
 	clsMenuStatus.prototype.setStatusList = function( pArgument ) {
 		try {
@@ -584,6 +613,7 @@ var clsMenuStatus = function( pArgument ) {
 					wInpStyle += "' ";
 				}
 
+				var wLkey;
 				switch ( pContents.type ) {
 				case 'text':
 					wInpPrm = "<input type='text' ";
@@ -966,7 +996,98 @@ var clsMenuStatus = function( pArgument ) {
 		}
 	};
 
+	// メニュー内容を再設定
+	clsMenuStatus.prototype.resetStatusConfig = function( pConfig ) {
+		try {
+			var self = this;
+
+			if ( !this.isObject(pConfig) ) return;
+
+			// 基本ID
+			var wBaseId = this.getBoxId();
+
+			// 項目表示設定
+			var fncSetLineDisplay = function( pStatConfig, pKey ) {
+				var wWinResize = false;
+
+				if ( !('display' in pStatConfig) ) return wWinResize;
+
+				// 行番号取得
+				var wStatIdx = self.getStatusIndexByName( pKey );
+
+				var wTargetItem = self.getElement( wBaseId + '_status_' + wStatIdx );
+				if ( !wTargetItem ) return wWinResize;
+
+				// 表示状態変更
+				if ( pStatConfig.display ) {
+					self.setStyle( wTargetItem, { display: '' } );
+
+				} else {
+					self.setStyle( wTargetItem, { display: 'none' } );
+
+					// Windowサイズ変更
+					wWinResize = true;
+
+				}
+
+				return wWinResize;
+			};
+
+			// 項目タイトル設定
+			var fncSetLineTitle = function( pStatConfig, pKey ) {
+				if ( !('title' in pStatConfig) ) return;
+
+				var wTargetItem = self.getElement( wBaseId + '_' + pKey + '_head' );
+				if ( !wTargetItem ) return;
+
+				wTargetItem.value = pStatConfig.title;
+			};
+
+			// 入力リスト設定
+			var fncSetLineTextList = function( pStatConfig, pKey ) {
+				if ( !('list' in pStatConfig) ) return;
+				if ( !self.isObject(pStatConfig.list) ) return;
+
+				var wTargetItem = self.getElement( wBaseId + '_' + pKey + '_list' );
+				if ( !wTargetItem ) return;
+
+				// 一旦クリア
+				while( wTargetItem.lastChild ) wTargetItem.removeChild( wTargetItem.lastChild );
+
+				var wOptions;
+				for( var wLkey in pStatConfig.list ) {
+					wOptions = document.createElement('option');
+					wOptions.value = pStatConfig.list[wLkey];
+
+					wTargetItem.appendChild( wOptions );
+
+				}
+			};
+
+			var wStatConfig;
 	
+			for( var wKey in pConfig ) {
+				wStatConfig = pConfig[wKey];
+				if ( !this.isObject(wStatConfig) ) continue;
+
+				// 項目表示切替
+				// ※ 非表示なら次項目
+				if ( fncSetLineDisplay(wStatConfig, wKey) ) continue;
+
+				// 項目タイトル
+				fncSetLineTitle( wStatConfig, wKey );
+
+				// 入力リスト
+				fncSetLineTextList( wStatConfig, wKey );
+
+			}
+			
+		} catch(e) {
+			throw { name: 'resetStatusConfig.' + e.name, message: e.message };
+		}
+	};
+
+
 	// **************************************************************
 	// 継承対象メソッド
 	// **************************************************************
@@ -1034,6 +1155,13 @@ var clsMenuStatus = function( pArgument ) {
 					this.setStatusValue();
 
 				}
+				
+				// 設定変更
+				if ( this.isObject(pParam.statusConfig) ) {
+					this.resetStatusConfig( pParam.statusConfig );
+
+				}
+
 			}
 
 			// 継承元メニュー表示

@@ -288,15 +288,37 @@ var clsMenuRelation = function( pArgument ) {
 			var wId = this.getBoxId();
 			var wDspParam = {};
 
+			var wStatUse = this._RelationConfig.stat;
+			var wKindUse = this._RelationConfig.kind;
+			var wWayUse  = this._RelationConfig.way;
+
+			// 表示項目パラメータ設定
+			if ( this.isObject(pInitParam) ) {
+				if ( 'stat' in pInitParam ) wStatUse = (wStatUse && pInitParam.stat);
+				if ( 'kind' in pInitParam ) wKindUse = (wKindUse && pInitParam.kind);
+				if ( 'way'  in pInitParam ) wWayUse  = (wWayUse  && pInitParam.way);
+
+			}
+
 			// 種別
 			var wStatEle = this.getElement( wId + '_stat' );
 			if ( wStatEle ) {
 				var wStatIdx = this._DEF_MENU_RELATION_VALUE.stat;
-				// 種別有効時のみ値設定
-				if ( this._RelationConfig.stat ) {
+
+				// 「種別」が有効な関係性
+				if ( wStatUse ) {
+					// 「種別」を表示
 					if ( pRelationInf ) {
 						wStatIdx = this.getSelectIndex( '_stat', pRelationInf.getStatus() );
 					}
+					this.resetContents( '_stat', true );
+
+				// 「種別」が有効な項目からのメニュー表示時
+				} else if ( this._RelationConfig.stat ) {
+					// 「種別」を非表示
+					this.resetContents( '_stat', false );
+					wDspParam.stat = false;
+
 				}
 				wStatEle.selectedIndex = wStatIdx;
 			}
@@ -306,26 +328,18 @@ var clsMenuRelation = function( pArgument ) {
 			if ( wRelEle ) {
 				var wRelIdx = this._DEF_MENU_RELATION_VALUE.kind;
 
-				// 関係有効時のみ値設定
-				var wKindUse = this._RelationConfig.kind;
-				if ( this.isObject(pInitParam) ) {
-					if ( 'kind' in pInitParam ) wKindUse = pInitParam.kind;
-				}
-
 				// 「関係」が有効な関係性
 				if ( wKindUse ) {
+					// 「関係」を表示
 					if ( pRelationInf ) {
 						wRelIdx = this.getSelectIndex( '_rel', pRelationInf.getRelation() );
 					}
-
-					// 「関係」を表示
 					this.resetContents( '_rel', true );
 
 				// 「関係」が有効な項目からのメニュー表示時
 				} else if ( this._RelationConfig.kind ) {
 					// 「関係」を非表示
 					this.resetContents( '_rel', false );
-					
 					wDspParam.kind = false;
 
 				}
@@ -349,11 +363,21 @@ var clsMenuRelation = function( pArgument ) {
 			var wWayEle = this.getElement( wId + '_way' );
 			if ( wWayEle ) {
 				var wWayIdx = this._DEF_MENU_RELATION_VALUE.way;
-				// 方向有効時のみ値設定
-				if ( this._RelationConfig.way ) {
+
+				// 「方向」が有効な関係性
+				if ( wWayUse ) {
+					// 「関係」を表示
 					if ( pRelationInf ) {
 						wWayIdx = this.getSelectIndex( '_way', pRelationInf.getWorkWay() );
 					}
+					this.resetContents( '_way', true );
+				
+				// 「方向」が有効な項目からのメニュー表示時
+				} else if ( this._RelationConfig.way ) {
+					// 「方向」を非表示
+					this.resetContents( '_way', false );
+					wDspParam.way = false;
+
 				}
 				wWayEle.selectedIndex = wWayIdx;
 			}
@@ -674,30 +698,38 @@ var clsMenuRelation = function( pArgument ) {
 			this._RelationMode = 'insert';
 
 			var wRelationInf = null;
-			if ( pParam ) {
+			var wDspConfig = null;
+			if ( this.isObject(pParam) ) {
 				// 初期表示情報設定
 				wRelationInf = pParam.relationInf
 				if ( wRelationInf ) {
 					// 表示モード：更新
 					this._RelationMode = 'update';
 				}
+				
+				// 表示情報設定
+				if ( 'dspConfig' in pParam ) {
+					if ( this.isObject(pParam.dspConfig) ) wDspConfig = pParam.dspConfig;
+				}
 
 			}
+			if ( !this.isObject(wDspConfig) ) wDspConfig = {};
 
 			// 表示設定
-			var wKindUse = this._RelationConfig.kind;
+			var wTarget = pParam.target;
+			if ( this.isObject(wTarget) ) {
+				// 種別ごとの「関係」使用有無チェック
+				var wSrcKind = this.getConfigValue( 'kind', wTarget.src.kind );
+				if ( wSrcKind == null ) wSrcKind = true;
 
-			var wTargetKind = pParam.targetKind;
-			if ( this.isObject(wTargetKind) ) {
-				var wSrcKind = this.getConfigValue( 'kind', wTargetKind.src );
-				var wDstKind = this.getConfigValue( 'kind', wTargetKind.dst );
+				var wDstKind = this.getConfigValue( 'kind', wTarget.dst.kind );
+				if ( wDstKind == null ) wDstKind = true;
 
-				if ( wSrcKind != null ) wKindUse = (wKindUse && wSrcKind);
-				if ( wDstKind != null ) wKindUse = (wKindUse && wDstKind);
+				wDspConfig.kind &= (wSrcKind & wDstKind);
 			}
 
 			// 設定値初期化
-			this.initCondition( wRelationInf, { kind: wKindUse } );
+			this.initCondition( wRelationInf, wDspConfig );
 
 			// 継承元メニュー表示
 			if ( this._MenuPrototype ) {

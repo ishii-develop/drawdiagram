@@ -28,11 +28,15 @@ var clsContentsBox = function( pArgument ) {
 		this._DEF_CONTENTS_MENU					= {
 			 1: [
 					 { kind: 'item'			, title: '人物'			}
-					,{ kind: 'group'		, title: 'グループ'		}
+					,{ kind: 'item-fetus'	, title: '胎児'			}
+					,{ kind: 'item-pet'		, title: 'ペット'		}
+				]
+			,2: [
+					 { kind: 'group'		, title: 'グループ'		}
 					,{ kind: 'comment'		, title: 'コメント'		}
 					,{ kind: 'freeline'		, title: 'ライン'		}
 				]
-			,2: [
+			,3: [
 					 { kind: 'color'		, title: '色変更'		}
 				]
 		};
@@ -745,6 +749,9 @@ var clsContentsBox = function( pArgument ) {
 				var wClickKd = wClickItem.getBoxKind();
 				var wClickId = wClickItem.getBoxId();
 
+				// クリック項目の有効関連付けパラメータ取得
+				var wClickConfig = wClickItem.getUseRelationStat();
+
 				// 対象項目
 				var wTargetItm = self._ContentsRelation.item;
 				if ( !wTargetItm ) return false;
@@ -822,7 +829,13 @@ var clsContentsBox = function( pArgument ) {
 				// 追加／変更時
 				} else {
 					// 関係変更メニュー表示
-					wTargetItm.setRelationInf( pEvent, { id: wClickId, kind: wClickKd } );
+					var wRelParam = {
+							  id		: wClickId
+							, kind		: wClickKd
+							, dspConfig	: wClickConfig
+					};
+
+					wTargetItm.setRelationInf( pEvent, wRelParam );
 
 					// ※変更結果反映は各項目からの変更通知イベントで実施される
 
@@ -3468,66 +3481,6 @@ var clsContentsBox = function( pArgument ) {
 	// 項目操作
 	// **************************************************************
 
-	// 項目が人物かどうか
-	clsContentsBox.prototype.isItemPerson = function( pKind ) {
-		try {
-			if ( !pKind ) return false;
-
-			return ( String(pKind) == 'item-person' );
-
-		} catch(e) {
-			throw { name: 'isItemPerson', message: e.message };
-		}
-	};
-
-	// 項目がグループかどうか
-	clsContentsBox.prototype.isItemGroup = function( pKind ) {
-		try {
-			if ( !pKind ) return false;
-
-			return ( String(pKind) == 'item-group' );
-
-		} catch(e) {
-			throw { name: 'isItemGroup', message: e.message };
-		}
-	};
-
-	// 項目がコメントかどうか
-	clsContentsBox.prototype.isItemComment = function( pKind ) {
-		try {
-			if ( !pKind ) return false;
-
-			return ( String(pKind) == 'item-comment' );
-
-		} catch(e) {
-			throw { name: 'isItemComment', message: e.message };
-		}
-	};
-
-	// 項目が関連付け中継点かどうか
-	clsContentsBox.prototype.isItemRelation = function( pKind ) {
-		try {
-			if ( !pKind ) return false;
-
-			return ( String(pKind) == 'item-relation' );
-
-		} catch(e) {
-			throw { name: 'isItemRelation', message: e.message };
-		}
-	};
-
-	// 項目がフリーラインかどうか
-	clsContentsBox.prototype.isItemFreeLine = function( pKind ) {
-		try {
-			if ( !pKind ) return false;
-
-			return ( String(pKind) == 'item-freeline' );
-
-		} catch(e) {
-			throw { name: 'isItemFreeLine', message: e.message };
-		}
-	};
-
 	// 主項目取得
 	clsContentsBox.prototype.getItemMainPerson = function( ) {
 		try {
@@ -5769,6 +5722,24 @@ var clsContentsBox = function( pArgument ) {
 			switch(pSelectMenu.kind) {
 			// 人物追加
 			case 'item':
+				wRetVal = this.addItemStart( pEvent, 'item-person' );
+				break;
+
+			// 胎児追加
+			case 'item-fetus':
+				// パラメータ「種別」追加
+				if ( !this.isObject(pEvent) ) pEvent = {};
+				pEvent.class = 'fetus';
+
+				wRetVal = this.addItemStart( pEvent, 'item-person' );
+				break;
+
+			// ペット追加
+			case 'item-pet':
+				// パラメータ「種別」追加
+				if ( !this.isObject(pEvent) ) pEvent = {};
+				pEvent.class = 'pet';
+
 				wRetVal = this.addItemStart( pEvent, 'item-person' );
 				break;
 

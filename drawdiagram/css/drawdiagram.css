@@ -209,6 +209,17 @@ body {
 	background-size		: cover;
 }
 
+.cssItem-person-fetus {
+	width				: 32px;
+	height				: 32px;
+	background-color	: #FFFFEE;
+}
+
+.cssItem-person-pet {
+	width				: 48px;
+	height				: 48px;
+	background-color	: #FFFFBB;
+}
 .cssItem-group {
 	position			: absolute;
 	width				: 180px;
