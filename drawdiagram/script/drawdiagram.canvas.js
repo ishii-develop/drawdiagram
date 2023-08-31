@@ -29,6 +29,7 @@ var clsCanvas = function( pArgument ) {
 		this._CanvasSize				= {};
 		this._CanvasEle					= null;
 		this._CanvasContext				= null;
+		this._CanvasLine				= null;
 		
 		this._CanvasDash				= { interval: this._DEF_CANVAS_DASH.interval };
 		this._CanvasStripe				= null;
@@ -145,6 +146,8 @@ var clsCanvas = function( pArgument ) {
 			this.addClass( wLineEle, 'no-print' );
 
 			this.appendBoxToParent( wLineEle );
+			
+			this._CanvasLine = wLineEle;
 
 			return true;
 
@@ -166,6 +169,22 @@ var clsCanvas = function( pArgument ) {
 			throw { name: 'appendCanvas.' + e.name, message: e.message };
 		}
 	};
+
+	// キャンバスのライン表示設定
+	clsCanvas.prototype.setCanvasLineDisplay = function( pDisplay ) {
+		try {
+			if ( !this._CanvasLine ) return;
+
+			var wDisplay = '';
+			if ( !pDisplay ) wDisplay = 'none';
+
+			this.setStyle( this._CanvasLine, { display: wDisplay } );
+
+		} catch(e) {
+			throw { name: 'setCanvasLineDisplay.' + e.name, message: e.message };
+		}
+	};
+
 
 
 	// **************************************************************
@@ -1023,6 +1042,7 @@ var clsCanvas = function( pArgument ) {
 			// プロパティ開放
 			this._CanvasContext				= null;
 			this._CanvasEle					= null;
+			this._CanvasLine				= null;
 
 			// 継承元デストラクタ
 			// ※継承元デストラクタは最後にcallする

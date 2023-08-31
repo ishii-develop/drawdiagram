@@ -89,6 +89,9 @@ var clsItemRelation = function( pArgument ) {
 		// 継承元クラスのprototype
 		this._ItemPrototype						= null;
 
+		// 親情報
+		this._RelationInfParent					= { pos: null, size: null };
+
 		// 関係情報
 		this._RelationInfMaster					= { parent: '', target: '', key: '' };
 		this._RelationInfContents				= {};
@@ -143,7 +146,12 @@ var clsItemRelation = function( pArgument ) {
 
 				// コメント移動
 				var wPoint = self.getEventPos( pEvent );
-				self.moveCmt( wPoint );
+
+				if ( self.moveCmt(wPoint) ) {
+					// コメント位置確定
+					self.confirmCmtMove( pEvent, wPoint );
+
+				}
 
 			} catch(e) {
 				self.execFunction( self.cancelCmtMove );
@@ -158,27 +166,8 @@ var clsItemRelation = function( pArgument ) {
 				// イベント停止
 				self.execFunction( self.cancelEvent, pEvent, true );
 
-				if ( self._RelationInfCmtMove ) {
-					// 移動先チェック
-					var wStayFlg = false;
-					
-					// 開始位置と同じなら処理なし
-					var wStPos = self._RelationInfCmtMove.startpos;
-					if ( self.isObject(wStPos) ) {
-						var wEvtPos = self.getEventPos( pEvent );
-						if ( (wEvtPos.x == wStPos.x) && (wEvtPos.y == wStPos.y) ) wStayFlg = true;
-					}
-
-					if ( !wStayFlg ) {
-						// 移動先保存
-						self.setLinePoint( pEvent, self.getBoxElement() );
-					
-					}
-				
-				}
-
-				// 移動終了
-				self.cancelCmtMove();
+				// コメント位置確定
+				self.confirmCmtMove( pEvent );
 
 			} catch(e) {
 				self.catchErrorDsp(e);
@@ -831,6 +820,7 @@ var clsItemRelation = function( pArgument ) {
 	};
 
 	// 中継点設定
+	// ※ クリック座標をコメントの中心として設定する
 	clsItemRelation.prototype.setLinePoint = function( pEvent, pElement ) {
 		try {
 			// 終了位置
@@ -876,6 +866,33 @@ var clsItemRelation = function( pArgument ) {
 
 		} catch(e) {
 			throw { name: 'setLinePoint.' + e.name, message: e.message };
+
+		}
+	};
+
+	// 中継点設定（現在表示位置）
+	// ※ コメント現在位置の中心座標を設定する
+	clsItemRelation.prototype.setLinePointOnCenter = function( ) {
+		try {
+			// コメント現在座標を取得
+			var wPoint = this.getBoxPosByStyle();
+
+			// 座標補正
+			var wBoxSize = this.getBoxSize();
+			if ( wBoxSize.width  > 2 ) wBoxSize.width  = Math.floor(wBoxSize.width  / 2);
+			if ( wBoxSize.height > 2 ) wBoxSize.height = Math.floor(wBoxSize.height / 2);
+
+			var wCenter = {
+				  x : wPoint.left + wBoxSize.width
+				, y : wPoint.top + wBoxSize.height
+			};
+
+			// ポイント保存
+			var wId = this.getBoxId();
+			this._RelationInfPoints[wId] = wCenter;
+
+		} catch(e) {
+			throw { name: 'setLinePointOnCenter.' + e.name, message: e.message };
 
 		}
 	};
@@ -1099,6 +1116,9 @@ var clsItemRelation = function( pArgument ) {
 			// 位置確定
 			this.addEvent( this.getBoxWindow(), 'onmouseup'		, this.eventCmtMoveStop );
 
+			// マウス範囲外
+			this.addEvent( this.getParent(), 'mouseleave'		, this.eventCmtMoveStop );
+
 		} catch(e) {
 			throw { name: 'addCmtMoveEvent.' + e.name, message: e.message };
 		}
@@ -1112,6 +1132,9 @@ var clsItemRelation = function( pArgument ) {
 
 			// 位置確定
 			this.delEvent( this.getBoxWindow(), 'onmouseup'		, this.eventCmtMoveStop );
+
+			// マウス範囲外
+			this.delEvent( this.getParent(), 'mouseleave'		, this.eventCmtMoveStop );
 
 		} catch(e) {
 			throw { name: 'delCmtMoveEvent.' + e.name, message: e.message };
@@ -1142,8 +1165,8 @@ var clsItemRelation = function( pArgument ) {
 
 			this._RelationInfCmtMove = {};
 
-			// 親の位置を保存
-			this._RelationInfCmtMove.parent = this.getParentPos();
+			// サイズを保存
+			this._RelationInfCmtMove.size = this.getBoxSize( { overflow: true, border: true } );
 
 			// クリック位置を保存
 			var wEvtPos = this.getEventPos( pEvent );
@@ -1173,39 +1196,96 @@ var clsItemRelation = function( pArgument ) {
 	// コメント移動
 	clsItemRelation.prototype.moveCmt = function( pPoint ) {
 		try {
-			var wMovePos = { x: pPoint.x, y: pPoint.y };
+			if ( !this._RelationInfCmtMove ) return true;
 
-			if ( this._RelationInfCmtMove ) {
-				if ( this._RelationInfCmtMove.parent ) {
-					wMovePos.x -= this._RelationInfCmtMove.parent.left;
-					wMovePos.y -= this._RelationInfCmtMove.parent.top;
+			var wMovePos  = { x: pPoint.x, y: pPoint.y };
 
-				}
+			if ( !this._RelationInfParent.pos  ) this._RelationInfParent.pos  = this.getParentPos();
+			if ( !this._RelationInfParent.size ) this._RelationInfParent.size = this.getParentSize( { overflow: true, border: false } );
 
-				if ( this._RelationInfCmtMove.drag ) {
-					wMovePos.x -= this._RelationInfCmtMove.drag.left;
-					wMovePos.y -= this._RelationInfCmtMove.drag.top;
-				}
-			}
+			// 親要素補正
+			wMovePos.x -= this._RelationInfParent.pos.left;
+			wMovePos.y -= this._RelationInfParent.pos.top;
 
-			// 親要素のスクロール値加算
 			var wMainScroll = this.getParentScroll();
 			wMovePos.x += wMainScroll.x;
 			wMovePos.y += wMainScroll.y;
 
-			// 上端、左端は処理なし
-			if ( wMovePos.x <= 0 ) return false;
-			if ( wMovePos.y <= 0 ) return false;
+			// ドラッグ位置補正
+			if ( this._RelationInfCmtMove.drag ) {
+				wMovePos.x -= this._RelationInfCmtMove.drag.left;
+				wMovePos.y -= this._RelationInfCmtMove.drag.top;
+			}
+
+			// 親要素の範囲を超えれば終了
+			var wMoveEnd = false;
+
+			// 上端
+			if ( wMovePos.x < 0 ) {
+				wMovePos.x  = 0;
+				wMoveEnd = true;
+			}
+
+			// 左端
+			if ( wMovePos.y < 0 ) {
+				wMovePos.y  = 0;
+				wMoveEnd = true;
+			}
+
+			// 右端
+			var wRight = wMovePos.x + this._RelationInfCmtMove.size.width;
+			if ( wRight > this._RelationInfParent.size.width ) {
+				wMovePos.x  = this._RelationInfParent.size.width - this._RelationInfCmtMove.size.width;
+				wMoveEnd = true;
+			}
+
+			var wBottom = wMovePos.y + this._RelationInfCmtMove.size.height;
+			if ( wBottom > this._RelationInfParent.size.height ) {
+				wMovePos.y  = this._RelationInfParent.size.height - this._RelationInfCmtMove.size.height;
+				wMoveEnd = true;
+			}
 
 			this.setBoxPos( wMovePos );
 
-			return true;
+			return wMoveEnd;
 
 		} catch(e) {
 			throw { name: 'moveCmt.' + e.name, message: e.message };
 		}
 	};
 
+	// コメント移動　位置確定
+	clsItemRelation.prototype.confirmCmtMove = function( pEvent, pPoint ) {
+		try {
+			if ( this._RelationInfCmtMove ) {
+				// 移動先チェック
+				var wStayFlg = false;
+				
+				// 開始位置と同じなら処理なし
+				var wStPos = this._RelationInfCmtMove.startpos;
+				if ( this.isObject(wStPos) ) {
+					var wEndPos = this.getEventPos( pEvent );
+					if ( (wEndPos.x == wStPos.x) && (wEndPos.y == wStPos.y) ) wStayFlg = true;
+				}
+
+				if ( !wStayFlg ) {
+					// 移動先保存
+					this.setLinePointOnCenter( );
+
+					// 親へ変更を通知
+					this.execItemCallback( pEvent, { kind: 'relationLine' } );
+
+				}
+			
+			}
+
+			// 移動終了
+			this.cancelCmtMove();
+
+		} catch(e) {
+			throw { name: 'confirmCmtMove.' + e.name, message: e.message };
+		}
+	};
 
 	// **************************************************************
 	// イベント
@@ -1524,6 +1604,10 @@ var clsItemRelation = function( pArgument ) {
 				this._ItemPrototype.initClass.call( this, wInitArgument, pNoBoxReq );
 
 			}
+			
+			// 開始時親情報保存
+			this._RelationInfParent.pos  = this.getParentPos();
+			this._RelationInfParent.size = this.getParentSize( { overflow: true, border: false } );
 
 		} catch(e) {
 			throw { name: 'clsItemRelation.initClass', message: e.message };
@@ -1537,6 +1621,7 @@ var clsItemRelation = function( pArgument ) {
 			this.execFunction( this.delCmtMoveEvent );
 
 			// プロパティ開放
+			this._RelationInfParent			= null;
 			this._RelationInfContents		= null;
 			this._RelationInfPoints			= null;
 			this._RelationInfKind			= null;

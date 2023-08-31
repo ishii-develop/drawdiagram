@@ -105,6 +105,14 @@ var clsBaseBox = function( pArgument ) {
 		} catch(e) {}
 	};
 
+	// 警告メッセージ表示
+	clsBaseBox.prototype.dspAlert = function( pMessage ) {
+		try {
+			return window.alert( pMessage );
+
+		} catch(e) {}
+	};
+
 	// エラーメッセージをalert表示
 	clsBaseBox.prototype.catchErrorDsp = function( pError ) {
 		try {
@@ -527,7 +535,7 @@ var clsBaseBox = function( pArgument ) {
 				wSavePos.top  = this.getStyle( pElement, 'top' );
 
 				// 表示範囲外で一旦表示
-				this.setStyle( pElement, { left: '-200px', top: '-200px', display: 'block' } );
+				this.setStyle( pElement, { left: '-1000px', top: '-1000px', display: '' } );
 			}
 
 			// 隠れている領域を含む
@@ -637,12 +645,12 @@ var clsBaseBox = function( pArgument ) {
 		}
 	};
 
-	// 親要素のスクロール量を取得
+	// 要素のスクロール量を取得
 	clsBaseBox.prototype.getScroll = function( pElement ) {
 		try {
 			var wScroll = { x: 0, y: 0 };
 			
-			// 親要素有効時のみ
+			// 要素有効時のみ
 			if ( pElement ) {
 				wScroll.x = pElement.scrollLeft;
 				wScroll.y = pElement.scrollTop;
@@ -652,6 +660,20 @@ var clsBaseBox = function( pArgument ) {
 
 		} catch(e) {
 			throw { name: 'getScroll.' + e.name, message: e.message };
+		}
+	};
+
+	// 要素のスクロール量を設定
+	clsBaseBox.prototype.setScroll = function( pElement, pScroll ) {
+		try {
+			// 要素有効時のみ
+			if ( !pElement ) return;
+
+			pElement.scrollLeft	= pScroll.x;
+			pElement.scrollTop	= pScroll.y;
+
+		} catch(e) {
+			throw { name: 'setScroll.' + e.name, message: e.message };
 		}
 	};
 
@@ -1279,7 +1301,14 @@ var clsBaseBox = function( pArgument ) {
 		try {
 			if ( !pKind ) return false;
 
-			return ( String(pKind) == 'item-person' );
+			if ( pKind == 'person' ) {
+				return true;
+			
+			} else if ( String(pKind) == 'item-person' ) {
+				return true;
+
+			}
+			return false;
 
 		} catch(e) {
 			throw { name: 'isItemPerson', message: e.message };
@@ -1291,7 +1320,14 @@ var clsBaseBox = function( pArgument ) {
 		try {
 			if ( !pKind ) return false;
 
-			return ( String(pKind) == 'item-group' );
+			if ( pKind == 'group' ) {
+				return true;
+			
+			} else if ( String(pKind) == 'item-group' ) {
+				return true;
+
+			}
+			return false;
 
 		} catch(e) {
 			throw { name: 'isItemGroup', message: e.message };
@@ -1303,7 +1339,14 @@ var clsBaseBox = function( pArgument ) {
 		try {
 			if ( !pKind ) return false;
 
-			return ( String(pKind) == 'item-comment' );
+			if ( pKind == 'comment' ) {
+				return true;
+			
+			} else if ( String(pKind) == 'item-comment' ) {
+				return true;
+
+			}
+			return false;
 
 		} catch(e) {
 			throw { name: 'isItemComment', message: e.message };
@@ -1315,7 +1358,14 @@ var clsBaseBox = function( pArgument ) {
 		try {
 			if ( !pKind ) return false;
 
-			return ( String(pKind) == 'item-relation' );
+			if ( pKind == 'relation' ) {
+				return true;
+			
+			} else if ( String(pKind) == 'item-relation' ) {
+				return true;
+
+			}
+			return false;
 
 		} catch(e) {
 			throw { name: 'isItemRelation', message: e.message };
@@ -1327,7 +1377,14 @@ var clsBaseBox = function( pArgument ) {
 		try {
 			if ( !pKind ) return false;
 
-			return ( String(pKind) == 'item-freeline' );
+			if ( pKind == 'freeline' ) {
+				return true;
+			
+			} else if ( String(pKind) == 'item-freeline' ) {
+				return true;
+
+			}
+			return false;
 
 		} catch(e) {
 			throw { name: 'isItemFreeLine', message: e.message };
@@ -2034,6 +2091,19 @@ var clsBaseBox = function( pArgument ) {
 
 		} catch(e) {
 			throw { name: 'getParentPos.' + e.name, message: e.message };
+		}
+	};
+
+	// 親要素の位置（left, top）をStyleから取得
+	clsBaseBox.prototype.getParentPosByStyle = function( ) {
+		try {
+			var wParent = this._BoxParent;
+			if ( !wParent ) wParent = this._BoxDocument;
+
+			return this.getPosByStyle( wParent );
+
+		} catch(e) {
+			throw { name: 'getParentPosByStyle.' + e.name, message: e.message };
 		}
 	};
 

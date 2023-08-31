@@ -37,7 +37,8 @@ var clsContentsBox = function( pArgument ) {
 					,{ kind: 'freeline'		, title: 'ライン'		}
 				]
 			,3: [
-					 { kind: 'color'		, title: '色変更'		}
+					 { kind: 'all-move'		, title: '全体移動'		}
+					,{ kind: 'color'		, title: '色変更'		}
 				]
 		};
 
@@ -48,6 +49,7 @@ var clsContentsBox = function( pArgument ) {
 			, 'overflow-group'		: '配置先が所属グループの範囲外です'
 			, 'relation-item'		: '所属している項目への関連付けは出来ません'
 			, 'relation-group'		: '所属しているグループへの関連付けは出来ません'
+			, 'move-nonitem'		: '移動する項目が配置されていません'
 		};
 
 		// 継承元クラスのprototype
@@ -61,12 +63,17 @@ var clsContentsBox = function( pArgument ) {
 		// 編集メニュー状態
 		this._ContentsEditMode					= '';
 
+		// 要素への参照
 		this._ContentsEleMenu					= null;
 		this._ContentsEleMenuList				= [];
+		this._ContentsEleBase					= null;
 		this._ContentsEleMain					= null;
 
+		// メニューへの参照
 		this._ContentsPublicMenu				= {};
 		this._ContentsContextMenu				= null;
+
+		// コンテキストメニューの状態
 		this._ContentsContextValid				= false;
 		this._ContentsContextEvent				= null;
 
@@ -87,6 +94,10 @@ var clsContentsBox = function( pArgument ) {
 		this._ContentsPosition					= { item: null, kind: '' };
 		this._ContentsUpdInf					= { kind: '', param: null };
 		this._ContentsLineInf					= { item: null, pos: null, start: null };
+
+		// 全体移動情報
+		this._ContentsMoveAll					= { pos: null };
+
 
 		// 所属項目
 		this._ContentsItems						= {
@@ -368,20 +379,42 @@ var clsContentsBox = function( pArgument ) {
 		// リサイズ中マウス追従イベント
 		this.eventItemResize = function( pEvent ) {
 			try {
-				if ( !pEvent ) return true;
 				if ( !self._ContentsResizeInf.item ) return true;
 
-				var wEle = self._ContentsResizeInf.item.getBoxElement();
-				if ( !wEle ) return true;
+				var wResizeItm = self._ContentsResizeInf.item.getBoxElement();
+				if ( !wResizeItm ) return true;
 
+				// 移動量取得
 				var wPoint = self.getEventPos( pEvent );
-				var wElePos = self._ContentsResizeInf.item.getBoxPos();
 
-				var wWidth  = wPoint.x - wElePos.left;
-				var wHeight = wPoint.y - wElePos.top;
+				var wX = wPoint.x - self._ContentsResizeInf.posMouse.x;
+				var wY = wPoint.y - self._ContentsResizeInf.posMouse.y;
 
-				wEle.style.width  = wWidth  + "px";
-				wEle.style.height = wHeight + "px";
+				// マウス座標保存
+				self._ContentsResizeInf.posMouse = wPoint;
+
+				// 変更後サイズチェック
+				var wWidth = self._ContentsResizeInf.itemSize.width + wX;
+				if ( wWidth < 0 ) wWidth = self._ContentsResizeInf.lineSize.width + 1;
+
+				var wRight = self._ContentsResizeInf.itemPos.left + wWidth;
+				if ( wRight <= self._ContentsResizeInf.canvas.width ) {
+					// 幅更新
+					wResizeItm.style.width  = (wWidth - self._ContentsResizeInf.lineSize.width) + "px";
+
+					self._ContentsResizeInf.itemSize.width = wWidth;
+				}
+
+				var wHeight = self._ContentsResizeInf.itemSize.height + wY;
+				if ( wHeight < 0 ) wHeight = self._ContentsResizeInf.lineSize.height + 1;
+
+				var wBottom = self._ContentsResizeInf.itemPos.top + wHeight;
+				if ( wBottom <= self._ContentsResizeInf.canvas.height ) {
+					// 高さ更新
+					wResizeItm.style.height = (wHeight - self._ContentsResizeInf.lineSize.height) + "px";
+
+					self._ContentsResizeInf.itemSize.height = wHeight;
+				}
 
 			} catch(e) {
 				// 強制終了
@@ -862,6 +895,87 @@ var clsContentsBox = function( pArgument ) {
 		};
 
 
+		// ----------------------------
+		// 全体移動
+		// ----------------------------
+
+		// 全体移動中マウス追従イベント
+		this.eventAllMove = function( pEvent ) {
+			try {
+				if ( !pEvent ) return true;
+
+				// 移動量取得
+				var wPoint = self.getEventPos( pEvent );
+
+				var wX = wPoint.x - self._ContentsMoveAll.posMouse.x;
+				var wY = wPoint.y - self._ContentsMoveAll.posMouse.y;
+
+				// マウス座標保存
+				self._ContentsMoveAll.posMouse	= wPoint;
+
+				// 移動後位置チェック
+				var wLeft = self._ContentsMoveAll.itemArea.left + wX;
+				if ( wLeft < 0 ) return false;
+
+				var wTop = self._ContentsMoveAll.itemArea.top + wY;
+				if ( wTop < 0 ) return false;
+
+				var wRight = self._ContentsMoveAll.itemArea.right + wX;
+				if ( wRight > self._ContentsMoveAll.canvas.width ) return false;
+
+				var wBottom = self._ContentsMoveAll.itemArea.bottom + wY;
+				if ( wBottom > self._ContentsMoveAll.canvas.height ) return false;
+
+				// 位置更新
+				self._ContentsMoveAll.itemArea.left		= wLeft;
+				self._ContentsMoveAll.itemArea.top		= wTop;
+				self._ContentsMoveAll.itemArea.right	= wRight;
+				self._ContentsMoveAll.itemArea.bottom	= wBottom;
+
+				// メイン画面移動
+				wLeft = self._ContentsMoveAll.posMove.left + wX;
+				wTop  = self._ContentsMoveAll.posMove.top  + wY;
+				self.setStyle( self._ContentsEleMain, { left: wLeft + 'px', top: wTop + 'px' } );
+
+				// 位置更新
+				self._ContentsMoveAll.posMove.left		= wLeft;
+				self._ContentsMoveAll.posMove.top		= wTop;
+
+			} catch(e) {
+				// 強制終了
+				self.execFunction( self.moveAllCancel );
+				self.catchErrorDsp(e);
+
+			}
+			return false;
+		};
+
+		// 移動確定イベント
+		this.eventAllMoveEnd = function( pEvent ) {
+			try {
+				// イベント停止
+				self.cancelEvent( pEvent, true );
+
+				// 左クリックのみ有効
+				var wClick = self.getEventClick( pEvent );
+				if ( !wClick.left ) return false;
+
+				// 移動確定
+				var wMoveExec = self.moveAllConfirm();
+
+				// 移動終了
+				self.moveAllCancel( wMoveExec );
+
+			} catch(e) {
+				// 強制終了
+				self.execFunction( self.moveAllCancel );
+				self.catchErrorDsp(e);
+			}
+			
+			return false;
+		};
+
+
 		// **************************************************************
 		// コンストラクタ
 		// **************************************************************
@@ -913,7 +1027,7 @@ var clsContentsBox = function( pArgument ) {
 	clsContentsBox.prototype.getBelongComment = function( ) {
 		try {
 			// 所属するコメントオブジェクト群（への参照）を返す
-			return this._ContentsItems.group;
+			return this._ContentsItems.comment;
 
 		} catch(e) {
 			throw { name: 'getBelongComment', message: e.message };
@@ -1223,18 +1337,14 @@ var clsContentsBox = function( pArgument ) {
 	clsContentsBox.prototype.chkItemOverflowArea = function( pChkItem ) {
 		try {
 			// 項目の表示範囲
-			var wItemRect = pChkItem.getBoxRect();
+			var wItemRect = pChkItem.getBoxPosByStyle();
 			var wItemSize = pChkItem.getBoxSize( { overflow: true, border: true } );
 
 			wItemRect.right  = wItemRect.left + wItemSize.width;
 			wItemRect.bottom = wItemRect.top  + wItemSize.height;
 
 			// メイン画面の範囲
-			var wMainRect = this.getRect( this._ContentsEleMain );
-
-			var wMainScroll	= this.getScroll( this._ContentsEleMain );
-			wMainRect.left -= wMainScroll.x;
-			wMainRect.top  -= wMainScroll.y;
+			var wMainRect = this.getPosByStyle( this._ContentsEleMain );
 
 			// キャンバスの範囲
 			var wCanvasStat = this._ContentsCanvas.canvasGetStatus();
@@ -1249,6 +1359,7 @@ var clsContentsBox = function( pArgument ) {
 			throw { name: 'chkItemOverflowArea.' + e.name, message: e.message };
 		}
 	};
+
 
 	// **************************************************************
 	//  ライン描画　関連付け
@@ -1501,15 +1612,32 @@ var clsContentsBox = function( pArgument ) {
 			if ( !pItemList ) return false;
 
 			// パラメータ設定
-			var wSelectedItm	= null;
-			var wRelayPoint		= null;
-			var wProsessed		= null;
-			if ( this.isObject(pLineParam) ) {
-				if ( 'selected'  in pLineParam ) wSelectedItm	= pLineParam.selected;
-				if ( 'relation'  in pLineParam ) wRelayPoint	= pLineParam.relation;
-				if ( 'processed' in pLineParam ) wProsessed		= pLineParam.processed;
-			}
-			if ( !this.isObject(wProsessed) ) wProsessed = {};
+			if ( !this.isObject(pLineParam) ) pLineParam = {};
+
+			// パラメータ　選択項目
+			var wSelectedItm = null;
+			if ( 'selected' in pLineParam ) wSelectedItm = pLineParam.selected;
+
+			// パラメータ　起点が中継点か
+			var wRelayStart = false;
+			if ( 'relationSt' in pLineParam ) wRelayStart = pLineParam.relationSt;
+
+			// パラメータ　中継点を対象とするか
+			var wRelayPoint = null;
+			var wRelayCheck = false;
+			if ( 'relation' in pLineParam ) wRelayPoint = pLineParam.relation;
+			if ( typeof wRelayPoint == 'boolean' ) wRelayCheck = true;
+
+			// パラメータ　処理済項目
+			if ( !('processed' in pLineParam) ) pLineParam.processed = {};
+			var wProsessed = pLineParam.processed;
+
+			// パラメータ　描画済中継点
+			if ( !('drawnRel' in pLineParam) ) pLineParam.drawnRel = {};
+			var wDrawnRel = pLineParam.drawnRel;
+
+			// パラメータ　処理済組合せ
+			if ( !('combination' in pLineParam) ) pLineParam.combination = {};
 
 			// 選択項目指定時
 			var wDefParam	= null;
@@ -1524,15 +1652,24 @@ var clsContentsBox = function( pArgument ) {
 			var wTargetChild;
 			var wListItm;
 			var wRelItm;
+			var wRelId;
 			var wChildItm;
 			var wChildKd;
+			var wChildId;
 			var wRelationList;
 
+			var wResult = false;
 			for( var key in pItemList ) {
 				if ( !pItemList.hasOwnProperty(key) ) continue;
 
 				// 処理済は処理しない
 				if ( key in wProsessed ) continue;
+
+				// 起点が中継点
+				if ( wRelayStart ) {
+					// 描画済中継点のみ処理
+					if ( !(key in wDrawnRel) ) continue;
+				}
 
 				wListItm = pItemList[key];
 
@@ -1543,8 +1680,12 @@ var clsContentsBox = function( pArgument ) {
 					wTargetFlg = false;
 				}
 
+				// 関連項目なければ処理済とする
 				wRelationList = wListItm.getRelationList('parent');
-				if ( !wRelationList ) continue;
+				if ( !wRelationList ) {
+					pLineParam.processed[key] = true;
+					continue;
+				}
 
 				for ( var wId in wRelationList ) {
 					// 処理済は処理しない
@@ -1556,6 +1697,11 @@ var clsContentsBox = function( pArgument ) {
 
 					wChildItm = this.getContentsItem( wId, wRelItm.kind );
 					if ( !wChildItm ) continue;
+
+					// 処理済組合わせかチェック
+					wChildId = wChildItm.getBoxId();
+					if ( !(key in pLineParam.combination) ) pLineParam.combination[key] = {};
+					if ( wChildId in pLineParam.combination[key] ) continue;
 
 					// 関連付け（子）が対象かチェック
 					wTargetChild = false;
@@ -1570,12 +1716,15 @@ var clsContentsBox = function( pArgument ) {
 						wLineParam  = wDefParam;
 					}
 
-					if ( typeof wRelayPoint == 'boolean' ) {
+					if ( wRelayCheck ) {
 						// 中継点との関連付けが対象
 						wChildKd = wChildItm.getBoxKind();
 						if ( wRelayPoint ) {
 							// 中継点以外は処理なし
 							if ( !this.isItemRelation(wChildKd) ) continue;
+
+							// 描画済中継点のみ処理
+							if ( !(wChildId in wDrawnRel) ) continue;
 
 						} else {
 							// 中継点は処理なし
@@ -1584,10 +1733,24 @@ var clsContentsBox = function( pArgument ) {
 						}
 					}
 
+					// ライン描画
 					this.drawRelationLine( wListItm, wChildItm, wRelItm.relationInf, wLineParam );
+					
+					// 描画された中継点を保存
+					wRelId = wRelItm.relationInf.getBoxId();
+					pLineParam.drawnRel[wRelId] = true;
+
+					// 描画された組合わせを保存
+					pLineParam.combination[key][wChildId] = true;
+
+					// 描画対象あり
+					wResult = true;
 				}
 
 			}
+
+			// ライン描画対象有無を返す
+			return wResult;
 
 		} catch(e) {
 			throw { name: 'drawRelationLineAll.' + e.name, message: e.message };
@@ -1595,29 +1758,47 @@ var clsContentsBox = function( pArgument ) {
 	};
 
 	// 指定項目ライン描画
-	clsContentsBox.prototype.drawItemLine = function( pTarget, pProcessedId ) {
+	clsContentsBox.prototype.drawItemLine = function( pTarget, pLineParam ) {
 		try {
 			if ( !pTarget ) return false;
 
+			// パラメータ設定
+			var wProsessed		= null;
+			var wSelectedItm	= null;
+			if ( this.isObject(pLineParam) ) {
+				if ( 'selected'  in pLineParam ) wSelectedItm	= pLineParam.selected;
+				if ( 'processed' in pLineParam ) wProsessed		= pLineParam.processed;
+
+			} else {
+				pLineParam = {};
+
+			}
+
 			// 処理済項目は処理なし
 			var wTargetId = pTarget.getBoxId();
-			if ( this.isObject(pProcessedId) ) {
-				if ( wTargetId in pProcessedId ) return true;
+
+			if ( wProsessed ) {
+				if ( wTargetId in wProsessed ) return true;
 			
 			} else {
-				pProcessedId = {};
+				pLineParam.processed = {};
 			
 			}
 
+			// 描画済中継点初期化
+			if ( !('drawnRel' in pLineParam) ) pLineParam.drawnRel = {};
+
 			// 処理済項目ID保存
-			pProcessedId[wTargetId] = true;
+			pLineParam.processed[wTargetId] = true;
 
 			// 関連項目なければ処理なし
 			var wRelationList = pTarget.getRelationList();
 			if ( !wRelationList ) return false;
 
 			var wRelItm;
+			var wRelId;
 			var wChildItm;
+			var wChildId;
 			var wLineKind;
 
 			// 関連項目とのライン描画
@@ -1627,6 +1808,10 @@ var clsContentsBox = function( pArgument ) {
 
 				wChildItm = this.getContentsItem( wId, wRelItm.kind );
 				if ( !wChildItm ) continue;
+
+				// 処理済は処理不要
+				wChildId = wChildItm.getBoxId();
+				if ( wChildId in wProsessed ) continue;
 
 				// 項目の主で無い場合
 				if ( !wRelItm.parent ) {
@@ -1646,10 +1831,16 @@ var clsContentsBox = function( pArgument ) {
 					wLineKind = null;
 
 				}
+
+				// ライン描画
 				this.drawRelationLine( pTarget, wChildItm, wRelItm.relationInf, wLineKind );
 
+				// 描画された中継点を保存
+				wRelId = wRelItm.relationInf.getBoxId();
+				pLineParam.drawnRel[wRelId] = true;
+
 				// ※ 再帰で中継点からのラインを描画
-				this.drawItemLine( wRelItm.relationInf, pProcessedId );
+				this.drawItemLine( wRelItm.relationInf, pLineParam );
 			}
 
 		} catch(e) {
@@ -1829,6 +2020,8 @@ var clsContentsBox = function( pArgument ) {
 	// 全関係ライン再描画
 	clsContentsBox.prototype.drawRelationRedo = function( pLineParam ) {
 		try {
+			var self = this;
+
 			// キャンバスクリア
 			if ( this._ContentsCanvas ) {
 				this._ContentsCanvas.canvasClear();
@@ -1845,28 +2038,41 @@ var clsContentsBox = function( pArgument ) {
 			// 処理済項目ID
 			var wProcessedId = {};
 
-			// 優先項目指定時
-			if ( wPriorityItm ) {
-				// 優先項目のライン再描画
-				this.drawItemLine( wPriorityItm, wProcessedId );
-
-			}
-
 			var wLineParam = {
 					  selected	: wSelectItm
 					, processed	: wProcessedId
 			};
-			// ライン再描画（中継点への関連付け以外）
-			wLineParam.relation = false;
-			this.drawRelationLineAll( this._ContentsItems.person,	wLineParam );
-			this.drawRelationLineAll( this._ContentsItems.group,	wLineParam );
-			this.drawRelationLineAll( this._ContentsItems.relation,	wLineParam );
 
-			// ライン再描画（中継点への関連付け）
-			wLineParam.relation = true;
-			this.drawRelationLineAll( this._ContentsItems.person,	wLineParam );
-			this.drawRelationLineAll( this._ContentsItems.group,	wLineParam );
-			this.drawRelationLineAll( this._ContentsItems.relation,	wLineParam );
+			// 優先項目指定時
+			if ( wPriorityItm ) {
+				// 優先項目のライン再描画
+				this.drawItemLine( wPriorityItm, wLineParam );
+
+			}
+
+			// ライン再描画（中継点以外への関連付け）
+			wLineParam.relation = false;
+
+			var wDrawFlag;
+			var wDrawCnt = 0;
+			do {
+				wDrawFlag = false;
+
+				wLineParam.relationSt = false;
+				if ( this.drawRelationLineAll(this._ContentsItems.person, wLineParam) ) wDrawFlag = true;
+
+				wLineParam.relationSt = false;
+				if ( this.drawRelationLineAll(this._ContentsItems.group, wLineParam) ) wDrawFlag = true;
+
+				wLineParam.relationSt = true;
+				if ( this.drawRelationLineAll(this._ContentsItems.relation, wLineParam) ) wDrawFlag = true;
+
+				// ライン再描画（中継点への関連付け）
+				wLineParam.relation = true;
+
+				wDrawCnt++;
+				if ( wDrawCnt > 20 ) break;
+			} while( wDrawFlag );
 
 			// フリーライン描画
 			this.drawFreeLineAll();
@@ -2557,7 +2763,36 @@ var clsContentsBox = function( pArgument ) {
 			if ( !pResizeObj ) return false;
 			this._ContentsResizeInf.item = pResizeObj;
 
-			// リサイズ開始エラー
+			// 開始マウス位置
+			this._ContentsResizeInf.posMouse = this.getEventPos( pEvent );
+
+			// 開始位置保存
+			this._ContentsResizeInf.itemPos = pResizeObj.getBoxPosByStyle();
+
+			// 開始サイズ保存
+			this._ContentsResizeInf.itemSize = pResizeObj.getBoxSize( { overflow: true, border: true } );
+
+			var wLineSize = pResizeObj.getBoxLine( );
+			var wLineWidth  = 0;
+			var wLineHeight = 0;
+			if ( wLineSize ) {
+				wLineWidth  = wLineSize.left.width + wLineSize.right.width;
+				wLineHeight = wLineSize.top.width + wLineSize.bottom.width;
+			}
+			this._ContentsResizeInf.lineSize = {
+				  width		: wLineWidth
+				, height	: wLineHeight
+			};
+
+			// キャンバスサイズ取得
+			var wCanvasStat = this._ContentsCanvas.canvasGetStatus();
+			
+			this._ContentsResizeInf.canvas = {
+				  width		: wCanvasStat.width
+				, height	: wCanvasStat.height
+			};
+
+			// リサイズ開始
 			this.addResizeEvent();
 
 			// 最前面へ移動
@@ -4327,8 +4562,8 @@ var clsContentsBox = function( pArgument ) {
 				// 次点指定時
 				} else {
 					// 開始点と終点を接続
-					wStItem.setLinePoint( wCheckId );
-					wChkItem.setLinePoint( this._ContentsLineInf.start );
+					wStItem.setFreeLinePoint( wCheckId );
+					wChkItem.setFreeLinePoint( this._ContentsLineInf.start );
 
 					// 終点のラインを継承
 					var wLineParam = wChkItem.getLineStatus();
@@ -4354,8 +4589,8 @@ var clsContentsBox = function( pArgument ) {
 				// 次点指定時
 				if ( wStItem ) {
 					// 開始点と次点を接続
-					wStItem.setLinePoint( wItemId );
-					pLineItem.setLinePoint( this._ContentsLineInf.start );
+					wStItem.setFreeLinePoint( wItemId );
+					pLineItem.setFreeLinePoint( this._ContentsLineInf.start );
 
 					// 開始点のライン設定取得
 					var wLineParam = wStItem.getLineStatus();
@@ -4965,13 +5200,387 @@ var clsContentsBox = function( pArgument ) {
 
 
 	// **************************************************************
+	// 全体移動
+	// **************************************************************
+
+	// 全体移動　開始
+	clsContentsBox.prototype.moveAllStart = function( pEvent, pItemKind ) {
+		try {
+			this._ContentsMoveAll = {};
+
+			// 項目設置位置取得
+			var wDeployArea = this.getItemDeployArea();
+
+			// 配置項目ない場合は処理なし
+			if ( !wDeployArea ) {
+				this.alertMouseCmt( 'move-nonitem' );
+				return false;
+			
+			}
+
+			// 配置項目位置　保存
+			this._ContentsMoveAll.itemStart = {};
+			this.copyProperty( wDeployArea, this._ContentsMoveAll.itemStart );
+
+			this._ContentsMoveAll.itemArea = {};
+			this.copyProperty( wDeployArea, this._ContentsMoveAll.itemArea );
+
+			// キャンバスサイズ取得
+			var wCanvasStat = this._ContentsCanvas.canvasGetStatus();
+			
+			this._ContentsMoveAll.canvas = {
+				  width		: wCanvasStat.width
+				, height	: wCanvasStat.height
+			};
+
+			// 開始マウス位置
+			this._ContentsMoveAll.posMouse = this.getEventPos( pEvent );
+
+			// メイン画面のスクロール保存
+			var wStartScroll = this.getScroll( this._ContentsEleMain );
+			this._ContentsMoveAll.scroll = wStartScroll;
+
+			// メイン画面とメインベースのstyle変更
+			this.chgMoveAllStyle( true, wStartScroll );
+
+			// 開始位置保存
+			var wStartPos = this.getPosByStyle( this._ContentsEleMain );
+
+			this._ContentsMoveAll.posStart = {};
+			this.copyProperty( wStartPos, this._ContentsMoveAll.posStart );
+
+			this._ContentsMoveAll.posMove = {};
+			this.copyProperty( wStartPos, this._ContentsMoveAll.posMove );
+
+			// ベースメニュー無効化
+			this.useContextCtrl( false );
+
+			var wComment = '移動先を指定してください' ;
+			this.dspMouseCmt( pEvent, wComment );
+
+			// 移動イベント設定
+			this.addAllMoveEvent();
+			
+			return true;
+
+		} catch(e) {
+			this.execFunction( this.moveAllCancel );
+			throw { name: 'moveAllStart.' + e.name, message: e.message };
+		}
+	};
+
+	// 全体移動　確定
+	clsContentsBox.prototype.moveAllConfirm = function( ) {
+		try {
+			var self = this;
+
+			// 変更差分取得
+			var wX = this._ContentsMoveAll.posMove.left - this._ContentsMoveAll.posStart.left;
+			var wY = this._ContentsMoveAll.posMove.top  - this._ContentsMoveAll.posStart.top;
+
+			// 項目位置変更
+			var fncChgItemPos = function( pItemList, pPersonFlg ) {
+				var wItem;
+
+				var wPos;
+				var wLeft;
+				var wTop;
+				var wParentId;
+				for( var wItemId in pItemList ) {
+					wItem = pItemList[wItemId];
+
+					// 人物
+					if ( pPersonFlg ) {
+						// グループに配置されていれば処理なし
+						wParentId = wItem.getParentId();
+						if ( wParentId in self._ContentsItems.group ) continue;
+
+					}
+
+					// 配置変更
+					wPos = wItem.getBoxPosByStyle();
+
+					wLeft	= wPos.left + wX;
+					wTop	= wPos.top  + wY;
+					wItem.setBoxStyle( { left: wLeft + 'px', top: wTop + 'px' } );
+
+				}
+
+			};
+
+			// 中継点位置変更
+			var fncChgRelationPos = function( pItemList ) {
+				var wItem;
+
+				var wPos;
+				for( var wItemId in pItemList ) {
+					wItem = pItemList[wItemId];
+
+					// コメント手動移動済
+					wPos = wItem.getCommentPoint();
+					if ( !wPos ) continue;
+
+					wPos.x += wX;
+					wPos.y += wY;
+
+					// 手動設定コメントの位置変更
+					wItem.setLinePointPos( wPos );
+
+					// コメント位置移動
+					wItem.dspRelationCmt( wPos.x, wPos.y );
+				}
+
+			};
+
+			// 位置変更されていなければ処理なし
+			if ( (wX == 0) && (wY == 0) ) return false;
+
+			// 全項目の位置変更
+			for( var wKind in this._ContentsItems ) {
+				if ( !this._ContentsItems[wKind] ) continue;
+
+				// 中継点
+				if ( this.isItemRelation(wKind) ) {
+					fncChgRelationPos( this._ContentsItems[wKind] );
+
+				// 人物
+				} else if ( this.isItemPerson(wKind) ) {
+					fncChgItemPos( this._ContentsItems[wKind], true );
+
+				// 以外
+				} else {
+					fncChgItemPos( this._ContentsItems[wKind], false );
+
+				}
+			}
+
+			return true;
+
+		} catch(e) {
+			this.execFunction( this.moveAllCancel );
+			throw { name: 'moveAllConfirm.' + e.name, message: e.message };
+		}
+	};
+
+	// 全体移動　終了（キャンセル）
+	clsContentsBox.prototype.moveAllCancel = function( pMoveExec ) {
+		try {
+			// イベント停止
+			// ※例外無視
+			this.execFunction( this.delAllMoveEvent );
+			
+			// コメント非表示
+			this.hideMouseCmt();
+
+			// メイン画面とメインベースのstyle変更
+			this.chgMoveAllStyle( false );
+
+			// メイン画面スクロール
+			if ( this.isObject(this._ContentsMoveAll.scroll) ) {
+				this.setScroll( this._ContentsEleMain, this._ContentsMoveAll.scroll );
+			}
+
+			// ベースメニュー有効化
+			this.useContextCtrl( true );
+
+			// 項目変更通知（移動確定）
+			if ( pMoveExec ) {
+				// 全関係ライン再描画
+				this.drawRelationRedo();
+
+				// 親へ通知
+				this.execLinkCallback( { kind: 'move' } );
+
+			}
+
+		} catch(e) {
+			throw { name: 'moveItemCancel.' + e.name, message: e.message };
+		}
+	};
+
+	// 全体移動イベント設定
+	clsContentsBox.prototype.addAllMoveEvent = function( pDragIs ) {
+		try {
+			// マウス追従
+			this.addBoxEvents( 'onmousemove'	, this.eventAllMove );
+
+			// 項目確定
+			this.addBoxEvents( 'onmousedown'	, this.eventAllMoveEnd );
+
+		} catch(e) {
+			throw { name: 'addAllMoveEvent.' + e.name, message: e.message };
+		}
+	};
+
+	// 全体移動イベント解除
+	clsContentsBox.prototype.delAllMoveEvent = function() {
+		try {
+			// マウス追従
+			this.delBoxEvents( 'onmousemove'	, this.eventAllMove );
+
+			// 項目確定
+			this.delBoxEvents( 'onmousedown'	, this.eventAllMoveEnd );
+
+		} catch(e) {
+			throw { name: 'delAllMoveEvent.' + e.name, message: e.message };
+		}
+	};
+
+	// 項目配置エリア座標取得
+	clsContentsBox.prototype.getItemDeployArea = function() {
+		try {
+			var self = this;
+
+			var wDeployArea	= null;
+
+			// 配置情報取得
+			var fncGetDeployArea = function( pItemList, pFlags, pSize ) {
+				var wItem;
+				var wPos;
+				var wSize;
+
+				var wRight;
+				var wBottom;
+
+				var wParentId;
+				for( var wItemId in pItemList ) {
+					wItem = pItemList[wItemId];
+
+					wPos  = null;
+					wSize = pSize;
+
+					// 中継点
+					if ( pFlags.relation ) {
+						// コメント移動なければ処理なし
+						wPos = wItem.getCommentPoint();
+						if ( !wPos ) continue;
+
+					// 人物
+					} else if ( pFlags.person ) {
+						// グループに配置されていれば処理なし
+						wParentId = wItem.getParentId();
+						if ( wParentId in self._ContentsItems.group ) continue;
+
+					}
+
+					if ( !wPos  ) wPos  = wItem.getBoxPosByStyle();
+					if ( !wSize ) wSize = wItem.getBoxSize( { overflow: true } );
+
+					if ( wDeployArea == null ) {
+						wDeployArea = {
+							  left		: wPos.left
+							, top		: wPos.top
+							, right		: (wPos.left + wSize.width)
+							, bottom	: (wPos.top  + wSize.height)
+						};
+
+					} else {
+						if ( wDeployArea.left > wPos.left ) wDeployArea.left = wPos.left;
+						if ( wDeployArea.top  > wPos.top  ) wDeployArea.top  = wPos.top;
+						
+						wRight  = wPos.left + wSize.width;
+						wBottom = wPos.top  + wSize.height;
+						if ( wDeployArea.right  < wRight  ) wDeployArea.right  = wRight;
+						if ( wDeployArea.bottom < wBottom ) wDeployArea.bottom = wBottom;
+
+					}
+				}
+
+			};
+
+			var wLineSize	= null;
+
+			// 全配置項目の位置を取得
+			for( var wKind in this._ContentsItems ) {
+				if ( !this._ContentsItems[wKind] ) continue;
+
+				// 中継点
+				if ( this.isItemRelation(wKind) ) {
+					fncGetDeployArea( this._ContentsItems[wKind], { relation: true }, null );
+
+				// 人物
+				} else if ( this.isItemPerson(wKind) ) {
+					fncGetDeployArea( this._ContentsItems[wKind], { person: true}, null );
+
+				// フリーライン
+				} else if ( this.isItemFreeLine(wKind) ) {
+					fncGetDeployArea( this._ContentsItems[wKind], {}, wLineSize );
+
+				// 以外
+				} else {
+					fncGetDeployArea( this._ContentsItems[wKind], {}, null );
+
+				}
+			}
+
+			return wDeployArea;
+
+		} catch(e) {
+			throw { name: 'getItemDeployArea.' + e.name, message: e.message };
+		}
+	};
+
+	// 全体移動用メイン画面Style変更
+	clsContentsBox.prototype.chgMoveAllStyle = function( pMoveFlg, pScroll ) {
+		try {
+			var wBaseScroll	= '';
+
+			var wMainTop	= '';
+			var wMainLeft	= '';
+			var wMainWidth	= '';
+			var wMainHeight	= '';
+			var wMainScroll	= '';
+
+			if ( pMoveFlg ) {
+				wBaseScroll	= 'hidden';
+
+				wMainWidth	= this._ContentsMoveAll.canvas.width + 'px';
+				wMainHeight	= this._ContentsMoveAll.canvas.height + 'px';
+				wMainScroll	= 'hidden';
+
+				if ( this.isObject(pScroll) ) {
+					wMainTop	= (pScroll.y * -1) + 'px';
+					wMainLeft	= (pScroll.x * -1) + 'px';
+				}
+
+				// キャンバスライン非表示
+				this._ContentsCanvas.setCanvasLineDisplay( false );
+
+			} else {
+				// キャンバスライン表示
+				this._ContentsCanvas.setCanvasLineDisplay( true );
+
+			}
+
+			// メインベースのStyle変更
+			this.setStyle( this._ContentsEleBase, { overflow: wBaseScroll } );
+
+			// メイン画面のStyle変更
+			var wMainStyle = {
+				  top		: wMainTop
+				, left		: wMainLeft
+				, width		: wMainWidth
+				, height	: wMainHeight
+				, overflow	: wMainScroll
+			};
+
+			this.setStyle( this._ContentsEleMain, wMainStyle );
+
+		} catch(e) {
+			throw { name: 'chgMoveAllStyle.' + e.name, message: e.message };
+		}
+	};
+
+
+	// **************************************************************
 	// マウス追従コメント
 	// **************************************************************
 
 	// マウス追従コメント　初期設定
 	clsContentsBox.prototype.initMouseCmt = function() {
 		try {
-			this._ContentsMouseCmt = new clsMouseCmt( { parent: this._ContentsEleMain } );
+			// ※ 親をベース画面とする
+			this._ContentsMouseCmt = new clsMouseCmt( { parent: this._ContentsEleBase } );
 
 		} catch(e) {
 			throw { name: 'initMouseCmt.' + e.name, message: e.message };
@@ -4987,7 +5596,7 @@ var clsContentsBox = function( pArgument ) {
 			if ( !(pMsgCd in this._MSG_CONTENTS_ALERT) ) return;
 
 			var wMsg = this._MSG_CONTENTS_ALERT[pMsgCd];
-			alert( wMsg );
+			this.dspAlert( wMsg );
 
 		} catch(e) { alert(e.message); }
 	};
@@ -5758,6 +6367,11 @@ var clsContentsBox = function( pArgument ) {
 				wRetVal = this.addItemFreeLine( pEvent );
 				break;
 
+			// 全体移動
+			case 'all-move':
+				wRetVal = this.moveAllStart( pEvent );
+				break;
+
 			// 色変更
 			case 'color':
 				wRetVal = this.dspColorMenu( pEvent );
@@ -5919,7 +6533,7 @@ var clsContentsBox = function( pArgument ) {
 			return wMenuIs;
 
 		} catch(e) {
-			throw { name: 'createMenuElement.' + e.name, message: e.message };
+			throw { name: 'chkActiveMenu.' + e.name, message: e.message };
 		}
 	};
 
@@ -6001,13 +6615,25 @@ var clsContentsBox = function( pArgument ) {
 	// メインコンテンツエリア生成
 	clsContentsBox.prototype.createContentsElement = function() {
 		try {
-			// ステータス表示エリア生成
-			var wMainEle = this.addElement( 'div', this.getBoxId() + '_main' );
-			if ( !wMainEle ) {
-				throw { name: 'addElement', message: '要素が生成できません' };
+			// ベースエリア生成
+			var wBaseEle = this.addElement( 'div', this.getBoxId() + '_base' );
+			if ( !wBaseEle ) {
+				throw { name: 'addElement', message: 'Base要素が生成できません' };
 
 			}
+			this.addClass( wBaseEle, 'cssContents-base' );
 
+			this.appendBoxToParent( wBaseEle );
+
+			// Base要素保存
+			this._ContentsEleBase = wBaseEle;
+
+			// メインエリア生成
+			var wMainEle = this.addElement( 'div', this.getBoxId() + '_main' );
+			if ( !wMainEle ) {
+				throw { name: 'addElement', message: 'Main要素が生成できません' };
+
+			}
 			this.addClass( wMainEle, 'cssContents-main' );
 
 			// メニュー設定有効時
@@ -6020,7 +6646,7 @@ var clsContentsBox = function( pArgument ) {
 
 			}
 
-			this.appendBoxToParent( wMainEle );
+			this.appendElementToParent( wBaseEle, wMainEle );
 
 			// 要素保存
 			this._ContentsEleMain = wMainEle;
@@ -6389,7 +7015,12 @@ var clsContentsBox = function( pArgument ) {
 			for( var wCIdx = 0; this._ContentsLinkCallback.length; CIdx++ ) {
 				this._ContentsLinkCallback[wCIdx] = null;
 			}
-			this._ContentsLinkCallback = null;
+			this._ContentsLinkCallback		= null;
+
+			this._ContentsMoveAll			= null;
+
+			this._ContentsEleBase			= null;
+			this._ContentsEleMain			= null;
 
 			// 継承元デストラクタ
 			// ※継承元デストラクタは最後にcallする

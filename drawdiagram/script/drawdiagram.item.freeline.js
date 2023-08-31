@@ -174,9 +174,14 @@ var clsItemFreeLine = function( pArgument ) {
 
 				if ( !self._FreeLinePointMove ) return false;
 
-				// コメント移動
 				var wPoint = self.getEventPos( pEvent );
-				self.movePoint( wPoint );
+
+				// コメント移動
+				if ( self.movePoint(wPoint) ) {
+					// 移動終了
+					self.eventCmtPointStop( pEvent );
+
+				}
 
 			} catch(e) {
 				self.execFunction( self.cancelPointMove );
@@ -276,14 +281,14 @@ var clsItemFreeLine = function( pArgument ) {
 	};
 
 	// 接続点設定
-	clsItemFreeLine.prototype.setLinePoint = function( pPointId ) {
+	clsItemFreeLine.prototype.setFreeLinePoint = function( pPointId ) {
 		try {
 			if ( !this._FreeLinePoint ) this._FreeLinePoint = {};
 
 			this._FreeLinePoint[pPointId] = true;
 
 		} catch(e) {
-			throw { name: 'setLinePoint', message: e.message };
+			throw { name: 'setFreeLinePoint', message: e.message };
 		}
 	};
 
@@ -452,6 +457,9 @@ var clsItemFreeLine = function( pArgument ) {
 			// 位置確定
 			this.addEvent( this.getBoxWindow(), 'onmouseup'		, this.eventCmtPointStop );
 
+			// マウス範囲外
+			this.addEvent( this.getParent(), 'mouseleave'	, this.eventCmtPointStop );
+
 		} catch(e) {
 			throw { name: 'addPointMoveEvent.' + e.name, message: e.message };
 		}
@@ -465,6 +473,9 @@ var clsItemFreeLine = function( pArgument ) {
 
 			// 位置確定
 			this.delEvent( this.getBoxWindow(), 'onmouseup'		, this.eventCmtPointStop );
+
+			// マウス範囲外
+			this.delEvent( this.getParent(), 'mouseleave'	, this.eventCmtPointStop );
 
 		} catch(e) {
 			throw { name: 'delPointMoveEvent.' + e.name, message: e.message };
@@ -495,8 +506,13 @@ var clsItemFreeLine = function( pArgument ) {
 
 			this._FreeLinePointMove = {};
 
+			// サイズを保存
+			this._FreeLinePointMove.size = this.getBoxSize( { overflow: true, border: true } );
+
 			// 親の位置を保存
-			this._FreeLinePointMove.parent = this.getParentPos();
+			this._FreeLinePointMove.parent = {};
+			this._FreeLinePointMove.parent.pos  = this.getParentPos();
+			this._FreeLinePointMove.parent.size = this.getParentSize( { overflow: true, border: false } );
 
 			// クリック位置を保存
 			var wEvtPos = this.getEventPos( pEvent );
@@ -526,33 +542,57 @@ var clsItemFreeLine = function( pArgument ) {
 	// ポイント移動
 	clsItemFreeLine.prototype.movePoint = function( pPoint ) {
 		try {
+			if ( !this._FreeLinePointMove ) return true;
+
 			var wMovePos = { x: pPoint.x, y: pPoint.y };
 
-			if ( this._FreeLinePointMove ) {
-				if ( this._FreeLinePointMove.parent ) {
-					wMovePos.x -= this._FreeLinePointMove.parent.left;
-					wMovePos.y -= this._FreeLinePointMove.parent.top;
+			// 親要素補正
+			if ( this._FreeLinePointMove.parent ) {
+				wMovePos.x -= this._FreeLinePointMove.parent.pos.left;
+				wMovePos.y -= this._FreeLinePointMove.parent.pos.top;
 
-				}
-
-				if ( this._FreeLinePointMove.drag ) {
-					wMovePos.x -= this._FreeLinePointMove.drag.left;
-					wMovePos.y -= this._FreeLinePointMove.drag.top;
-				}
 			}
 
-			// 親要素のスクロール値加算
 			var wMainScroll = this.getParentScroll();
 			wMovePos.x += wMainScroll.x;
 			wMovePos.y += wMainScroll.y;
 
+			// ドラッグ位置補正
+			if ( this._FreeLinePointMove.drag ) {
+				wMovePos.x -= this._FreeLinePointMove.drag.left;
+				wMovePos.y -= this._FreeLinePointMove.drag.top;
+			}
+
+			// 親要素の範囲を超えれば終了
+			var wMoveEnd = false;
+
 			// 上端、左端は処理なし
-			if ( wMovePos.x <= 0 ) return false;
-			if ( wMovePos.y <= 0 ) return false;
+			if ( wMovePos.x < 0 ) {
+				wMovePos.x  = 0;
+				wMoveEnd = true;
+			}
+
+			// 左端
+			if ( wMovePos.y < 0 ) {
+				wMovePos.y  = 0;
+				wMoveEnd = true;
+			}
+
+			var wRight = wMovePos.x + this._FreeLinePointMove.size.width;
+			if ( wRight > this._FreeLinePointMove.parent.size.width ) {
+				wMovePos.x = this._FreeLinePointMove.parent.size.width - this._FreeLinePointMove.size.width;
+				wMoveEnd = true;
+			}
+
+			var wBottom = wMovePos.y + this._FreeLinePointMove.size.height;
+			if ( wBottom > this._FreeLinePointMove.parent.size.height ) {
+				wMovePos.y = this._FreeLinePointMove.parent.size.height - this._FreeLinePointMove.size.height;
+				wMoveEnd = true;
+			}
 
 			this.setBoxPos( wMovePos );
 
-			return true;
+			return wMoveEnd;
 
 		} catch(e) {
 			throw { name: 'movePoint.' + e.name, message: e.message };
