@@ -130,6 +130,16 @@ body {
 	border-width		: 0px;
 }
 
+.cssContents-base-main {
+	position			: absolute;
+	left				: 0px;
+	width				: 100%;
+	padding				: 0px;
+	margin				: 0px;
+	background-color	: #FFFFFF;
+	border-width		: 0px;
+}
+
 .cssContents-main {
 	position			: absolute;
 	left				: 0px;

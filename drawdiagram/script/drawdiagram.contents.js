@@ -6621,7 +6621,17 @@ var clsContentsBox = function( pArgument ) {
 				throw { name: 'addElement', message: 'Base要素が生成できません' };
 
 			}
-			this.addClass( wBaseEle, 'cssContents-base' );
+			this.addClass( wBaseEle, 'cssContents-base-main' );
+
+			// メニュー設定有効時
+			if ( this.chkActiveMenu() ) {
+				this.addClass( wBaseEle, 'cssContents-main-menu' );
+
+			// メニューなし
+			} else {
+				this.addClass( wBaseEle, 'cssContents-main-nomenu' );
+
+			}
 
 			this.appendBoxToParent( wBaseEle );
 
@@ -6635,16 +6645,7 @@ var clsContentsBox = function( pArgument ) {
 
 			}
 			this.addClass( wMainEle, 'cssContents-main' );
-
-			// メニュー設定有効時
-			if ( this.chkActiveMenu() ) {
-				this.addClass( wMainEle, 'cssContents-main-menu' );
-
-			// メニューなし
-			} else {
-				this.addClass( wMainEle, 'cssContents-main-nomenu' );
-
-			}
+			this.addClass( wMainEle, 'cssContents-main-nomenu' );
 
 			this.appendElementToParent( wBaseEle, wMainEle );
 
