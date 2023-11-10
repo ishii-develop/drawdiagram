@@ -89,6 +89,25 @@
 		height				: 15px;
 	}
 
+	.func-i::after {
+		content				: " ";
+		background-color	: #3366FF;
+		display				: inline-block;
+		vertical-align		: middle;
+		border-radius		: 50%;
+		width				: 15px;
+		height				: 15px;
+	}
+
+	.samp-i {
+		content				: " ";
+		background-color	: #3366FF;
+		display				: inline-block;
+		vertical-align		: middle;
+		width				: 15px;
+		height				: 15px;
+	}
+
 	#divContents {
 		position			: absolute;
 		top					: 70px;
@@ -112,12 +131,12 @@
 	}
 
 	.explanation-title {
-		margin-top		: 30px;
-		padding			: 5px;
-		background-color: #191970;
-		color			: white;
-		width			: 280px;
-		border-radius	: 5px;
+		margin-top			: 30px;
+		padding				: 5px;
+		background-color	: #191970;
+		color				: white;
+		width				: 280px;
+		border-radius		: 5px;
 	}
 
 	.expContents {
@@ -176,6 +195,20 @@
 		float				: left;
 	}
 
+	.function-title {
+		width				: 400px;
+		background-color	: #0066CC;
+		cursor				: pointer;
+	}
+
+	.function-list {
+		list-style			: none;
+	}
+
+	.function-menu td {
+		width				: 100px;
+		vertical-align		: top;
+	}
 -->
 </style>
 
@@ -207,7 +240,14 @@ function fncHideContents() {
 	fncDspFrame( 'divEcoMap',			false );
 	fncDspFrame( 'divSampleGenogram',	false );
 	fncDspFrame( 'divSampleEcoMap',		false );
-	fncDspFrame( 'divSampleOther',		false );
+
+	fncDspFrame( 'divFunction',			false );
+	fncDspFrame( 'divFunctionItem',		false );
+	fncDspFrame( 'divFunctionInfo',		false );
+	fncDspFrame( 'divFunctionRel',		false );
+	fncDspFrame( 'divFunctionLine',		false );
+	fncDspFrame( 'divFunctionOther',	false );
+	fncDspFrame( 'divFunctionLayout',	false );
 }
 
 // iframe表示切替
@@ -296,7 +336,50 @@ function fncDspSample( pTarget, pNum ) {
 // サンプル詳細表示
 function fncSwitchSampleDetail( pCaseNo, pKind, pDisplay ) {
 	try {
-		let wElement = document.getElementsByName( 'sample-' + pCaseNo + '-' + pKind );
+		fncSwitchDetail( 'sample', pCaseNo, pKind, pDisplay );
+
+	} catch(e) { alert(e.message); }
+}
+
+
+// 機能表示切替
+function fncDspFunction( pTarget ) {
+	try {
+		// コンテンツ全て非表示
+		fncHideContents();
+
+		fncSwitchFunctionDetail( 'info', '1',	false );
+		fncSwitchFunctionDetail( 'info', '2',	false );
+		fncSwitchFunctionDetail( 'info', '3',	false );
+		fncSwitchFunctionDetail( 'info', '4',	false );
+		fncSwitchFunctionDetail( 'info', '5',	false );
+
+		fncSwitchFunctionDetail( 'rel', '1',	false );
+		fncSwitchFunctionDetail( 'rel', '2',	false );
+		fncSwitchFunctionDetail( 'rel', '3',	false );
+
+		fncSwitchFunctionDetail( 'other', '1',	false );
+		fncSwitchFunctionDetail( 'other', '2',	false );
+		fncSwitchFunctionDetail( 'other', '3',	false );
+		fncSwitchFunctionDetail( 'other', '4',	false );
+
+		fncDspFrame( pTarget, true );
+
+	} catch(e) { alert(e.message); }
+}
+
+// 機能詳細表示
+function fncSwitchFunctionDetail( pCaseNo, pKind, pDisplay ) {
+	try {
+		fncSwitchDetail( 'function', pCaseNo, pKind, pDisplay );
+
+	} catch(e) { alert(e.message); }
+}
+
+// 詳細表示切替
+function fncSwitchDetail( pGroup, pCaseNo, pKind, pDisplay ) {
+	try {
+		let wElement = document.getElementsByName( pGroup + '-' + pCaseNo + '-' + pKind );
 		if ( !wElement ) return;
 
 		let wSetStyle = null;
@@ -352,6 +435,40 @@ function fncSwitchSampleDetail( pCaseNo, pKind, pDisplay ) {
 			<li class='group-list' title="エコマップ">
 				<span class="file-i"></span>
 				<a href="javascript:void(0);" onClick="fncDspExplanation('divEcoMap');" class="link">エコマップ</a>
+			</li>
+		</li>
+	</ul>
+
+	<ul>
+		<li class="group">
+			<h4 class='group-title'>図形描画機能</h4>
+			<li class='group-list' title="画面の構成">
+				<span class="func-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspFunction('divFunction');" class="link">画面の構成</a>
+			</li>
+			<li class='group-list' title="項目の配置">
+				<span class="func-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspFunction('divFunctionItem');" class="link">項目の配置</a>
+			</li>
+			<li class='group-list' title="項目の情報">
+				<span class="func-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspFunction('divFunctionInfo');" class="link">項目の情報</a>
+			</li>
+			<li class='group-list' title="項目の関連付け">
+				<span class="func-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspFunction('divFunctionRel');" class="link">項目の関連付け</a>
+			</li>
+			<li class='group-list' title="ライン描画">
+				<span class="func-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspFunction('divFunctionLine');" class="link">ライン描画</a>
+			</li>
+			<li class='group-list' title="その他情報設定">
+				<span class="func-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspFunction('divFunctionOther', 1);" class="link">その他情報</a>
+			</li>
+			<li class='group-list' title="レイアウト調整">
+				<span class="func-i"></span>
+				<a href="javascript:void(0);" onClick="fncDspFunction('divFunctionLayout', 1);" class="link">レイアウト調整</a>
 			</li>
 		</li>
 	</ul>
@@ -418,24 +535,14 @@ function fncSwitchSampleDetail( pCaseNo, pKind, pDisplay ) {
 
 	<ul>
 		<li class="group">
-			<h4 class='group-title'>その他情報設定　サンプル</h4>
-			<li class='group-list' title="その他情報設定">
-				<span class="link-i"></span>
-				<a href="javascript:void(0);" onClick="fncDspSample('divSampleOther', 1);" class="link">その他情報設定</a>
-			</li>
-		</li>
-	</ul>
-
-	<ul>
-		<li class="group">
 			<h4 class='group-title'>サンプル</h4>
 			<li class='group-list' title="基本作成画面">
-				<span class="link-i"></span>
+				<span class="samp-i"></span>
 				<a target="'_blank'" href="./sample_base.html" class="link">基本作成画面</a>
 			</li>
 
 			<li class='group-list' title="図形描画のみ画面">
-				<span class="link-i"></span>
+				<span class="samp-i"></span>
 				<a target="'_blank'" href="./sample_simple.html" class="link">図形描画のみ</a>
 			</li>
 		</li>
@@ -500,6 +607,697 @@ function fncSwitchSampleDetail( pCaseNo, pKind, pDisplay ) {
 			</ul>
 			</div>
 		</div>
+
+		<!-- ================================================================================== -->
+		<!-- 画面の構成																			-->
+		<!-- ================================================================================== -->
+		<div id='divFunction' class='explanation'>
+			<div class='expContents'>
+			項目を配置して図形を描画する<b>キャンバス（画面右側）</b><br>
+			　と<br>
+			配置した項目の詳細などを確認可能な<b>項目一覧（画面左側）</b><br>
+			　で<br>
+			構成されます。<br>
+			<p>
+			<img src='./image/func_1.png' />
+			</div>
+		</div>
+
+		<!-- ================================================================================== -->
+		<!-- 項目の配置																			-->
+		<!-- ================================================================================== -->
+		<div id='divFunctionItem' class='explanation'>
+			<div class='expContents'>
+			人物（人物、胎児、ペット）、グループ、コメントを配置することが可能です。<br>
+			配置した項目の、移動や色変更、サイズ変更（グループとコメントのみ）なども可能です。<br>
+			※ 変更できる内容は項目によって違いがあります。
+			<p>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>項目の種類</h4>
+					<table class='function-menu'>
+					<tr>
+					<td style='width: 200px;' rowspan='3'>
+						<img src='./image/func_item_1.png' />
+					</td>
+					<td>
+						①人物<br>
+						<img src='./image/func_item_2_1.png' />
+					</td>
+					<td>
+						②胎児<br>
+						<img src='./image/func_item_2_2.png' />
+					</td>
+					<td>
+						③ペット<br>
+						<img src='./image/func_item_2_3.png' />
+					</td>
+					</tr>
+
+					<tr>
+					<td colspan='3'>
+						④グループ<br>
+						<img src='./image/func_item_2_4.png' />
+					</td>
+					</tr>
+
+					<tr>
+					<td colspan='3'>
+						⑤コメント<br>
+						<img src='./image/func_item_2_5.png' />
+					</td>
+					</tr>
+					</table>
+				</li>
+			</ul>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>配置例</h4>
+					<img src='./image/func_item_3.png' />
+					<p>
+					※ 人物（人物、胎児、ペット）はグループ上に配置することも可能です。
+
+				</li>
+			</ul>
+			</div>
+		</div>
+
+		<!-- ================================================================================== -->
+		<!-- 項目への情報設定																	-->
+		<!-- ================================================================================== -->
+		<div id='divFunctionInfo' class='explanation'>
+			<div class='expContents'>
+			配置した項目へ状態や情報を設定することで、項目の見た目などを変更することが可能です。<br>
+			※ 変更できる内容は項目によって違いがあります。
+			<p>
+			<!-- ------------------------------ -->
+			<!-- 人物、胎児、ペット				-->
+			<!-- ------------------------------ -->
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('info','1');">人物</h4>
+					<li name='function-info-1' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 350px;' rowspan='3'>
+							<img src='./image/func_info_1.png' />
+						</td>
+						<td>
+							①基本情報<br>
+							<img src='./image/func_info_1_1.png' />
+						</td>
+						</tr>
+
+						<tr>
+						<td>
+							②性別<br>
+							<img src='./image/func_info_1_2.png' />
+						</td>
+						</tr>
+
+						<tr>
+						<td>
+							③状況<br>
+							<img src='./image/func_info_1_3.png' />
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-info-1'>
+					<h4 class='explanation-title'>設定例</h4>
+					①基本情報<br>
+					<img src='./image/func_info_1_4_1.png' />
+					<p>
+					②性別、③状況<br>
+					<img src='./image/func_info_1_4_2.png' />
+				</li>
+			</ul>
+
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('info','2');">胎児</h4>
+					<li name='function-info-2' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 350px;' rowspan='3'>
+							<img src='./image/func_info_2.png' />
+						</td>
+						<td>
+							①性別<br>
+							<img src='./image/func_info_2_1.png' />
+						</td>
+						</tr>
+
+						<tr>
+						<td>
+							②状況<br>
+							<img src='./image/func_info_2_2.png' />
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-info-2'>
+					<h4 class='explanation-title'>設定例</h4>
+					①性別、②状況<br>
+					<img src='./image/func_info_2_3.png' />
+				</li>
+			</ul>
+			
+
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('info','3');">ペット</h4>
+					<li name='function-info-3' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 350px;' rowspan='3'>
+							<img src='./image/func_info_3.png' />
+						</td>
+						<td>
+							基本情報<br>
+							<img src='./image/func_info_3_1.png' />
+						</td>
+						</tr>
+
+						<tr>
+						<td>
+							②状況<br>
+							<img src='./image/func_info_3_2.png' />
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-info-3'>
+					<h4 class='explanation-title'>設定例</h4>
+					①基本情報<br>
+					<img src='./image/func_info_3_3_1.png' />
+					<p>
+					②状況<br>
+					<img src='./image/func_info_3_3_2.png' />
+				</li>
+			</ul>
+
+			<!-- ------------------------------ -->
+			<!-- グループ						-->
+			<!-- ------------------------------ -->
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('info','4');">グループ</h4>
+					<li name='function-info-4' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 250px;'>
+							<img src='./image/func_info_4.png' />
+						</td>
+						<td>
+							①情報設定<br>
+							<img src='./image/func_info_4_1.png' />
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-info-4'>
+					<h4 class='explanation-title'>設定例</h4>
+					①情報設定<br>
+					<img src='./image/func_info_4_2_1.png' />
+				</li>
+			</ul>
+
+
+			<!-- ------------------------------ -->
+			<!-- コメント						-->
+			<!-- ------------------------------ -->
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('info','5');">コメント</h4>
+					<li name='function-info-5' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 250px;' rowspan='2'>
+							<img src='./image/func_info_5.png' />
+						</td>
+						<td style='width: 380px;' colspan='2'>
+							①コメント設定<br>
+							<img src='./image/func_info_5_1.png' />
+						</td>
+						<td style='width: 250px;' rowspan='2'>
+							②背景色、⑤文字-色<br>
+							<img src='./image/func_info_5_2.png' />
+						</td>
+						</tr>
+
+						<tr>
+						<td>
+							③文字-大きさ<br>
+							<img src='./image/func_info_5_3.png' />
+						</td>
+						<td>
+							④文字-太さ<br>
+							<img src='./image/func_info_5_4.png' />
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-info-5'>
+					<h4 class='explanation-title'>設定例</h4>
+					①コメント設定、②背景色<br>
+					<img src='./image/func_info_5_6_1.png' />
+					<p>
+					③文字-大きさ<br>
+					<img src='./image/func_info_5_6_2.png' />
+					<p>
+					④文字-太さ<br>
+					<img src='./image/func_info_5_6_3.png' />
+					<p>
+					⑤文字-色<br>
+					<img src='./image/func_info_5_6_4.png' />
+				</li>
+			</ul>
+
+			</div>
+		</div>
+
+		<!-- ================================================================================== -->
+		<!-- 項目の関連付け																		-->
+		<!-- ================================================================================== -->
+		<div id='divFunctionRel' class='explanation'>
+			<div class='expContents'>
+			人物（人物、胎児、ペット）、グループを関連付ける（ラインで結びつける）ことが可能です。<br>
+			関連付けの状態などを設定することで、項目を結びつけるラインの種類を変更することも可能です。<br>
+			※ 設定できる内容は項目によって違いがあります。
+			<p>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>関連付け</h4>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 250px;' rowspan='3'>
+							<img src='./image/func_rel_1_5.png' />
+						</td>
+						<td style='width: 500px;'>
+							①関連付け<br>
+							対象の項目をクリックして関連付け設定を行う。
+							<p>
+						</td>
+						</tr>
+
+						<tr>
+						<td style='width: 500px;'>
+							②関連変更<br>
+							既に関連付いている項目をクリックして関連付け設定を変更する。
+							<p>
+						</td>
+						</tr>
+
+						<tr>
+						<td style='width: 500px;'>
+							③関連解除<br>
+							既に関連付いている項目をクリックして関連付けを解除する。
+							<p>
+						</td>
+						</tr>
+
+						</table>
+				</li>
+			</ul>
+			<!-- ------------------------------ -->
+			<!-- 人物同士						-->
+			<!-- ------------------------------ -->
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('rel','1');">人物同士</h4>
+					<li name='function-rel-1' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 250px;' rowspan='2'>
+							<img src='./image/func_rel_1.png' />
+						</td>
+						<td style='width: 230px;'>
+							①状態<br>
+							<img src='./image/func_rel_1_1.png' />
+						</td>
+						<td style='width: 230px;'>
+							②関係<br>
+							<img src='./image/func_rel_1_2.png' />
+						</td>
+						<td style='width: 300px;'>
+							③コメント<br>
+							コメントを設定可能。
+						</td>
+						</tr>
+
+						<tr>
+						<td style='width: 230px;'>
+							④働きかけ<br>
+							<img src='./image/func_rel_1_3.png' />
+						</td>
+						<td colspan='2'>
+							⑤色設定<br>
+							カラーパレットからラインの色を選択可能。
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-rel-1'>
+					<h4 class='explanation-title'>設定例</h4>
+					①状態<br>
+					<img src='./image/func_rel_1_4_1.png' />
+					<p>
+					②関係<br>
+					<img src='./image/func_rel_1_4_2.png' />
+					<p>
+					③コメント<br>
+					<img src='./image/func_rel_1_4_3.png' />
+					<p>
+					④働きかけ<br>
+					<img src='./image/func_rel_1_4_4.png' />
+					<p>
+					⑤色<br>
+					<img src='./image/func_rel_1_4_5.png' />
+				</li>
+			</ul>
+
+			<!-- ------------------------------ -->
+			<!-- ペット、グループ				-->
+			<!-- ------------------------------ -->
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('rel','2');">ペット、グループ</h4>
+					<li name='function-rel-2' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 250px;' rowspan='2'>
+							<img src='./image/func_rel_2.png' />
+						</td>
+						<td style='width: 250px;'>
+							①状態<br>
+							<img src='./image/func_rel_2_1.png' />
+						</td>
+						<td style='width: 350px;'>
+							②コメント<br>
+							コメントを設定可能。
+						</td>
+						</tr>
+
+						<tr>
+						<td style='width: 230px;'>
+							③働きかけ<br>
+							<img src='./image/func_rel_2_2.png' />
+						</td>
+						<td>
+							②色設定<br>
+							カラーパレットからラインの色を選択可能。
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-rel-2'>
+					<h4 class='explanation-title'>設定例</h4>
+					①状態<br>
+					<img src='./image/func_rel_2_3_1.png' />
+					<p>
+					②コメント<br>
+					<img src='./image/func_rel_2_3_2.png' />
+					<p>
+					③働きかけ<br>
+					<img src='./image/func_rel_2_3_3.png' />
+					<p>
+					④色設定<br>
+					<img src='./image/func_rel_2_3_4.png' />
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-rel-2'>
+					<h4 class='explanation-title'>関連付けパターン</h4>
+					<table class='function-menu'>
+					<tr>
+					<td style='width: 250px;'>
+						1．ペット ‐ 人物<br>
+						<img src='./image/func_rel_2_4_1.png' />
+					</td>
+					<td style='width: 250px;'>
+						2．ペット ‐ ペット<br>
+						<img src='./image/func_rel_2_4_2.png' />
+					</td>
+					<td style='width: 250px;'>
+						3．ペット ‐ グループ<br>
+						<img src='./image/func_rel_2_4_3.png' />
+					</td>
+					</tr>
+					</table>
+
+					<table class='function-menu'>
+					<tr>
+					<td style='width: 350px;'>
+						4．グループ ‐ 人物<br>
+						<img src='./image/func_rel_2_4_4.png' />
+					</td>
+					<td style='width: 350px;'>
+						5．グループ ‐ グループ<br>
+						<img src='./image/func_rel_2_4_5.png' />
+					</td>
+					</tr>
+					</table>
+				</li>
+			</ul>
+
+			<!-- ------------------------------ -->
+			<!-- 胎児							-->
+			<!-- ------------------------------ -->
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('rel','3');">胎児</h4>
+					<li name='function-rel-3' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 250px;' rowspan='2'>
+							<img src='./image/func_rel_3.png' />
+						</td>
+
+						<td style='width: 350px;'>
+							①コメント<br>
+							コメントを設定可能。
+						</td>
+						</tr>
+
+						<tr>
+						<td>
+							②色設定<br>
+							カラーパレットからラインの色を選択可能。
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-rel-3'>
+					<h4 class='explanation-title'>設定例</h4>
+					①コメント<br>
+					<img src='./image/func_rel_3_1.png' />
+					<p>
+					②色設定<br>
+					<img src='./image/func_rel_3_2.png' />
+				</li>
+			</ul>
+			<ul>
+				<li class="group" name='function-rel-3'>
+					<h4 class='explanation-title'>関連付けパターン</h4>
+					<table class='function-menu'>
+					<tr>
+					<td style='width: 250px;'>
+						1．胎児 ‐ 人物<br>
+						<img src='./image/func_rel_3_3_1.png' />
+					</td>
+					<td style='width: 350px;'>
+						2．胎児 ‐ ペット<br>
+						<img src='./image/func_rel_3_3_2.png' />
+					</td>
+					<td style='width: 250px;'>
+						3．胎児 ‐ 胎児<br>
+						<img src='./image/func_rel_3_3_3.png' />
+					</td>
+					<td style='width: 250px;'>
+						4．胎児 ‐ グループ<br>
+						<img src='./image/func_rel_3_3_4.png' />
+					</td>
+					</tr>
+					</table>
+				</li>
+			</ul>
+
+			</div>
+		</div>
+
+
+		<!-- ================================================================================== -->
+		<!-- ライン描画																			-->
+		<!-- ================================================================================== -->
+		<div id='divFunctionLine' class='explanation'>
+			<div class='expContents'>
+			マウスでクリックした点と点を結ぶラインを描画することが可能です。<br>
+			ラインの色、種類、太さが変更することが可能です。<br>
+			※ 配置した点はマウスドラッグで移動することが出来ます。
+			<p>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>ラインの描画</h4>
+					<table class='function-menu'>
+					<tr>
+					<td style='width: 200px;' rowspan='2'>
+						<img src='./image/func_line_1.png' />
+					</td>
+					<td style='width: 400px;'>
+						・ライン描画<br>
+						　※ 右クリックでライン描画終了<br>
+						<img src='./image/func_line_1_1.png' />
+					</td>
+					</tr>
+
+					<tr>
+					<td>
+						・矩形描画<br>
+						　※ 他の点をクリックして描画終了<br>
+						<img src='./image/func_line_1_2.png' />
+					</td>
+					</tr>
+
+					</table>
+				</li>
+			</ul>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>ラインの変更</h4>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 250px;' rowspan='2'>
+							<img src='./image/func_line_2.png' />
+						</td>
+						<td colspan='2'>
+							①ライン ‐ 色<br>
+							カラーパレットからラインの色を選択可能。
+							<p>
+						</td>
+						</tr>
+
+						<tr>
+						<td style='width: 200px;'>
+							②ライン ‐ 種類<br>
+							<img src='./image/func_line_2_1.png' />
+						</td>
+						<td style='width: 200px;'>
+							③ライン ‐ 太さ<br>
+							<img src='./image/func_line_2_2.png' />
+						</td>
+						</tr>
+
+						</table>
+						※ 設定した内容は、点で結ばれた全てのラインに適用されます。
+				</li>
+			</ul>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>設定例</h4>
+					①ライン ‐ 色<br>
+					<img src='./image/func_line_3_1.png' />
+					<p>
+					②ライン ‐ 種類<br>
+					<img src='./image/func_line_3_2.png' />
+					<img src='./image/func_line_3_3.png' />
+					<p>
+					③ライン ‐ 太さ<br>
+					<img src='./image/func_line_3_4.png' />
+					<img src='./image/func_line_3_5.png' />
+					<img src='./image/func_line_3_6.png' />
+					<img src='./image/func_line_3_7.png' />
+				</li>
+			</ul>
+			</div>
+		</div>
+
+
+		<!-- ================================================================================== -->
+		<!-- レイアウト調整																		-->
+		<!-- ================================================================================== -->
+		<div id='divFunctionLayout' class='explanation'>
+			<div class='expContents'>
+			配置した項目の位置を調整することが可能です。<br>
+			※ 他の項目の位置（横または縦）と合わせることが可能です。
+			<p>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>レイアウト調整開始</h4>
+					項目一覧（画面左側）の「配置編集」ボタンをクリックします。
+					<p>
+					<img src='./image/func_lay_1.png' />
+				</li>
+			</ul>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>位置調整</h4>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 200px;' rowspan='2'>
+							<img src='./image/func_lay_2.png' />
+						</td>
+						<td style='width: 450px;'>
+							①縦位置を合わせる<br>
+							対象項目の縦位置（上辺）を、選択した他項目と<br>
+							同じ位置に移動します。
+							<p>
+						</td>
+						</tr>
+
+						<tr>
+						<td>
+							②横位置を合わせる<br>
+							対象項目の横位置（左辺）を、選択した他項目と<br>
+							同じ位置に移動します。
+							<p>
+						</td>
+						</tr>
+
+						</table>
+				</li>
+			</ul>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title'>調整例</h4>
+					<img src='./image/func_lay_3.png' />
+				</li>
+			</ul>
+			</div>
+		</div>
+
 
 		<!-- ================================================================================== -->
 		<!-- サンプル　ジェノグラム																-->
@@ -775,11 +1573,105 @@ function fncSwitchSampleDetail( pCaseNo, pKind, pDisplay ) {
 		<!-- ================================================================================== -->
 		<!-- サンプル　その他情報設定															-->
 		<!-- ================================================================================== -->
-		<div id='divSampleOther' class='explanation'>
-			<ul name='sample-1'>
+		<div id='divFunctionOther' class='explanation'>
+			<div class='expContents'>
+			人物（人物、胎児、ペット）へコメントを設定することが可能です。<br>
+			また、人物およびグループへは連絡先を設定することも可能です。<br>
+			※ 設定した内容は、画面左側の項目一覧へ表示されます。
+			<p>
+			<ul>
 				<li class="group">
-					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'demo');">操作デモ</h4>
-					<li name='sample-1-demo' class='sample-list'>
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('other','1');">コメント</h4>
+					<li name='function-other-1' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td style='width: 200px;'>
+							①人物 ‐ その他<br>
+							<img src='./image/func_oth_1_1.png' />
+						</td>
+						<td style='width: 200px;'>
+							②胎児 ‐ その他<br>
+							<img src='./image/func_oth_1_2.png' />
+						</td>
+						<td style='width: 320px;'>
+							③ペット ‐ その他<br>
+							<img src='./image/func_oth_1_3.png' />
+						</td>
+						</tr>
+
+						<tr>
+						<td style='padding-left: 80px;' colspan='3'>
+							<img src='./image/func_oth_1_5.png' />
+						</td>
+						</tr>
+
+						<tr>
+						<td colspan='3'>
+							コメント設定<br>
+						</td>
+						</tr>
+
+						<tr>
+						<td colspan='2'>
+							<img src='./image/func_oth_1_4.png' />
+						</td>
+						<td>
+							<img src='./image/func_oth_1_6.png' />
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul>
+				<li class="group">
+					<h4 class='explanation-title function-title'  onclick="fncSwitchFunctionDetail('other','2');">連絡先</h4>
+					<li name='function-other-2' class='function-list'>
+						<table class='function-menu'>
+						<tr>
+						<td colspan='3'>
+							①人物 ‐ 連絡先<br>
+						</td>
+						</tr>
+
+						<tr>
+						<td style='width: 180px;'>
+							<img src='./image/func_oth_2_1_1.png' />
+						</td>
+						<td style='width: 460px;'>
+							<img src='./image/func_oth_2_1_2.png' />
+						</td>
+						<td>
+							<img src='./image/func_oth_2_1_3.png' />
+						</td>
+						</tr>
+
+						<tr>
+						<td colspan='3'>
+							②グループ ‐ 連絡先<br>
+						</td>
+						</tr>
+						<tr>
+						<td style='width: 180px;'>
+							<img src='./image/func_oth_2_2_1.png' />
+						</td>
+						<td style='width: 460px;'>
+							<img src='./image/func_oth_2_2_2.png' />
+						</td>
+						<td>
+							<img src='./image/func_oth_2_2_3.png' />
+						</td>
+						</tr>
+
+						</table>
+					</li>
+				</li>
+			</ul>
+			<ul style='padding-top: 16px;'>
+				<li class="group">
+					<h4 class='group-title sample-title' onclick="fncSwitchFunctionDetail('other','3');">操作デモ</h4>
+					<li name='function-other-3' class='sample-list'>
 						<div style='width: 300px;'>
 						<video controls width="250"><source src="./movie/03_other_1.mp4" type="video/mp4" /></video>
 						</div>
@@ -787,10 +1679,12 @@ function fncSwitchSampleDetail( pCaseNo, pKind, pDisplay ) {
 				</li>
 
 				<li class="group">
-					<h4 class='group-title sample-title' onclick="fncSwitchSampleDetail(1,'image');">作成イメージ</h4>
-					<div  name='sample-1-image'><img src='./image/smple_other_1.png' /></div>
+					<h4 class='group-title sample-title' onclick="fncSwitchFunctionDetail('other','4');">作成イメージ</h4>
+					<div  name='function-other-4'><img src='./image/smple_other_1.png' /></div>
 				</li>
 			</ul>
+			
+			</div>
 		</div>
 
 	</div>
