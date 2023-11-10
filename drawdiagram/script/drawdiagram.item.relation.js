@@ -46,7 +46,7 @@ var clsItemRelation = function( pArgument ) {
 		];
 
 		this._DEF_RELATIONINF_LIST_KIND			= [
-				  { value: 99, name: ''				, color: '#000000'	, icon : ''	}
+				  { value: 99, name: '通常'			, color: '#000000'	, icon : ''	}
 				, { value: 12, name: '別居'			, color: '#FF99CC'	, icon : 'icon_stat_separation1.png'	}
 				, { value: 10, name: '離婚'			, color: '#FF9900'	, icon : 'icon_stat_divorce.png'	}
 				, { value: 11, name: '再婚'			, color: '#FF9900'	, icon : 'icon_stat_remarriage.png'	}
@@ -560,6 +560,8 @@ var clsItemRelation = function( pArgument ) {
 
 			// アイコンなし
 			} else {
+				this.setStyle( this._RelationInfStatusItem, { 'background-image': '' } );
+
 				// 関係状態クリア
 				this.clearStatusItem();
 
